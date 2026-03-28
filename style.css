@@ -1,3 +1,8 @@
+header {
+    padding: 0;
+    margin: 0;
+}
+
 header h1 {
     font-family: Garamond;
     font-weight: bold;
@@ -6,6 +11,11 @@ header h1 {
 header img {
     width: 10%;
     height: auto;
+}
+
+main {
+    padding: 3%;
+    margin-bottom: 10%;
 }
 
 main > img {
@@ -17,13 +27,52 @@ main > img {
     z-index: -1;
 }
 
-form ul {
+main div div i {
+    color: rgb(30, 48, 80);
+    height: 20px !important;
+    width: 20px !important;
+}
+
+/*form ul, nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}*/
+
+ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
+
 footer {
     position: fixed; 
     bottom: 0;
+}
+
+div ul li, nav ul li{
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 12px;
+    text-decoration: none;
+}
+
+nav ul li:hover {
+    background-color: blue;
+}
+
+nav {
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    text-align: justify;
+    padding: 1%;
 }
