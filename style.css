@@ -8,6 +8,11 @@ body {
     flex-direction: column;
 }
 
+header {
+    padding: 0;
+    margin: 0;
+}
+
 header h1 {
     font-family: Garamond;
     font-weight: bold;
@@ -37,6 +42,26 @@ main form > h2 {
 }
 
 main form > ul {
+    padding: 3%;
+    margin-bottom: 10%;
+}
+
+main > img {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    z-index: -1;
+}
+
+main div i {
+    color: rgb(30, 48, 80);
+    height: 20px !important;
+    width: 20px !important;
+}
+
+form ul, nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -48,4 +73,35 @@ main form label, main form input[type=submit] {
 
 main form input[type=text], main form input[type=password] {
     width: 80%;
+}
+
+/* footer {
+    position: fixed; 
+    bottom: 0;
+} */
+
+div > ul > li, nav > ul > li{
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 12px;
+    text-decoration: none;
+}
+
+nav ul li:hover {
+    background-color: blue;
+}
+
+nav {
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    text-align: justify;
+    padding: 1%;
 }
