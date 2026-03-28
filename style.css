@@ -1,3 +1,11 @@
+body, html {
+    height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+}
+
 header {
     padding: 0;
     margin: 0;
@@ -28,7 +36,7 @@ main div div i {
     width: 20px !important;
 }
 
-form ul, nav ul {
+form ul, nav ul, aside ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -40,6 +48,39 @@ main form label, main form input[type=submit] {
 
 main form input[type=text], main form input[type=password] {
     width: 80%;
+}
+
+aside > span > i:nth-child(2) {
+    display: none;
+}
+
+nav li:last-child {
+    cursor: pointer;
+    padding: 6px 12px;
+    float: right;
+    font-size: 20px;
+}
+
+@media only screen and (min-width: 992px) {
+    aside > span > i:nth-child(1) {
+        display: none;
+    }
+
+    aside > span > i:nth-child(2) {
+        display: block;
+    }
+    
+    nav li:last-child {
+        display: none;
+    }
+}
+
+aside > span > i, aside > div {
+    background-color: aliceblue;
+}
+
+aside > span > i {
+    cursor: pointer;
 }
 
 /* footer {
