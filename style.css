@@ -27,7 +27,7 @@ main > img {
     z-index: -1;
 }
 
-main div div i {
+main section div i {
     color: rgb(30, 48, 80);
     height: 20px !important;
     width: 20px !important;
@@ -45,11 +45,16 @@ ul {
     margin: 0;
 }
 
+header {
+    position:sticky;
+    top: 0;
+    z-index: 2;
+}
 
-footer {
+/*footer {
     position: fixed; 
     bottom: 0;
-}
+}*/
 
 div ul li, nav ul li{
     float: left;
@@ -76,3 +81,9 @@ p {
     text-align: justify;
     padding: 1%;
 }
+
+button.dropdown-toggle::after {
+  display: none !important;
+}
+
+
