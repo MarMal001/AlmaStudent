@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        aside div > ul:nth-child(1) {
+            margin: 0;
+        }
+
+        aside div > ul:nth-child(1) li {
+            display: inline-block;
+            width: 13.6%;
+            text-align: center;
+        }
+
+        aside div > ul:nth-child(2) {
+            padding: 10px 0;
+            margin: 0;
+        }
+
+        aside div > ul:nth-child(2) li {
+            display: inline-block;
+            width: 13.6%;
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px 0;
+        }
+
+        @media screen and (max-width:720px) {
+            aside div > ul:nth-child(1) li, aside div > ul:nth-child(2) li {width: 13.1%;}
+        }
+
+        @media screen and (max-width: 420px) {
+            aside div > ul:nth-child(1) li, aside div > ul:nth-child(2) li {width: 12.5%;}
+            aside div > ul:nth-child(2) li .active {padding: 2px;}
+        }
+
+        @media screen and (max-width: 290px) {
+            aside div > ul:nth-child(1) li, aside div > ul:nth-child(2) li {width: 12.2%;}
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Home</title>
+</head>
+<body>
+    <header class="container-fluid py-5 px-1 bg-primary text-white text-center">
+        <div class="d-inline-flex">
+            <img src="images/logo.png" class="img-fluid" alt="">
+            <h1>AlmaStudent</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="professors.html">Docenti</a></li>
+                <li><a href="courses.html">Corsi</a></li>
+                <li><a href="reception.html">Ricevimenti</a></li>
+                <li><a href="contacts.html">Contatti</a></li>
+                <li><i class="fa-solid fa-bars"></i></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="row">
+        <div class="col-1"></div>
+        <main class="col-11 col-lg-6">
+            <section>
+                <h1 class="fw-bold">Ciao Giulia!</h1>
+                <div>Gestisci facilmente e velocemente i tuoi corsi.</div>
+            </section>
+            <section>
+                <h1 class="fw-bold">I tuoi corsi</h1>
+            </section>
+            <section>
+                <h1 class="fw-bold">I tuoi ricevimenti</h1>
+                <ul>
+                    <li>23/03/2026 9:00-9:15 Luciano Margara - presenza</li>
+                    <li>19/03/2026 15:15-15:30 Vittorio Ghini - online</li>
+                    <li>23/03/2026 18:30-18:45 Damiana Lazzaro - presenza</li>
+                </ul>
+            </section>
+        </main>
+        <aside class="col col-lg-5 mx-5 mx-lg-0">
+            <span>
+                <i class="fa-solid fa-angle-up"></i>
+                <i class="fa-solid fa-angle-left"></i>
+            </span>
+            <div class="py-2 px-4">
+                <h3>Le statistiche</h3>
+                <div class="d-flex flex-wrap gap-3">
+                    <div class="card text-center my-3">
+                        <div class="card-body bg-primary text-white rounded-top">
+                            <h6 class="card-title">Corsi</h6>
+                        </div>
+                        <h1 class="fw-bolder px-5 py-2">4</h1>
+                    </div>
+                    <div class="card text-center my-3">
+                        <div class="card-body bg-primary text-white rounded-top">
+                            <h6 class="card-title">Ricevimenti</h6>
+                            <h6 class="card-title">prenotati</h6>
+                        </div>
+                        <h1 class="fw-bolder px-5 py-2">3</h1>
+                    </div>
+                    <div class="card text-center my-3">
+                        <div class="card-body bg-primary text-white rounded-top">
+                            <h6 class="card-title">Nuovi</h6>
+                            <h6 class="card-title">messaggi</h6>
+                        </div>
+                        <h1 class="fw-bolder px-5 py-2">7</h1>
+                    </div>
+                </div>
+                <h3>Il calendario</h3>
+                <div class="card">
+                    <div class="bg-primary text-white text-center py-3">
+                        <   Marzo 2026   >
+                    </div>
+                    <div class="card-body">
+                        <ul class="text-primary fw-bold text-center">
+                            <li>Lun</li>
+                            <li>Mar</li>
+                            <li>Mer</li>
+                            <li>Gio</li>
+                            <li>Ven</li>
+                            <li>Sab</li>
+                            <li>Dom</li>
+                        </ul>
+                        <ul class="text-center">
+                            <li>1</li>
+                            <li>2</li>
+                            <li>3</li>
+                            <li>4</li>
+                            <li>5</li>
+                            <li>6</li>
+                            <li>7</li>
+                            <li>8</li>
+                            <li>9</li>
+                            <li>10</li>
+                            <li>11</li>
+                            <li>12</li>
+                            <li>13</li>
+                            <li>14</li>
+                            <li>15</li>
+                            <li>16</li>
+                            <li>17</li>
+                            <li class="bg-primary text-white rounded-3 border-grey">18</li>
+                            <li>19</li>
+                            <li>20</li>
+                            <li>21</li>
+                            <li>22</li>
+                            <li>23</li>
+                            <li>24</li>
+                            <li>25</li>
+                            <li>26</li>
+                            <li>27</li>
+                            <li>28</li>
+                            <li>29</li>
+                            <li>30</li>
+                            <li>31</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <footer class="container-fluid p-2 bg-primary text-white text-center">© Copyright 2026 - ALMA MATER STUDIORUM - Università di Bologna</footer>
+</body>
+</html>
