@@ -21,6 +21,11 @@ header img {
     height: auto;
 }
 
+main {
+    margin-left: 2%;
+    margin-right: 2%
+}
+
 main form > h2 {
     font-weight: 600;
 }
@@ -122,6 +127,24 @@ p {
 
 button.dropdown-toggle::after {
   display: none !important;
+}
+
+@media (min-width: 992px) {
+    .w-lg-50 {
+        width: 50% !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .w-lg-55 {
+        width: 55% !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .rounded-md-start {
+        border-radius: 0px !important;
+    }
 }
 
 
