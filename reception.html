@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Reception</title>
+</head>
+<body>
+    <header class="container-fluid py-5 px-1 bg-primary text-white text-center">
+        <div class="d-inline-flex">
+            <img src="images/logo.png" class="img-fluid" alt="">
+            <h1>AlmaStudent</h1>
+        </div>
+        <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="professors.html">Docenti</a></li>
+                    <li><a href="courses.html">Corsi</a></li>
+                    <li><a href="reception.html">Ricevimenti</a></li>
+                    <li><a href="contacts.html">Contatti</a></li>
+                    <li style="float:right"><i class="fa-solid fa-bars"></i></span></li>
+                </ul>
+            </nav>
+    </header>
+    <main>  
+        <section class="container-fluid w-auto m-2 p-0 my-4">
+            <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c0">
+                <p class="m-0  p-2">Aggiungi impegno</p>
+                <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
+            </button>
+            <form id="c0" class="collapse p-3 w-100 border border-primary border-2 rounded">
+                <label for="professor">Professore</label>
+                <select name="professor">
+                    <option value="Vittorio Ghini">Vittorio Ghini</option>
+                    <option value="Luciano Margara">Luciano Margara</option>
+                </select>
+                <div>
+                    <label for="date">Data</label>
+                    <input type="date" id="date" name="date">
+                </div>
+                <div>
+                    <label for="time_slot">Fascia oraria</label>
+                    <select name="time_slot">
+                        <option value="--" disabled selected hidden>--</option>
+                        <option value="900_915">9:00-9:15</option>
+                        <option value="915_930">9:15-9:30</option>
+                        <option value="930_945">9:30-9:45</option>
+                        <option value="945_1000">9:45-10:00</option>
+                        <option value="1000_1015">10:00-10:15</option>
+                        <option value="1015_1030">10:15-10:30</option>
+                        <option value="1030_1045">10:30-10:45</option>
+                        <option value="1045_1100">10:45-11:00</option>
+                        <option value="1100_1115">11:00-11:15</option>
+                        <option value="1115_1130">11:15-11:30</option>
+                        <option value="1130_1145">11:30-11:45</option>
+                        <option value="1145_1200">11:45-12:00</option>
+                        <option value="1200_1215">12:00-12:15</option>
+                        <option value="1215_1230">12:15-12:30</option>
+                        <option value="1230_1245">12:30-12:45</option>
+                        <option value="1245_1300">12:45-13:00</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="type">Modalità</label>
+                    <select name="type">
+                        <option value="select" disabled selected hidden>--Seleziona--</option>
+                        <option value="online">Online</option>
+                        <option value="presence">Presenza</option>
+                        <option value="presence">Online e in presenza</option>
+                    </select>
+                </div>
+                <div class="d-flex justify-content-end m-2">
+                    <button class="btn btn-white border-primary me-1" type="reset">Annulla</button>
+                    <button class="btn btn-primary ms-1" type="button">Aggiungi</button>
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <h2>I tuoi impegni</h2>
+            
+            <table class="table table-bordered">
+                <thead class="table-primary text-center">
+                    <tr>
+                        <th id="day" scope="colgroup" colspan="3" class="fs-5"> < 18 Marzo 2026 ></th>
+                    </tr>
+                    <tr class="fs-6">
+                        <th id="time" scope="col">Ore</th>
+                        <th id="type" scope="col">Disponibilità</th>
+                        <th id="reservations" scope="col">Prenotazioni</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <th id="915_930" scope="row" headers="time" class="text-center">9:15-9:30</th>
+                            <td id="type_915_930" headers="type 915_930">Modalità: in presenza</td>
+                            <td id="reservation_915_930" headers="reservations 915_930">
+                                <p>Prenotato</p>
+                                <p>Professore: Damiana Lazzaro</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th id="1545_1600" scope="row" headers="time" class="text-center">15:45-16:00</th>
+                            <td id="type_1545_1600" headers="type 1545_1600">Modalità: in presenza</td>
+                            <td id="reservation_1545_1600" headers="reservations 1545_1600">
+                                <p>Prenotato</p>
+                                <p>Professore: Vittorio Ghini</p>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+            
+        </section>
+    </main>    
+    <footer class="container-fluid p-2 bg-primary text-white text-center">© Copyright 2026 - ALMA MATER STUDIORUM - Università di Bologna</footer>
+</body>
+</html>
