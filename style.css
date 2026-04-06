@@ -61,7 +61,7 @@ main form input[type=text], main form input[type=password] {
     width: 80%;
 }
 
-aside > span > i:nth-child(2) {
+aside > div:first-child > i:nth-child(2) {
     display: none;
 }
 
@@ -72,13 +72,34 @@ nav li:last-child {
     font-size: 20px;
 }
 
+aside > div:first-child {
+    display: inline-block;
+    padding: 0 6px 0 4px;
+    border-radius: 5px 5px 0 0;
+}
+
 @media only screen and (min-width: 992px) {
-    aside > span > i:nth-child(1) {
+    aside > div:first-child > i:nth-child(1) {
         display: none;
     }
 
-    aside > span > i:nth-child(2) {
-        display: block;
+    aside {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    aside > div:first-child {
+        width: 3%;
+        align-self: flex-start;
+        border-radius: 5px 0 0 5px;
+    }
+
+    aside > div:nth-child(2) {
+        width: 97%;
+    }
+
+    aside > div:first-child > i:nth-child(2) {
+        display: inline-block;
     }
     
     nav li:last-child {
@@ -86,12 +107,48 @@ nav li:last-child {
     }
 }
 
-aside > span > i, aside > div {
-    background-color: aliceblue;
+aside > div:first-child > i, aside > div {
+    background-color: rgb(180, 225, 255);
 }
 
-aside > span > i {
+aside > div:first-child > i {
     cursor: pointer;
+}
+
+aside div > ul:nth-child(1) {
+    margin: 0;
+}
+
+aside div > ul:nth-child(1) li {
+    display: inline-block;
+    width: 13.6%;
+    text-align: center;
+}
+
+aside div > ul:nth-child(2) {
+    padding: 10px 0;
+    margin: 0;
+}
+
+aside div > ul:nth-child(2) li {
+    display: inline-block;
+    width: 13.6%;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px 0;
+}
+
+@media screen and (max-width:720px) {
+    aside div > ul:nth-child(1) li, aside div > ul:nth-child(2) li {width: 13.1%;}
+}
+
+@media screen and (max-width: 420px) {
+    aside div > ul:nth-child(1) li, aside div > ul:nth-child(2) li {width: 12.5%;}
+    aside div > ul:nth-child(2) li .active {padding: 2px;}
+}
+
+@media screen and (max-width: 290px) {
+    aside div > ul:nth-child(1) li, aside div > ul:nth-child(2) li {width: 12.2%;}
 }
 
 /* footer {

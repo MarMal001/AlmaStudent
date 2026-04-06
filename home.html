@@ -7,41 +7,7 @@
     <link rel="stylesheet" href="style.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        aside div > ul:nth-child(1) {
-            margin: 0;
-        }
 
-        aside div > ul:nth-child(1) li {
-            display: inline-block;
-            width: 13.6%;
-            text-align: center;
-        }
-
-        aside div > ul:nth-child(2) {
-            padding: 10px 0;
-            margin: 0;
-        }
-
-        aside div > ul:nth-child(2) li {
-            display: inline-block;
-            width: 13.6%;
-            text-align: center;
-            margin-top: 10px;
-            padding: 10px 0;
-        }
-
-        @media screen and (max-width:720px) {
-            aside div > ul:nth-child(1) li, aside div > ul:nth-child(2) li {width: 13.1%;}
-        }
-
-        @media screen and (max-width: 420px) {
-            aside div > ul:nth-child(1) li, aside div > ul:nth-child(2) li {width: 12.5%;}
-            aside div > ul:nth-child(2) li .active {padding: 2px;}
-        }
-
-        @media screen and (max-width: 290px) {
-            aside div > ul:nth-child(1) li, aside div > ul:nth-child(2) li {width: 12.2%;}
-        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     <title>Home</title>
@@ -136,10 +102,10 @@
                 </ul>
             </section>
         </main><aside class="col-0 col-lg-6 w-md-100 px-0 mx-0">
-            <span>
+            <div>
                 <i class="fa-solid fa-angle-up"></i>
                 <i class="fa-solid fa-angle-left"></i>
-            </span>
+            </div>
             <div class="px-4 py-3">
                 <h3>Le statistiche</h3>
                 <div class="d-flex flex-wrap gap-3">
