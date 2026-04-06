@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Professor</title>
+</head>
+<body>
+    <header class="container-fluid py-5 px-1 bg-primary text-white text-center">
+        <div class="d-inline-flex">
+            <img src="images/logo.png" class="img-fluid" alt="">
+            <h1>AlmaStudent</h1>
+        </div>
+        <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="professors.html">Docenti</a></li>
+                    <li><a href="courses.html">Corsi</a></li>
+                    <li><a href="reception.html">Ricevimenti</a></li>
+                    <li><a href="contacts.html">Contatti</a></li>
+                    <li style="float:right"><i class="fa-solid fa-bars"></i></span></li>
+                </ul>
+            </nav>
+    </header>
+    <main>
+        <section>
+            <h5>Filtra per corso</h5>
+            <label for="courses"></label>
+            <select name="courses">
+                <option value="Ingegneria e Scienze Informatiche">Ingegneria e Scienze Informatiche</option>
+                <option value="Ingegneria Biomedica">Ingegneria Biomedica</option>
+            </select>
+        </section>
+        <section class="m-2">
+
+            <div class="container-fluid w-auto w-lg-55 m-2 p-0">
+            <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c0">
+                <div class="d-md-inline-flex align-items-md-center p-0">
+                    <p class="m-0 p-2 text-start">Vittorio Ghini</p>
+                    <div>
+                        <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                        <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                        <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                        <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                        <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                    </div>
+                </div>
+                <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
+            </button>
+            
+            <div id="c0" class="collapse p-3 w-100 border border-primary border-2 rounded">
+                <h6>Corsi:</h6>
+                <ul class="d-flex flex-column align-items-start">
+                    <li><a href="#" class="text-primary">Virtualizzazione e integrazione di sistemi</a></li>
+                    <li><a href="#" class="text-primary">Sistemi Operativi</a></li>
+                </ul>
+                <div class="d-flex justify-content-end m-2">
+                    <button class="btn btn-primary me-1" type="button">Vai alla pagina</button>
+                </div>
+            </div>
+            </div>
+
+            <div class="container-fluid w-auto w-lg-55 m-2 p-0">
+            <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
+                <div class="d-md-inline-flex align-items-md-center p-0">
+                    <p class="m-0 p-2 text-start">Franco Callegati</p>
+                    <div>
+                        <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                        <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                        <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                        <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                        <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                    </div>
+                </div>
+                <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
+            </button>
+            
+            <div id="c1" class="collapse p-3 w-100 border border-primary border-2 rounded">
+                <h6>Corsi:</h6>
+                <ul class="d-flex flex-column align-items-start">
+                    <li><a href="#" class="text-primary">Reti di Telecomunicazioni</a></li>
+                    <li><a href="#" class="text-primary">Programmazione di Reti</a></li>
+                </ul>
+                <div class="d-flex justify-content-end m-2">
+                    <button class="btn btn-primary me-1" type="button">Vai alla pagina</button>
+                </div>
+            </div>
+            </div>
+
+        </section>
+    </main>    
+    <footer class="container-fluid p-2 bg-primary text-white text-center">© Copyright 2026 - ALMA MATER STUDIORUM - Università di Bologna</footer>
+</body>
+</html>
