@@ -186,6 +186,7 @@ button.dropdown-toggle::after {
   display: none !important;
 }
 
+/* TODO Passare queste tre media query in un altro foglio di stile apposito per quella pagina */
 @media (min-width: 992px) {
     .w-lg-50 {
         width: 50% !important;
