@@ -1,0 +1,132 @@
+<main>  
+    <h1>Nome Docente</h1>
+    <section class="m-2">
+        <div class="d-flex align-items-start">
+            <h6 class="m-0 me-2">Rating degli studenti:</h6>
+            <div>
+                <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+            </div>
+        </div>
+        
+        <div class="card mb-3 bg-primary border-0 text-white" style="max-width: 600px;">
+        <div class="row g-0">
+                
+            <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                <img src="images/professor/vic25.png" class="img-fluid rounded-start object-fit-fill" alt="">
+            </div>
+
+            <div class="col-md-8">
+            <div class="p-2">
+                <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus explicabo, odio aliquam 
+                qui voluptatum iusto rem ad fugiat eaque dolor. Voluptatibus similique animi 
+                vitae nulla saepe quibusdam recusandae quasi porro!
+                </p>
+
+                <button class="btn btn-light text-primary" type="button">Contatta il docente</a>
+            </div>
+            </div>
+
+        </div>
+        </div>
+
+
+    </section>
+    <section>
+        <h2>Corsi</h2>
+
+        <div class="container-fluid w-auto w-lg-55 m-2 p-0">
+        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c0">
+            <div class="d-md-inline-flex align-items-md-center p-0">
+                <p class="m-0  p-2 text-start">Virtualizzazione e integrazione di sistemi</p>
+                <div>
+                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                </div>
+            </div>
+            <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
+        </button>
+        
+        <div id="c0" class="collapse p-3 w-100 border border-primary border-2 rounded">
+            <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis natus vitae, 
+            deleniti quidem commodi voluptate doloremque quod officia pariatur excepturi id ducimus 
+            laudantium culpa officiis obcaecati iure eos reiciendis quaerat.
+            </p>
+            <div class="d-flex justify-content-end m-2">
+                <button class="btn btn-primary me-1" type="button">Apri corso</button>
+                <button class="btn btn-primary ms-1" type="submit">Iscriviti</button>
+            </div>
+        </div>
+        </div>    
+
+        <div class="container-fluid w-auto w-lg-55 m-2 p-0">
+        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
+            <div class="d-md-inline-flex align-items-center p-0">
+                <p class="m-0  p-2">Sistemi Operativi</p>
+                <div>
+                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                </div>
+            </div>
+            <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
+        </button>
+        
+        <div id="c1" class="collapse p-3 w-100 border border-primary border-2 rounded">
+            <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis natus vitae, 
+            deleniti quidem commodi voluptate doloremque quod officia pariatur excepturi id ducimus 
+            laudantium culpa officiis obcaecati iure eos reiciendis quaerat.
+            </p>
+            <div class="d-flex justify-content-end m-2">
+                <button class="btn btn-primary me-1" type="button">Apri corso</button>
+                <button class="btn btn-primary ms-1" type="submit">Iscriviti</button>
+            </div>
+        </div>
+        </div>
+
+    </section>
+
+    <article>
+        <h2>Ricevimento</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus explicabo, odio aliquam 
+            qui voluptatum iusto rem ad fugiat eaque dolor. Voluptatibus similique animi 
+            vitae nulla saepe quibusdam recusandae quasi porro!
+        </p>
+    </article>
+    <section>
+        <h2>Opinioni degli studenti</h2>
+        
+        <div class="container-fluid text-white text-center">
+            <div class="row"> 
+            <div class="col-sm-2"></div>
+            <div class="col-sm-6">
+            <div class="list-group-item border-0">
+                <div class="p-2 mb-3 rounded bg-light text-primary d-inline-block" style="max-width: 70%;">
+                    <p>Ciao! Come va? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi cupiditate iusto natus.
+                        Possimus deserunt quos inventore fugiat similique ducimus laboriosam aut eveniet, adipisci deleniti 
+                        eligendi fugit. Ab quis officiis vitae?</p>
+                </div>
+            </div>
+            <div class="list-group-item border-0 d-flex justify-content-end">
+                <div class="p-2 mb-3 rounded bg-primary text-white" style="max-width: 70%;">
+                    <p>Tutto bene, grazie! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi cupiditate iusto natus.
+                        Possimus deserunt quos inventore fugiat similique ducimus laboriosam aut eveniet, adipisci deleniti 
+                        eligendi fugit. Ab quis officiis vitae?</p>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </section>
+</main>    
