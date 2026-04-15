@@ -97,7 +97,7 @@ class DatabaseHelper{
 
     public function getReservationsOfStudent($studentCode) {
         $stmt = $this->db->prepare(
-            "SELECT DISTINCT r.Data as date, r.Ora_inizio as startTime, r.Ora_fine as endTime, pr.Modalita_Scelta as mode, p.Nome as professorName, p.Cognome as professorSurname
+            "SELECT r.Data as date, r.Ora_inizio as startTime, r.Ora_fine as endTime, pr.Modalita_Scelta as mode, p.Nome as professorName, p.Cognome as professorSurname
             FROM Prenotazione AS pr, STUDENTE as s, RICEVIMENTO as r, PERSONA as p, DOCENTE as d
             WHERE p.Utente = d.Utente
             AND r.Docente = d.Utente
@@ -115,7 +115,7 @@ class DatabaseHelper{
 
     public function getReservationsOfProfessor($professorCode) {
         $stmt = $this->db->prepare(
-            "SELECT DISTINCT r.Data as date, r.Ora_inizio as startTime, r.Ora_fine as endTime, pr.Modalita_Scelta as mode, p.Nome as studentName, p.Cognome as studentSurname
+            "SELECT r.Data as date, r.Ora_inizio as startTime, r.Ora_fine as endTime, pr.Modalita_Scelta as mode, p.Nome as studentName, p.Cognome as studentSurname
             FROM Prenotazione AS pr, STUDENTE as s, PERSONA as p, RICEVIMENTO as r, DOCENTE as d
             WHERE p.Utente = s.Utente
             AND r.Docente = d.Utente
