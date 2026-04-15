@@ -153,8 +153,8 @@ class DatabaseHelper{
             "SELECT r.Data AS date, r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Modalita AS mode, pr.Modalita_Scelta AS selectedMode, p.Nome AS studentName, p.Cognome AS studentSurname
             FROM RICEVIMENTO AS r
             LEFT JOIN Prenotazione AS pr ON r.Codice = pr.Codice_Ricevimento
-            LEFT JOIN studente AS s ON s.matricola = pr.matricola_studente
-            LEFT JOIN persona AS p ON p.Utente = s.Utente
+            LEFT JOIN STUDENTE AS s ON s.matricola = pr.matricola_studente
+            LEFT JOIN PERSONA AS p ON p.Utente = s.Utente
             WHERE r.Docente = ?
             ORDER BY r.Ora_inizio"
         );
