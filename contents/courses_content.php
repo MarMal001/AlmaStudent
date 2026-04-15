@@ -1,6 +1,6 @@
 <main>
     <section>
-        <label for="courses">Filtra per corso</label>
+        <label for="courses">Filtra per corso di laurea</label>
         <select name="courses">
             <option value="--" disabled selected hidden>-- Seleziona --</option>
             <?php foreach ($templateParams["degrees"] as $degree): ?>
@@ -28,12 +28,12 @@
                     
                     <div id="<?php echo $courseId ?>" class="collapse p-3 w-100 border border-primary border-2 rounded">
                         <?php $professors = $dbh->getProfessorsByCourse($courseId); ?>
-                        <?php foreach($professors as $professor): ?>
                             <ul class="d-flex flex-column align-items-start">
+                            <?php foreach($professors as $professor): ?>
                                 <li><a href="#" class="text-primary"><?php echo $professor["name"] . " " . $professor["surname"] ?></a></li>
+                            <?php endforeach; ?>
                             </ul>
-                        <?php endforeach; ?>
-                            
+        
                         <p><?php echo $course["shDescription"]; ?></p>
                         <div class="d-flex justify-content-end m-2">
                             <button class="btn btn-primary me-1" type="button">Vai alla pagina</button>
