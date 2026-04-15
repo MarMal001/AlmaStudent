@@ -36,11 +36,11 @@ class DatabaseHelper{
     //could remove year in output if not needed 
     public function getCoursesByDegreeAndYear($degreeCode, $year) {
         $stmt = $this->db->prepare(
-            "SELECT c.Codice AS code, c.Nome AS courseName, c.Anno AS courseYear, c.Semestre AS semester, Descrizione_Breve AS shDescription, AVG(r.Rating_Lezioni) AS ratingL, AVG(r.Rating_Materiale) AS ratingM, AVG(r.Rating_Esame) AS ratingE, AVG(r.Rating_Disponibilita_Docenti) AS ratingD
+            "SELECT c.Codice AS code, c.Nome AS courseName, c.Anno AS courseYear, c.Semestre AS semester, Descrizione_Breve AS shDescription, r.Rating_Lezioni AS ratingL, r.Rating_Materiale AS ratingM, r.Rating_Esame AS ratingE, r.Rating_Disponibilita_Docenti AS ratingD
             FROM CORSO AS c, RATING_GENERALE AS r
             WHERE c.Codice_Facolta = ?
             AND c.Anno = ?
-            GROUP BY courseName"
+            AND c.Codice = r.Codice_Corso"
             );
         $stmt->bind_param('ss',$degreeCode, $year);
         $stmt->execute();
@@ -153,8 +153,8 @@ class DatabaseHelper{
             "SELECT r.Data AS date, r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Modalita AS mode, pr.Modalita_Scelta AS selectedMode, p.Nome AS studentName, p.Cognome AS studentSurname
             FROM RICEVIMENTO AS r
             LEFT JOIN Prenotazione AS pr ON r.Codice = pr.Codice_Ricevimento
-            LEFT JOIN studente AS s ON s.matricola = pr.matricola_studente
-            LEFT JOIN persona AS p ON p.Utente = s.Utente
+            LEFT JOIN STUDENTE AS s ON s.matricola = pr.matricola_studente
+            LEFT JOIN PERSONA AS p ON p.Utente = s.Utente
             WHERE r.Docente = ?
             ORDER BY r.Ora_inizio"
         );
