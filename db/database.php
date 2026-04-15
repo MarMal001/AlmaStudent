@@ -49,6 +49,25 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getProfessorsByDegree($degreeCode) {
+        $stmt = $this->db->prepare(
+            "SELECT d.Utente AS professor, p.Nome AS name, p.Cognome AS surname, AVG(r.Rating_Disponibilita) AS ratingD, AVG(r.Rating_Comprensibilita_Lezioni) AS ratingC, AVG(r.Rating_Interesse_Suscitato) AS ratingI
+            FROM PERSONA AS p, DOCENTE AS d, CORSO AS c, Tenere AS t, RATING_DOCENTE AS r
+            WHERE c.Codice_Facolta = ?
+            AND c.Codice = t.Codice_Corso
+            AND t.Docente = d.Utente
+            AND r.Docente = d.Utente
+            AND p.Utente = d.Utente
+            GROUP BY professor"
+        );
+
+        $stmt->bind_param('s', $degreeCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getProfessorsByCourse($courseCode) {
         $stmt = $this->db->prepare(
             "SELECT p.Nome AS name, p.Cognome AS surname
@@ -58,6 +77,22 @@ class DatabaseHelper{
             AND p.Utente = d.Utente"
             );
         $stmt->bind_param('s',$courseCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getCoursesByProfessor($professor) {
+        $stmt = $this->db->prepare(
+            "SELECT c.Nome AS courseName
+            FROM DOCENTE AS d, CORSO AS c, Tenere AS t
+            WHERE d.Utente = ?
+            AND d.Utente = t.Docente
+            AND t.Codice_Corso = c.Codice"
+        );
+
+        $stmt->bind_param('s', $professor);
         $stmt->execute();
         $result = $stmt->get_result();
 
