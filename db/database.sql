@@ -27,7 +27,8 @@ create table ADMIN (
 create table Cambio_docente (
      Docente varchar(100) not null,
      Anno year not null,
-     constraint ID_Cambio_docente_ID primary key (Anno, Docente));
+	 Codice_Corso varchar(5) not null,
+     constraint ID_Cambio_docente_ID primary key (Anno, Docente, Codice_Corso));
 
 create table CHAT (
      Codice int not null auto_increment,
@@ -37,10 +38,13 @@ create table CHAT (
      constraint ID_CHAT_ID primary key (Codice));
 
 create table CORSO (
-     Codice int not null auto_increment,
-     Nome varchar(30) not null,
+     Codice varchar(5) not null ,
+     Nome varchar(100) not null,
+     Anno int not null,
      Semestre int not null,
      Codice_Facolta varchar(10) not null,
+     Descrizione varchar(5000) not null,
+     Descrizione_Breve varchar(1000) not null,
      constraint ID_CORSO_ID primary key (Codice));
 
 create table DOCENTE (
@@ -48,15 +52,17 @@ create table DOCENTE (
      constraint FKPER_DOC_ID primary key (Utente));
 
 create table FACOLTA (
-     Codice varchar(10) not null,
-     Nome varchar(30) not null,
+     Codice varchar(4) not null,
+     Nome varchar(100) not null,
      Dipartimento varchar(30) not null,
+     Numero_Anni int not null,
+     Campus varchar(100) not null,
      constraint ID_FACOLTA_ID primary key (Codice));
 
 create table MATERIALE (
      Percorso varchar(250) not null,
      Matricola_Studente varchar(10) not null,
-     Codice_Corso int not null,
+     Codice_Corso varchar(5) not null,
      constraint ID_MATERIALE_ID primary key (Percorso));
 
 create table MESSAGGIO_CHAT (
@@ -101,7 +107,7 @@ create table RATING_DOCENTE (
      constraint FKRAT_RAT_1_ID primary key (Codice));
 
 create table RATING_GENERALE (
-     Codice_Corso int not null,
+     Codice_Corso varchar(5) not null,
      Anno year not null,
      Rating_Lezioni decimal(2,1) not null,
      Rating_Materiale decimal(2,1) not null,
@@ -135,7 +141,7 @@ create table STUDENTE (
 
 create table STUDENTE_IN_CORSO (
      Matricola varchar(10) not null,
-     Codice_Corso int not null,
+     Codice_Corso varchar(5) not null,
      Codice_Rating_Docenti int not null,
      Codice_Rating_Corso int not null,
      Iscritto tinyint not null,
@@ -145,7 +151,7 @@ create table STUDENTE_IN_CORSO (
 
 create table Tenere (
      Docente varchar(100) not null,
-     Codice_Corso int not null,
+     Codice_Corso varchar(5) not null,
      constraint ID_Tenere_ID primary key (Codice_Corso, Docente));
 
 -- Insertions Section
@@ -155,10 +161,21 @@ create table Tenere (
 insert into PERSONA values
 	("mario.rossi@unibo.it", "admin12345", "Mario", "Rossi", "ADMIN"),
 	("luigia.verdi@unibo.it", "admin0000", "Luigia", "Verdi", "ADMIN"),
+    # PROFESSORI
+	("eleonora.cinti5@unibo.it", "matematica!", "Eleonora", "Cinti", "DOCENTE"),
+	("luciano.margara@unibo.it", "#massaggiInchiaroAmante", "Luciano", "Margara", "DOCENTE"),
+	("a.melis@unibo.it", "ciao1234", "Andrea", "Melis", "DOCENTE"),
+	("davide.maltoni@unibo.it", "vivalAI!", "Davide", "Maltoni", "DOCENTE"),
+	("matteo.ferrara@unibo.it", "sonotriste", "Matteo", "Ferrara", "DOCENTE"),
 	("vittorio.ghini@unibo.it", "madonnadiPompei!", "Vittorio", "Ghini", "DOCENTE"),
 	("stefano.ferretti@unibo.it", "soloCodice@", "Stefano", "Ferretti", "DOCENTE"),
-	("franco.callegati@unibo.it", "mercredì5#", "Franco", "Callegati", "DOCENTE"),
+	("luigi.guiducci3@unibo.it", "testacoil@", "Luigi", "Guiducci", "DOCENTE"),
+	("damiana.lazzaro@unibo.it", "vivalAI@", "Damiana", "Lazzaro", "DOCENTE"),
+	("l.pellegrini@unibo.it", "vivalAI@", "Lorenzo", "Pellegrini", "DOCENTE"),
+	("franco.callegati@unibo.it", "mercredÃ¬5#", "Franco", "Callegati", "DOCENTE"),
 	("andrea.piroddi@unibo.it", "gns3!", "Andrea", "Piroddi", "DOCENTE"),
+	("a.ricci@unibo.it", "iot!", "Alessandro", "Ricci", "DOCENTE"),
+    #STUDENTI
 	("carla.anselmi3@studio.unibo.it", "PolloAlladivola8@", "Carla", "Anselmi", "STUDENTE"),
 	("alessandro.giacomini2@studio.unibo.it", "FrierenBestWaifu4ever!", "Alessandro", "Giacomini", "STUDENTE");
 
@@ -169,10 +186,19 @@ insert into ADMIN values
 
 ### DOCENTE ###
 insert into DOCENTE values
+	("eleonora.cinti5@unibo.it"),
+	("luciano.margara@unibo.it"),
+	("a.melis@unibo.it"),
+	("davide.maltoni@unibo.it"),
+	("matteo.ferrara@unibo.it"),
 	("vittorio.ghini@unibo.it"),
 	("stefano.ferretti@unibo.it"),
+	("luigi.guiducci3@unibo.it"),
+	("damiana.lazzaro@unibo.it"),
+	("l.pellegrini@unibo.it"),
 	("franco.callegati@unibo.it"),
-	("andrea.piroddi@unibo.it");
+	("andrea.piroddi@unibo.it"),
+	("a.ricci@unibo.it");
 
 ### STUDENTE ###
 insert into STUDENTE values
@@ -181,25 +207,49 @@ insert into STUDENTE values
 
 ### FACOLTA ###
 insert into FACOLTA values
-	(6673, "Ingegneria e scienze informatiche", "DISI"),
-	(6670, "Ingegneria elettronica", "DEI");
+	("6673", "Ingegneria e scienze informatiche", "DISI", 3, "Cesena"),
+	("6670", "Ingegneria elettronica", "DEI", 3, "Cesena"),
+    ("6733", "Medicina e chirurgia", "DIMEC", 6, "Bologna"),
+    ("6668", "Ingegneria informatica", "DISI", 3, "Bologna");
 
 ### CORSO ###
 insert into CORSO values
-	(null, "Sistemi Operativi", 3, 6673),
-	(null, "Programmazione di reti", 4, 6673),
-	(null, "Reti di telecomunicazioni", 5, 6673),
-	(null, "Virtualizzazione e Integrazione di Sistemi", 6, 6673);
+	# PRIMO ANNO
+	("00013", "Analisi matematica", 1, 1, 6673, "", "Lorem"),
+	("11929", "Algoritmi e strutture dati", 1, 2, 6673, "", ""),
+	("69731", "Architetture degli elaboratori", 1, 2, 6673, "", ""),
+    # SECONDO ANNO
+	("08574", "Sistemi Operativi", 2, 1, 6673, "", ""),
+	("00405", "Fisica", 2, 2, 6673, "", ""),
+	("B2561", "Metodi numerici per l'intelligenza artificiale", 2, 2, 6673, "", ""),
+	("70226", "Programmazione di reti", 2, 2, 6673, "", ""),
+    # TERZO ANNO
+	("70218", "Reti di telecomunicazione", 3, 1, 6673, "", ""),
+	("70090", "Computer graphics", 3, 1, 6673, "", ""),
+	("77780", "Sistemi embedded e internet-of-things", 3, 1, 6673, "", ""),
+	("14015", "Crittografia", 3, 2, 6673, "", ""),
+	("96642", "Virtualizzazione e Integrazione di Sistemi", 3, 2, 6673, "", "");
 
 ### Tenere ###
 insert into Tenere values
-	("franco.callegati@unibo.it", 2),
-	("franco.callegati@unibo.it", 3),
-	("andrea.piroddi@unibo.it", 2),
-	("andrea.piroddi@unibo.it", 3),
-	("vittorio.ghini@unibo.it", 1),
-	("vittorio.ghini@unibo.it", 4),
-	("stefano.ferretti@unibo.it", 1);
+	("eleonora.cinti5@unibo.it", "00013"),
+	("luciano.margara@unibo.it", "11929"),
+	("a.melis@unibo.it", "11929"),
+	("davide.maltoni@unibo.it", "69731"),
+	("matteo.ferrara@unibo.it", "69731"),
+	("vittorio.ghini@unibo.it", "08574"),
+	("stefano.ferretti@unibo.it", "08574"),
+    ("luigi.guiducci3@unibo.it", "00405"),
+    ("damiana.lazzaro@unibo.it", "B2561"),
+    ("l.pellegrini@unibo.it", "B2561"),
+	("franco.callegati@unibo.it", "70226"),
+	("andrea.piroddi@unibo.it", "70226"),
+	("franco.callegati@unibo.it", "70218"),
+	("andrea.piroddi@unibo.it", "70218"),
+    ("damiana.lazzaro@unibo.it", "70090"),
+    ("a.ricci@unibo.it", "77780"),
+    ("luciano.margara@unibo.it", "14015"),
+	("vittorio.ghini@unibo.it", "96642");
 
 ### REVIEW ###
 insert into REVIEW values
@@ -224,21 +274,18 @@ insert into RATING_DOCENTE values
 
 ### STUDENTE_IN_CORSO ###
 insert into STUDENTE_IN_CORSO values
-	("0000000001", 1, 1, 2, true),
-	("0000000002", 1, 3, 4, true);
+	("0000000001", "70226", 1, 2, true),
+	("0000000002", "70226", 3, 4, true);
 
 ### RATING_GENERALE ###
 insert into RATING_GENERALE values
-	(1, "2025", 4.3, 3.3, 3.0, 4.1),
-	(2, "2025", 3.1, 2, 5.0, 5.0),
-	(3, "2025", 5.0, 5.0, 4.7, 3.6),
-	(4, "2025", 2.5, 3.2, 1.5, 2.8),
-	(3, "2026", 4.1, 4.3, 2.7, 2.3),
-	(4, "2026", 3.3, 5.0, 4.2, 1.7);
+	("08574", "2025", 4.3, 3.3, 3.0, 4.1),
+    ("08574", "2026", 4.3, 3.3, 3.0, 4.1),
+	("70226", "2026", 3.3, 5.0, 4.2, 1.7);
 
 ### Cambio_docente ###
 insert into Cambio_docente values
-	("vittorio.ghini@unibo.it", "2026");
+	("vittorio.ghini@unibo.it", "2026", "08574");
 
 ### MESSAGGIO_CHAT ###
 insert into MESSAGGIO_CHAT values
@@ -275,6 +322,7 @@ insert into Prenotazione values
     (8, "0000000001", "Online"),
     (12, "0000000001", "Presenza");
     
+    
 -- Constraints Section
 -- ___________________ 
 
@@ -285,6 +333,10 @@ alter table ADMIN add constraint FKPER_ADM_FK
 alter table Cambio_docente add constraint FKCam_DOC_FK
      foreign key (Docente)
      references DOCENTE (Utente);
+     
+alter table Cambio_docente add constraint FKCam_RAT_FK
+	foreign key (Codice_Corso, Anno)
+    references RATING_GENERALE (Codice_Corso, Anno);
 
 alter table CHAT add constraint FKUtilizzo
      foreign key (Matricola_Studente)
