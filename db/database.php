@@ -35,14 +35,14 @@ class DatabaseHelper{
 
     //could remove year in output if not needed 
     public function getCoursesByDegreeAndYear($degreeCode, $year) {
-        $stmt = $this->db->prepare(
-            "SELECT c.Codice AS code, c.Nome AS courseName, c.Anno AS courseYear, c.Semestre AS semester, Descrizione_Breve AS shDescription, AVG(r.Rating_Lezioni) AS ratingL, AVG(r.Rating_Materiale) AS ratingM, AVG(r.Rating_Esame) AS ratingE, AVG(r.Rating_Disponibilita_Docenti) AS ratingD
-            FROM CORSO AS c, RATING_GENERALE AS r
+    $date = date('Y');    
+    $stmt = $this->db->prepare(
+            "SELECT c.Codice AS code, c.Nome AS courseName, c.Anno AS courseYear, c.Semestre AS semester, Descrizione_Breve AS shDescription, r.Rating_Lezioni AS ratingL, r.Rating_Materiale AS ratingM, r.Rating_Esame AS ratingE, r.Rating_Disponibilita_Docenti AS ratingD
+            FROM CORSO AS c LEFT JOIN RATING_GENERALE AS r ON r.Codice_Corso = c.Codice AND r.Anno = ?
             WHERE c.Codice_Facolta = ?
-            AND c.Anno = ?
-            GROUP BY courseName"
+            AND c.Anno = ?"
             );
-        $stmt->bind_param('ss',$degreeCode, $year);
+        $stmt->bind_param('sss', $date, $degreeCode, $year);
         $stmt->execute();
         $result = $stmt->get_result();
 
