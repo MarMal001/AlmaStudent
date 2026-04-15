@@ -65,9 +65,13 @@
         <section>
             <h1 class="fw-bold">I tuoi ricevimenti</h1>
             <ul>
-                <li>23/03/2026 9:00-9:15 Luciano Margara - presenza</li>
-                <li>19/03/2026 15:15-15:30 Vittorio Ghini - online</li>
-                <li>23/03/2026 18:30-18:45 Damiana Lazzaro - presenza</li>
+                <?php foreach($dbh->getReservationsOfStudent("0000000001") as $reservation): ?>
+                    <?php
+                        $timeRange = date("H:i", strtotime($reservation["startTime"])) . "-" . date("H:i", strtotime($reservation["endTime"]));
+                        $date = date("d-m-Y", strtotime($reservation["date"]));
+                    ?>
+                    <li><?php echo $date . " " . $timeRange . " " . $reservation["professorName"] . " " . $reservation["professorSurname"] . " " . $reservation["mode"]; ?></li>
+                <?php endforeach; ?>
             </ul>
         </section>
     </main><aside class="col-0 col-lg-6 w-md-100 px-0 mx-0">
