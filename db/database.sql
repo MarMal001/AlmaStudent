@@ -101,6 +101,7 @@ create table RATING_CORSO (
 
 create table RATING_DOCENTE (
      Codice int not null,
+     Docente varchar(100) not null,
      Rating_Disponibilita int not null,
      Rating_Comprensibilita_Lezioni int not null,
      Rating_Interesse_Suscitato int not null,
@@ -260,7 +261,8 @@ insert into RATING values
 	(null, "DOCENTE"),
 	(null, "CORSO"),
 	(null, "DOCENTE"),
-	(null, "CORSO");
+	(null, "CORSO"),
+    (null, "DOCENTE");
 
 ### RATING_CORSO ###
 insert into RATING_CORSO values
@@ -269,8 +271,9 @@ insert into RATING_CORSO values
 
 ### RATING_DOCENTE ###
 insert into RATING_DOCENTE values
-	(1, 2, 3, 5),
-	(3, 5, 3, 1);
+	(1, "stefano.ferretti@unibo.it", 2, 3, 5),
+	(3, "franco.callegati@unibo.it", 5, 3, 3),
+    (5, "vittorio.ghini@unibo.it", 5, 5, 5);
 
 ### STUDENTE_IN_CORSO ###
 insert into STUDENTE_IN_CORSO values
