@@ -1,66 +1,41 @@
 <main>
     <section>
-        <label for="courses">Filtra per corso</label>
+        <label for="courses">Filtra per corso di laurea</label>
         <select name="courses">
-            <option value="Ingegneria e Scienze Informatiche">Ingegneria e Scienze Informatiche</option>
-            <option value="Ingegneria Biomedica">Ingegneria Biomedica</option>
+            <option value="--" disabled selected hidden>-- Seleziona --</option>
+            <?php foreach ($templateParams["degrees"] as $degree): ?>
+                <option value="<?php echo $degree["name"] ?>"><?php echo $degree["code"] . " - " . $degree["name"] . " - " . $degree["campus"]; ?></option>
+            <?php endforeach; ?>
         </select>
     </section>
     <section class="m-2">
-
+        <?php $professors = $dbh->getProfessorsByDegree("6673"); ?>
+        <?php foreach($professors as $professor): ?>
         <div class="container-fluid w-auto w-lg-55 m-2 p-0">
-        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c0">
+        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $professor['professor']; ?>">
             <div class="d-md-inline-flex align-items-md-center p-0">
-                <p class="m-0 p-2 text-start">Vittorio Ghini</p>
+                <p class="m-0 p-2 text-start"><?php echo $professor["name"] . " " . $professor["surname"]; ?></p>
                 <div>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                    <?php $ratings = [$professor["ratingD"], $professor["ratingC"], $professor["ratingD"]]; ?>
+                    <?php createStars(getMeanRating($ratings), "#fff"); ?>
                 </div>
             </div>
             <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
         </button>
         
-        <div id="c0" class="collapse p-3 w-100 border border-primary border-2 rounded">
+        <div id="<?php echo $professor['professor']; ?>" class="collapse p-3 w-100 border border-primary border-2 rounded">
             <h6>Corsi:</h6>
             <ul class="d-flex flex-column align-items-start">
-                <li><a href="#" class="text-primary">Virtualizzazione e integrazione di sistemi</a></li>
-                <li><a href="#" class="text-primary">Sistemi Operativi</a></li>
+            <?php $courses = $dbh->getCoursesByProfessor($professor["professor"]); ?> 
+            <?php foreach($courses as $course): ?>
+                <li><a href="#" class="text-primary"><?php echo $course["courseName"]; ?></a></li>
+            <?php endforeach; ?>
             </ul>
             <div class="d-flex justify-content-end m-2">
                 <button class="btn btn-primary me-1" type="button">Vai alla pagina</button>
             </div>
         </div>
         </div>
-
-        <div class="container-fluid w-auto w-lg-55 m-2 p-0">
-        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
-            <div class="d-md-inline-flex align-items-md-center p-0">
-                <p class="m-0 p-2 text-start">Franco Callegati</p>
-                <div>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                </div>
-            </div>
-            <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
-        </button>
-        
-        <div id="c1" class="collapse p-3 w-100 border border-primary border-2 rounded">
-            <h6>Corsi:</h6>
-            <ul class="d-flex flex-column align-items-start">
-                <li><a href="#" class="text-primary">Reti di Telecomunicazioni</a></li>
-                <li><a href="#" class="text-primary">Programmazione di Reti</a></li>
-            </ul>
-            <div class="d-flex justify-content-end m-2">
-                <button class="btn btn-primary me-1" type="button">Vai alla pagina</button>
-            </div>
-        </div>
-        </div>
-
+        <?php endforeach; ?>
     </section>
 </main>    
