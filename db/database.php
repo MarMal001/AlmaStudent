@@ -115,13 +115,12 @@ class DatabaseHelper{
 
     public function getReservationsOfProfessor($professorCode) {
         $stmt = $this->db->prepare(
-            "SELECT r.Data as date, r.Ora_inizio as startTime, r.Ora_fine as endTime, pr.Modalita_Scelta as mode, p.Nome as studentName, p.Cognome as studentSurname
-            FROM Prenotazione AS pr, STUDENTE as s, PERSONA as p, RICEVIMENTO as r, DOCENTE as d
-            WHERE p.Utente = s.Utente
-            AND r.Docente = d.Utente
-            AND pr.Codice_Ricevimento = r.Codice
-            AND s.Matricola = pr.Matricola_Studente
-            AND d.Utente = ?
+            "SELECT r.Data AS date, r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Modalita AS mode, pr.Modalita_Scelta AS selectedMode, p.Nome AS studentName, p.Cognome AS studentSurname
+            FROM RICEVIMENTO AS r
+            LEFT JOIN Prenotazione AS pr ON r.Codice = pr.Codice_Ricevimento
+            LEFT JOIN studente AS s ON s.matricola = pr.matricola_studente
+            LEFT JOIN persona AS p ON p.Utente = s.Utente
+            WHERE r.Docente = ?
             ORDER BY r.Ora_inizio"
         );
         $stmt->bind_param("s", $professorCode);
