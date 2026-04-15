@@ -25,7 +25,6 @@
                 <li><a href="index.php">Home</a></li>
                 <li><a href="professors.php">Docenti</a></li>
                 <li><a href="courses.php">Corsi</a></li>
-                <li><a href="reception.php">Ricevimenti</a></li>
                 <li><a href="contacts.php">Contatti</a></li>
                 <li><i class="fa-solid fa-bars"></i></li>
             </ul>
