@@ -132,8 +132,8 @@ class DatabaseHelper{
 
     public function getReservationsOfStudent($studentCode) {
         $stmt = $this->db->prepare(
-            "SELECT DISTINCT r.Data as date, r.Ora_inizio as startTime, r.Ora_fine as endTime, pr.Modalita_Scelta as mode, p.Nome as professorName, p.Cognome as professorSurname
-            FROM Prenotazione AS pr, STUDENTE as s, RICEVIMENTO as r, PERSONA as p, DOCENTE as d
+            "SELECT r.Data AS date, r.Ora_inizio AS startTime, r.Ora_fine AS endTime, pr.Modalita_Scelta AS mode, p.Nome AS professorName, p.Cognome AS professorSurname
+            FROM Prenotazione AS pr, STUDENTE AS s, RICEVIMENTO AS r, PERSONA AS p, DOCENTE AS d
             WHERE p.Utente = d.Utente
             AND r.Docente = d.Utente
             AND pr.Codice_Ricevimento = r.Codice
@@ -142,6 +142,23 @@ class DatabaseHelper{
             ORDER BY r.Ora_inizio"
         );
         $stmt->bind_param("s", $studentCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getReservationsOfProfessor($professorCode) {
+        $stmt = $this->db->prepare(
+            "SELECT r.Data AS date, r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Modalita AS mode, pr.Modalita_Scelta AS selectedMode, p.Nome AS studentName, p.Cognome AS studentSurname
+            FROM RICEVIMENTO AS r
+            LEFT JOIN Prenotazione AS pr ON r.Codice = pr.Codice_Ricevimento
+            LEFT JOIN studente AS s ON s.matricola = pr.matricola_studente
+            LEFT JOIN persona AS p ON p.Utente = s.Utente
+            WHERE r.Docente = ?
+            ORDER BY r.Ora_inizio"
+        );
+        $stmt->bind_param("s", $professorCode);
         $stmt->execute();
         $result = $stmt->get_result();
 

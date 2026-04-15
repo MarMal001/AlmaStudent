@@ -70,7 +70,7 @@
                         $timeRange = date("H:i", strtotime($reservation["startTime"])) . "-" . date("H:i", strtotime($reservation["endTime"]));
                         $date = date("d-m-Y", strtotime($reservation["date"]));
                     ?>
-                    <li><?php echo $date . " " . $timeRange . " " . $reservation["professorName"] . " " . $reservation["professorSurname"] . " " . $reservation["mode"]; ?></li>
+                    <li><?php echo $date . " " . $timeRange . " " . $reservation["professorName"] . " " . $reservation["professorSurname"] . " Modalità: " . $reservation["mode"]; ?></li>
                 <?php endforeach; ?>
             </ul>
         </section>
