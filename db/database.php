@@ -112,6 +112,24 @@ class DatabaseHelper{
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getReservationsOfProfessor($professorCode) {
+        $stmt = $this->db->prepare(
+            "SELECT DISTINCT r.Data as date, r.Ora_inizio as startTime, r.Ora_fine as endTime, pr.Modalita_Scelta as mode, p.Nome as studentName, p.Cognome as studentSurname
+            FROM Prenotazione AS pr, STUDENTE as s, PERSONA as p, RICEVIMENTO as r, DOCENTE as d
+            WHERE p.Utente = s.Utente
+            AND r.Docente = d.Utente
+            AND pr.Codice_Ricevimento = r.Codice
+            AND s.Matricola = pr.Matricola_Studente
+            AND d.Utente = ?
+            ORDER BY r.Ora_inizio"
+        );
+        $stmt->bind_param("s", $professorCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 
 ?>
