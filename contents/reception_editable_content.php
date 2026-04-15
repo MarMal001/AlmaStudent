@@ -175,24 +175,21 @@
                 </tr>
             </thead>
             <tbody>
+                <?php foreach($dbh->getReservationsOfProfessor("vittorio.ghini@unibo.it") as $reservation): ?>
+                    <?php $timeRange = date("H:i", strtotime($reservation["startTime"])) . " - " . date("H:i", strtotime($reservation["endTime"])); ?>
                     <tr>
-                        <th id="900_915" scope="row" headers="time" class="text-center">9:00-9:15</th>
-                        <td id="type_900_915" headers="type 900_915">Modalità: online o in presenza</td>
-                        <td id="reservation_900_915" headers="reservations 900_915">Nessuna prenotazione</td>
-                    </tr>
-                    <tr>
-                        <th id="915_930" scope="row" headers="time" class="text-center">9:15-9:30</th>
-                        <td id="type_915_930" headers="type 915_930">Modalità: online</td>
-                        <td id="reservation_915_930" headers="reservations 915_930">
-                            <p>Prenotato</p>
-                            <p>Studente: Mario Frini</p>
+                        <th id="<?php echo $timeRange; ?>" scope="row" headers="time" class="text-center"><div><?php echo $timeRange; ?></div></th>
+                        <td id="<?php echo "type_" . $timeRange; ?>" headers="type <?php echo $timeRange; ?>"><div>Modalità: <?php echo strtolower($reservation["mode"]); ?></div></td>
+                        <td id="<?php echo "reservation_" . $timeRange; ?>" headers="reservations <?php echo $timeRange; ?>">
+                            <?php if ($reservation["studentName"] != null): ?>
+                                <div>Prenotato con studente: <?php echo $reservation["studentName"] . " " . $reservation["studentSurname"]; ?></div>
+                                <div>Modalità: <?php echo strtolower($reservation["selectedMode"]); ?></div>
+                            <?php else: ?>
+                                <div>Nessuna prenotazione</div>
+                            <?php endif; ?>
                         </td>
                     </tr>
-                    <tr>
-                        <th id="1500_1515" scope="row" headers="time" class="text-center">15:00-15:15</th>
-                        <td id="type_1500_1515" headers="type 1500_1515">Modalità: presenza</td>
-                        <td id="reservation_1500_1515" headers="reservations 1500_1515">Nessuna prenotazione</td>
-                    </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
         
