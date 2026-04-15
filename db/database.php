@@ -79,7 +79,39 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
     
+    public function getProfessorsByDegreeCourse($degreeCode) {
+        $stmt = $this->db->prepare(
+            "SELECT DISTINCT p.Nome AS name, p.Cognome AS surname
+            FROM PERSONA AS p, DOCENTE AS d, TENERE AS t, CORSO AS c, FACOLTA AS f
+            WHERE c.Codice_Facolta = f.Codice
+            AND d.Utente = t.Docente
+            AND p.Utente = d.Utente
+            AND f.Codice = ?"
+        );
+        $stmt->bind_param("s", $degreeCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getReservationsOfStudent($studentCode) {
+        $stmt = $this->db->prepare(
+            "SELECT DISTINCT r.Data as date, r.Ora_inizio as startTime, r.Ora_fine as endTime, pr.Modalita_Scelta as mode, p.Nome as professorName, p.Cognome as professorSurname
+            FROM Prenotazione AS pr, STUDENTE as s, RICEVIMENTO as r, PERSONA as p, DOCENTE as d
+            WHERE p.Utente = d.Utente
+            AND r.Docente = d.Utente
+            AND pr.Codice_Ricevimento = r.Codice
+            AND s.Matricola = pr.Matricola_Studente
+            AND s.Matricola = ?
+            ORDER BY r.Ora_inizio"
+        );
+        $stmt->bind_param("s", $studentCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 
 ?>
