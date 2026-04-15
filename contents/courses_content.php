@@ -19,11 +19,8 @@
                         <div class="d-md-inline-flex align-items-md-center p-0">
                             <p class="m-0 p-2 text-start"><?php echo $course["courseName"]; ?></p>
                             <div>
-                                <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                                <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                                <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                                <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                                <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                                <?php $ratings = [$course["ratingL"], $course["ratingM"], $course["ratingE"], $course["ratingD"]]; ?>
+                                <?php echo createStars(getMeanRating($ratings),"#fff"); ?>
                             </div>
                         </div>
                         <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
