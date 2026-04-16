@@ -163,10 +163,11 @@
     <section>
         <h2>Visualizza disponibilità</h2>
         
+        <?php $date = "12 Aprile 2026"; ?>
         <table class="table table-bordered">
             <thead class="table-primary text-center">
                 <tr>
-                    <th id="day" scope="colgroup" colspan="3" class="fs-5"> < 18 Marzo 2026 ></th>
+                    <th id="day" scope="colgroup" colspan="3" class="fs-5"> < <?php echo $date; ?> ></th>
                 </tr>
                 <tr class="fs-6">
                     <th id="time" scope="col">Ore</th>
@@ -175,7 +176,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($dbh->getReservationsOfProfessor("vittorio.ghini@unibo.it") as $reservation): ?>
+                <?php foreach($dbh->getReservationsOfProfessor("vittorio.ghini@unibo.it", "2026-04-12") as $reservation): ?>
                     <?php $timeRange = date("H:i", strtotime($reservation["startTime"])) . " - " . date("H:i", strtotime($reservation["endTime"])); ?>
                     <tr>
                         <th id="<?php echo $timeRange; ?>" scope="row" headers="time" class="text-center"><div><?php echo $timeRange; ?></div></th>

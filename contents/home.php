@@ -65,10 +65,10 @@
         <section>
             <h1 class="fw-bold">I tuoi ricevimenti</h1>
             <ul>
-                <?php foreach($dbh->getReservationsOfStudent("0000000001") as $reservation): ?>
+                <?php $date = "12 Aprile 2026"; ?>
+                <?php foreach($dbh->getReservationsOfStudent("0000000001", "2026-04-12") as $reservation): ?>
                     <?php
                         $timeRange = date("H:i", strtotime($reservation["startTime"])) . "-" . date("H:i", strtotime($reservation["endTime"]));
-                        $date = date("d-m-Y", strtotime($reservation["date"]));
                     ?>
                     <li><?php echo $date . " " . $timeRange . " " . $reservation["professorName"] . " " . $reservation["professorSurname"] . " Modalità: " . $reservation["mode"]; ?></li>
                 <?php endforeach; ?>
