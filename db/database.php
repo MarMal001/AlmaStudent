@@ -147,12 +147,13 @@ class DatabaseHelper{
     public function getReservationsOfStudent($studentCode, $date) {
         $stmt = $this->db->prepare(
             "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, pr.Modalita_Scelta AS mode, p.Nome AS professorName, p.Cognome AS professorSurname
-            FROM Prenotazione AS pr, STUDENTE AS s, RICEVIMENTO AS r, PERSONA AS p, DOCENTE AS d
+            FROM Prenotazione AS pr, RICEVIMENTO AS r, PERSONA AS p, DOCENTE AS d
             WHERE p.Utente = d.Utente
             AND r.Docente = d.Utente
-            AND pr.Codice_Ricevimento = r.Codice
-            AND s.Matricola = pr.Matricola_Studente
-            AND s.Matricola = ?
+            AND r.Docente = pr.Docente
+            AND r.Data = pr.Data
+            AND r.Ora_Inizio = pr.Ora_Inizio
+            AND pr.Matricola_Studente = ?
             AND r.Data = ?
             ORDER BY r.Ora_inizio"
         );
@@ -170,12 +171,8 @@ class DatabaseHelper{
             LEFT JOIN Prenotazione AS pr ON r.Docente = pr.Docente AND r.Data = pr.Data AND r.Ora_Inizio = pr.Ora_Inizio
             LEFT JOIN STUDENTE AS s ON s.matricola = pr.matricola_studente
             LEFT JOIN PERSONA AS p ON p.Utente = s.Utente
-            WHERE p.Utente = d.Utente
-            AND r.Docente = d.Utente
-            AND r.Docente = pr.Docente
-            AND r.Data = pr.Data
-            AND r.Ora_Inizio = pr.Ora_Inizio
-            AND s.Matricola = pr.Matricola_Studente 
+            WHERE r.Docente = ?
+            AND r.Data = ?
             ORDER BY r.Ora_inizio"
         );
         $stmt->bind_param("ss", $professorCode, $date);
