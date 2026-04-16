@@ -1,66 +1,38 @@
 <div class="row mx-0">
     <main class="col-12 col-lg-6 mx-0 py-2 px-4 w-md-100">
         <section>
-            <h1 class="fw-bold">Ciao Giulia!</h1>
+            <?php $user = "carla.anselmi3@studio.unibo.it"; ?>
+            <?php $student = $dbh->getPersonInfo($user); ?>
+            <h1 class="fw-bold">Ciao <?php echo $student[0]["name"]; ?>!</h1>
             <div>Gestisci facilmente e velocemente i tuoi corsi.</div>
         </section>
         <section>
             <h1 class="fw-bold">I tuoi corsi</h1>
-            <div class="container-fluid w-auto m-2 p-0">
-        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c0">
-            <div class="d-md-inline-flex align-items-md-center p-0">
-                <p class="m-0  p-2 text-start">Virtualizzazione e integrazione di sistemi</p>
-                <div>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+            <?php $courses = $dbh->getStudentCourses($user); ?>
+            <?php var_dump($courses); ?>
+            <?php foreach($courses as $course): ?>
+                <div class="container-fluid w-auto m-2 p-0">
+                <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
+                    <div class="d-md-inline-flex align-items-md-center p-0">
+                        <p class="m-0  p-2 text-start"><?php echo $course["name"]; ?></p>
+                        <div>
+                            <?php $gRatings = $dbh->getGeneralRatingsByCourse($course["code"]); ?>
+                            <?php $ratings = [$gRatings["ratingL"], $gRatings["ratingM"], $gRatings["ratingE"], $gRatings["ratingD"]]; ?>
+                            <?php createStars($ratings); ?>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
+                </button>
+                
+                <div id="<?php echo $course["code"]; ?>" class="collapse p-3 w-100 border border-primary border-2 rounded">
+                    <p><?php echo $course["shDescription"]; ?></p>
+                    <div class="d-flex justify-content-end m-2">
+                        <button class="btn btn-primary me-1" type="submit">Apri corso</button>
+                        <button class="btn btn-white border-primary ms-1" type="submit">Discriviti</button>
+                    </div>
                 </div>
-            </div>
-            <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
-        </button>
-        
-        <div id="c0" class="collapse p-3 w-100 border border-primary border-2 rounded">
-            <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis natus vitae, 
-            deleniti quidem commodi voluptate doloremque quod officia pariatur excepturi id ducimus 
-            laudantium culpa officiis obcaecati iure eos reiciendis quaerat.
-            </p>
-            <div class="d-flex justify-content-end m-2">
-                <button class="btn btn-primary me-1" type="button">Apri corso</button>
-                <button class="btn btn-white border-primary ms-1" type="submit">Discriviti</button>
-            </div>
-        </div>
-        </div>    
-
-        <div class="container-fluid w-auto m-2 p-0">
-        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
-            <div class="d-md-inline-flex align-items-center p-0">
-                <p class="m-0 p-2">Sistemi Operativi</p>
-                <div>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                    <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                </div>
-            </div>
-            <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
-        </button>
-        
-        <div id="c1" class="collapse p-3 w-100 border border-primary border-2 rounded">
-            <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis natus vitae, 
-            deleniti quidem commodi voluptate doloremque quod officia pariatur excepturi id ducimus 
-            laudantium culpa officiis obcaecati iure eos reiciendis quaerat.
-            </p>
-            <div class="d-flex justify-content-end m-2">
-                <button class="btn btn-primary me-1" type="button">Apri corso</button>
-                <button class="btn btn-white border-primary ms-1" type="submit">Discriviti</button>
-            </div>
-        </div>
-        </div>
+                </div>    
+            <?php endforeach; ?>
         </section>
         <section>
             <h1 class="fw-bold">I tuoi ricevimenti</h1>

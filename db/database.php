@@ -99,6 +99,18 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getStudentCourses($student) {
+        $stmt = $this->db->prepare(
+            "SELECT c.Codice AS code, c.Nome AS name, c.Descrizione_Breve AS shDescription
+            FROM STUDENTE_IN_CORSO AS sc, CORSO AS c 
+            WHERE sc.Utente = ?
+            AND sc.Codice_Corso = c.Codice"
+        );
+        $stmt->bind_param('s', $student);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    }
+
     public function getGeneralRatingsByCourse($courseCode) {
         $year = date("Y");
         $stmt = $this->db->prepare(
@@ -184,6 +196,36 @@ class DatabaseHelper{
         $stmt->bind_param("sssss", $date, $startTime, $endTime, $parsedMode, $professorCode);
         return $stmt->execute();
     }
+
+    public function getPersonInfo($user) {
+        $stmt = $this->db->prepare(
+            "SELECT p.Nome AS name, p.Cognome AS surname, p.Password AS password
+            FROM PERSONA AS p
+            WHERE p.Utente = ?"
+        );
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function checkIfSubscribedToACourse($student, $courseCode) {
+        $stmt = $this->db->prepare(
+            "SELECT EXISTS (
+                SELECT 1
+                FROM STUDENTE_IN_CORSO AS sc
+                WHERE sc.Utente = ?
+                AND sc.Codice_Corso = ?
+            ) AS subscribed"
+        );
+        $stmt->bind_param("ss", $student, $courseCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 }
 
 ?>

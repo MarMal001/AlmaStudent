@@ -61,7 +61,7 @@ create table FACOLTA (
 
 create table MATERIALE (
      Percorso varchar(250) not null,
-     Matricola_Studente varchar(10) not null,
+     Studente varchar(100) not null,
      Codice_Corso varchar(5) not null,
      constraint ID_MATERIALE_ID primary key (Percorso));
 
@@ -82,10 +82,12 @@ create table PERSONA (
      constraint ID_PERSONA_ID primary key (Utente));
 
 create table Prenotazione (
-     Codice_Ricevimento int not null,
+     Docente varchar(100) not null,
+     Data date not null,
+     Ora_inizio time not null,
      Matricola_Studente varchar(10) not null,
      Modalita_Scelta varchar(20) not null,
-     constraint FKPre_RIC_ID primary key (Codice_Ricevimento));
+     constraint FKPre_RIC_ID primary key (Docente, Data, Ora_Inizio));
 
 create table RATING (
      Codice int not null auto_increment,
@@ -123,13 +125,12 @@ create table REVIEW (
      constraint FKPresenza_ID primary key (Codice_Rating));
 
 create table RICEVIMENTO (
-     Codice int not null auto_increment,
+     Docente varchar(100) not null,
      Data date not null,
      Ora_inizio time not null,
      Ora_fine time not null,
      Modalita varchar(250) not null,
-     Docente varchar(100) not null,
-     constraint ID_RICEVIMENTO_ID primary key (Codice));
+     constraint ID_RICEVIMENTO_ID primary key (Docente, Data, Ora_Inizio));
 
 create table STUDENTE (
      Matricola varchar(10) not null,
@@ -141,12 +142,12 @@ create table STUDENTE (
      constraint FKPER_STU_ID unique (Utente));
 
 create table STUDENTE_IN_CORSO (
-     Matricola varchar(10) not null,
+     Utente varchar(100) not null,
      Codice_Corso varchar(5) not null,
      Codice_Rating_Docenti int not null,
      Codice_Rating_Corso int not null,
-     Iscritto tinyint not null,
-     constraint ID_STUDENTE_IN_CORSO_ID primary key (Matricola, Codice_Corso),
+     Esame_Superato tinyint not null,
+     constraint ID_STUDENTE_IN_CORSO_ID primary key (Utente, Codice_Corso),
      constraint FKRecensione_Docente_ID unique (Codice_Rating_Docenti),
      constraint FKRecensione_Corso_ID unique (Codice_Rating_Corso));
 
@@ -277,14 +278,24 @@ insert into RATING_DOCENTE values
 
 ### STUDENTE_IN_CORSO ###
 insert into STUDENTE_IN_CORSO values
-	("0000000001", "70226", 1, 2, true),
-	("0000000002", "70226", 3, 4, true);
+	("carla.anselmi3@studio.unibo.it", "70226", 1, 2, true),
+	("alessandro.giacomini2@studio.unibo.it", "70226", 3, 4, true);
 
 ### RATING_GENERALE ###
 insert into RATING_GENERALE values
-	("08574", "2025", 4.3, 3.3, 3.0, 4.1),
+    ("08574", "2025", 4.0, 4.0, 4.0, 4.0),
     ("08574", "2026", 4.3, 3.3, 3.0, 4.1),
-	("70226", "2026", 3.3, 5.0, 4.2, 1.7);
+    ("00013", "2026", 4.3, 5.0, 3.2, 4.7),
+    ("11929", "2026", 3.3, 4.0, 4.2, 4.7),
+    ("69731", "2026", 4.3, 5.0, 4.2, 4.7),
+    ("00405", "2026", 1.3, 5.0, 1.2, 2.5),
+    ("B2561", "2026", 4.3, 3.0, 4.2, 4.7),
+    ("70226", "2026", 4.3, 5.0, 4.2, 4.5),
+    ("70218", "2026", 4.3, 4.0, 4.2, 1.7),
+    ("70090", "2026", 4.3, 5.0, 4.2, 4.7),
+    ("77780", "2026", 3.2, 4.6, 4.2, 4.7),
+    ("14015", "2026", 4.3, 5.0, 4.2, 2.7),
+    ("96642", "2026", 5.0, 5.0, 5.0, 5.0);
 
 ### Cambio_docente ###
 insert into Cambio_docente values
@@ -306,24 +317,24 @@ insert into CHAT values
 
 ### RICEVIMENTO ###
 insert into RICEVIMENTO values
-	(null, "2026-04-12", "9:00:00", "9:15:00", "Online e in presenza", "vittorio.ghini@unibo.it"),
-	(null, "2026-04-12", "9:15:00", "9:30:00", "Online e in presenza", "vittorio.ghini@unibo.it"),
-	(null, "2026-04-12", "9:30:00", "9:45:00", "Online e in presenza", "vittorio.ghini@unibo.it"),
-	(null, "2026-04-12", "9:45:00", "10:00:00", "Online e in presenza", "vittorio.ghini@unibo.it"),
-	(null, "2026-04-12", "10:15:00", "10:30:00", "Online e in presenza", "vittorio.ghini@unibo.it"),
-	(null, "2026-04-12", "15:15:00", "15:30:00", "Online", "vittorio.ghini@unibo.it"),
-	(null, "2026-04-12", "15:30:00", "15:45:00", "Online", "vittorio.ghini@unibo.it"),
-	(null, "2026-04-12", "15:45:00", "16:00:00", "Online", "vittorio.ghini@unibo.it"),
-	(null, "2026-04-12", "9:00:00", "9:15:00", "Online e in presenza", "franco.callegati@unibo.it"),
-	(null, "2026-04-12", "9:15:00", "9:30:00", "Online e in presenza", "franco.callegati@unibo.it"),
-	(null, "2026-04-12", "9:30:00", "9:45:00", "Online e in presenza", "franco.callegati@unibo.it"),
-	(null, "2026-04-12", "9:45:00", "10:00:00", "Online e in presenza", "franco.callegati@unibo.it");
+	("vittorio.ghini@unibo.it", "2026-04-12", "9:00:00", "9:15:00", "Online e in presenza"),
+	("vittorio.ghini@unibo.it", "2026-04-12", "9:15:00", "9:30:00", "Online e in presenza"),
+	("vittorio.ghini@unibo.it", "2026-04-12", "9:30:00", "9:45:00", "Online e in presenza"),
+	("vittorio.ghini@unibo.it", "2026-04-12", "9:45:00", "10:00:00", "Online e in presenza"),
+	("vittorio.ghini@unibo.it", "2026-04-12", "10:15:00", "10:30:00", "Online e in presenza"),
+	("vittorio.ghini@unibo.it", "2026-04-12", "15:15:00", "15:30:00", "Online"),
+	("vittorio.ghini@unibo.it", "2026-04-12", "15:30:00", "15:45:00", "Online"),
+	("vittorio.ghini@unibo.it", "2026-04-12", "15:45:00", "16:00:00", "Online"),
+	("franco.callegati@unibo.it", "2026-04-12", "9:00:00", "9:15:00", "Online e in presenza"),
+	("franco.callegati@unibo.it", "2026-04-12", "9:15:00", "9:30:00", "Online e in presenza"),
+	("franco.callegati@unibo.it", "2026-04-12", "9:30:00", "9:45:00", "Online e in presenza"),
+	("franco.callegati@unibo.it", "2026-04-12", "9:45:00", "10:00:00", "Online e in presenza");
     
     ### PRENOTAZIONE ###
 insert into Prenotazione values
-    (1, "0000000002", "Presenza"),
-    (8, "0000000001", "Online"),
-    (12, "0000000001", "Presenza");
+    ("vittorio.ghini@unibo.it", "2026-04-12", "9:00:00", "0000000002", "Presenza"),
+    ("vittorio.ghini@unibo.it", "2026-04-12", "10:15:00", "0000000001", "Online"),
+    ("franco.callegati@unibo.it", "2026-04-12", "9:00:00", "0000000001", "Presenza");
     
     
 -- Constraints Section
@@ -368,8 +379,8 @@ alter table DOCENTE add constraint FKPER_DOC_FK
 --                  where CORSO.Codice_Facolta = Codice)); 
 
 alter table MATERIALE add constraint FKCaricamento_FK
-     foreign key (Matricola_Studente, Codice_Corso)
-     references STUDENTE_IN_CORSO (Matricola, Codice_Corso);
+     foreign key (Studente, Codice_Corso)
+     references STUDENTE_IN_CORSO (Utente, Codice_Corso);
 
 alter table MESSAGGIO_CHAT add constraint FKComprensione_FK
      foreign key (Codice_Chat)
@@ -380,8 +391,8 @@ alter table Prenotazione add constraint FKPre_STU_FK
      references STUDENTE (Matricola);
 
 alter table Prenotazione add constraint FKPre_RIC_FK
-     foreign key (Codice_Ricevimento)
-     references RICEVIMENTO (Codice);
+     foreign key (Docente, Data, Ora_Inizio)
+     references RICEVIMENTO (Docente, Data, Ora_Inizio);
 
 -- Not implemented
 -- alter table RATING_CORSO add constraint FKRAT_RAT_CHK
@@ -427,8 +438,8 @@ alter table STUDENTE_IN_CORSO add constraint FKIscrizione_FK
      references CORSO (Codice);
 
 alter table STUDENTE_IN_CORSO add constraint FKEssere
-     foreign key (Matricola)
-     references STUDENTE (Matricola);
+     foreign key (Utente)
+     references STUDENTE (Utente);
 
 alter table STUDENTE_IN_CORSO add constraint FKRecensione_Docente_FK
      foreign key (Codice_Rating_Docenti)
@@ -484,7 +495,7 @@ create unique index ID_MATERIALE_IND
      on MATERIALE (Percorso);
 
 create index FKCaricamento_IND
-     on MATERIALE (Matricola_Studente, Codice_Corso);
+     on MATERIALE (Studente, Codice_Corso);
 
 create unique index ID_MESSAGGIO_CHAT_IND
      on MESSAGGIO_CHAT (Codice_Chat, Codice);
@@ -499,7 +510,7 @@ create index FKPre_STU_IND
      on Prenotazione (Matricola_Studente);
 
 create unique index FKPre_RIC_IND
-     on Prenotazione (Codice_Ricevimento);
+     on Prenotazione (Docente, Data, Ora_Inizio);
 
 create unique index ID_RATING_IND
      on RATING (Codice);
@@ -517,7 +528,7 @@ create unique index FKPresenza_IND
      on REVIEW (Codice_Rating);
 
 create unique index ID_RICEVIMENTO_IND
-     on RICEVIMENTO (Codice);
+     on RICEVIMENTO (Docente, Data, Ora_Inizio);
 
 create index FKDisponibilita_IND
      on RICEVIMENTO (Docente);
@@ -526,7 +537,7 @@ create unique index FKPER_STU_IND
      on STUDENTE (Utente);
 
 create unique index ID_STUDENTE_IN_CORSO_IND
-     on STUDENTE_IN_CORSO (Matricola, Codice_Corso);
+     on STUDENTE_IN_CORSO (Utente, Codice_Corso);
 
 create index FKIscrizione_IND
      on STUDENTE_IN_CORSO (Codice_Corso);
