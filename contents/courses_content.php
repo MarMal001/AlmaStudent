@@ -11,6 +11,7 @@
     <section class="m-2">
         <?php for($year = 1; $year <= $dbh->getYearsDegree(6673); $year++): ?>
             <h3><?php echo parseCourseYear($year); ?> anno</h3>
+            <?php $student = "carla.anselmi3@studio.unibo.it"; ?>
             <?php $courses = $dbh->getCoursesByDegreeAndYear(6673, $year); ?>
             <?php foreach ($courses as $course): ?>
                 <div class="container-fluid w-auto w-lg-55 m-2 p-0">
@@ -20,8 +21,11 @@
                             <p class="m-0 p-2 text-start"><?php echo $course["courseName"]; ?></p>
                             <div>
                                 <?php $ratings = [$course["ratingL"], $course["ratingM"], $course["ratingE"], $course["ratingD"]]; ?>
-                                <?php echo createStars(getMeanRating($ratings),"#fff"); ?>
+                                <?php echo createStars(getMeanRating($ratings),"rgb(30, 48, 80)"); ?>
                             </div>
+                                <?php if ($dbh->checkIfSubscribedToACourse($student, $courseId)[0]["subscribed"]): ?>
+                                    <i class="fa-solid fa-check mx-2" style="color: rgb(38, 246, 30);"></i>
+                                <?php endif; ?>
                         </div>
                         <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
                     </button>
@@ -33,10 +37,10 @@
                                 <li><a href="#" class="text-primary"><?php echo $professor["name"] . " " . $professor["surname"] ?></a></li>
                             <?php endforeach; ?>
                             </ul>
-        
                         <p><?php echo $course["shDescription"]; ?></p>
                         <div class="d-flex justify-content-end m-2">
-                            <button class="btn btn-primary me-1" type="button">Vai alla pagina</button>
+                            <button class="btn btn-primary me-1" type="submit">Apri corso</button>
+                            <?php subscriptionButton($student, $courseId); ?>
                         </div>
                     </div>
                 </div>
