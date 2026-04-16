@@ -17,7 +17,7 @@
                 <p class="m-0 p-2 text-start"><?php echo $professor["name"] . " " . $professor["surname"]; ?></p>
                 <div>
                     <?php $ratings = [$professor["ratingD"], $professor["ratingC"], $professor["ratingD"]]; ?>
-                    <?php createStars(getMeanRating($ratings), "#fff"); ?>
+                    <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
                 </div>
             </div>
             <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
