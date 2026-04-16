@@ -165,11 +165,15 @@ class DatabaseHelper{
         $stmt = $this->db->prepare(
             "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Modalita AS mode, pr.Modalita_Scelta AS selectedMode, p.Nome AS studentName, p.Cognome AS studentSurname
             FROM RICEVIMENTO AS r
-            LEFT JOIN Prenotazione AS pr ON r.Codice = pr.Codice_Ricevimento
+            LEFT JOIN Prenotazione AS pr ON r.Docente = pr.Docente AND r.Data = pr.Data AND r.Ora_Inizio = pr.Ora_Inizio
             LEFT JOIN STUDENTE AS s ON s.matricola = pr.matricola_studente
             LEFT JOIN PERSONA AS p ON p.Utente = s.Utente
-            WHERE r.Docente = ?
-            AND r.Data = ?
+            WHERE p.Utente = d.Utente
+            AND r.Docente = d.Utente
+            AND r.Docente = pr.Docente
+            AND r.Data = pr.Data
+            AND r.Ora_Inizio = pr.Ora_Inizio
+            AND s.Matricola = pr.Matricola_Studente 
             ORDER BY r.Ora_inizio"
         );
         $stmt->bind_param("ss", $professorCode, $date);
@@ -179,21 +183,50 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function addDisponibilityOfProfessor($professorCode, $date, $startTime, $endTime, $mode) {
+    public function addAvailabilityOfProfessor($professorCode, $date, $startTime, $endTime, $mode) {
         $stmt = $this->db->prepare(
             "INSERT INTO RICEVIMENTO values
-            (null, ?, ?, ?, ?, ?)"
+            (?, ?, ?, ?, ?)"
         );
 
         $parsedMode = ""; 
         if ($mode == "online") {
-            $parsedMode = "online";
+            $parsedMode = "Online";
         } else if ($mode == "presence") {
-            $parsedMode = "presenza";
+            $parsedMode = "Presenza";
         } else {
-            $parsedMode = "online e in presenza";
+            $parsedMode = "Online e in presenza";
         }
-        $stmt->bind_param("sssss", $date, $startTime, $endTime, $parsedMode, $professorCode);
+        $stmt->bind_param("sssss", $professorCode, $date, $startTime, $endTime, $parsedMode);
+        return $stmt->execute();
+    }
+
+    public function checkAvailabilityReferencesOfProfessor($professorCode) {
+        $stmt = $this->db->prepare(
+            "SELECT s.Matricola, p.Nome, p.Cognome
+            FROM RICEVIMENTO AS r
+            LEFT JOIN Prenotazione AS pr ON r.Docente = pr.Docente AND r.Data = pr.Data AND r.Ora_Inizio = pr.Ora_Inizio
+            LEFT JOIN STUDENTE AS s ON pr.Matricola_Studente = s.Matricola
+            LEFT JOIN PERSONA AS p ON p.Utente = s.Utente
+            WHERE r.Docente = ?"
+        );
+
+        $stmt->bind_param("s", $professorCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function removeAvailabilityOfProfessor($professorCode, $date, $startTime) {
+        $stmt = $this->db->prepare(
+            "DELETE FROM RICEVIMENTO
+            WHERE Docente = ?
+            AND Data = ?
+            AND Ora_Inizio = ?"
+        );
+
+        $stmt->bind_param("sss", $professorCode, $date, $startTime);
         return $stmt->execute();
     }
 
