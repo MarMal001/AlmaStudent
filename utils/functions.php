@@ -1,5 +1,7 @@
 <?php 
     
+    require_once "init.php";
+
     function parseCourseYear(int $year) {
         switch ($year) {
             case 1: return "Primo";
@@ -41,6 +43,15 @@
 
         $mean = $sum / count($ratingArray);
         return $mean;
+    }
+
+    function subscriptionButton($student, $courseCode) {
+        $subscribed = $GLOBALS["dbh"]->checkIfSubscribedToACourse($student, $courseCode);
+        if ($subscribed[0]["subscribed"]){
+            echo "<button class='btn btn-white border-primary ms-1' type='submit'>Discriviti</button>";
+        } else {
+            echo "<button class='btn btn-primary ms-1' type='submit'>Iscriviti</button>";
+        }
     }
 
 ?>
