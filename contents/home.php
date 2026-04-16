@@ -9,16 +9,15 @@
         <section>
             <h1 class="fw-bold">I tuoi corsi</h1>
             <?php $courses = $dbh->getStudentCourses($user); ?>
-            <?php var_dump($courses); ?>
             <?php foreach($courses as $course): ?>
                 <div class="container-fluid w-auto m-2 p-0">
                 <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
                     <div class="d-md-inline-flex align-items-md-center p-0">
                         <p class="m-0  p-2 text-start"><?php echo $course["name"]; ?></p>
                         <div>
-                            <?php $gRatings = $dbh->getGeneralRatingsByCourse($course["code"]); ?>
+                            <?php $gRatings = $dbh->getGeneralRatingsByCourse($course["code"])[0]; ?>
                             <?php $ratings = [$gRatings["ratingL"], $gRatings["ratingM"], $gRatings["ratingE"], $gRatings["ratingD"]]; ?>
-                            <?php createStars($ratings); ?>
+                            <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
                         </div>
                     </div>
                     <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
