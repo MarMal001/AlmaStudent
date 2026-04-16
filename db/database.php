@@ -166,6 +166,24 @@ class DatabaseHelper{
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function addDisponibilityOfProfessor($professorCode, $date, $startTime, $endTime, $mode) {
+        $stmt = $this->db->prepare(
+            "INSERT INTO RICEVIMENTO values
+            (null, ?, ?, ?, ?, ?)"
+        );
+
+        $parsedMode = ""; 
+        if ($mode == "online") {
+            $parsedMode = "online";
+        } else if ($mode == "presence") {
+            $parsedMode = "presenza";
+        } else {
+            $parsedMode = "online e in presenza";
+        }
+        $stmt->bind_param("sssss", $date, $startTime, $endTime, $parsedMode, $professorCode);
+        return $stmt->execute();
+    }
 }
 
 ?>
