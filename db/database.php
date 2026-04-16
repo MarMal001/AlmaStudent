@@ -142,35 +142,37 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getReservationsOfStudent($studentCode) {
+    public function getReservationsOfStudent($studentCode, $date) {
         $stmt = $this->db->prepare(
-            "SELECT r.Data AS date, r.Ora_inizio AS startTime, r.Ora_fine AS endTime, pr.Modalita_Scelta AS mode, p.Nome AS professorName, p.Cognome AS professorSurname
+            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, pr.Modalita_Scelta AS mode, p.Nome AS professorName, p.Cognome AS professorSurname
             FROM Prenotazione AS pr, STUDENTE AS s, RICEVIMENTO AS r, PERSONA AS p, DOCENTE AS d
             WHERE p.Utente = d.Utente
             AND r.Docente = d.Utente
             AND pr.Codice_Ricevimento = r.Codice
             AND s.Matricola = pr.Matricola_Studente
             AND s.Matricola = ?
+            AND r.Data = ?
             ORDER BY r.Ora_inizio"
         );
-        $stmt->bind_param("s", $studentCode);
+        $stmt->bind_param("ss", $studentCode, $date);
         $stmt->execute();
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getReservationsOfProfessor($professorCode) {
+    public function getReservationsOfProfessor($professorCode, $date) {
         $stmt = $this->db->prepare(
-            "SELECT r.Data AS date, r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Modalita AS mode, pr.Modalita_Scelta AS selectedMode, p.Nome AS studentName, p.Cognome AS studentSurname
+            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Modalita AS mode, pr.Modalita_Scelta AS selectedMode, p.Nome AS studentName, p.Cognome AS studentSurname
             FROM RICEVIMENTO AS r
             LEFT JOIN Prenotazione AS pr ON r.Codice = pr.Codice_Ricevimento
             LEFT JOIN STUDENTE AS s ON s.matricola = pr.matricola_studente
             LEFT JOIN PERSONA AS p ON p.Utente = s.Utente
             WHERE r.Docente = ?
+            AND r.Data = ?
             ORDER BY r.Ora_inizio"
         );
-        $stmt->bind_param("s", $professorCode);
+        $stmt->bind_param("ss", $professorCode, $date);
         $stmt->execute();
         $result = $stmt->get_result();
 
