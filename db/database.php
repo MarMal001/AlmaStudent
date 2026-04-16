@@ -217,6 +217,27 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function updateAvailabilityOfProfessor($professorCode, $date, $startTime, $mode) {
+        $stmt = $this->db->prepare(
+            "UPDATE RICEVIMENTO
+            SET Modalita = ?
+            WHERE Docente = ?
+            AND Data = ?
+            AND Ora_Inizio = ?"
+        );
+
+        $parsedMode = ""; 
+        if ($mode == "online") {
+            $parsedMode = "Online";
+        } else if ($mode == "presence") {
+            $parsedMode = "Presenza";
+        } else {
+            $parsedMode = "Online e in presenza";
+        }
+        $stmt->bind_param("ssss", $parsedMode, $professorCode, $date, $startTime);
+        return $stmt->execute();
+    }
+
     public function removeAvailabilityOfProfessor($professorCode, $date, $startTime) {
         $stmt = $this->db->prepare(
             "DELETE FROM RICEVIMENTO
