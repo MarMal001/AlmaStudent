@@ -1,20 +1,26 @@
-<main>  
+<main>
+    <?php if (isset($templateParams["message"])): ?>
+        <section>
+            <?php echo $templateParams["message"]; ?>
+        </section>
+    <?php endif; ?>
+
     <section class="container-fluid w-auto m-2 p-0 my-4">
         <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c0">
             <p class="m-0  p-2">Aggiungi disponibilità</p>
             <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
         </button>
         
-        <form id="c0" class="collapse p-3 w-100 border border-primary border-2 rounded">
+        <form action="handle_reception.php" method="POST" enctype="multipart/form-data" id="c0" class="collapse p-3 w-100 border border-primary border-2 rounded">
             <div>
                 <label for="date">Data</label>
                 <input type="date" id="date" name="date">
             </div>
             <div>
-                <label for="time_hour">Fascia oraria da</label>
-                <select name="time_hour">
+                <label for="startTimeHour">Fascia oraria da</label>
+                <select name="startTimeHour">
                     <option value="--" disabled selected hidden>--</option>
-                    <option value="9">9</option>
+                    <option value="09">9</option>
                     <option value="10">10</option>
                     <option value="11">11</option>
                     <option value="12">12</option>
@@ -26,18 +32,18 @@
                     <option value="18">18</option>
                     <option value="19">19</option>
                 </select>
-                <label for="time_minute">:</label>
-                <select name="time_minute">
+                <label for="startTimeMinute">:</label>
+                <select name="startTimeMinute">
                     <option value="--" disabled selected hidden>--</option>
                     <option value="00">00</option>
                     <option value="15">15</option>
                     <option value="30">30</option>
                     <option value="45">45</option>
                 </select>
-                <label for="time_final_hour">a</label>
-                <select name="time_final_hour">
+                <label for="endTimeHour">a</label>
+                <select name="endTimeHour">
                     <option value="--" disabled selected hidden>--</option>
-                    <option value="9">9</option>
+                    <option value="09">9</option>
                     <option value="10">10</option>
                     <option value="11">11</option>
                     <option value="12">12</option>
@@ -50,8 +56,8 @@
                     <option value="19">19</option>
                     <option value="20">20</option>
                 </select>
-                <label for="time_final_minute">:</label>
-                <select name="time_final_minute">
+                <label for="endTimeMinute">:</label>
+                <select name="endTimeMinute">
                     <option value="--" disabled selected hidden>--</option>
                     <option value="00">00</option>
                     <option value="15">15</option>
@@ -60,21 +66,17 @@
                 </select>
             </div>
             <div>
-                <label for="type">Modalità</label>
-                <select name="type">
+                <label for="mode">Modalità</label>
+                <select name="mode">
                     <option value="select" disabled selected hidden>--Seleziona--</option>
                     <option value="online">Online</option>
                     <option value="presence">Presenza</option>
-                    <option value="presence">Online e in presenza</option>
+                    <option value="online_presence">Online e in presenza</option>
                 </select>
-            </div>
-            <div>                
-                <label for="number_people">Numero posti</label>
-                <input type="number" id="number_people" name="number_people" min="1" max="45">
             </div>
             <div class="d-flex justify-content-end m-2">
                 <button class="btn btn-white border-primary me-1" type="reset">Annulla</button>
-                <button class="btn btn-primary ms-1" type="button">Aggiungi</button>
+                <button class="btn btn-primary ms-1" name="action" value="<?php echo RECEPTION_ACTION_ADD; ?>" type="submit">Aggiungi</button>
             </div>
         </form>
     </section>
@@ -85,16 +87,16 @@
             <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
         </button>
         
-        <form id="c1" class="collapse p-3 w-100 border border-primary border-2 rounded">
+        <form action="handle_reception.php" method="POST" enctype="multipart/form-data" id="c1" class="collapse p-3 w-100 border border-primary border-2 rounded">
             <div>
                 <label for="date">Data</label>
                 <input type="date" id="date" name="date">
             </div>
             <div>
-                <label for="time">Fascia oraria da</label>
-                <select name="time_hour">
+                <label for="startTimeHour">Fascia oraria da</label>
+                <select name="startTimeHour">
                     <option value="--" disabled selected hidden>--</option>
-                    <option value="9">9</option>
+                    <option value="09">9</option>
                     <option value="10">10</option>
                     <option value="11">11</option>
                     <option value="12">12</option>
@@ -106,18 +108,18 @@
                     <option value="18">18</option>
                     <option value="19">19</option>
                 </select>
-                <label for="time_minute">:</label>
-                <select name="time_minute">
+                <label for="startTimeMinute">:</label>
+                <select name="startTimeMinute">
                     <option value="--" disabled selected hidden>--</option>
                     <option value="00">00</option>
                     <option value="15">15</option>
                     <option value="30">30</option>
                     <option value="45">45</option>
                 </select>
-                <label for="time_final_hour">a</label>
-                <select name="time_final_hour">
+                <label for="endTimeHour">a</label>
+                <select name="endTimeHour">
                     <option value="--" disabled selected hidden>--</option>
-                    <option value="9">9</option>
+                    <option value="09">9</option>
                     <option value="10">10</option>
                     <option value="11">11</option>
                     <option value="12">12</option>
@@ -130,8 +132,8 @@
                     <option value="19">19</option>
                     <option value="20">20</option>
                 </select>
-                <label for="time_final_minute">:</label>
-                <select name="time_final_minute">
+                <label for="endTimeMinute">:</label>
+                <select name="endTimeMinute">
                     <option value="--" disabled selected hidden>--</option>
                     <option value="00">00</option>
                     <option value="15">15</option>
@@ -140,22 +142,18 @@
                 </select>
             </div>
             <div>
-                <label for="type">Modalità</label>
-                <select name="type">
+                <label for="mode">Modalità</label>
+                <select name="mode">
                     <option value="select" disabled selected hidden>--Seleziona--</option>
                     <option value="online">Online</option>
                     <option value="presence">Presenza</option>
-                    <option value="presence">Online e in presenza</option>
+                    <option value="online_presence">Online e in presenza</option>
                 </select>
-            </div>
-            <div>                
-                <label for="number_people">Numero posti</label>
-                <input type="number" id="number_people" name="number_people" min="1" max="45">
             </div>
             <div class="d-flex justify-content-end m-2">
                 <button class="btn btn-white border-primary me-1" type="reset">Annulla</button>
-                <button class="btn btn-white border-primary mx-1" type="submit">Elimina</button>
-                <button class="btn btn-primary ms-1" type="button">Salva</button>
+                <button class="btn btn-white border-primary mx-1" name="action" value="<?php echo RECEPTION_ACTION_DELETE; ?>" type="submit">Elimina</button>
+                <button class="btn btn-primary ms-1" name="action" value="<?php echo RECEPTION_ACTION_MODIFY; ?>" type="submit">Salva</button>
             </div>
         </form>
     </section>

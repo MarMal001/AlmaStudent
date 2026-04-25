@@ -147,12 +147,13 @@ class DatabaseHelper{
     public function getReservationsOfStudent($studentCode, $date) {
         $stmt = $this->db->prepare(
             "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, pr.Modalita_Scelta AS mode, p.Nome AS professorName, p.Cognome AS professorSurname
-            FROM Prenotazione AS pr, STUDENTE AS s, RICEVIMENTO AS r, PERSONA AS p, DOCENTE AS d
+            FROM Prenotazione AS pr, RICEVIMENTO AS r, PERSONA AS p, DOCENTE AS d
             WHERE p.Utente = d.Utente
             AND r.Docente = d.Utente
-            AND pr.Codice_Ricevimento = r.Codice
-            AND s.Matricola = pr.Matricola_Studente
-            AND s.Matricola = ?
+            AND r.Docente = pr.Docente
+            AND r.Data = pr.Data
+            AND r.Ora_Inizio = pr.Ora_Inizio
+            AND pr.Matricola_Studente = ?
             AND r.Data = ?
             ORDER BY r.Ora_inizio"
         );
@@ -167,7 +168,7 @@ class DatabaseHelper{
         $stmt = $this->db->prepare(
             "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Modalita AS mode, pr.Modalita_Scelta AS selectedMode, p.Nome AS studentName, p.Cognome AS studentSurname
             FROM RICEVIMENTO AS r
-            LEFT JOIN Prenotazione AS pr ON r.Codice = pr.Codice_Ricevimento
+            LEFT JOIN Prenotazione AS pr ON r.Docente = pr.Docente AND r.Data = pr.Data AND r.Ora_Inizio = pr.Ora_Inizio
             LEFT JOIN STUDENTE AS s ON s.matricola = pr.matricola_studente
             LEFT JOIN PERSONA AS p ON p.Utente = s.Utente
             WHERE r.Docente = ?
@@ -179,6 +180,74 @@ class DatabaseHelper{
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function addAvailabilityOfProfessor($professorCode, $date, $startTime, $endTime, $mode) {
+        $stmt = $this->db->prepare(
+            "INSERT INTO RICEVIMENTO values
+            (?, ?, ?, ?, ?)"
+        );
+
+        $parsedMode = ""; 
+        if ($mode == "online") {
+            $parsedMode = "Online";
+        } else if ($mode == "presence") {
+            $parsedMode = "Presenza";
+        } else {
+            $parsedMode = "Online e in presenza";
+        }
+        $stmt->bind_param("sssss", $professorCode, $date, $startTime, $endTime, $parsedMode);
+        return $stmt->execute();
+    }
+
+    public function checkAvailabilityReferencesOfProfessor($professorCode) {
+        $stmt = $this->db->prepare(
+            "SELECT s.Matricola, p.Nome, p.Cognome
+            FROM RICEVIMENTO AS r
+            LEFT JOIN Prenotazione AS pr ON r.Docente = pr.Docente AND r.Data = pr.Data AND r.Ora_Inizio = pr.Ora_Inizio
+            LEFT JOIN STUDENTE AS s ON pr.Matricola_Studente = s.Matricola
+            LEFT JOIN PERSONA AS p ON p.Utente = s.Utente
+            WHERE r.Docente = ?"
+        );
+
+        $stmt->bind_param("s", $professorCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function updateAvailabilityOfProfessor($professorCode, $date, $startTime, $mode) {
+        $stmt = $this->db->prepare(
+            "UPDATE RICEVIMENTO
+            SET Modalita = ?
+            WHERE Docente = ?
+            AND Data = ?
+            AND Ora_Inizio = ?"
+        );
+
+        $parsedMode = ""; 
+        if ($mode == "online") {
+            $parsedMode = "Online";
+        } else if ($mode == "presence") {
+            $parsedMode = "Presenza";
+        } else {
+            $parsedMode = "Online e in presenza";
+        }
+        $stmt->bind_param("ssss", $parsedMode, $professorCode, $date, $startTime);
+        return $stmt->execute();
+    }
+
+    public function removeAvailabilityOfProfessor($professorCode, $date, $startTime) {
+        $stmt = $this->db->prepare(
+            "DELETE FROM RICEVIMENTO
+            WHERE Docente = ?
+            AND Data = ?
+            AND Ora_Inizio = ?"
+        );
+
+        $stmt->bind_param("sss", $professorCode, $date, $startTime);
+        return $stmt->execute();
     }
 
     public function getPersonInfo($user) {
@@ -217,6 +286,16 @@ class DatabaseHelper{
             WHERE r.Docente = ?"
         );
         $stmt->bind_param("s", $professor);
+    }
+    
+    public function checkLogin($username, $password) {
+        $stmt = $this->db->prepare(
+            "SELECT p.Utente as username, p.Nome as name, p.ruolo as role
+            FROM PERSONA as p
+            WHERE p.Utente = ?
+            AND p.Password = ?"
+        );
+        $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -250,6 +329,56 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    private function createAdmin($username) {
+        $stmt = $this->db->prepare(
+            "INSERT INTO ADMIN values
+            (?)"
+        );
+        $stmt->bind_param("s", $username);
+        return $stmt->execute();
+    }
+
+    private function createProfessor($username) {
+        $stmt = $this->db->prepare(
+            "INSERT INTO PROFESSORE values
+            (?)"
+        );
+        $stmt->bind_param("s", $username);
+        return $stmt->execute();
+    }
+
+    private function createStudent($studentId, $username) {
+        $stmt = $this->db->prepare(
+            "INSERT INTO STUDENTE values
+            (?, ?, false, null, 0)"
+        );
+        $stmt->bind_param("ss", $studentId, $username);
+        return $stmt->execute();
+    }
+
+    public function createAccout($username, $password, $name, $surname, $role, $studentId = NULL) {
+        $stmt = $this->db->prepare(
+            "INSERT INTO PERSONA values
+            (?, ?, ?, ?, ?)"
+        );
+        $success = true;
+        if (strtolower($role) == "admin") {
+            $success = $this->createAdmin($username);
+        } else if (strtolower($role) == "professor") {
+            $success = $this->createProfessor($username);
+        } else if (strtolower($role) == "student") {
+            try {
+                $success = $this->createStudent($studentId, $username);
+            } catch (mysqli_sql_exception $e) {
+                $success = false;
+            }
+        }
+        if (!$success) {
+            return false;
+        }
+        $stmt->bind_param("sssss", $username, $password, $name, $surname, $role);
+        return $stmt->execute();
+    }
 }
 
 ?>

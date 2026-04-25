@@ -56,4 +56,13 @@
         }
     }
 
+    function isUserLoggedIn() {
+        return !empty($_SESSION["username"]);
+    }
+
+    function registerLoggedUser($user) {
+        $_SESSION["username"] = $user["username"];
+        $_SESSION["name"] = $user["name"];
+        $_SESSION["role"] = $user["role"];
+    }
 ?>
