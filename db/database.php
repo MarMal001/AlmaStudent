@@ -279,6 +279,70 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function checkLogin($username, $password) {
+        $stmt = $this->db->prepare(
+            "SELECT p.Utente as username, p.Nome as name, p.ruolo as role
+            FROM PERSONA as p
+            WHERE p.Utente = ?
+            AND p.Password = ?"
+        );
+        $stmt->bind_param("ss", $username, $password);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    private function createAdmin($username) {
+        $stmt = $this->db->prepare(
+            "INSERT INTO ADMIN values
+            (?)"
+        );
+        $stmt->bind_param("s", $username);
+        return $stmt->execute();
+    }
+
+    private function createProfessor($username) {
+        $stmt = $this->db->prepare(
+            "INSERT INTO PROFESSORE values
+            (?)"
+        );
+        $stmt->bind_param("s", $username);
+        return $stmt->execute();
+    }
+
+    private function createStudent($studentId, $username) {
+        $stmt = $this->db->prepare(
+            "INSERT INTO STUDENTE values
+            (?, ?, false, null, 0)"
+        );
+        $stmt->bind_param("ss", $studentId, $username);
+        return $stmt->execute();
+    }
+
+    public function createAccout($username, $password, $name, $surname, $role, $studentId = NULL) {
+        $stmt = $this->db->prepare(
+            "INSERT INTO PERSONA values
+            (?, ?, ?, ?, ?)"
+        );
+        $success = true;
+        if (strtolower($role) == "admin") {
+            $success = $this->createAdmin($username);
+        } else if (strtolower($role) == "professor") {
+            $success = $this->createProfessor($username);
+        } else if (strtolower($role) == "student") {
+            try {
+                $success = $this->createStudent($studentId, $username);
+            } catch (mysqli_sql_exception $e) {
+                $success = false;
+            }
+        }
+        if (!$success) {
+            return false;
+        }
+        $stmt->bind_param("sssss", $username, $password, $name, $surname, $role);
+        return $stmt->execute();
+    }
 }
 
 ?>
