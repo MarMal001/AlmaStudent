@@ -1,38 +1,49 @@
-<main>  
-    <h1>Nome Corso</h1>
+<main>
+    <?php $courseId = $templateParams["course"]; ?>
+    <?php $courseInfo = $dbh->getCourseInfo($courseId)[0]; ?>  
+    <?php $professors = $dbh->getProfessorsByCourse($courseId); ?>
+    <?php $student = "carla.anselmi3@studio.unibo.it"; ?>
+    <h1><?php echo $courseInfo["name"]; ?></h1>
     <section>
-        <h3>Docente</h3>
+        <h3>
+            <?php foreach($professors as $professor): ?>
+                <a href="professor.php?professor=<?php echo $professor["professor"]; ?>" class="text-primary"><?php echo $professor["name"] . " " . $professor["surname"] ?></a>
+            <?php endforeach; ?>
+        </h3>
         <div class="d-flex align-items-start">
             <h6 class="m-0 me-2">Rating degli studenti:</h6>
             <div>
-                <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
-                <i class="fa-solid fa-star" style="color: rgb(30, 48, 80);"></i>
+                <?php $gRatings = $dbh->getGeneralRatingsByCourse($courseId)[0]; ?>
+                    <?php $ratings = [$gRatings["ratingL"], $gRatings["ratingM"], $gRatings["ratingE"], $gRatings["ratingD"]]; ?>
+                    <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
             </div>
         </div>
-        <div>
-            <input type="button" value="Prenota ricevimento" />
-            <input type="button" value="Iscriviti" />
+        <div class="mb-3">
+            <?php subscriptionButton($student, $courseId); ?>
         </div>
     </section>
     <article>
         <h2>Descrizione</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus explicabo, odio aliquam 
-            qui voluptatum iusto rem ad fugiat eaque dolor. Voluptatibus similique animi 
-            vitae nulla saepe quibusdam recusandae quasi porro!
+        <p>
+            <?php echo $courseInfo["description"]; ?>
         </p>
     </article>
     <article>
         <h2>Materiale</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus explicabo, odio aliquam 
-            qui voluptatum iusto rem ad fugiat eaque dolor. Voluptatibus similique animi 
-            vitae nulla saepe quibusdam recusandae quasi porro!
+        <p>
+            <?php echo $courseInfo["material"]; ?>
         </p>
     </article>
     <section>
         <h2>Opinioni degli studenti</h2>
+
+        <div class="card" style="height: clamp(200px, 60vh, 600px);">
+  <div class="card-body overflow-auto">
+    <p>Testo molto lungo... Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum illo ratione officia enim eligendi possimus labore. Eius quae sapiente dignissimos, nulla, optio hic molestiae explicabo in magnam, sequi iusto culpa?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, ullam reprehenderit. Ipsam eius voluptatem rem? Cumque mollitia saepe dolor aut obcaecati dolore. Facere quo veniam ullam excepturi quis iste doloremque?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere non odit sequi maxime a suscipit consectetur accusamus dignissimos sint veniam, reprehenderit sapiente quisquam velit incidunt ea ratione quaerat cum veritatis? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam alias, voluptates labore omnis quidem odit accusamus? Adipisci dolores quidem assumenda ad nobis, exercitationem aspernatur non incidunt asperiores, explicabo animi error. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facilis ullam blanditiis necessitatibus eius voluptas neque iure in fugit dolor! Amet deserunt obcaecati illum ratione ex adipisci, voluptas repudiandae aperiam doloribus.</p>
+  </div>
+</div>
         
         <div class="container-fluid text-white text-center">
             <div class="row"> 
