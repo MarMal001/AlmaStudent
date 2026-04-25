@@ -70,7 +70,7 @@ class DatabaseHelper{
 
     public function getProfessorsByCourse($courseCode) {
         $stmt = $this->db->prepare(
-            "SELECT p.Nome AS name, p.Cognome AS surname
+            "SELECT p.Utente AS professor, p.Nome AS name, p.Cognome AS surname
             FROM PERSONA AS p, DOCENTE AS d, TENERE AS t
             WHERE t.Codice_Corso = ?
             AND d.Utente = t.Docente
@@ -85,7 +85,7 @@ class DatabaseHelper{
 
     public function getCoursesByProfessor($professor) {
         $stmt = $this->db->prepare(
-            "SELECT c.Nome AS courseName
+            "SELECT c.Codice AS code, c.Nome AS courseName, c.Descrizione_Breve AS shortDescription
             FROM DOCENTE AS d, CORSO AS c, Tenere AS t
             WHERE d.Utente = ?
             AND d.Utente = t.Docente
@@ -204,6 +204,46 @@ class DatabaseHelper{
             ) AS subscribed"
         );
         $stmt->bind_param("ss", $student, $courseCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getProfessorRatings($professor) {
+        $stmt = $this->db->prepare(
+            "SELECT AVG(r.Rating_Disponibilita) AS ratingD, AVG(r.Rating_Comprensibilita_Lezioni) AS ratingC, AVG(r.Rating_Interesse_Suscitato) AS ratingI
+            FROM RATING_DOCENTE AS r
+            WHERE r.Docente = ?"
+        );
+        $stmt->bind_param("s", $professor);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getProfessorInfo($professor) {
+        $stmt = $this->db->prepare(
+            "SELECT d.Dipartimento AS department, d.Sede AS campus, d.Info_Ricevimento AS infoReception, d.Foto_Profilo AS photo
+            FROM DOCENTE AS d
+            WHERE d.Utente = ?"
+        );
+        $stmt->bind_param("s", $professor);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getCourseInfo($course) {
+        $stmt = $this->db->prepare(
+            "SELECT c.Nome AS name, c.Descrizione AS description, c.Materiale AS material
+            FROM CORSO AS c
+            WHERE c.Codice = ?
+            "
+        );
+        $stmt->bind_param("s", $course);
         $stmt->execute();
         $result = $stmt->get_result();
 
