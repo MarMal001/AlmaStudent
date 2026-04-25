@@ -19,13 +19,14 @@
             <img src="images/logo.png" class="img-fluid" alt="">
             <h1>AlmaStudent</h1>
         </div>
-        <?php if ($templateParams["content"] != "login_content.php"): ?>
+        <?php if (isUserLoggedIn()): ?>
         <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="professors.php">Docenti</a></li>
                 <li><a href="courses.php">Corsi</a></li>
                 <li><a href="contacts.php">Contatti</a></li>
+                <li><a href="logout.php">Logout</a></li>
                 <li><i class="fa-solid fa-bars"></i></li>
             </ul>
         </nav>
