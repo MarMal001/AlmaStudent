@@ -28,7 +28,7 @@
             <ul class="d-flex flex-column align-items-start">
             <?php $courses = $dbh->getCoursesByProfessor($professor["professor"]); ?> 
             <?php foreach($courses as $course): ?>
-                <li><a href="#" class="text-primary"><?php echo $course["courseName"]; ?></a></li>
+                <li><a href="course.php?course=<?php echo $course["code"]; ?>" class="text-primary"><?php echo $course["courseName"]; ?></a></li>
             <?php endforeach; ?>
             </ul>
             <div class="d-flex justify-content-end m-2">
