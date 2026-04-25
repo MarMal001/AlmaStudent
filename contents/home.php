@@ -1,7 +1,7 @@
 <div class="row mx-0">
     <main class="col-12 col-lg-6 mx-0 py-2 px-4 w-md-100">
         <section>
-            <?php $user = "carla.anselmi3@studio.unibo.it"; ?>
+            <?php $user = $_SESSION["username"]; ?>
             <?php $student = $dbh->getPersonInfo($user); ?>
             <h1 class="fw-bold">Ciao <?php echo $student[0]["name"]; ?>!</h1>
             <div>Gestisci facilmente e velocemente i tuoi corsi.</div>
