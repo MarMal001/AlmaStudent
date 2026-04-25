@@ -38,7 +38,9 @@
         $sum = 0;
         $mean = 0;
         foreach ($ratingArray as $rating) {
-            $sum += $rating;
+            if ($rating != NULL) {
+                $sum += $rating;    
+            }
         };
 
         $mean = $sum / count($ratingArray);
