@@ -7,7 +7,7 @@
 
     <section class="container-fluid w-auto m-2 p-0 my-4">
         <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c0">
-            <p class="m-0  p-2">Aggiungi disponibilità</p>
+            <p class="m-0 p-2">Aggiungi disponibilità</p>
             <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
         </button>
         

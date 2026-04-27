@@ -4,7 +4,7 @@ require_once "init.php";
 if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["studentId"])) {
     $loginResult = $dbh->createAccout($_POST["username"], $_POST["password"], $_POST["name"], $_POST["surname"], "STUDENTE", $_POST["studentId"]);
     echo $loginResult;
-    if ( $loginResult) {
+    if ($loginResult) {
         registerLoggedUser($loginResult[0]);
         header("location: index.php");
     } else {

@@ -70,32 +70,31 @@
 
     <article>
         <h2>Ricevimento</h2>
-        <p><?php echo $profInfo["infoReception"]; ?>
-        </p>
+        <p><?php echo $profInfo["infoReception"]; ?></p>
     </article>
     <section>
         <h2>Opinioni degli studenti</h2>
         
         <div class="container-fluid text-white text-center">
             <div class="row"> 
-            <div class="col-sm-2"></div>
-            <div class="col-sm-6">
-            <div class="list-group-item border-0">
-                <div class="p-2 mb-3 rounded bg-light text-primary d-inline-block" style="max-width: 70%;">
-                    <p>Ciao! Come va? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi cupiditate iusto natus.
-                        Possimus deserunt quos inventore fugiat similique ducimus laboriosam aut eveniet, adipisci deleniti 
-                        eligendi fugit. Ab quis officiis vitae?</p>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-6">
+                    <div class="list-group-item border-0">
+                        <div class="p-2 mb-3 rounded bg-light text-primary d-inline-block" style="max-width: 70%;">
+                            <p>Ciao! Come va? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi cupiditate iusto natus.
+                                Possimus deserunt quos inventore fugiat similique ducimus laboriosam aut eveniet, adipisci deleniti 
+                                eligendi fugit. Ab quis officiis vitae?</p>
+                        </div>
+                    </div>
+                    <div class="list-group-item border-0 d-flex justify-content-end">
+                        <div class="p-2 mb-3 rounded bg-primary text-white" style="max-width: 70%;">
+                            <p>Tutto bene, grazie! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi cupiditate iusto natus.
+                                Possimus deserunt quos inventore fugiat similique ducimus laboriosam aut eveniet, adipisci deleniti 
+                                eligendi fugit. Ab quis officiis vitae?</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="list-group-item border-0 d-flex justify-content-end">
-                <div class="p-2 mb-3 rounded bg-primary text-white" style="max-width: 70%;">
-                    <p>Tutto bene, grazie! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi cupiditate iusto natus.
-                        Possimus deserunt quos inventore fugiat similique ducimus laboriosam aut eveniet, adipisci deleniti 
-                        eligendi fugit. Ab quis officiis vitae?</p>
-                </div>
-            </div>
-        </div>
-        </div>
         </div>
     </section>
 </main>    

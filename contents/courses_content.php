@@ -4,7 +4,7 @@
         <select name="courses">
             <option value="--" disabled selected hidden>-- Seleziona --</option>
             <?php foreach ($templateParams["degrees"] as $degree): ?>
-                <option value="<?php echo $degree["name"] ?>"><?php echo $degree["code"] . " - " . $degree["name"] . " - " . $degree["campus"]; ?></option>
+                <option value="<?php echo $degree["name"]; ?>"><?php echo $degree["code"] . " - " . $degree["name"] . " - " . $degree["campus"]; ?></option>
             <?php endforeach; ?>
         </select>
     </section>
@@ -30,11 +30,11 @@
                         <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
                     </button>
                     
-                    <div id="<?php echo $courseId ?>" class="collapse p-3 w-100 border border-primary border-2 rounded">
+                    <div id="<?php echo $courseId; ?>" class="collapse p-3 w-100 border border-primary border-2 rounded">
                         <?php $professors = $dbh->getProfessorsByCourse($courseId); ?>
                             <ul class="d-flex flex-column align-items-start">
                             <?php foreach($professors as $professor): ?>
-                                <li><a href="professor.php?professor=<?php echo $professor["professor"]; ?>" class="text-primary"><?php echo $professor["name"] . " " . $professor["surname"] ?></a></li>
+                                <li><a href="professor.php?professor=<?php echo $professor["professor"]; ?>" class="text-primary"><?php echo $professor["name"] . " " . $professor["surname"]; ?></a></li>
                             <?php endforeach; ?>
                             </ul>
                         <p><?php echo $course["shDescription"]; ?></p>
