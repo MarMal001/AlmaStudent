@@ -14,7 +14,7 @@
         <form action="handle_reception.php" method="POST" enctype="multipart/form-data" id="c0" class="collapse p-3 w-100 border border-primary border-2 rounded">
             <div>
                 <label for="date">Data</label>
-                <input type="date" id="date" name="date">
+                <input type="date" id="date" name="date" />
             </div>
             <div>
                 <label for="startTimeHour">Fascia oraria da</label>
@@ -90,7 +90,7 @@
         <form action="handle_reception.php" method="POST" enctype="multipart/form-data" id="c1" class="collapse p-3 w-100 border border-primary border-2 rounded">
             <div>
                 <label for="date">Data</label>
-                <input type="date" id="date" name="date">
+                <input type="date" id="date" name="date" />
             </div>
             <div>
                 <label for="startTimeHour">Fascia oraria da</label>

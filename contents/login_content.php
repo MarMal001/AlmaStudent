@@ -13,7 +13,7 @@
                     </label>
                 </li>
                 <li>
-                    <input type="email" id="username" name="username">
+                    <input type="email" id="username" name="username" />
                 </li>
                 <li>
                     <label for="password" class="text-left">
@@ -21,17 +21,17 @@
                     </label>
                 </li>
                 <li>
-                    <input type="password" id="password" name="password">
+                    <input type="password" id="password" name="password" />
                 </li>
                 <li>
-                    <input type="submit" class="btn btn-outline-primary bg-white text-primary" value="Accedi">
+                    <input type="submit" class="btn btn-outline-primary bg-white text-primary" value="Accedi" />
                 </li>
             </ul>
         </form>
         <form action="create_account.php" method="post">
             <ul>
                 <li>
-                    <input type="submit" class="" value="Non hai un account?">
+                    <input type="submit" class="" value="Non hai un account?" />
                 </li>
             </ul>
         </form>

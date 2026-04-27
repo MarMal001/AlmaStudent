@@ -13,7 +13,7 @@
                     </label>
                 </li>
                 <li>
-                    <input type="text" id="name" name="name">
+                    <input type="text" id="name" name="name" />
                 </li>
                 <li>
                     <label for="surname" class="text-left">
@@ -21,7 +21,7 @@
                     </label>
                 </li>
                 <li>
-                    <input type="text" id="surname" name="surname">
+                    <input type="text" id="surname" name="surname" />
                 </li>
                 <li>
                     <label for="studentId" class="text-left">
@@ -29,7 +29,7 @@
                     </label>
                 </li>
                 <li>
-                    <input type="text" id="studentId" name="studentId">
+                    <input type="text" id="studentId" name="studentId" />
                 </li>
                 <li>
                     <label for="username" class="text-left">
@@ -37,7 +37,7 @@
                     </label>
                 </li>
                 <li>
-                    <input type="email" id="username" name="username">
+                    <input type="email" id="username" name="username" />
                 </li>
                 <li>
                     <label for="password" class="text-left">
@@ -45,17 +45,17 @@
                     </label>
                 </li>
                 <li>
-                    <input type="password" id="password" name="password">
+                    <input type="password" id="password" name="password" />
                 </li>
                 <li>
-                    <input type="submit" class="btn btn-outline-primary bg-white text-primary" value="Crea account">
+                    <input type="submit" class="btn btn-outline-primary bg-white text-primary" value="Crea account" />
                 </li>
             </ul>
         </form>
         <form action="login.php" method="post">
             <ul>
                 <li>
-                    <input type="submit" value="Hai già un account?">
+                    <input type="submit" value="Hai già un account?" />
                 </li>
             </ul>
         </form>
