@@ -7,7 +7,9 @@ $templateParams["style"] = ["style.css"];
 
 if (isset($_GET["professor"])) {
     $templateParams["professor"] = $_GET["professor"];
-};
+} else {
+    header("location: professors.php");
+}
 
 require "template/base.php";
 ?>
