@@ -32,9 +32,9 @@ create table Cambio_docente (
 
 create table CHAT (
      Codice int not null auto_increment,
-     Matricola_Studente varchar(10) not null,
+     Studente varchar(100) not null,
      Docente varchar(100) not null,
-     constraint SID_CHAT_ID unique (Matricola_Studente, Docente),
+     constraint SID_CHAT_ID unique (Studente, Docente),
      constraint ID_CHAT_ID primary key (Codice));
 
 create table CORSO (
@@ -138,12 +138,10 @@ create table RICEVIMENTO (
      constraint ID_RICEVIMENTO_ID primary key (Docente, Data, Ora_Inizio));
 
 create table STUDENTE (
-     Matricola varchar(10) not null,
      Utente varchar(100) not null,
      Segnalato tinyint not null,
      Data_Ban date,
      Numero_Segnalazioni int not null,
-     constraint ID_STUDENTE primary key (Matricola),
      constraint FKPER_STU_ID unique (Utente));
 
 create table STUDENTE_IN_CORSO (
@@ -209,8 +207,8 @@ insert into DOCENTE values
 
 ### STUDENTE ###
 insert into STUDENTE values
-	("0000000001", "carla.anselmi3@studio.unibo.it", false, null, 0),
-	("0000000002", "alessandro.giacomini2@studio.unibo.it", true, "2026-01-15", 1);
+	("carla.anselmi3@studio.unibo.it", false, null, 0),
+	("alessandro.giacomini2@studio.unibo.it", true, "2026-01-15", 1);
 
 ### FACOLTA ###
 insert into FACOLTA values
@@ -316,9 +314,9 @@ insert into MESSAGGIO_CHAT values
 
 ### CHAT ###
 insert into CHAT values
-	(null, "0000000001", "vittorio.ghini@unibo.it"),
-	(null, "0000000002", "vittorio.ghini@unibo.it"),
-	(null, "0000000002", "franco.callegati@unibo.it");
+	(null, "carla.anselmi3@studio.unibo.it", "vittorio.ghini@unibo.it"),
+	(null, "alessandro.giacomini2@studio.unibo.it", "vittorio.ghini@unibo.it"),
+	(null, "alessandro.giacomini2@studio.unibo.it", "franco.callegati@unibo.it");
 
 ### RICEVIMENTO ###
 insert into RICEVIMENTO values
@@ -358,8 +356,8 @@ alter table Cambio_docente add constraint FKCam_RAT_FK
     references RATING_GENERALE (Codice_Corso, Anno);
 
 alter table CHAT add constraint FKUtilizzo
-     foreign key (Matricola_Studente)
-     references STUDENTE (Matricola);
+     foreign key (Studente)
+     references STUDENTE (Utente);
 
 alter table CHAT add constraint FKPartecipazione_FK
      foreign key (Docente)
@@ -476,7 +474,7 @@ create index FKCam_DOC_IND
      on Cambio_docente (Docente);
 
 create unique index SID_CHAT_IND
-     on CHAT (Matricola_Studente, Docente);
+     on CHAT (Studente, Docente);
 
 create unique index ID_CHAT_IND
      on CHAT (Codice);
