@@ -90,7 +90,7 @@ create table Prenotazione (
      Docente varchar(100) not null,
      Data date not null,
      Ora_inizio time not null,
-     Matricola_Studente varchar(10) not null,
+     Studente varchar(100) not null,
      Modalita_Scelta varchar(20) not null,
      constraint FKPre_RIC_ID primary key (Docente, Data, Ora_Inizio));
 
@@ -337,9 +337,9 @@ insert into RICEVIMENTO values
     
     ### PRENOTAZIONE ###
 insert into Prenotazione values
-    ("vittorio.ghini@unibo.it", "2026-04-12", "9:00:00", "0000000002", "Presenza"),
-    ("vittorio.ghini@unibo.it", "2026-04-12", "10:15:00", "0000000001", "Online"),
-    ("franco.callegati@unibo.it", "2026-04-12", "9:00:00", "0000000001", "Presenza");
+    ("vittorio.ghini@unibo.it", "2026-04-12", "9:00:00", "alessandro.giacomini2@studio.unibo.it", "Presenza"),
+    ("vittorio.ghini@unibo.it", "2026-04-12", "10:15:00", "carla.anselmi3@studio.unibo.it", "Online"),
+    ("franco.callegati@unibo.it", "2026-04-12", "9:00:00", "carla.anselmi3@studio.unibo.it", "Presenza");
     
     
 -- Constraints Section
@@ -392,8 +392,8 @@ alter table MESSAGGIO_CHAT add constraint FKComprensione_FK
      references CHAT (Codice);
 
 alter table Prenotazione add constraint FKPre_STU_FK
-     foreign key (Matricola_Studente)
-     references STUDENTE (Matricola);
+     foreign key (Studente)
+     references STUDENTE (Utente);
 
 alter table Prenotazione add constraint FKPre_RIC_FK
      foreign key (Docente, Data, Ora_Inizio)
@@ -512,7 +512,7 @@ create unique index ID_PERSONA_IND
      on PERSONA (Utente);
 
 create index FKPre_STU_IND
-     on Prenotazione (Matricola_Studente);
+     on Prenotazione (Studente);
 
 create unique index FKPre_RIC_IND
      on Prenotazione (Docente, Data, Ora_Inizio);
