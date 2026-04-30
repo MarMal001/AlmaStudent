@@ -1,13 +1,33 @@
 <div class="row mx-0">
     <main class="col-12 col-lg-6 mx-0 py-2 px-4 w-md-100">
         <section>
-            <?php $student = $dbh->getPersonInfo($user); ?>
-            <h1 class="fw-bold">Ciao <?php echo $student[0]["name"]; ?>!</h1>
-            <div>Gestisci facilmente e velocemente i tuoi corsi.</div>
+            <?php
+                $student = $dbh->getPersonInfo($user)[0];
+                $date = "2026-04-12";//date("Y-M-d");
+            ?>
+            <h1 class="fw-bold">Ciao <?php echo $student["name"]; ?>!</h1>
+            <div>
+            <?php
+                if (isAdmin()) {
+                    echo "Gestisci i corsi e professori dell'ateneo.";
+                } else {
+                    echo "Gestisci facilmente e velocemente i tuoi corsi.";
+                }
+            ?>
+            </div>
         </section>
         <section>
+            <?php if (!isAdmin()): ?>
             <h1 class="fw-bold">I tuoi corsi</h1>
-            <?php $courses = $dbh->getStudentCourses($user); ?>
+            <?php
+                if (isStudent()) {
+                    $courses = $dbh->getStudentCourses($user);
+                    $reservations = $dbh->getReservationsOfStudent("0000000001", $date);
+                } else if (isProfessor()) {
+                    $courses = $dbh->getCoursesByProfessor($user);
+                    $reservations = $dbh->getReservationsOfProfessor($user, $date);
+                }
+            ?>
             <?php foreach($courses as $course): ?>
                 <div class="container-fluid w-auto m-2 p-0">
                 <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
@@ -29,7 +49,7 @@
                             <li><a href="professor.php?professor=<?php echo $professor["professor"]; ?>" class="text-primary"><?php echo $professor["name"] . " " . $professor["surname"]; ?></a></li>
                         <?php endforeach; ?>
                         </ul>
-                    <p><?php echo $course["shDescription"]; ?></p>
+                    <p><?php echo $course["shortDescription"]; ?></p>
                     <div class="d-flex justify-content-end m-2">
                         <button class="btn btn-primary me-1" type="submit">Apri corso</button>
                         <button class="btn btn-white border-primary ms-1" type="submit">Discriviti</button>
@@ -42,14 +62,15 @@
             <h1 class="fw-bold">I tuoi ricevimenti</h1>
             <ul>
                 <?php $date = "12 Aprile 2026"; ?>
-                <?php foreach($dbh->getReservationsOfStudent("0000000001", "2026-04-12") as $reservation): ?>
+                <?php foreach($reservations as $reservation): ?>
                     <?php
                         $timeRange = date("H:i", strtotime($reservation["startTime"])) . "-" . date("H:i", strtotime($reservation["endTime"]));
                     ?>
-                    <li><?php echo $date . " " . $timeRange . " " . $reservation["professorName"] . " " . $reservation["professorSurname"] . " Modalità: " . $reservation["mode"]; ?></li>
+                    <li><?php echo $date . " " . $timeRange . " " . $reservation["professorName"] . " " . $reservation["professorSurname"] . " - " . $reservation["mode"]; ?></li>
                 <?php endforeach; ?>
             </ul>
         </section>
+        <?php endif; ?>
     </main><aside class="col-0 col-lg-6 w-md-100 px-0 mx-0">
         <div>
             <i class="fa-solid fa-angle-up"></i>

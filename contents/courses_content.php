@@ -17,7 +17,7 @@
                     <?php $courseId = $course["code"]; ?>
                     <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $courseId; ?>">
                         <div class="d-md-inline-flex align-items-md-center p-0">
-                            <p class="m-0 p-2 text-start"><?php echo $course["courseName"]; ?></p>
+                            <p class="m-0 p-2 text-start"><?php echo $course["name"]; ?></p>
                             <div>
                                 <?php $ratings = [$course["ratingL"], $course["ratingM"], $course["ratingE"], $course["ratingD"]]; ?>
                                 <?php echo createStars(getMeanRating($ratings),"rgb(30, 48, 80)"); ?>
@@ -36,7 +36,7 @@
                                 <li><a href="professor.php?professor=<?php echo $professor["professor"]; ?>" class="text-primary"><?php echo $professor["name"] . " " . $professor["surname"]; ?></a></li>
                             <?php endforeach; ?>
                             </ul>
-                        <p><?php echo $course["shDescription"]; ?></p>
+                        <p><?php echo $course["shortDescription"]; ?></p>
                         <div class="d-flex justify-content-end m-2">
                             <button class="btn btn-primary me-1" type="submit">Apri corso</button>
                             <?php if (isStudent())
