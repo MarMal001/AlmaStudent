@@ -144,7 +144,7 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getReservationsOfStudent($studentCode, $date) {
+    public function getReservationsOfStudent($student, $date) {
         $stmt = $this->db->prepare(
             "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, pr.Modalita_Scelta AS mode, p.Nome AS professorName, p.Cognome AS professorSurname
             FROM Prenotazione AS pr, RICEVIMENTO AS r, PERSONA AS p, DOCENTE AS d
@@ -153,11 +153,11 @@ class DatabaseHelper{
             AND r.Docente = pr.Docente
             AND r.Data = pr.Data
             AND r.Ora_Inizio = pr.Ora_Inizio
-            AND pr.Matricola_Studente = ?
+            AND pr.Studente = ?
             AND r.Data = ?
             ORDER BY r.Ora_inizio"
         );
-        $stmt->bind_param("ss", $studentCode, $date);
+        $stmt->bind_param("ss", $student, $date);
         $stmt->execute();
         $result = $stmt->get_result();
 
