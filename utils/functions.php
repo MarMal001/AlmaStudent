@@ -65,4 +65,8 @@
         $_SESSION["name"] = $user["name"];
         $_SESSION["role"] = $user["role"];
     }
+    
+    function isStudent() {
+        return $GLOBALS["role"] == "STUDENTE";
+    }
 ?>
