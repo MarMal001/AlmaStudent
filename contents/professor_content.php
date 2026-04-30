@@ -1,5 +1,4 @@
 <main> 
-    <?php $student = "carla.anselmi3@studio.unibo.it"; ?> 
     <?php $professorId = $templateParams["professor"]; ?>
     <?php $professor = $dbh->getPersonInfo($professorId)[0]; ?>
     <h1><?php echo $professor["name"] . " " . $professor["surname"]; ?></h1>
@@ -24,8 +23,9 @@
                 <p>
                 <?php echo $profInfo["department"]; ?>
                 </p>
-
-                <button class="btn btn-light text-primary" type="button">Contatta il docente</a>
+                <?php if (isStudent()): ?>
+                    <button class="btn btn-light text-primary" type="button">Contatta il docente</a>
+                <?php endif; ?>
             </div>
             </div>
 
@@ -47,7 +47,7 @@
                     <?php $ratings = [$gRatings["ratingL"], $gRatings["ratingM"], $gRatings["ratingE"], $gRatings["ratingD"]]; ?>
                     <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
                 </div>
-                <?php if ($dbh->checkIfSubscribedToACourse($student, $course["code"])[0]["subscribed"]): ?>
+                <?php if ($dbh->checkIfSubscribedToACourse($user, $course["code"])[0]["subscribed"]): ?>
                     <i class="fa-solid fa-check mx-2" style="color: rgb(38, 246, 30);"></i>
                 <?php endif; ?>
             </div>
@@ -60,7 +60,7 @@
             </p>
             <div class="d-flex justify-content-end m-2">
                 <button class="btn btn-primary me-1" type="button">Apri corso</button>
-                <?php subscriptionButton($student, $course["code"]); ?>
+                <?php subscriptionButton($user, $course["code"]); ?>
             </div>
         </div>
         </div> 

@@ -2,7 +2,6 @@
     <?php $courseId = $templateParams["course"]; ?>
     <?php $courseInfo = $dbh->getCourseInfo($courseId)[0]; ?>  
     <?php $professors = $dbh->getProfessorsByCourse($courseId); ?>
-    <?php $student = "carla.anselmi3@studio.unibo.it"; ?>
     <h1><?php echo $courseInfo["name"]; ?></h1>
     <section>
         <h3>
@@ -19,7 +18,9 @@
             </div>
         </div>
         <div class="mb-3">
-            <?php subscriptionButton($student, $courseId); ?>
+            <?php if (isStudent()) 
+                subscriptionButton($user, $courseId); 
+            ?>
         </div>
     </section>
     <article>
