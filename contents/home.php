@@ -22,7 +22,7 @@
             <?php
                 if (isStudent()) {
                     $courses = $dbh->getStudentCourses($user);
-                    $reservations = $dbh->getReservationsOfStudent("0000000001", $date);
+                    $reservations = $dbh->getReservationsOfStudent($user, $date);
                 } else if (isProfessor()) {
                     $courses = $dbh->getCoursesByProfessor($user);
                     $reservations = $dbh->getReservationsOfProfessor($user, $date);
