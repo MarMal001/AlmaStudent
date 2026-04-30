@@ -69,4 +69,12 @@
     function isStudent() {
         return $GLOBALS["role"] == "STUDENTE";
     }
+
+    function isProfessor() {
+        return $GLOBALS["role"] == "DOCENTE";
+    }
+
+    function isAdmin() {
+        return $GLOBALS["role"] == "ADMIN";
+    }
 ?>
