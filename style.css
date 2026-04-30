@@ -57,7 +57,7 @@ main form label, main form input[type=submit] {
     margin-top: 16px;
 }
 
-main form input[type=text], main form input[type=password] {
+main form input[type=text], main form input[type=password], main form input[type=email] {
     width: 80%;
 }
 
