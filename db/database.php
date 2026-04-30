@@ -37,7 +37,7 @@ class DatabaseHelper{
     public function getCoursesByDegreeAndYear($degreeCode, $year) {
     $date = date('Y');    
     $stmt = $this->db->prepare(
-            "SELECT c.Codice AS code, c.Nome AS courseName, c.Anno AS courseYear, c.Semestre AS semester, Descrizione_Breve AS shDescription, r.Rating_Lezioni AS ratingL, r.Rating_Materiale AS ratingM, r.Rating_Esame AS ratingE, r.Rating_Disponibilita_Docenti AS ratingD
+            "SELECT c.Codice AS code, c.Nome AS name, c.Anno AS year, c.Semestre AS semester, Descrizione_Breve AS shortDescription, r.Rating_Lezioni AS ratingL, r.Rating_Materiale AS ratingM, r.Rating_Esame AS ratingE, r.Rating_Disponibilita_Docenti AS ratingD
             FROM CORSO AS c LEFT JOIN RATING_GENERALE AS r ON r.Codice_Corso = c.Codice AND r.Anno = ?
             WHERE c.Codice_Facolta = ?
             AND c.Anno = ?"
@@ -146,7 +146,7 @@ class DatabaseHelper{
 
     public function getReservationsOfStudent($student, $date) {
         $stmt = $this->db->prepare(
-            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, pr.Modalita_Scelta AS mode, p.Nome AS professorName, p.Cognome AS professorSurname
+            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, pr.Modalita_Scelta AS mode, p.Nome AS name, p.Cognome AS surname
             FROM Prenotazione AS pr, RICEVIMENTO AS r, PERSONA AS p, DOCENTE AS d
             WHERE p.Utente = d.Utente
             AND r.Docente = d.Utente
@@ -166,7 +166,7 @@ class DatabaseHelper{
 
     public function getReservationsOfProfessor($professorCode, $date) {
         $stmt = $this->db->prepare(
-            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Modalita AS mode, pr.Modalita_Scelta AS selectedMode, p.Nome AS studentName, p.Cognome AS studentSurname
+            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Modalita AS mode, pr.Modalita_Scelta AS mode, p.Nome AS name, p.Cognome AS surname
             FROM RICEVIMENTO AS r
             LEFT JOIN Prenotazione AS pr ON r.Docente = pr.Docente AND r.Data = pr.Data AND r.Ora_Inizio = pr.Ora_Inizio
             LEFT JOIN STUDENTE AS s ON s.Utente = pr.Studente
