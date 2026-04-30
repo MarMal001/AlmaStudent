@@ -2,6 +2,10 @@
 
 require_once "init.php";
 
+if (!isProfessor()) {
+    header("location: course.php");
+}
+
 define("ONE_MINUTE_IN_SECONDS", 60);
 define("ONE_QUARTER_OF_HOUR", 15);
 
