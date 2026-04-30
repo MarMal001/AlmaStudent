@@ -85,7 +85,7 @@ class DatabaseHelper{
 
     public function getCoursesByProfessor($professor) {
         $stmt = $this->db->prepare(
-            "SELECT c.Codice AS code, c.Nome AS courseName, c.Descrizione_Breve AS shortDescription
+            "SELECT c.Codice AS code, c.Nome AS name, c.Descrizione_Breve AS shortDescription
             FROM DOCENTE AS d, CORSO AS c, Tenere AS t
             WHERE d.Utente = ?
             AND d.Utente = t.Docente
@@ -101,7 +101,7 @@ class DatabaseHelper{
 
     public function getStudentCourses($student) {
         $stmt = $this->db->prepare(
-            "SELECT c.Codice AS code, c.Nome AS name, c.Descrizione_Breve AS shDescription
+            "SELECT c.Codice AS code, c.Nome AS name, c.Descrizione_Breve AS shortDescription
             FROM STUDENTE_IN_CORSO AS sc, CORSO AS c 
             WHERE sc.Utente = ?
             AND sc.Codice_Corso = c.Codice"
