@@ -97,6 +97,7 @@ create table Prenotazione (
 create table RATING (
      Codice int not null auto_increment,
      Tipo varchar(10) not null,
+     Data date not null,
      constraint ID_RATING_ID primary key (Codice));
 
 create table RATING_CORSO (
@@ -258,15 +259,16 @@ insert into Tenere values
 
 ### REVIEW ###
 insert into REVIEW values
-	(1, "Eww", true);
+	(1, "Eww", true),
+    (2, "Il corso è molto bello ed estremamente ben fatto. I docenti sono disponibili e le loro spiegazioni molto comprensibili. Unica pecca è che sarebbe bello avere più materiali di riferimento per lo studio individuale", true);
 
 ### RATING ###
 insert into RATING values
-	(null, "DOCENTE"),
-	(null, "CORSO"),
-	(null, "DOCENTE"),
-	(null, "CORSO"),
-    (null, "DOCENTE");
+	(null, "DOCENTE", "2025-03-12"),
+	(null, "CORSO", "2025-05-12"),
+	(null, "DOCENTE", "2025-07-12"),
+	(null, "CORSO", "2025-08-12"),
+    (null, "DOCENTE", "2025-12-12");
 
 ### RATING_CORSO ###
 insert into RATING_CORSO values
