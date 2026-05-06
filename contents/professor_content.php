@@ -3,7 +3,7 @@
     <?php $professor = $dbh->getPersonInfo($professorId)[0]; ?>
     <h1><?php echo $professor["name"] . " " . $professor["surname"]; ?></h1>
     <section class="m-2">
-        <div class="d-flex align-items-start">
+        <div class="d-flex align-items-start align-items-center">
             <h6 class="m-0 me-2">Rating degli studenti:</h6>
             <div>
                 <?php $ratings = $dbh->getProfessorRatings($professorId)[0]; ?>
@@ -74,26 +74,24 @@
     </article>
     <section>
         <h2>Opinioni degli studenti</h2>
+
+        <?php $reviews = $dbh->getReviewsByProfessor($professorId); 
+            $noReviews = false;
+            $style = "";
+            if ($reviews == NULL) {
+                    $style = "d-flex justify-content-center align-items-center";
+                    $noReviews = true;
+            } 
+        ?>
         
-        <div class="container-fluid text-white text-center">
-            <div class="row"> 
-                <div class="col-sm-2"></div>
-                <div class="col-sm-6">
-                    <div class="list-group-item border-0">
-                        <div class="p-2 mb-3 rounded bg-light text-primary d-inline-block" style="max-width: 70%;">
-                            <p>Ciao! Come va? Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi cupiditate iusto natus.
-                                Possimus deserunt quos inventore fugiat similique ducimus laboriosam aut eveniet, adipisci deleniti 
-                                eligendi fugit. Ab quis officiis vitae?</p>
-                        </div>
-                    </div>
-                    <div class="list-group-item border-0 d-flex justify-content-end">
-                        <div class="p-2 mb-3 rounded bg-primary text-white" style="max-width: 70%;">
-                            <p>Tutto bene, grazie! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi cupiditate iusto natus.
-                                Possimus deserunt quos inventore fugiat similique ducimus laboriosam aut eveniet, adipisci deleniti 
-                                eligendi fugit. Ab quis officiis vitae?</p>
-                        </div>
-                    </div>
-                </div>
+        <div class="card mb-4" style="height: clamp(200px, 60vh, 300px);">
+            <div class="card-body overflow-auto bg-light <?php echo $style; ?>">
+                <?php if ($noReviews): ?>
+                    <h4 class="text-center">Non è presente ancora nessuna recensione</h4>
+                <?php endif; ?>
+                <?php foreach ($reviews as $review): ?>
+                    <?php generateProfessirReview($user, $review["date"], $review["text"], $professorId); ?>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
