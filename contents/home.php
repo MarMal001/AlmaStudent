@@ -46,13 +46,15 @@
                         <?php $professors = $dbh->getProfessorsByCourse($course["code"]); ?>
                             <ul class="d-flex flex-column align-items-start">
                             <?php foreach($professors as $professor): ?>
-                                <li><a href="professor.php?professor=<?php echo $professor["professor"]; ?>" class="text-primary"><?php echo $professor["name"] . " " . $professor["surname"]; ?></a></li>
+                                <li><a href="professor.php?professor=<?php echo idWithoutDomain($professor["professor"]); ?>" class="text-primary"><?php echo $professor["name"] . " " . $professor["surname"]; ?></a></li>
                             <?php endforeach; ?>
                             </ul>
                         <p><?php echo $course["shortDescription"]; ?></p>
                         <div class="d-flex justify-content-end m-2">
                             <button class="btn btn-primary me-1" type="submit">Apri corso</button>
+                            <?php if (isStudent()): ?>
                             <button class="btn btn-white border-primary ms-1" type="submit">Discriviti</button>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>    
