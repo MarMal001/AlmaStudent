@@ -383,6 +383,74 @@ class DatabaseHelper{
         $stmt->bind_param("sssss", $username, $password, $name, $surname, $role);
         return $stmt->execute();
     }
+
+    public function getReviewsByCourse($course) {
+        $stmt = $this->db->prepare(
+            "SELECT r.Data AS date, sc.Utente AS student, rv.Testo AS text
+            FROM RATING AS r, RATING_CORSO AS rd, STUDENTE_IN_CORSO AS sc, REVIEW AS rv
+            WHERE r.Codice = rd.Codice
+            AND rd.Codice = sc.Codice_Rating_Corso
+            AND rv.Codice_Rating = r.Codice
+            AND sc.Codice_Corso = ?
+            ORDER BY r.Data
+            "
+        );
+        $stmt->bind_param("s", $course);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getReviewsByProfessor($professor) {
+        $stmt = $this->db->prepare(
+            "SELECT r.Data AS date, sc.Utente AS student, rv.Testo AS text
+            FROM RATING AS r, RATING_DOCENTE AS rd, STUDENTE_IN_CORSO AS sc, REVIEW AS rv
+            WHERE r.Codice = rd.Codice
+            AND rd.Codice = sc.Codice_Rating_Corso
+            AND rv.Codice_Rating = r.Codice
+            AND rd.Docente = ?
+            ORDER BY r.Data
+            "
+        );
+        $stmt->bind_param("s", $course);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getCourseRatingbyStudent($course, $student) {
+        $stmt = $this->db->prepare(
+            "SELECT rd.Rating_Lezioni AS rating_L, rd.Rating_Materiale AS rating_M, rd.Rating_Esame AS rating_E
+            FROM RATING_CORSO AS rd, STUDENTE_IN_CORSO AS sc
+            WHERE rd.Codice = sc.Codice_Rating_Corso
+            AND sc.Codice_Corso = ?
+            AND sc.Utente = ?
+            "
+        );
+        $stmt->bind_param("ss", $course, $student);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getProfessorRatingbyStudent($professor, $student) {
+        $stmt = $this->db->prepare(
+            "SELECT rd.Rating_Disponibilita AS rating_D, rd.Rating_Comprensibilita_Lezioni AS rating_C, rd.Rating_Interesse_Suscitato AS rating_I
+            FROM RATING_DOCENTE AS rd, STUDENTE_IN_CORSO AS sc
+            WHERE rd.Codice = sc.Codice_Rating_Corso
+            AND rd.Docente = ?
+            AND sc.Utente = ?
+            "
+        );
+        $stmt->bind_param("ss", $course, $student);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }
 
 ?>
