@@ -2,6 +2,10 @@
 
 require_once "init.php";
 
+if (!isProfessor()) {
+    header("location: course.php");
+}
+
 define("ONE_MINUTE_IN_SECONDS", 60);
 define("ONE_QUARTER_OF_HOUR", 15);
 
@@ -13,7 +17,6 @@ if (isset($_POST["date"]) && isset($_POST["startTimeHour"]) && isset($_POST["sta
     for ($i = 0; $i < $diffTime; $i += ONE_QUARTER_OF_HOUR) {
         $startTimeSlot = $startTime + $i * ONE_MINUTE_IN_SECONDS;
         $endTimeSlot = $startTime + ($i + ONE_QUARTER_OF_HOUR) * ONE_MINUTE_IN_SECONDS;
-        echo date("H:i", $startTimeSlot) . " - " . date("H:i", $endTimeSlot) . "<br>";
         switch ($_POST["action"]) {
         case RECEPTION_ACTION_ADD:
             addReception(date("H:i", $startTimeSlot), date("H:i", $endTimeSlot));
