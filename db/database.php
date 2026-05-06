@@ -321,7 +321,7 @@ class DatabaseHelper{
 
     public function getCourseInfo($course) {
         $stmt = $this->db->prepare(
-            "SELECT c.Nome AS name, c.Descrizione AS description, c.Materiale AS material
+            "SELECT c.Nome AS name, c.Descrizione AS description, c.Descrizione_Breve AS shortDescription, c.Materiale AS material
             FROM CORSO AS c
             WHERE c.Codice = ?
             "
