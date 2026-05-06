@@ -18,9 +18,14 @@
             </div>
         </div>
         <div class="mb-3">
-            <?php if (isStudent()) 
-                subscriptionButton($user, $courseId); 
+            <?php
+                if (isStudent())
+                    subscriptionButton($user, $courseId);
             ?>
+            <?php 
+            if (isProfessor() && isDesignatedProfessor($user, $courseId)): ?>
+                <a href="course_editable.php?course=<?php echo $courseId; ?>"><button class="btn btn-primary me-1" type="button">Modifica</button></a>
+            <?php endif; ?>
         </div>
     </section>
     <article>
