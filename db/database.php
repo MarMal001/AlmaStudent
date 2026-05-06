@@ -383,6 +383,16 @@ class DatabaseHelper{
         $stmt->bind_param("sssss", $username, $password, $name, $surname, $role);
         return $stmt->execute();
     }
+
+    public function updateCourse($course, $description, $shortDescription, $material) {
+        $stmt = $this->db->prepare(
+            "UPDATE CORSO
+            SET Descrizione = ?, Descrizione_Breve = ?, Materiale = ?
+            WHERE Codice = ?"
+        );
+        $stmt->bind_param("ssss", $description, $shortDescription, $material, $course);
+        return $stmt->execute();
+    }
 }
 
 ?>

@@ -77,4 +77,12 @@
     function isAdmin() {
         return $GLOBALS["role"] == "ADMIN";
     }
+
+    function isDesignatedProfessor($professorId, $course) {
+        $validProfessor = false;
+        foreach ($GLOBALS["dbh"]->getProfessorsByCourse($course) as $professor) {
+            $validProfessor |= in_array($professorId, $professor);
+        }
+        return $validProfessor;
+    }
 ?>
