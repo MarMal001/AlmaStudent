@@ -77,4 +77,41 @@
     function isAdmin() {
         return $GLOBALS["role"] == "ADMIN";
     }
+
+    function idWithoutDomain($id) {
+        $idElements = explode("@", $id);
+        return $idElements[0];
+    }
+
+    function isUserReview($id) {
+        return $id == $_SESSION["username"];
+    }
+
+    function generateCourseReview($studentId, $date, $text, $course) {
+        $place = "start";
+        $color = "rgb(30, 48, 80)";
+        $ratings = $GLOBALS["dbh"]->getCourseRatingbyStudent($course, $studentId)[0];
+        if (isUserReview($studentId)) {
+            $place = "end";
+        }
+        echo '<div class="float-' . $place . " " . 'border border-2 border-primary rounded-3 p-2 w-75 w-lg-55">';
+        $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];
+        echo'<h5>' . $student["name"] . ' ' . $student["surname"] . " " . $date . '</h5>';
+        createStars(getMeanRating($ratings), $color);
+        echo '<p>' . $text . '</p>';
+    }
+
+    function generateProfessorReview($studentId, $date, $text, $professor) {
+        $place = "start";
+        $color = "rgb(30, 48, 80)";
+        $ratings = $GLOBALS["dbh"]->getProfessorRatingbyStudent($professor, $studentId)[0];
+        if (isUserReview($studentId)) {
+            $place = "end";
+        }
+        echo '<div class="float-' . $place . " " . 'border border-2 border-primary rounded-3 p-2 w-75 w-lg-55">';
+        $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];
+        echo'<h5>' . $student["name"] . ' ' . $student["surname"] . " " . $date . '</h5>';
+        createStars(getMeanRating($ratings), $color);
+        echo '<p>' . $text . '</p>';
+    }
 ?>
