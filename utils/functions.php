@@ -87,7 +87,7 @@
         return $id == $_SESSION["username"];
     }
 
-    function generateCourseReview($studentId, $date, $text, $course) {
+    function generateCourseReview($studentId, $date, $text, $reported, $course) {
         $place = "start";
         $color = "rgb(30, 48, 80)";
         $ratings = $GLOBALS["dbh"]->getCourseRatingbyStudent($course, $studentId)[0];
@@ -95,13 +95,23 @@
             $place = "end";
         }
         echo '<div class="float-' . $place . " " . 'border border-2 border-primary rounded-3 p-2 w-75 w-lg-55">';
+        echo '<div class="d-flex justify-content-between align-items-center">';
+        echo '<div class="d-md-inline-flex align-items-md-center p-0">';
         $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];
-        echo'<h5>' . $student["name"] . ' ' . $student["surname"] . " " . $date . '</h5>';
+        echo'<h5 class="me-2">' . $student["name"] . ' ' . $student["surname"] . " " . $date . '</h5>';
         createStars(getMeanRating($ratings), $color);
+        echo '</div>';
+        if ($reported) {
+            echo '<button type="submit"><i class="fa-solid fa-flag" style="color: rgb(213, 0, 0);" ></i></button>';
+        } else {
+            echo '<button type="submit"><i class="fa-solid fa-flag" style="color: rgb(30, 48, 80);"></i></button>';
+        }
+        echo '</div>';
         echo '<p>' . $text . '</p>';
+        echo '</div>';
     }
 
-    function generateProfessorReview($studentId, $date, $text, $professor) {
+    function generateProfessorReview($studentId, $date, $text, $reported, $professor) {
         $place = "start";
         $color = "rgb(30, 48, 80)";
         $ratings = $GLOBALS["dbh"]->getProfessorRatingbyStudent($professor, $studentId)[0];
@@ -109,10 +119,20 @@
             $place = "end";
         }
         echo '<div class="float-' . $place . " " . 'border border-2 border-primary rounded-3 p-2 w-75 w-lg-55">';
+        echo '<div class="d-flex justify-content-between align-items-center">';
+        echo '<div class="d-md-inline-flex align-items-md-center p-0">';
         $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];
         echo'<h5>' . $student["name"] . ' ' . $student["surname"] . " " . $date . '</h5>';
         createStars(getMeanRating($ratings), $color);
+        echo '</div>';
+        if ($reported) {
+            echo '<button type="submit"><i class="fa-solid fa-flag" style="color: rgb(213, 0, 0);" ></i></button>';
+        } else {
+            echo '<button type="submit"><i class="fa-solid fa-flag" style="color: rgb(30, 48, 80);"></i></button>';
+        }
+        echo '</div>';
         echo '<p>' . $text . '</p>';
+        echo '</div>';
     }
     
     function isDesignatedProfessor($professorId, $course) {
