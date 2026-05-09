@@ -37,7 +37,7 @@
                 <?php $professors = $dbh->getProfessorsByCourse($course["code"]); ?>
                     <ul class="d-flex flex-column align-items-start">
                     <?php foreach($professors as $professor): ?>
-                        <li><a href="professor.php?professor=<?php echo $professor["professor"]; ?>" class="text-primary"><?php echo $professor["name"] . " " . $professor["surname"]; ?></a></li>
+                        <li><a href="professor.php?professor=<?php echo idWithoutDomain($professor["professor"]); ?>" class="text-primary"><?php echo $professor["name"] . " " . $professor["surname"]; ?></a></li>
                     <?php endforeach; ?>
                     </ul>
                 <p><?php echo $course["shortDescription"]; ?></p>

@@ -386,7 +386,7 @@ class DatabaseHelper{
 
     public function getReviewsByCourse($course) {
         $stmt = $this->db->prepare(
-            "SELECT r.Data AS date, sc.Utente AS student, rv.Testo AS text
+            "SELECT r.Data AS date, sc.Utente AS student, rv.Testo AS text, rv.Segnalazione AS reported
             FROM RATING AS r, RATING_CORSO AS rd, STUDENTE_IN_CORSO AS sc, REVIEW AS rv
             WHERE r.Codice = rd.Codice
             AND rd.Codice = sc.Codice_Rating_Corso
@@ -404,7 +404,7 @@ class DatabaseHelper{
 
     public function getReviewsByProfessor($professor) {
         $stmt = $this->db->prepare(
-            "SELECT r.Data AS date, sc.Utente AS student, rv.Testo AS text
+            "SELECT r.Data AS date, sc.Utente AS student, rv.Testo AS text, rv.Segnalazione AS reported
             FROM RATING AS r, RATING_DOCENTE AS rd, STUDENTE_IN_CORSO AS sc, REVIEW AS rv
             WHERE r.Codice = rd.Codice
             AND rd.Codice = sc.Codice_Rating_Corso
