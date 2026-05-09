@@ -102,7 +102,7 @@
         createStars(getMeanRating($ratings), $color);
         echo '</div>';
         if ($reported) {
-            echo '<button type="submit"><i class="fa-solid fa-flag" style="color: rgb(213, 0, 0);" ></i></button>';
+            echo '<button type="submit" disabled><i class="fa-solid fa-flag" style="color: rgb(213, 0, 0);" ></i></button>';
         } else {
             echo '<button type="submit"><i class="fa-solid fa-flag" style="color: rgb(30, 48, 80);"></i></button>';
         }
@@ -126,7 +126,7 @@
         createStars(getMeanRating($ratings), $color);
         echo '</div>';
         if ($reported) {
-            echo '<button type="submit"><i class="fa-solid fa-flag" style="color: rgb(213, 0, 0);" ></i></button>';
+            echo '<button type="submit" disabled><i class="fa-solid fa-flag" style="color: rgb(213, 0, 0);" ></i></button>';
         } else {
             echo '<button type="submit"><i class="fa-solid fa-flag" style="color: rgb(30, 48, 80);"></i></button>';
         }
