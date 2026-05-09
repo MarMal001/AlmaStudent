@@ -50,12 +50,8 @@
                 <li>
                     <input type="submit" class="btn btn-outline-primary bg-white text-primary" value="Crea account" />
                 </li>
-            </ul>
-        </form>
-        <form action="login.php" method="post">
-            <ul>
                 <li>
-                    <input type="submit" value="Hai già un account?" />
+                    <a href="login.php" class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Hai già un account?</a>
                 </li>
             </ul>
         </form>
