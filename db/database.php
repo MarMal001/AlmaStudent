@@ -450,6 +450,8 @@ class DatabaseHelper{
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function updateCourse($course, $description, $shortDescription, $material) {
         $stmt = $this->db->prepare(
             "UPDATE CORSO

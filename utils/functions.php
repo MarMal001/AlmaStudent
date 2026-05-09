@@ -113,6 +113,8 @@
         echo'<h5>' . $student["name"] . ' ' . $student["surname"] . " " . $date . '</h5>';
         createStars(getMeanRating($ratings), $color);
         echo '<p>' . $text . '</p>';
+    }
+    
     function isDesignatedProfessor($professorId, $course) {
         $validProfessor = false;
         foreach ($GLOBALS["dbh"]->getProfessorsByCourse($course) as $professor) {
