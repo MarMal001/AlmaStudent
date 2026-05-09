@@ -180,9 +180,9 @@
                         <th id="<?php echo $timeRange; ?>" scope="row" headers="time" class="text-center"><div><?php echo $timeRange; ?></div></th>
                         <td id="<?php echo "type_" . $timeRange; ?>" headers="type <?php echo $timeRange; ?>"><div>Modalità: <?php echo strtolower($reservation["mode"]); ?></div></td>
                         <td id="<?php echo "reservation_" . $timeRange; ?>" headers="reservations <?php echo $timeRange; ?>">
-                            <?php if ($reservation["studentName"] != null): ?>
-                                <div>Prenotato con studente: <?php echo $reservation["studentName"] . " " . $reservation["studentSurname"]; ?></div>
-                                <div>Modalità: <?php echo strtolower($reservation["selectedMode"]); ?></div>
+                            <?php if ($reservation["name"] != null): ?>
+                                <div>Prenotato con studente: <?php echo $reservation["name"] . " " . $reservation["surname"]; ?></div>
+                                <div>Modalità: <?php echo strtolower($reservation["reservedMode"]); ?></div>
                             <?php else: ?>
                                 <div>Nessuna prenotazione</div>
                             <?php endif; ?>
