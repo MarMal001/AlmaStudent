@@ -26,12 +26,8 @@
                 <li>
                     <input type="submit" class="btn btn-outline-primary bg-white text-primary" value="Accedi" />
                 </li>
-            </ul>
-        </form>
-        <form action="create_account.php" method="post">
-            <ul>
                 <li>
-                    <input type="submit" class="" value="Non hai un account?" />
+                    <a href="create_account.php" class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Non hai un account?</a>
                 </li>
             </ul>
         </form>
