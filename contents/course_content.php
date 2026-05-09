@@ -24,7 +24,7 @@
             ?>
             <?php 
             if (isProfessor() && isDesignatedProfessor($user, $courseId)): ?>
-                <a href="course_editable.php?course=<?php echo $courseId; ?>"><button class="btn btn-primary me-1" type="button">Modifica</button></a>
+                <a href="course_editable.php?course=<?php echo $courseId; ?>" class="btn btn-primary me-1">Modifica</a>
             <?php endif; ?>
         </div>
     </section>
