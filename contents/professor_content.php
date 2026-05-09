@@ -60,7 +60,7 @@
             <?php echo $course["shortDescription"]; ?>
             </p>
             <div class="d-flex justify-content-end m-2">
-                <button class="btn btn-primary me-1" type="button">Apri corso</button>
+                <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1">Apri corso</a>
                 <?php
                     if (isStudent())
                         subscriptionButton($user, $course["code"]);
