@@ -90,7 +90,7 @@
                     <h4 class="text-center">Non è presente ancora nessuna recensione</h4>
                 <?php endif; ?>
                 <?php foreach ($reviews as $review): ?>
-                    <?php generateProfessirReview($user, $review["date"], $review["text"], $professorId); ?>
+                    <?php generateProfessirReview($user, $review["date"], $review["text"], $review["reported"], $professorId); ?>
                 <?php endforeach; ?>
             </div>
         </div>
