@@ -1,6 +1,7 @@
 <main> 
     <?php $professorId = $templateParams["professor"]; ?>
     <?php $professor = $dbh->getPersonInfo($professorId)[0]; ?>
+    <?php $date = "2026-04-12";//date("Y-M-d"); ?>
     <h1><?php echo $professor["name"] . " " . $professor["surname"]; ?></h1>
     <section class="m-2">
         <div class="d-flex align-items-start align-items-center">
@@ -60,7 +61,10 @@
             </p>
             <div class="d-flex justify-content-end m-2">
                 <button class="btn btn-primary me-1" type="button">Apri corso</button>
-                <?php subscriptionButton($user, $course["code"]); ?>
+                <?php
+                    if (isStudent())
+                        subscriptionButton($user, $course["code"]);
+                ?>
             </div>
         </div>
         </div> 
@@ -71,6 +75,28 @@
     <article>
         <h2>Ricevimento</h2>
         <p><?php echo $profInfo["infoReception"]; ?></p>
+        <table class="table table-bordered">
+            <thead class="table-primary text-center">
+                <tr>
+                    <th id="day" scope="colgroup" colspan="3" class="fs-5"> < <?php echo $date; ?> ></th>
+                </tr>
+                <tr class="fs-6">
+                    <th id="time" scope="col">Ore</th>
+                    <th id="type" scope="col">Disponibilità</th>
+                    <th id="reservations" scope="col">Prenotazioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($dbh->getReservationsOfProfessor($professorId, $date) as $reservation): ?>
+                    <?php $timeRange = date("H:i", strtotime($reservation["startTime"])) . " - " . date("H:i", strtotime($reservation["endTime"])); ?>
+                    <tr>
+                        <th id="<?php echo $timeRange; ?>" scope="row" headers="time" class="text-center"><div><?php echo $timeRange; ?></div></th>
+                        <td id="<?php echo "type_" . $timeRange; ?>" headers="type <?php echo $timeRange; ?>"><div>Modalità: <?php echo strtolower($reservation["mode"]); ?></div></td>
+                        <td id="<?php echo "availability_" . $timeRange; ?>"><button class="btn btn-primary" <?php echo $reservation["name"] != NULL ? "disabled" : "" ?>><?php echo $reservation["name"] == NULL ? "Prenota" : "Prenotato"; ?></button></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </article>
     <section>
         <h2>Opinioni degli studenti</h2>
@@ -79,8 +105,8 @@
             $noReviews = false;
             $style = "";
             if ($reviews == NULL) {
-                    $style = "d-flex justify-content-center align-items-center";
-                    $noReviews = true;
+                $style = "d-flex justify-content-center align-items-center";
+                $noReviews = true;
             } 
         ?>
         
