@@ -166,7 +166,7 @@ class DatabaseHelper{
 
     public function getReservationsOfProfessor($professorCode, $date) {
         $stmt = $this->db->prepare(
-            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Modalita AS mode, pr.Modalita_Scelta AS mode, p.Nome AS name, p.Cognome AS surname
+            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Modalita AS mode, pr.Modalita_Scelta AS reservedMode, p.Nome AS name, p.Cognome AS surname
             FROM RICEVIMENTO AS r
             LEFT JOIN Prenotazione AS pr ON r.Docente = pr.Docente AND r.Data = pr.Data AND r.Ora_Inizio = pr.Ora_Inizio
             LEFT JOIN STUDENTE AS s ON s.Utente = pr.Studente
