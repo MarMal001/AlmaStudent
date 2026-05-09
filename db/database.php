@@ -445,7 +445,7 @@ class DatabaseHelper{
             AND sc.Utente = ?
             "
         );
-        $stmt->bind_param("ss", $course, $student);
+        $stmt->bind_param("ss", $professor, $student);
         $stmt->execute();
         $result = $stmt->get_result();
 
