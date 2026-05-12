@@ -35,10 +35,14 @@
                 <li>
                     <input type="text" id="material" name="material" value="<?php echo $course['material']; ?>" />
                 </li>
-                <li class="m-2">
-                    <button class="btn btn-white border-primary me-1" type="reset">Annulla</button>
-                    <button class="btn btn-primary ms-1" name="action" type="submit">Salva</button>
-                </li>
+                <div class="d-flex m-2">
+                    <li>
+                        <button class="btn btn-white border-primary me-1" type="reset">Annulla</button>
+                    </li>
+                    <li>
+                        <button class="btn btn-primary ms-1" name="action" type="submit">Salva</button>
+                    </li>
+                </div>
             </ul>
         </form>
     </section>
