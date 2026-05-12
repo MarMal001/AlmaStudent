@@ -24,6 +24,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["name
             $department = NULL;
             $seat = NULL;
             $infoReception = NULL;
+            $profilePicture = NULL;
         }
 
         if ($dbh->createAccout($_POST["username"], $_POST["password"], $_POST["name"], $_POST["surname"], $_POST["type"], department: $department, seat: $seat, infoReception: $infoReception, profilePicture: $profilePicture)) {
