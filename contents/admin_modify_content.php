@@ -1,4 +1,8 @@
 <main>
+    <?php if (!isset($_GET["accountType"]))
+        header("location: index.php");
+    ?>
+
     <?php if (isset($templateParams["message"])): ?>
         <section>
             <?php echo $templateParams["message"]; ?>
@@ -6,8 +10,8 @@
     <?php endif; ?>
 
     <section>
-        <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c1" class="collapse p-3 w-100 border border-primary border-2 rounded">
-            <h2>Crea un account <?php echo $_GET["type"]; ?></h2>
+        <form action="handle_admin.php" method="POST" enctype="multipart/form-data" class="pt-5">
+            <h2>Crea un account <?php echo $_GET["accountType"] == "professor" ? "professore" : "admin"; ?></h2>
             <ul>
                 <li>
                     <label for="name" class="text-left">
@@ -41,11 +45,45 @@
                 <li>
                     <input type="password" id="password" name="password" />
                 </li>
+                <?php if ($_GET["accountType"] == "professor"): ?>
+                    <li>
+                        <label for="department" class="text-left">
+                            <h5>Dipartimento</h5>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="text" id="department" name="department" />
+                    </li>
+                    <li>
+                        <label for="seat" class="text-left">
+                            <h5>Sede</h5>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="text" id="seat" name="seat" />
+                    </li>
+                    <li>
+                        <label for="infoReception" class="text-left">
+                            <h5>Info ricevimento</h5>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="text" id="infoReception" name="infoReception" />
+                    </li>
+                    <li>
+                        <label for="profilePicture" class="text-left">
+                            <h5>Immagine profilo</h5>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="file" id="profilePicture" name="profilePicture" />
+                    </li>
+                <?php endif; ?>
                 <li>
-                    <input type="submit" class="btn btn-outline-primary bg-white text-primary" value="Crea account" />
+                    <input type="submit" class="btn btn-primary" value="Crea account" />
                 </li>
             </ul>
-            <input type="hidden" name="type" value="<?php echo $_GET["account_type"]; ?>" />
+            <input type="hidden" name="type" value="<?php echo $_GET["accountType"]; ?>" />
         </form>
     </section>
 </main>
