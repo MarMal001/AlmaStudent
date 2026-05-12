@@ -32,7 +32,7 @@
             <?php endforeach; ?>
             </ul>
             <div class="d-flex justify-content-end m-2">
-                <button class="btn btn-primary me-1" type="button">Vai alla pagina</button>
+                <a href="professor.php?professor=<?php echo idWithoutDomain($professor["professor"]); ?>" class="btn btn-primary me-1">Vai alla pagina</a>
             </div>
         </div>
         </div>

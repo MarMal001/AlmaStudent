@@ -43,7 +43,7 @@
                 <p><?php echo $course["shortDescription"]; ?></p>
                 <div class="d-flex justify-content-end m-2">
                     <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1">Apri corso</a>
-                    <button class="btn btn-white border-primary ms-1" type="submit">Discriviti</button>
+                    <?php subscriptionButton($user, $course["code"]); ?>
                 </div>
             </div>
         </div>    
