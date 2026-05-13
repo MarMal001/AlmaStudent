@@ -36,7 +36,7 @@ if (isset($_POST["date"]) && isset($_POST["startTimeHour"]) && isset($_POST["sta
 
 function addReception($startTimeSlot, $endTimeSlot) {
     if (isset($_POST["mode"])) {
-        if ($GLOBALS["dbh"]->addAvailabilityOfProfessor("vittorio.ghini@unibo.it", $_POST["date"], $startTimeSlot, $endTimeSlot, $_POST["mode"])) {
+        if ($GLOBALS["dbh"]->addAvailabilityOfProfessor($_SESSION["username"], $_POST["date"], $startTimeSlot, $endTimeSlot, $_POST["mode"])) {
             $GLOBALS["message"] = "Aggiunto con successo";
         } else {
             $GLOBALS["message"] = "Non è stato possibile aggiungere";
@@ -48,7 +48,7 @@ function addReception($startTimeSlot, $endTimeSlot) {
 
 function modifyReception($startTimeSlot) {
     if (isset($_POST["mode"])) {
-        if ($GLOBALS["dbh"]->updateAvailabilityOfProfessor("vittorio.ghini@unibo.it", $_POST["date"], $startTimeSlot, $_POST["mode"])) {
+        if ($GLOBALS["dbh"]->updateAvailabilityOfProfessor($_SESSION["username"], $_POST["date"], $startTimeSlot, $_POST["mode"])) {
             $GLOBALS["message"] = "Modificato con successo";
         } else {
             $GLOBALS["message"] = "Non è stato possibile modificare";
@@ -59,7 +59,7 @@ function modifyReception($startTimeSlot) {
 }
 
 function deleteReception($startTimeSlot) {
-    if ($GLOBALS["dbh"]->removeAvailabilityOfProfessor("vittorio.ghini@unibo.it", $_POST["date"], $startTimeSlot, $_POST["mode"])) {
+    if ($GLOBALS["dbh"]->removeAvailabilityOfProfessor($_SESSION["username"], $_POST["date"], $startTimeSlot, $_POST["mode"])) {
         $GLOBALS["message"] = "Rimosso con successo";
     } else {
         $GLOBALS["message"] = "Non è stato possibile rimuovere";

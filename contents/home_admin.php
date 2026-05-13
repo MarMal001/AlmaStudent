@@ -7,8 +7,8 @@
     <div>Gestisci i corsi e professori dell'ateneo.</div>
 </section>
 <section>
-    <button>Modifica le facoltà</button>
-    <button>Modifica i corsi</button>
-    <button>Aggiungi account professore</button>
-    <button>Aggiungi account admin</button>
+    <a href="admin_modify.php?type=handleDegrees" class="btn btn-primary">Modifica le facoltà</a>
+    <a href="admin_modify.php?type=handleCourses" class="btn btn-primary">Modifica i corsi</a>
+    <a href="admin_modify.php?type=addAccount&accountType=professor" class="btn btn-primary">Aggiungi account professore</a>
+    <a href="admin_modify.php?type=addAccount&accountType=admin" class="btn btn-primary">Aggiungi account admin</a>
 </section>

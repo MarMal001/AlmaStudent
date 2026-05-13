@@ -50,9 +50,9 @@
     function subscriptionButton($student, $courseCode) {
         $subscribed = $GLOBALS["dbh"]->checkIfSubscribedToACourse($student, $courseCode);
         if ($subscribed[0]["subscribed"]){
-            echo "<button class='btn btn-white border-primary ms-1' type='submit'>Discriviti</button>";
+            echo "<a href='unsubscribe.php?course=" . $courseCode . "' class='btn btn-white border-primary ms-1'>Discriviti</a>";
         } else {
-            echo "<button class='btn btn-primary ms-1' type='submit'>Iscriviti</button>";
+            echo "<a href='subscribe.php?course=" . $courseCode . "' class='btn btn-primary ms-1'>Iscriviti</a>";
         }
     }
 
@@ -102,9 +102,9 @@
         createStars(getMeanRating($ratings), $color);
         echo '</div>';
         if ($reported) {
-            echo '<button type="submit" disabled><i class="fa-solid fa-flag" style="color: rgb(213, 0, 0);" ></i></button>';
+            echo '<a href=# disabled><i class="fa-solid fa-flag" style="color: rgb(213, 0, 0);" ></i></a>';
         } else {
-            echo '<button type="submit"><i class="fa-solid fa-flag" style="color: rgb(30, 48, 80);"></i></button>';
+            echo '<a href=#><i class="fa-solid fa-flag" style="color: rgb(30, 48, 80);"></i></a>';
         }
         echo '</div>';
         echo '<p>' . $text . '</p>';
@@ -126,9 +126,9 @@
         createStars(getMeanRating($ratings), $color);
         echo '</div>';
         if ($reported) {
-            echo '<button type="submit" disabled><i class="fa-solid fa-flag" style="color: rgb(213, 0, 0);" ></i></button>';
+            echo '<a href=# disabled><i class="fa-solid fa-flag" style="color: rgb(213, 0, 0);" ></i></a>';
         } else {
-            echo '<button type="submit"><i class="fa-solid fa-flag" style="color: rgb(30, 48, 80);"></i></button>';
+            echo '<a href=#><i class="fa-solid fa-flag" style="color: rgb(30, 48, 80);"></i></a>';
         }
         echo '</div>';
         echo '<p>' . $text . '</p>';

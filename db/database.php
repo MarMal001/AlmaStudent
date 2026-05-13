@@ -342,12 +342,12 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
-    private function createProfessor($username) {
+    private function createProfessor($username, $department, $seat, $infoReception, $profilePicture) {
         $stmt = $this->db->prepare(
-            "INSERT INTO PROFESSORE values
-            (?)"
+            "INSERT INTO DOCENTE values
+            (?, ?, ?, ?, ?)"
         );
-        $stmt->bind_param("s", $username);
+        $stmt->bind_param("sssss", $username, $department, $seat, $infoReception, $profilePicture);
         return $stmt->execute();
     }
 
@@ -360,28 +360,34 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
-    public function createAccout($username, $password, $name, $surname, $role, $studentId = NULL) {
+    public function createAccout($username, $password, $name, $surname, $role, $studentId = NULL, $department = NULL, $seat = NULL, $infoReception = NULL, $profilePicture = NULL) {
         $stmt = $this->db->prepare(
             "INSERT INTO PERSONA values
             (?, ?, ?, ?, ?)"
         );
-        $success = true;
-        if (strtolower($role) == "admin") {
-            $success = $this->createAdmin($username);
-        } else if (strtolower($role) == "professor") {
-            $success = $this->createProfessor($username);
-        } else if (strtolower($role) == "student") {
-            try {
+        $stmt->bind_param("sssss", $username, $password, $name, $surname, $role);
+        $success = $stmt->execute();
+        try {
+            if (strtolower($role) == "admin") {
+                $success = $this->createAdmin($username);
+            } else if (strtolower($role) == "professor") {
+                $success = $this->createProfessor($username, $department, $seat, $infoReception, $profilePicture);
+            } else if (strtolower($role) == "student") {
                 $success = $this->createStudent($studentId, $username);
-            } catch (mysqli_sql_exception $e) {
-                $success = false;
             }
+        } catch (mysqli_sql_exception $e) {
+            echo $e;
+            $success = false;
         }
         if (!$success) {
+            $stmt = $this->db->prepare(
+                "DELETE FROM PERSONA WHERE Utente = ?"
+            );
+            $stmt->bind_param("s", $username);
+            $stmt->execute();
             return false;
         }
-        $stmt->bind_param("sssss", $username, $password, $name, $surname, $role);
-        return $stmt->execute();
+        return true;
     }
 
     public function getReviewsByCourse($course) {

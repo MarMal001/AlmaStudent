@@ -25,7 +25,7 @@
                 <?php echo $profInfo["department"]; ?>
                 </p>
                 <?php if (isStudent()): ?>
-                    <button class="btn btn-light text-primary" type="button">Contatta il docente</a>
+                    <a href=# class="btn btn-light text-primary">Contatta il docente</a>
                 <?php endif; ?>
             </div>
             </div>
@@ -92,7 +92,7 @@
                     <tr>
                         <th id="<?php echo $timeRange; ?>" scope="row" headers="time" class="text-center"><div><?php echo $timeRange; ?></div></th>
                         <td id="<?php echo "type_" . $timeRange; ?>" headers="type <?php echo $timeRange; ?>"><div>Modalità: <?php echo strtolower($reservation["mode"]); ?></div></td>
-                        <td id="<?php echo "availability_" . $timeRange; ?>"><button class="btn btn-primary" <?php echo $reservation["name"] != NULL ? "disabled" : "" ?>><?php echo $reservation["name"] == NULL ? "Prenota" : "Prenotato"; ?></button></td>
+                        <td id="<?php echo "availability_" . $timeRange; ?>"><a href="reserve.php?start=<?php echo $reservation["startTime"]; ?>&professor=<?php echo $professorId ?>" class="btn btn-primary" <?php echo $reservation["name"] != NULL ? "disabled" : "" ?>>Prenota</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
