@@ -8,7 +8,7 @@
 </section>
 <section>
     <a href="admin_modify.php?type=handleDegrees" class="btn btn-primary">Modifica le facoltà</a>
-    <a href="admin_modify.php?type=handleCourses" class="btn btn-primary">Modifica i corsi</a>
+    <a href="admin_modify.php?type=addCourse" class="btn btn-primary">Aggiungi corso</a>
     <a href="admin_modify.php?type=addAccount&accountType=professor" class="btn btn-primary">Aggiungi account professore</a>
     <a href="admin_modify.php?type=addAccount&accountType=admin" class="btn btn-primary">Aggiungi account admin</a>
 </section>

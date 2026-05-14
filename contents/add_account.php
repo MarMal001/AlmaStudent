@@ -83,6 +83,7 @@
                     <input type="submit" class="btn btn-primary" value="Crea account" />
                 </li>
             </ul>
+            <input type="hidden" name="action" value="<?php echo ADD_ACCOUNT; ?>" />
             <input type="hidden" name="type" value="<?php echo $_GET["accountType"]; ?>" />
         </form>
     </section>
