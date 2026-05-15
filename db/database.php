@@ -52,13 +52,12 @@ class DatabaseHelper{
     public function getProfessorsByDegree($degreeCode) {
         $stmt = $this->db->prepare(
             "SELECT d.Utente AS professor, p.Nome AS name, p.Cognome AS surname, AVG(r.Rating_Disponibilita) AS ratingD, AVG(r.Rating_Comprensibilita_Lezioni) AS ratingC, AVG(r.Rating_Interesse_Suscitato) AS ratingI
-            FROM PERSONA AS p, DOCENTE AS d, CORSO AS c, Tenere AS t, RATING_DOCENTE AS r
+            FROM PERSONA AS p JOIN DOCENTE AS d ON (p.Utente = d.Utente) 
+				JOIN Tenere AS t ON (t.Docente = d.Utente) 
+                JOIN CORSO AS c ON (c.Codice = t.Codice_Corso) 
+                LEFT JOIN RATING_DOCENTE AS r ON (r.Docente = d.Utente)
             WHERE c.Codice_Facolta = ?
-            AND c.Codice = t.Codice_Corso
-            AND t.Docente = d.Utente
-            AND r.Docente = d.Utente
-            AND p.Utente = d.Utente
-            GROUP BY professor"
+            GROUP BY d.utente;"
         );
 
         $stmt->bind_param('s', $degreeCode);
