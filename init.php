@@ -10,11 +10,10 @@ define("RECEPTION_ACTION_DELETE", 2);
 define("ADMIN_ADD_COURSE", 0);
 define("ADMIN_ADD_ACCOUNT", 1);
 define("ADMIN_ADD_DEGREE", 2);
-define("ADMIN_MODIFY_ACCOUNT", 3);
-define("ADMIN_MODIFY_DEGREE", 4);
-define("ADMIN_DELETE_COURSE", 5);
-define("ADMIN_DELETE_ACCOUNT", 6);
-define("ADMIN_DELETE_DEGREE", 7);
+define("ADMIN_MODIFY_DEGREE", 3);
+define("ADMIN_DELETE_COURSE", 4);
+define("ADMIN_DELETE_ACCOUNT", 5);
+define("ADMIN_DELETE_DEGREE", 6);
 
 require_once("utils/functions.php");
 require_once("db/database.php");

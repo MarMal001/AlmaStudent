@@ -9,9 +9,13 @@
         </section>
     <?php endif; ?>
 
-    <section>
-        <form action="handle_admin.php" method="POST" enctype="multipart/form-data" class="pt-5">
-            <h2>Crea un account <?php echo $_GET["accountType"] == "professor" ? "professore" : "admin"; ?></h2>
+    <section class="container-fluid w-auto m-2 p-0 my-4">
+        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
+            <p class="m-0 p-2">Aggiungi account <?php echo $_GET["accountType"] == "professor" ? "professore" : "admin"; ?></p>
+            <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
+        </button>
+        
+        <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c1" class="collapse p-3 w-100 border border-primary border-2 rounded">
             <ul>
                 <li>
                     <label for="name" class="text-left">
@@ -80,7 +84,31 @@
                     </li>
                 <?php endif; ?>
                 <li>
-                    <button type="submit" class="btn btn-primary" name="action" value="<?php echo ADMIN_ADD_ACCOUNT; ?>">Crea account</button>
+                    <button type="submit" class="btn btn-primary mt-3" name="action" value="<?php echo ADMIN_ADD_ACCOUNT; ?>">Crea account</button>
+                </li>
+            </ul>
+            <input type="hidden" name="type" value="<?php echo $_GET["accountType"]; ?>" />
+        </form>
+    </section>
+
+    <section class="container-fluid w-auto m-2 p-0 my-4">
+        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
+            <p class="m-0 p-2">Elimina account <?php echo $_GET["accountType"] == "professor" ? "professore" : "admin"; ?></p>
+            <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
+        </button>
+        
+        <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c2" class="collapse p-3 w-100 border border-primary border-2 rounded">
+            <ul>
+                <li>
+                    <label for="username" class="text-left">
+                        <h5>Username</h5>
+                    </label>
+                </li>
+                <li>
+                    <input type="email" id="username" name="username" />
+                </li>
+                <li>
+                    <button type="submit" class="btn btn-primary mt-3" name="action" value="<?php echo ADMIN_DELETE_ACCOUNT; ?>">Elimina account</button>
                 </li>
             </ul>
             <input type="hidden" name="type" value="<?php echo $_GET["accountType"]; ?>" />
