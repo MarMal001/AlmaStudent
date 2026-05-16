@@ -9,9 +9,9 @@ $templateParams["title"] = "Create account";
 
 if ($_GET["type"] == "handleAccount") {
     $templateParams["content"] = "handle_account.php";
-} else if ($_GET["type"] == "addCourse") {
+} else if ($_GET["type"] == "handleCourse") {
     $templateParams["degrees"] = $dbh->getDegrees();
-    $templateParams["content"] = "add_course.php";
+    $templateParams["content"] = "handle_course.php";
 } else if ($_GET["type"] == "handleDegrees") {
     $templateParams["content"] = "handle_degrees.php";
 }
