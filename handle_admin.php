@@ -2,12 +2,12 @@
 
 require_once "init.php";
 
-if (!isAdmin()) {
+if (!isAdmin() || !isset($_POST["action"])) {
     header("location: /");
 }
 
 switch ($_POST["action"]) {
-    case ADD_ACCOUNT:
+    case ADMIN_ADD_ACCOUNT:
         if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["type"])) {
             if ($_POST["type"] == "admin" || $_POST["type"] == "professor") {
                 add_account($_POST["username"], $_POST["password"], $_POST["name"], $_POST["surname"], $_POST["type"]);
@@ -18,9 +18,16 @@ switch ($_POST["action"]) {
             $GLOBALS["message"] = "Parametri mancanti";
         }
         break;
-    case ADD_COURSE:
+    case ADMIN_ADD_COURSE:
         if (isset($_POST["degreeCode"]) && isset($_POST["name"]) && isset($_POST["year"]) && isset($_POST["semester"]) && isset($_POST["professors"]) && isset($_POST["courseId"])) {
             add_course($_POST["degreeCode"], $_POST["name"], $_POST["year"], $_POST["semester"], $_POST["professors"], $_POST["courseId"]);
+        } else {
+            $GLOBALS["message"] = "Parametri mancanti";
+        }
+        break;
+    case ADMIN_ADD_DEGREE:
+        if (isset($_POST["code"]) && isset($_POST["name"]) && isset($_POST["years"]) && isset($_POST["department"]) && isset($_POST["branch"])) {
+            add_degree($_POST["code"], $_POST["name"], $_POST["department"], $_POST["years"], $_POST["branch"]);
         } else {
             $GLOBALS["message"] = "Parametri mancanti";
         }
@@ -58,10 +65,18 @@ function add_account($username, $password, $name, $surname, $type) {
 }
 
 function add_course($degreeCode, $name, $year, $semester, $professors, $courseId) {
-    if ($GLOBALS["dbh"]->addCourse($degreeCode, $name, $year, $semester, $professors, $courseId)) {
+    if ($GLOBALS["dbh"]->addCourse($courseId, $name, $degreeCode, $year, $semester, $professors)) {
         $GLOBALS["message"] = "Corso aggiunto con successo";
     } else {
         $GLOBALS["message"] = "Non è stato possibile aggiungere il corso";
+    }
+}
+
+function add_degree($code, $name, $department, $years, $branch) {
+    if ($GLOBALS["dbh"]->addDegree($code, $name, $department, $years, $branch)) {
+        $GLOBALS["message"] = "Corso di laurea aggiunto con successo";
+    } else {
+        $GLOBALS["message"] = "Non è stato possibile aggiungere il corso di laurea";
     }
 }
 
