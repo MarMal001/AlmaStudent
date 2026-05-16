@@ -7,6 +7,15 @@ define("RECEPTION_ACTION_ADD", 0);
 define("RECEPTION_ACTION_MODIFY", 1);
 define("RECEPTION_ACTION_DELETE", 2);
 
+define("ADMIN_ADD_COURSE", 0);
+define("ADMIN_ADD_ACCOUNT", 1);
+define("ADMIN_ADD_DEGREE", 2);
+define("ADMIN_MODIFY_ACCOUNT", 3);
+define("ADMIN_MODIFY_DEGREE", 4);
+define("ADMIN_DELETE_COURSE", 5);
+define("ADMIN_DELETE_ACCOUNT", 6);
+define("ADMIN_DELETE_DEGREE", 7);
+
 require_once("utils/functions.php");
 require_once("db/database.php");
 

@@ -1,9 +1,6 @@
 <?php
 require_once "init.php";
 
-define("ADD_COURSE", 0);
-define("ADD_ACCOUNT", 1);
-
 if (!isset($_GET["type"])) {
     header("location: index.php");
 }
@@ -15,6 +12,8 @@ if ($_GET["type"] == "addAccount") {
 } else if ($_GET["type"] == "addCourse") {
     $templateParams["degrees"] = $dbh->getDegrees();
     $templateParams["content"] = "add_course.php";
+} else if ($_GET["type"] == "handleDegrees") {
+    $templateParams["content"] = "handle_degrees.php";
 }
 
 $templateParams["style"] = ["style.css"];
