@@ -11,7 +11,7 @@
                 <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
             </div>
         </div>
-        <?php $profInfo = $dbh->getProfessorInfo($professorId)[0]; var_dump($profInfo); ?><?php echo UPLOAD_DIR.'/professor/'.$profInfo["photo"]; ?>
+        <?php $profInfo = $dbh->getProfessorInfo($professorId)[0]; ?>
         <div class="card mb-3 bg-primary border-0 text-white" style="max-width: 600px;">
         <div class="row g-0">
                 
