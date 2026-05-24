@@ -122,7 +122,7 @@
         echo '<div class="d-flex justify-content-between align-items-center">';
         echo '<div class="d-md-inline-flex align-items-md-center p-0">';
         $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];
-        echo'<h5>' . $student["name"] . ' ' . $student["surname"] . " " . $date . '</h5>';
+        echo'<h5 class="me-2">' . $student["name"] . ' ' . $student["surname"] . " " . $date . '</h5>';
         createStars(getMeanRating($ratings), $color);
         echo '</div>';
         if ($reported) {
