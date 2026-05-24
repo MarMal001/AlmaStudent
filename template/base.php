@@ -38,5 +38,14 @@
     }
     ?>
     <footer class="container-fluid p-2 bg-primary text-white text-center">© Copyright 2026 - ALMA MATER STUDIORUM - Università di Bologna</footer>
+    <?php
+    if(isset($templateParams["js"])):
+        foreach($templateParams["js"] as $script):
+    ?>
+        <script src="<?php echo $script; ?>"></script>
+    <?php
+        endforeach;
+    endif;
+    ?>
 </body>
 </html>

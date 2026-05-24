@@ -4,6 +4,7 @@ require_once "init.php";
 $templateParams["title"] = "Edit Course";
 $templateParams["content"] = "course_editable_content.php";
 $templateParams["style"] = ["style.css"];
+$templateParams["js"] = array();
 
 if (isset($_GET["course"])) {
     $templateParams["course"] = $_GET["course"];
