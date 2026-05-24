@@ -12,3 +12,7 @@
     <a href="admin_modify.php?type=addAccount&accountType=professor" class="btn btn-primary">Aggiungi account professore</a>
     <a href="admin_modify.php?type=addAccount&accountType=admin" class="btn btn-primary">Aggiungi account admin</a>
 </section>
+<section class="fw-bold">
+    <h1>Segnalazioni da risolvere</h1>
+    
+</section>

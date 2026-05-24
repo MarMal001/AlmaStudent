@@ -466,6 +466,13 @@ class DatabaseHelper{
         $stmt->bind_param("ssss", $description, $shortDescription, $material, $course);
         return $stmt->execute();
     }
+
+    public function getReportedReviews() {
+        $stmt = $this->db->prepare(
+            "SELECT 
+            "
+        )
+    }
 }
 
 ?>
