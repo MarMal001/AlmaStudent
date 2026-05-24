@@ -473,6 +473,37 @@ class DatabaseHelper{
             "
         )
     }
+    
+    public function addCourse($code, $name, $degreeCode, $year, $semester, $professors) {
+        $stmt = $this->db->prepare(
+            "INSERT INTO CORSO (Codice, Nome, Anno, Semestre, Codice_Facolta) values
+            (?, ?, ?, ?, ?)"
+        );
+        $stmt->bind_param("sssss", $code, $name, $degreeCode, $year, $semester);
+        if (!$stmt->execute()) {
+            return false;
+        }
+        foreach ($professors as $professor) {
+            $stmt = $this->db->prepare(
+                "INSERT INTO Tenere values
+                (?, ?)"
+            );
+            $stmt->bind_param("ss", $professor, $code);
+            if (!$stmt->execute()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public function addDegree($code, $name, $department, $years, $branch) {
+        $stmt = $this->db->prepare(
+            "INSERT INTO FACOLTA values
+            (?, ?, ?, ?, ?)"
+        );
+        $stmt->bind_param("sssss", $code, $name, $department, $years, $branch);
+        return $stmt->execute();
+    }
 }
 
 ?>

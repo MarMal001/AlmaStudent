@@ -67,18 +67,17 @@
                 </li>
                 <!-- TODO: Aggiungere i docenti dinamicamente in base alla richiesta -->
                 <li>
-                    <label for="courseId" class="text-left">
+                    <label for="code" class="text-left">
                         <h5>Codice corso</h5>
                     </label>
                 </li>
                 <li>
-                    <input type="text" id="courseId" name="courseId" />
+                    <input type="text" id="code" name="code" />
                 </li>
                 <li>
-                    <input type="submit" class="btn btn-primary" value="Crea account" />
+                    <button type="submit" class="btn btn-primary" name="action" value="<?php echo ADMIN_ADD_COURSE; ?>">Crea corso</button>
                 </li>
             </ul>
-            <input type="hidden" name="action" value="<?php echo ADD_COURSE; ?>" />
             <input type="hidden" name="degreeCode" value="<?php echo $selectedDegree["code"]; ?>" />
         </form>
     </section>
