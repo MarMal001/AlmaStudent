@@ -14,5 +14,17 @@
 </section>
 <section class="fw-bold">
     <h1>Segnalazioni da risolvere</h1>
-    
+    <?php $reportedReviewsProf = $dbh->getReportedReviewsOfProfessors(); ?>
+    <?php $reportedReviewsCourses = $dbh->getReportedReviewsOfCourses(); ?>
+    <ul>
+        <?php foreach ($reportedReviewsProf as $reportedReviewProf): ?>
+        <li><a class="text-start link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="report_handling.php?"><?php echo $reportedReviewProf["student"] . " segnalazione per la recensione di " . $reportedReviewProf["profName"] . " " . $reportedReviewProf["profSurname"] . " - " . $reportedReviewProf["date"] ?></a></li>
+    <?php endforeach; ?>
+    <?php foreach ($reportedReviewsCourses as $reportedReviewCourse): ?>
+       <li><a class="text-start link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="report_handling.php?"><?php echo $reportedReviewCourse["student"] . " segnalazione per la recensione di " . $reportedReviewCourse["courseName"] . " - " . $reportedReviewCourse["date"] ?></a></li>
+    <?php endforeach; ?>
+    </ul>
+    <?php if($reportedReviewsCourses == NULL && $reportedReviewsProf == NULL): ?>
+        <p>Non sono presenti segnalazioni</p>
+    <?php endif; ?>
 </section>
