@@ -391,12 +391,11 @@ class DatabaseHelper{
 
     public function getReviewsByCourse($course) {
         $stmt = $this->db->prepare(
-            "SELECT r.Data AS date, sc.Utente AS student, rv.Testo AS text, rv.Segnalazione AS reported
-            FROM RATING AS r, RATING_CORSO AS rd, STUDENTE_IN_CORSO AS sc, REVIEW AS rv
+            "SELECT r.Data AS date, rd.Utente AS student, rv.Testo AS text, rv.Segnalazione AS reported
+            FROM RATING AS r, RATING_CORSO AS rd, REVIEW AS rv
             WHERE r.Codice = rd.Codice
-            AND rd.Codice = sc.Codice_Rating_Corso
+            AND rd.Corso = ?
             AND rv.Codice_Rating = r.Codice
-            AND sc.Codice_Corso = ?
             ORDER BY r.Data
             "
         );
@@ -409,10 +408,9 @@ class DatabaseHelper{
 
     public function getReviewsByProfessor($professor) {
         $stmt = $this->db->prepare(
-            "SELECT r.Data AS date, sc.Utente AS student, rv.Testo AS text, rv.Segnalazione AS reported
-            FROM RATING AS r, RATING_DOCENTE AS rd, STUDENTE_IN_CORSO AS sc, REVIEW AS rv
+            "SELECT r.Data AS date, rd.Utente AS student, rv.Testo AS text, rv.Segnalazione AS reported
+            FROM RATING AS r, RATING_DOCENTE AS rd, REVIEW AS rv
             WHERE r.Codice = rd.Codice
-            AND rd.Codice = sc.Codice_Rating_Corso
             AND rv.Codice_Rating = r.Codice
             AND rd.Docente = ?
             ORDER BY r.Data
@@ -428,10 +426,9 @@ class DatabaseHelper{
     public function getCourseRatingbyStudent($course, $student) {
         $stmt = $this->db->prepare(
             "SELECT rd.Rating_Lezioni AS rating_L, rd.Rating_Materiale AS rating_M, rd.Rating_Esame AS rating_E
-            FROM RATING_CORSO AS rd, STUDENTE_IN_CORSO AS sc
-            WHERE rd.Codice = sc.Codice_Rating_Corso
-            AND sc.Codice_Corso = ?
-            AND sc.Utente = ?
+            FROM RATING_CORSO AS rd
+            WHERE rd.Corso = ?
+            AND rd.Studente = ?
             "
         );
         $stmt->bind_param("ss", $course, $student);
@@ -444,10 +441,9 @@ class DatabaseHelper{
     public function getProfessorRatingbyStudent($professor, $student) {
         $stmt = $this->db->prepare(
             "SELECT rd.Rating_Disponibilita AS rating_D, rd.Rating_Comprensibilita_Lezioni AS rating_C, rd.Rating_Interesse_Suscitato AS rating_I
-            FROM RATING_DOCENTE AS rd, STUDENTE_IN_CORSO AS sc
-            WHERE rd.Codice = sc.Codice_Rating_Corso
-            AND rd.Docente = ?
-            AND sc.Utente = ?
+            FROM RATING_DOCENTE AS rd
+            WHERE rd.Docente = ?
+            AND rd.Studente = ?
             "
         );
         $stmt->bind_param("ss", $professor, $student);
@@ -467,13 +463,46 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
-    public function getReportedReviews() {
+    public function getReportedReviewsOfProfessors() {
         $stmt = $this->db->prepare(
-            "SELECT 
+            "SELECT r.Codice AS id, r.Data AS date, rd.Studente AS student, p.Nome AS profName, p.Cognome AS profSurname
+            FROM RATING AS r, RATING_DOCENTE AS rd, REVIEW AS rv, PERSONA AS p
+            WHERE rv.Segnalazione = true
+            AND rv.Codice_Rating = r.Codice
+            AND r.Codice = rd.Codice
+            AND rd.Docente = p.Utente
+            ORDER BY student, profName, profSurname
             "
-        )
+        );
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
-    
+
+    public function getReportedReviewsOfCourses() {
+        $stmt = $this->db->prepare(
+            "SELECT r.Codice AS id, r.Data AS date, rc.Studente AS student, c.Nome AS courseName
+            FROM RATING AS r, RATING_CORSO AS rc, CORSO AS c, REVIEW AS rv
+            WHERE rv.Segnalazione = true
+            AND rv.Codice_Rating = r.Codice
+            AND r.Codice = rc.Codice
+            AND c.Codice = rc.Corso
+            ORDER BY student, courseName
+            "
+        );
+        
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+        public function getReviewText($id) {
+
+    }
+
     public function addCourse($code, $name, $degreeCode, $year, $semester, $professors) {
         $stmt = $this->db->prepare(
             "INSERT INTO CORSO (Codice, Nome, Anno, Semestre, Codice_Facolta) values

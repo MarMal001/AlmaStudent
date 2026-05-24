@@ -102,18 +102,24 @@ create table RATING (
 
 create table RATING_CORSO (
      Codice int not null,
+     Studente varchar(100) not null,
+     Corso varchar(5) not null,
      Rating_Lezioni int not null,
      Rating_Materiale int not null,
      Rating_Esame int not null,
-     constraint FKRAT_RAT_ID primary key (Codice));
+     constraint FKRAT_RAT_ID primary key (Codice),
+     constraint FKStudente_in_Corso unique (Studente, Corso));
 
 create table RATING_DOCENTE (
      Codice int not null,
      Docente varchar(100) not null,
+     Studente varchar(100) not null,
+     Corso varchar(5) not null,
      Rating_Disponibilita int not null,
      Rating_Comprensibilita_Lezioni int not null,
      Rating_Interesse_Suscitato int not null,
-     constraint FKRAT_RAT_1_ID primary key (Codice));
+     constraint FKRAT_RAT_1_ID primary key (Codice),
+     constraint FKDocente_Studente_in_Corso unique (Docente, Studente, Corso));
 
 create table RATING_GENERALE (
      Codice_Corso varchar(5) not null,
@@ -148,12 +154,8 @@ create table STUDENTE (
 create table STUDENTE_IN_CORSO (
      Utente varchar(100) not null,
      Codice_Corso varchar(5) not null,
-     Codice_Rating_Docenti int not null,
-     Codice_Rating_Corso int not null,
      Esame_Superato tinyint not null,
-     constraint ID_STUDENTE_IN_CORSO_ID primary key (Utente, Codice_Corso),
-     constraint FKRecensione_Docente_ID unique (Codice_Rating_Docenti),
-     constraint FKRecensione_Corso_ID unique (Codice_Rating_Corso));
+     constraint ID_STUDENTE_IN_CORSO_ID primary key (Utente, Codice_Corso));
 
 create table Tenere (
      Docente varchar(100) not null,
@@ -272,19 +274,20 @@ insert into RATING values
 
 ### RATING_CORSO ###
 insert into RATING_CORSO values
-	(2, 4, 5, 4),
-	(4, 3, 2, 4);
+	(2, "carla.anselmi3@studio.unibo.it", "70226", 4, 5, 4), #id studente corso valore valore valore
+	(4, "alessandro.giacomini2@studio.unibo.it", "70226", 3, 2, 4);
 
 ### RATING_DOCENTE ###
 insert into RATING_DOCENTE values
-	(1, "stefano.ferretti@unibo.it", 2, 3, 5),
-	(3, "franco.callegati@unibo.it", 5, 3, 3),
-    (5, "vittorio.ghini@unibo.it", 5, 5, 5);
+	(1, "stefano.ferretti@unibo.it", "carla.anselmi3@studio.unibo.it", "08574", 2, 3, 5), #id docente studente corso valore valore valore
+	(3, "franco.callegati@unibo.it", "alessandro.giacomini2@studio.unibo.it","70226", 5, 3, 3),
+    (5, "vittorio.ghini@unibo.it", "carla.anselmi3@studio.unibo.it", "08574", 5, 5, 5);
 
 ### STUDENTE_IN_CORSO ###
 insert into STUDENTE_IN_CORSO values
-	("carla.anselmi3@studio.unibo.it", "70226", 1, 2, true),
-	("alessandro.giacomini2@studio.unibo.it", "70226", 3, 4, true);
+	("carla.anselmi3@studio.unibo.it", "70226", true), #1
+    ("carla.anselmi3@studio.unibo.it", "08574", true),
+	("alessandro.giacomini2@studio.unibo.it", "70226", true); #3
 
 ### RATING_GENERALE ###
 insert into RATING_GENERALE values
@@ -407,6 +410,10 @@ alter table Prenotazione add constraint FKPre_RIC_FK
 alter table RATING_CORSO add constraint FKRAT_RAT_FK
      foreign key (Codice)
      references RATING (Codice);
+     
+ alter table RATING_CORSO add constraint FKStudente_in_Corso
+     foreign key (Studente, Corso)
+     references STUDENTE_IN_CORSO (Utente, Codice_Corso);    
 
 -- Not implemented
 -- alter table RATING_DOCENTE add constraint FKRAT_RAT_1_CHK
@@ -416,6 +423,10 @@ alter table RATING_CORSO add constraint FKRAT_RAT_FK
 alter table RATING_DOCENTE add constraint FKRAT_RAT_1_FK
      foreign key (Codice)
      references RATING (Codice);
+     
+alter table RATING_DOCENTE add constraint FKStud_Corso_FK
+     foreign key (Studente, Corso)
+     references STUDENTE_IN_CORSO (Utente, Codice_Corso);
 
 alter table RATING_GENERALE add constraint FKValutazione_FK
      foreign key (Codice_Corso)
@@ -445,14 +456,6 @@ alter table STUDENTE_IN_CORSO add constraint FKIscrizione_FK
 alter table STUDENTE_IN_CORSO add constraint FKEssere
      foreign key (Utente)
      references STUDENTE (Utente);
-
-alter table STUDENTE_IN_CORSO add constraint FKRecensione_Docente_FK
-     foreign key (Codice_Rating_Docenti)
-     references RATING_DOCENTE (Codice);
-
-alter table STUDENTE_IN_CORSO add constraint FKRecensione_Corso_FK
-     foreign key (Codice_Rating_Corso)
-     references RATING_CORSO (Codice);
 
 alter table Tenere add constraint FKTen_COR
      foreign key (Codice_Corso)
@@ -522,9 +525,15 @@ create unique index ID_RATING_IND
 
 create unique index FKRAT_RAT_IND
      on RATING_CORSO (Codice);
+     
+create unique index FKStudente_in_Corso_IND
+     on RATING_CORSO (Studente, Corso);     
 
 create unique index FKRAT_RAT_1_IND
      on RATING_DOCENTE (Codice);
+     
+create unique index FKDocente_Studente_in_Corso_IND
+     on RATING_DOCENTE (Docente, Studente, Corso);
 
 create index FKValutazione_IND
      on RATING_GENERALE (Codice_Corso);
@@ -546,12 +555,6 @@ create unique index ID_STUDENTE_IN_CORSO_IND
 
 create index FKIscrizione_IND
      on STUDENTE_IN_CORSO (Codice_Corso);
-
-create unique index FKRecensione_Docente_IND
-     on STUDENTE_IN_CORSO (Codice_Rating_Docenti);
-
-create unique index FKRecensione_Corso_IND
-     on STUDENTE_IN_CORSO (Codice_Rating_Corso);
 
 create unique index ID_Tenere_IND
      on Tenere (Codice_Corso, Docente);
