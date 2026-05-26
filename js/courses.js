@@ -45,6 +45,7 @@ async function getCoursesData() {
         return;
     }
     formData.append("degreeCode", degreeCode);
+    formData.append("type", "courses");
     try {
         const response = await fetch(url, {
             method: "POST",
