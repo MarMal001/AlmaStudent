@@ -1,0 +1,54 @@
+function createStars(rating, color) {
+    let content = "";
+    let nColored = Math.floor(rating);
+    let nWhite = 5 - nColored;
+
+    for (let i = 0; i < nColored; i++) {
+        content += `<i class='fa-solid fa-star' style='color: ${color}'></i>`;
+    };
+
+    if (rating - nColored != 0) {
+        content += `<i class='fa-solid fa-star-half-stroke' style='color: ${color}'></i>`;
+        nWhite--;
+    };
+
+    for (let i = 0; i < nWhite; i++) {
+        content += `<i class='fa-regular fa-star' style='color: ${color}'></i>`;
+    };
+    return content;
+}
+
+function getMeanRating(ratingArray) {
+    let sum = 0;
+    let mean = 0;
+    for (const rating of ratingArray) {
+        sum += Number(rating);
+    };
+    mean = sum / ratingArray.length;
+    return mean;
+}
+
+function subscriptionButton(courseCode, isSubscribed) {
+    if (isSubscribed) {
+        return `<a href='unsubscribe.php?course=${courseCode}' class='btn btn-white border-primary ms-1'>Discriviti</a>`;
+    } else {
+        return `<a href='subscribe.php?course=${courseCode}' class='btn btn-primary ms-1'>Iscriviti</a>`;
+    }
+}
+
+function idWithoutDomain(id) {
+    const idElements = id.split("@");
+    return idElements[0];
+}
+
+function parseCourseYear(year) {
+    switch (year) {
+        case 1: return "Primo";
+        case 2: return "Secondo";
+        case 3: return "Terzo";
+        case 4: return "Quarto";
+        case 5: return "Quinto";
+        case 6: return "Sesto";
+        default: return "Invalid";
+    }
+}
