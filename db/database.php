@@ -19,6 +19,19 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getDegreeByCode($degreeCode) {
+        $stmt = $this->db->prepare(
+            "SELECT Codice AS code, Nome as name, Numero_Anni AS nYears, Campus AS campus
+            FROM FACOLTA
+            WHERE Codice = ?"
+        );
+        $stmt->bind_param('s', $degreeCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC)[0];
+    }
+
     //-- TO DO -- if can't get nYears by other means through ajax 
     public function getYearsDegree($degreeCode) {
         $stmt = $this->db->prepare(
