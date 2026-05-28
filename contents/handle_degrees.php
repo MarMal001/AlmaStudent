@@ -68,9 +68,20 @@
                     <input type="text" id="code" name="code" />
                 </li>
                 <li>
-                    <button type="submit" class="btn btn-primary" name="action" value="<?php echo ADMIN_ADD_DEGREE; ?>">Crea corso di lauera</button>
+                    <button type="submit" class="btn btn-primary" name="action" value="<?php echo ADMIN_ADD_DEGREE; ?>">Crea</button>
                 </li>
             </ul>
         </form>
+    </section>
+    <section>
+        <h2>Modifica corso di laurea</h2>
+        <label for="courses">Seleziona corso di laurea</label>
+        <select name="courses" id="degreeCode" onchange="getUpdateDegreesForm()">
+            <option value="" disabled selected hidden>-- Seleziona --</option>
+            <?php foreach ($templateParams["degrees"] as $degree): ?>
+                <option value="<?php echo $degree["code"]; ?>"><?php echo $degree["code"] . " - " . $degree["name"] . " - " . $degree["campus"]; ?></option>
+            <?php endforeach; ?>
+        </select>
+        <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="formUpdate"></form>
     </section>
 </main>

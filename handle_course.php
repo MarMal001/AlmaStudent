@@ -6,8 +6,6 @@ if (!isProfessor() || (isset($_GET["course"]) && !isDesignatedProfessor($user, $
     header("location: course.php?course=" . (isset($_GET["course"]) ? $_GET["course"] : ""));
 }
 
-var_dump($_POST);
-var_dump($_GET);
 if (isset($_GET["course"]) && isset($_POST["description"]) && isset($_POST["shortDescription"]) && isset($_POST["material"])) {
     if ($GLOBALS["dbh"]->updateCourse($_GET["course"], $_POST["description"], $_POST["shortDescription"], $_POST["material"])) {
         $message = "Aggiornato con successo";
