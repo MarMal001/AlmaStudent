@@ -87,7 +87,7 @@
         return $id == $_SESSION["username"];
     }
 
-    function generateCourseReview($studentId, $date, $text, $reported, $course) {
+    function generateCourseReview($url, $id, $studentId, $date, $text, $reported, $course) {
         $place = "start";
         $color = "rgb(30, 48, 80)";
         $ratings = $GLOBALS["dbh"]->getCourseRatingbyStudent($course, $studentId)[0];
@@ -98,20 +98,40 @@
         echo '<div class="d-flex justify-content-between align-items-center">';
         echo '<div class="d-md-inline-flex align-items-md-center p-0">';
         $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];
-        echo'<h5 class="me-2">' . $student["name"] . ' ' . $student["surname"] . " " . $date . '</h5>';
+        echo'<h5 class="me-2">' . $student["name"] . ' ' . $student["surname"] . " " . date("d/m/Y", strtotime($date)) . '</h5>';
         createStars(getMeanRating($ratings), $color);
         echo '</div>';
         if ($reported) {
-            echo '<a href=# disabled><i class="fa-solid fa-flag" style="color: rgb(213, 0, 0);" ></i></a>';
+            echo '<i class="fa-solid fa-flag" style="color: rgb(213, 0, 0);" ></i>';
         } else {
-            echo '<a href=#><i class="fa-solid fa-flag" style="color: rgb(30, 48, 80);"></i></a>';
+            echo '<button class="btn" data-bs-toggle="modal" data-bs-target="#flagModal" ><i class="fa-regular fa-flag" style="color: rgb(30, 48, 80);"></i></button>
+            <div class="modal fade" id="flagModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Sei sicuro?</h5>
+                    </div>
+
+                    <div class="modal-body">
+                        Confermando si segnalerà la recensione
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                        <a class="btn btn-danger" href="handle_reports.php?type=add&page=' . $url . '&id=' . $id . '"; ?>Conferma</a>
+                    </div>
+
+                    </div>
+                </div>
+                </div>';
         }
         echo '</div>';
         echo '<p>' . $text . '</p>';
         echo '</div>';
     }
 
-    function generateProfessorReview($studentId, $date, $text, $reported, $professor) {
+    function generateProfessorReview($url, $id, $studentId, $date, $text, $reported, $professor) {
         $place = "start";
         $color = "rgb(30, 48, 80)";
         $ratings = $GLOBALS["dbh"]->getProfessorRatingbyStudent($professor, $studentId)[0];
@@ -122,13 +142,33 @@
         echo '<div class="d-flex justify-content-between align-items-center">';
         echo '<div class="d-md-inline-flex align-items-md-center p-0">';
         $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];
-        echo'<h5 class="me-2">' . $student["name"] . ' ' . $student["surname"] . " " . $date . '</h5>';
+        echo'<h5 class="me-2">' . $student["name"] . ' ' . $student["surname"] . " " . date("d/m/Y", strtotime($date)) . '</h5>';
         createStars(getMeanRating($ratings), $color);
         echo '</div>';
         if ($reported) {
-            echo '<a href=# disabled><i class="fa-solid fa-flag" style="color: rgb(213, 0, 0);" ></i></a>';
+            echo '<i class="fa-solid fa-flag" style="color: rgb(213, 0, 0);" ></i>';
         } else {
-            echo '<a href=#><i class="fa-solid fa-flag" style="color: rgb(30, 48, 80);"></i></a>';
+            echo '<button class="btn" data-bs-toggle="modal" data-bs-target="#flagModal" ><i class="fa-regular fa-flag" style="color: rgb(30, 48, 80);"></i></button>
+            <div class="modal fade" id="flagModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Sei sicuro?</h5>
+                    </div>
+
+                    <div class="modal-body">
+                        Confermando si segnalerà la recensione
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                        <a class="btn btn-danger" href="handle_reports.php?type=add&page=' . $url . '&id=' . $id . '"; ?>Conferma</a>
+                    </div>
+
+                    </div>
+                </div>
+                </div>';
         }
         echo '</div>';
         echo '<p>' . $text . '</p>';
@@ -141,5 +181,9 @@
             $validProfessor |= in_array($professorId, $professor);
         }
         return $validProfessor;
+    }
+
+    function isProfessorReview($type) {
+        return $type == "professor";
     }
 ?>
