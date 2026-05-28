@@ -409,7 +409,7 @@ alter table Prenotazione add constraint FKPre_RIC_FK
 
 alter table RATING_CORSO add constraint FKRAT_RAT_FK
      foreign key (Codice)
-     references RATING (Codice);
+     references RATING (Codice) on delete cascade;
      
  alter table RATING_CORSO add constraint FKStudente_in_Corso
      foreign key (Studente, Corso)
@@ -422,7 +422,7 @@ alter table RATING_CORSO add constraint FKRAT_RAT_FK
 
 alter table RATING_DOCENTE add constraint FKRAT_RAT_1_FK
      foreign key (Codice)
-     references RATING (Codice);
+     references RATING (Codice) on delete cascade;
      
 alter table RATING_DOCENTE add constraint FKStud_Corso_FK
      foreign key (Studente, Corso)
@@ -434,7 +434,7 @@ alter table RATING_GENERALE add constraint FKValutazione_FK
 
 alter table REVIEW add constraint FKPresenza_FK
      foreign key (Codice_Rating)
-     references RATING (Codice);
+     references RATING (Codice) on delete cascade;
 
 -- Not implemented
 -- alter table RICEVIMENTO add constraint ID_RICEVIMENTO_CHK
