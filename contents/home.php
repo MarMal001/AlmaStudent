@@ -31,11 +31,19 @@
                     <h1 class="fw-bolder px-5 py-2">3</h1>
                 </div>
                 <div class="card text-center my-3">
-                    <div class="card-body bg-primary text-white rounded-top">
-                        <h6 class="card-title">Nuovi</h6>
-                        <h6 class="card-title">messaggi</h6>
-                    </div>
-                    <h1 class="fw-bolder px-5 py-2">7</h1>
+                    <?php if (!isStudent()): ?>
+                        <div class="card-body bg-primary text-white rounded-top">
+                            <h6 class="card-title">Numero</h6>
+                            <h6 class="card-title">messaggi</h6>
+                        </div>
+                        <h1 class="fw-bolder px-5 py-2">7</h1>
+                    <?php else: ?>
+                        <div class="card-body bg-primary text-white rounded-top">
+                            <h6 class="card-title">Numero</h6>
+                            <h6 class="card-title">segnalazioni</h6>
+                        </div>
+                        <h1 class="fw-bolder px-5 py-2"><?php echo $dbh->getStudentNumberReports($user)[0]["numReports"]; ?></h1>
+                    <?php endif; ?>
                 </div>
             </div>
             <h3>Il calendario</h3>
