@@ -28,6 +28,8 @@ if (isset($_POST["degreeCode"]) && isset($_POST["type"])) {
             $professor["courses"] = $dbh->getCoursesByProfessor($professor["professor"]);
             array_push($data["professors"], $professor);
         }
+    } else if ($_POST["type"] == "updateDegree") {
+        $data["degree"] = $dbh->getDegreeByCode($_POST["degreeCode"]);
     } else {
         $data["message"] = "Tipo non riconosciuto";
     }
