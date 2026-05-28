@@ -391,7 +391,7 @@ class DatabaseHelper{
 
     public function getReviewsByCourse($course) {
         $stmt = $this->db->prepare(
-            "SELECT r.Data AS date, rd.Studente AS student, rv.Testo AS text, rv.Segnalazione AS reported
+            "SELECT r.Codice AS id, r.Data AS date, rd.Studente AS student, rv.Testo AS text, rv.Segnalazione AS reported
             FROM RATING AS r, RATING_CORSO AS rd, REVIEW AS rv
             WHERE r.Codice = rd.Codice
             AND rd.Corso = ?
@@ -408,7 +408,7 @@ class DatabaseHelper{
 
     public function getReviewsByProfessor($professor) {
         $stmt = $this->db->prepare(
-            "SELECT r.Data AS date, rd.Studente AS student, rv.Testo AS text, rv.Segnalazione AS reported
+            "SELECT r.Codice AS id, r.Data AS date, rd.Studente AS student, rv.Testo AS text, rv.Segnalazione AS reported
             FROM RATING AS r, RATING_DOCENTE AS rd, REVIEW AS rv
             WHERE r.Codice = rd.Codice
             AND rv.Codice_Rating = r.Codice
@@ -465,7 +465,7 @@ class DatabaseHelper{
 
     public function getReportedReviewsOfProfessors() {
         $stmt = $this->db->prepare(
-            "SELECT r.Codice AS id, r.Data AS date, rd.Studente AS student, p.Nome AS profName, p.Cognome AS profSurname
+            "SELECT r.Codice AS id, r.Data AS date, rd.Studente AS student, p.Nome AS profName, p.Cognome AS profSurname, p.Utente AS professor
             FROM RATING AS r, RATING_DOCENTE AS rd, REVIEW AS rv, PERSONA AS p
             WHERE rv.Segnalazione = true
             AND rv.Codice_Rating = r.Codice
@@ -483,7 +483,7 @@ class DatabaseHelper{
 
     public function getReportedReviewsOfCourses() {
         $stmt = $this->db->prepare(
-            "SELECT r.Codice AS id, r.Data AS date, rc.Studente AS student, c.Nome AS courseName
+            "SELECT r.Codice AS id, r.Data AS date, rc.Studente AS student, c.Nome AS courseName, c.Codice AS courseId
             FROM RATING AS r, RATING_CORSO AS rc, CORSO AS c, REVIEW AS rv
             WHERE rv.Segnalazione = true
             AND rv.Codice_Rating = r.Codice
@@ -532,6 +532,108 @@ class DatabaseHelper{
         );
         $stmt->bind_param("sssss", $code, $name, $department, $years, $branch);
         return $stmt->execute();
+    }
+
+    public function getReviewInfo($id) {
+        $stmt = $this->db->prepare(
+            "SELECT rv.Testo AS text, r.Data AS date,
+            CASE 
+	            WHEN r.Codice = rd.Codice THEN rd.Studente
+	            WHEN r.Codice = rc.Codice THEN rc.Studente
+            END AS student
+            FROM RATING AS r LEFT JOIN RATING_CORSO AS rc ON (r.Codice = rc.Codice) LEFT JOIN RATING_DOCENTE AS rd ON (r.Codice = rd.Codice), REVIEW AS rv
+            WHERE r.Codice = ?
+            AND (r.Codice = rd.Codice OR r.Codice = rc.Codice)
+            AND r.Codice = rv.Codice_Rating"
+        );
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getRatingsFromId($id) {
+        $stmt = $this->db->prepare(
+            "SELECT 
+            CASE 
+                WHEN r.Codice = rc.Codice THEN rc.Rating_Lezioni
+                WHEN r.Codice = rd.Codice THEN rd.Rating_Disponibilita
+            END AS rating1,
+            CASE
+                WHEN r.Codice = rc.Codice THEN rc.Rating_Materiale
+                WHEN r.Codice = rd.Codice THEN rd.Rating_Comprensibilita_Lezioni
+            END AS rating2,
+            CASE
+                WHEN r.Codice = rc.Codice THEN rc.Rating_Esame
+                WHEN r.Codice = rd.Codice THEN rd.Rating_Interesse_Suscitato
+            END AS rating3
+            FROM RATING AS r LEFT JOIN RATING_CORSO AS rc ON (r.Codice = rc.Codice) LEFT JOIN RATING_DOCENTE AS rd ON (r.Codice = rd.Codice)
+            WHERE r.Codice = ?
+            "
+        );
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function removeReportedReview($id, $student) {
+        $stmt = $this->db->prepare(
+            "DELETE 
+            FROM RATING 
+            WHERE Codice = ?"
+        );
+        $stmt->bind_param("s", $id);
+        $state= $stmt->execute();
+        if (!$state) {
+            return false;
+        }
+        $stmt = $this->db->prepare(
+            "UPDATE STUDENTE 
+            SET Numero_Segnalazioni = Numero_Segnalazioni + 1
+            WHERE Utente = ?"
+        );
+        $stmt->bind_param("s", $student);
+        $state = $stmt->execute();
+        return $state;
+    } 
+
+    public function annulReport($id) {
+        $stmt = $this->db->prepare(
+            "UPDATE REVIEW
+            SET Segnalazione = false
+            WHERE Codice_Rating = ?"
+        );
+        $stmt->bind_param("s", $id);
+        $state = $stmt->execute();
+        return $state;
+    }
+
+    public function getStudentNumberReports($student) {
+        $stmt = $this->db->prepare(
+            "SELECT Numero_Segnalazioni AS numReports
+            FROM STUDENTE
+            WHERE Utente = ?
+            "
+        );
+        $stmt->bind_param("s", $student);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function addReportToAReview($id) {
+        $stmt = $this->db->prepare(
+            "UPDATE REVIEW
+            SET Segnalazione = true
+            WHERE Codice_Rating = ?
+            "
+        );
+        $stmt->bind_param("s", $id);
+        $state = $stmt->execute();
+        return $state;
     }
 }
 
