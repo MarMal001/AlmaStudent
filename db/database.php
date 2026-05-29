@@ -34,6 +34,21 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getProfessors() {
+        $stmt = $this->db->prepare(
+            "SELECT d.Utente AS professor, p.Nome AS name, p.Cognome AS surname, AVG(r.Rating_Disponibilita) AS ratingD, AVG(r.Rating_Comprensibilita_Lezioni) AS ratingC, AVG(r.Rating_Interesse_Suscitato) AS ratingI
+            FROM PERSONA AS p JOIN DOCENTE AS d ON p.Utente = d.Utente
+            JOIN Tenere AS t ON t.Docente = d.Utente
+            JOIN CORSO AS c ON c.Codice = t.Codice_Corso
+            LEFT JOIN RATING_DOCENTE AS r ON (r.Docente = d.Utente)
+            GROUP BY d.utente"
+        );
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getDegreeByCode($degreeCode) {
         $stmt = $this->db->prepare(
             "SELECT Codice AS code, Nome as name, Numero_Anni AS nYears, Campus AS campus
