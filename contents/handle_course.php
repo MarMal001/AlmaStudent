@@ -44,7 +44,7 @@
                         </label>
                     </li>
                     <li class="mt-2">
-                        <select name="year" id="year">
+                        <select name="year" id="year" class="mt-3 ms-2 me-3">
                             <?php for ($i = 0; $i < $selectedDegree["nYears"]; $i++): ?>
                                 <option value="<?php echo $i + 1; ?>"><?php echo $i + 1; ?></option>
                             <?php endfor; ?>
@@ -56,7 +56,7 @@
                         </label>
                     </li>
                     <li class="mt-2">
-                        <select name="semester" id="semester">
+                        <select name="semester" id="semester" class="mt-3 ms-2">
                             <option value="1">1</option>
                             <option value="2">2</option>
                         </select>

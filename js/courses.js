@@ -76,9 +76,9 @@ function generateUpdateCoursesForm(course, degreeYears) {
                 </label>
             </li>
             <li class="mt-2">
-                <select name="year" id="year">`;
+                <select name="year" id="year" class="mt-3 ms-2 me-3">`;
     for (let year = 1; year <= degreeYears; year++) {
-        content += `<option value="${year}" ${course["year"] == year ? "selected" : "" }>${year}</option>`;
+        content += `<option value="${year}" ${course["year"] == year ? "selected" : ""}>${year}</option>`;
     }
     content += `</select>
             </li>
@@ -88,9 +88,9 @@ function generateUpdateCoursesForm(course, degreeYears) {
                 </label>
             </li>
             <li class="mt-2">
-                <select name="semester" id="semester">
-                    <option value="1" ${course["semester"] == "1" ? "selected" : "" }>1</option>
-                    <option value="2" ${course["semester"] == "2" ? "selected" : "" }>2</option>
+                <select name="semester" id="semester" class="mt-3 ms-2">
+                    <option value="1" ${course["semester"] == "1" ? "selected" : ""}>1</option>
+                    <option value="2" ${course["semester"] == "2" ? "selected" : ""}>2</option>
                 </select>
             </li> 
         </div>

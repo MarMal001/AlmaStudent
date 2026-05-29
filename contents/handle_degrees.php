@@ -24,7 +24,7 @@
                         </label>
                     </li>
                     <li class="mt-2">
-                        <select name="years" id="years">
+                        <select name="years" id="years" class="mt-3 ms-2">
                             <?php for ($i = 1; $i <= 6; $i++): ?>
                                 <option value="<?php echo $i; ?>"><?php echo $i ?></option>
                             <?php endfor; ?>
@@ -38,7 +38,7 @@
                         </label>
                     </li>
                     <li class="mt-2">
-                        <select name="department" id="deparment">
+                        <select name="department" id="deparment" class="mt-3 ms-2">
                             <option value="DISI">DISI</option>
                             <option value="DEI">DEI</option>
                             <option value="DIMEC">DIMEC</option>
@@ -52,7 +52,7 @@
                         </label>
                     </li>
                     <li class="mt-2">
-                        <select name="branch" id="branch">
+                        <select name="branch" id="branch" class="mt-3 ms-2 me-3">
                             <option value="Bologna">Bologna</option>
                             <option value="Cesena">Cesena</option>
                             <option value="Forli">Forli</option>
@@ -68,7 +68,7 @@
                     <input type="text" id="code" name="code" />
                 </li>
                 <li>
-                    <button type="submit" class="btn btn-primary" name="action" value="<?php echo ADMIN_ADD_DEGREE; ?>">Crea</button>
+                    <button type="submit" class="btn btn-primary mt-3" name="action" value="<?php echo ADMIN_ADD_DEGREE; ?>">Crea</button>
                 </li>
             </ul>
         </form>
@@ -82,6 +82,6 @@
                 <option value="<?php echo $degree["code"]; ?>"><?php echo $degree["code"] . " - " . $degree["name"] . " - " . $degree["campus"]; ?></option>
             <?php endforeach; ?>
         </select>
-        <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="formUpdate"></form>
+        <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="formUpdate" class="mt-3"></form>
     </section>
 </main>
