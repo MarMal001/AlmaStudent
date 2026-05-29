@@ -6,10 +6,12 @@ if (!isset($_GET["type"])) {
 }
 
 $templateParams["title"] = "Create account";
+$templateParams["js"] = array("js/degrees.js");
 
 if ($_GET["type"] == "handleAccount") {
     $templateParams["content"] = "handle_account.php";
 } else if ($_GET["type"] == "handleCourse") {
+    array_push($templateParams["js"], "js/courses.js");
     $templateParams["degrees"] = $dbh->getDegrees();
     $templateParams["content"] = "handle_course.php";
 } else if ($_GET["type"] == "handleDegrees") {
@@ -18,7 +20,6 @@ if ($_GET["type"] == "handleAccount") {
 }
 
 $templateParams["style"] = ["style.css"];
-$templateParams["js"] = array("js/degrees.js");
 
 if (isset($_GET["message"])) {
     $templateParams["message"] = $_GET["message"];

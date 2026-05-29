@@ -1,3 +1,6 @@
+const ADMIN_MODIFY_COURSE = 3;
+const ADMIN_DELETE_COURSE = 6;
+
 function generateCourses(user, courses, degreeYears, isStudent) {
     let content = "";
     for (let year = 1; year <= degreeYears; year++) {
@@ -37,6 +40,78 @@ function generateCourses(user, courses, degreeYears, isStudent) {
     return content;
 }
 
+function generateUpdateCoursesDropdown(courses, degreeYears) {
+    let content = `<li>
+            <label for="code">
+                <h5>Corso</h5>
+            </label>
+        </li>
+        <li>
+            <select name="code" id="updateCourseCode" onchange="getUpdateCoursesForm()">
+                <option value="" disabled selected hidden>-- Seleziona --</option>`;
+    for (let year = 1; year <= degreeYears; year++) {
+        for (const course of courses[year]) {
+            content += `<option value="${course["code"]}">${course["code"]} - ${course["name"]}</option>`;
+        }
+    }
+    content += `</select>
+        </li>
+        <div id="updateCoursesForm"></div>`;
+    return content;
+}
+
+function generateUpdateCoursesForm(course, degreeYears) {
+    let content = `<li>
+            <label for="name" class="text-left">
+                <h5>Nome</h5>
+            </label>
+        </li>
+        <li>
+            <input type="text" id="name" name="name" value="${course["name"]}" />
+        </li>
+        <div class="d-flex align-content-stretch">
+            <li class="mt-2">
+                <label for="year" class="text-left">
+                    <h5>Anno</h5>
+                </label>
+            </li>
+            <li class="mt-2">
+                <select name="year" id="year">`;
+    for (let year = 1; year <= degreeYears; year++) {
+        content += `<option value="${year}" ${course["year"] == year ? "selected" : "" }>${year}</option>`;
+    }
+    content += `</select>
+            </li>
+            <li class="mt-2">
+                <label for="semester" class="text-left">
+                    <h5>Semestre</h5>
+                </label>
+            </li>
+            <li class="mt-2">
+                <select name="semester" id="semester">
+                    <option value="1" ${course["semester"] == "1" ? "selected" : "" }>1</option>
+                    <option value="2" ${course["semester"] == "2" ? "selected" : "" }>2</option>
+                </select>
+            </li> 
+        </div>
+        <li>
+            <label for="professors">
+                <h5>Docenti</h5>
+            </label>
+        </li>
+        <li>
+            <select name="profesors" id="professors">`;
+    for (const professor of course["professors"]) {
+        content += `<option value="${professor["code"]}">${professor["name"]} ${professor["surname"]}</option>`;
+    }
+    content += `</select>
+        </li>
+        <li>
+            <button type="submit" class="btn btn-primary mt-3" name="action" value="${ADMIN_MODIFY_COURSE}">Modifica corso</button>
+        </li>`;
+    return content;
+}
+
 async function getCoursesData() {
     const url = "api-degrees.php";
     const formData = new FormData();
@@ -58,6 +133,60 @@ async function getCoursesData() {
         console.log(json);
         const section = document.querySelector("#courses");
         section.innerHTML = generateCourses(json["user"], json["courses"], json["degreeYears"], json["isStudent"]);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+async function getUpdateCoursesDropdown() {
+    const url = "api-degrees.php";
+    const formData = new FormData();
+    let degreeCode = document.querySelector("#updateDegreeCode").value;
+    if (degreeCode == "") {
+        return;
+    }
+    formData.append("degreeCode", degreeCode);
+    formData.append("type", "courses");
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            body: formData
+        });
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        const json = await response.json();
+        console.log(json);
+        const section = document.querySelector("#coursesDropdown");
+        section.innerHTML = generateUpdateCoursesDropdown(json["courses"], json["degreeYears"]);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+async function getUpdateCoursesForm() {
+    const url = "api-degrees.php";
+    const formData = new FormData();
+    let degreeCode = document.querySelector("#updateDegreeCode").value;
+    let courseCode = document.querySelector("#updateCourseCode").value;
+    if (degreeCode == "" || courseCode == "") {
+        return;
+    }
+    formData.append("degreeCode", degreeCode);
+    formData.append("type", "courses");
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            body: formData
+        });
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        const json = await response.json();
+        console.log(json);
+        const section = document.querySelector("#updateCoursesForm");
+        course = Object.values(json["courses"]).flat().find(item => item["code"] == courseCode);
+        section.innerHTML = generateUpdateCoursesForm(course, json["degreeYears"]);
     } catch (error) {
         console.log(error.message);
     }

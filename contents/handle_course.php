@@ -101,14 +101,15 @@
                     </label>
                 </li>
                 <li>
-                   <select name="degree">
+                   <select name="degree" id="updateDegreeCode" onchange="getUpdateCoursesDropdown()">
                         <option value="" disabled selected hidden>-- Seleziona --</option>
                         <?php foreach ($templateParams["degrees"] as $degree): ?>
-                            <option value="<?php echo $degree["name"]; ?>"><?php echo $degree["code"] . " - " . $degree["name"] . " - " . $degree["campus"]; ?></option>
+                            <option value="<?php echo $degree["code"]; ?>"><?php echo $degree["code"] . " - " . $degree["name"] . " - " . $degree["campus"]; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </li>
-                <?php if ($selectedDegree != ""): ?>
+                <div id="coursesDropdown"></div>
+                <?php /* if ($selectedDegree != ""): ?>
                     <li>
                         <label for="code">
                             <h5>Corso</h5>
@@ -182,7 +183,7 @@
                             <button type="submit" class="btn btn-primary mt-3" name="action" value="<?php echo ADMIN_MODIFY_COURSE; ?>">Modifica corso</button>
                         </li>
                     <?php endif; ?>
-                <?php endif; ?>
+                <?php endif; */ ?>
             </ul>
             <input type="hidden" name="degreeCode" value="<?php echo $selectedDegree["code"]; ?>" />
         </form>
