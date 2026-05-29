@@ -13,7 +13,7 @@
             <div class="container-fluid w-auto w-lg-55 m-2 p-0">
                 <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
                     <div class="d-md-inline-flex align-items-md-center p-0">
-                        <p class="m-0 p-2 text-start"><?php echo $course["name"]; ?></p>
+                        <p class="m-0 p-2 text-start"><?php echo $course["code"] . " " . $course["name"] . ": " . $course["degreeName"] . " - " . $course["campus"]; ?></p>
                         <div>
                             <?php createStars(getMeanRating([$course["ratingL"], $course["ratingM"], $course["ratingE"], $course["ratingD"]]), "rgb(30, 48, 80)"); ?>
                         </div>

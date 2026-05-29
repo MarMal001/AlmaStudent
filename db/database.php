@@ -22,8 +22,10 @@ class DatabaseHelper{
     public function getCourses() {
         $year = date('Y');    
         $stmt = $this->db->prepare(
-            "SELECT c.Codice AS code, c.Nome AS name, c.Anno AS year, c.Semestre AS semester, Descrizione_Breve AS shortDescription, r.Rating_Lezioni AS ratingL, r.Rating_Materiale AS ratingM, r.Rating_Esame AS ratingE, r.Rating_Disponibilita_Docenti AS ratingD
-            FROM CORSO AS c LEFT JOIN RATING_GENERALE AS r ON r.Anno = ? AND c.Codice = r.Codice_Corso"
+            "SELECT c.Codice AS code, c.Nome AS name, c.Anno AS year, c.Semestre AS semester, f.Nome as degreeName, f.Campus as campus, Descrizione_Breve AS shortDescription, r.Rating_Lezioni AS ratingL, r.Rating_Materiale AS ratingM, r.Rating_Esame AS ratingE, r.Rating_Disponibilita_Docenti AS ratingD
+            FROM CORSO AS c
+            LEFT JOIN RATING_GENERALE AS r ON r.Anno = ? AND c.Codice = r.Codice_Corso
+            LEFT JOIN FACOLTA AS f ON c.Codice_Facolta = f.Codice"
         );
         $stmt->bind_param('s', $year);
         $stmt->execute();
