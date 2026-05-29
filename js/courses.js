@@ -108,6 +108,9 @@ function generateUpdateCoursesForm(course, degreeYears) {
         </li>
         <li>
             <button type="submit" class="btn btn-primary mt-3" name="action" value="${ADMIN_MODIFY_COURSE}">Modifica corso</button>
+        </li>
+        <li>
+            <button type="submit" class="btn btn-danger mt-3" name="action" value="${ADMIN_DELETE_COURSE}">Elimina corso</button>
         </li>`;
     return content;
 }
