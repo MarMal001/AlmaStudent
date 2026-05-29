@@ -19,6 +19,19 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getCourses() {
+        $year = date('Y');    
+        $stmt = $this->db->prepare(
+            "SELECT c.Codice AS code, c.Nome AS name, c.Anno AS year, c.Semestre AS semester, Descrizione_Breve AS shortDescription, r.Rating_Lezioni AS ratingL, r.Rating_Materiale AS ratingM, r.Rating_Esame AS ratingE, r.Rating_Disponibilita_Docenti AS ratingD
+            FROM CORSO AS c LEFT JOIN RATING_GENERALE AS r ON r.Anno = ? AND c.Codice = r.Codice_Corso"
+        );
+        $stmt->bind_param('s', $year);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getDegreeByCode($degreeCode) {
         $stmt = $this->db->prepare(
             "SELECT Codice AS code, Nome as name, Numero_Anni AS nYears, Campus AS campus
