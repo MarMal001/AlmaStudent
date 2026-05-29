@@ -7,11 +7,11 @@ if (!isset($_GET["type"])) {
 
 $templateParams["title"] = "Create account";
 
-if ($_GET["type"] == "addAccount") {
-    $templateParams["content"] = "add_account.php";
-} else if ($_GET["type"] == "addCourse") {
+if ($_GET["type"] == "handleAccount") {
+    $templateParams["content"] = "handle_account.php";
+} else if ($_GET["type"] == "handleCourse") {
     $templateParams["degrees"] = $dbh->getDegrees();
-    $templateParams["content"] = "add_course.php";
+    $templateParams["content"] = "handle_course.php";
 } else if ($_GET["type"] == "handleDegrees") {
     $templateParams["degrees"] = $dbh->getDegrees();
     $templateParams["content"] = "handle_degrees.php";

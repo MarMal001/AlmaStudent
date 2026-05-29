@@ -8,9 +8,9 @@
 </section>
 <section>
     <a href="admin_modify.php?type=handleDegrees" class="btn btn-primary">Modifica le facoltà</a>
-    <a href="admin_modify.php?type=addCourse" class="btn btn-primary">Aggiungi corso</a>
-    <a href="admin_modify.php?type=addAccount&accountType=professor" class="btn btn-primary">Aggiungi account professore</a>
-    <a href="admin_modify.php?type=addAccount&accountType=admin" class="btn btn-primary">Aggiungi account admin</a>
+    <a href="admin_modify.php?type=handleCourse" class="btn btn-primary">Modifica corsi</a>
+    <a href="admin_modify.php?type=handleAccount&accountType=professor" class="btn btn-primary">Modifica account professori</a>
+    <a href="admin_modify.php?type=handleAccount&accountType=admin" class="btn btn-primary">Modifica account admins</a>
 </section>
 <section class="fw-bold">
     <h1>Segnalazioni da risolvere</h1>
