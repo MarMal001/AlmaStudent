@@ -52,3 +52,8 @@ function parseCourseYear(year) {
         default: return "Invalid";
     }
 }
+
+function toggleStatistics() {
+    const style = document.querySelector("#statistics").style;
+    style["display"] = style["display"] == "block" ? "none" : "block";
+}
