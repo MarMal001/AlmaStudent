@@ -14,7 +14,7 @@
             <i class="fa-solid fa-angle-up" onclick=toggleStatistics()></i>
             <i class="fa-solid fa-angle-left" onclick=toggleStatistics()></i>
         </div>
-        <div class="px-4 py-3 block" id="statistics">
+        <div class="px-4 py-3" style="display: block" id="statistics">
             <h3>Le statistiche</h3>
             <div class="d-flex flex-wrap gap-3">
                 <div class="card text-center my-3">
