@@ -1,3 +1,6 @@
+const ADMIN_MODIFY_ACCOUNT = 4;
+const ADMIN_DELETE_ACCOUNT = 7;
+
 function generateUpdateProfessorForm(professor) {
     let content = `<li>
             <label for="name" class="text-left">
@@ -40,10 +43,10 @@ function generateUpdateProfessorForm(professor) {
             <input type="text" id="infoReception" name="infoReception" value="${professor["infoReception"]}" />
         </li>
         <li>
-            <button type="submit" class="btn btn-primary mt-3" name="action" value="<?php echo ADMIN_UPDATE_ACCOUNT; ?>">Modifica account</button>
+            <button type="submit" class="btn btn-primary mt-3" name="action" value="${ADMIN_MODIFY_ACCOUNT}">Modifica account</button>
         </li>
         <li>
-            <button type="submit" class="btn btn-danger mt-3" name="action" value="<?php echo ADMIN_DELETE_ACCOUNT; ?>">Elimina account</button>
+            <button type="submit" class="btn btn-danger mt-3" name="action" value="${ADMIN_DELETE_ACCOUNT}">Elimina account</button>
         </li>`;
     return content;
 }
@@ -66,10 +69,10 @@ function generateUpdateAdminForm(admin) {
             <input type="text" id="surname" name="surname" value="${admin["surname"]}" />
         </li>
         <li>
-            <button type="submit" class="btn btn-primary mt-3" name="action" value="<?php echo ADMIN_UPDATE_ACCOUNT; ?>">Modifica account</button>
+            <button type="submit" class="btn btn-primary mt-3" name="action" value="${ADMIN_MODIFY_ACCOUNT}">Modifica account</button>
         </li>
         <li>
-            <button type="submit" class="btn btn-danger mt-3" name="action" value="<?php echo ADMIN_DELETE_ACCOUNT; ?>">Elimina account</button>
+            <button type="submit" class="btn btn-danger mt-3" name="action" value="${ADMIN_DELETE_ACCOUNT}">Elimina account</button>
         </li>`;
     return content;
 }

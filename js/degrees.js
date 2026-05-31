@@ -1,5 +1,5 @@
-const ADMIN_MODIFY_DEGREE = 4;
-const ADMIN_DELETE_DEGREE = 7;
+const ADMIN_MODIFY_DEGREE = 5;
+const ADMIN_DELETE_DEGREE = 8;
 
 function generateUpdateDegreesForm(degree) {
     let content = `<ul>
