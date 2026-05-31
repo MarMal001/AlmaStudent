@@ -11,7 +11,7 @@ define("ADMIN_ADD_COURSE", 0);
 define("ADMIN_ADD_ACCOUNT", 1);
 define("ADMIN_ADD_DEGREE", 2);
 define("ADMIN_MODIFY_COURSE", 3);
-define("ADMIN_MODIFY_ACCOUTN", 4);
+define("ADMIN_MODIFY_ACCOUNT", 4);
 define("ADMIN_MODIFY_DEGREE", 5);
 define("ADMIN_DELETE_COURSE", 6);
 define("ADMIN_DELETE_ACCOUNT", 7);
