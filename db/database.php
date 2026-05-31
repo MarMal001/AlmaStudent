@@ -38,8 +38,8 @@ class DatabaseHelper{
         $stmt = $this->db->prepare(
             "SELECT d.Utente AS professor, p.Nome AS name, p.Cognome AS surname, AVG(r.Rating_Disponibilita) AS ratingD, AVG(r.Rating_Comprensibilita_Lezioni) AS ratingC, AVG(r.Rating_Interesse_Suscitato) AS ratingI
             FROM PERSONA AS p JOIN DOCENTE AS d ON p.Utente = d.Utente
-            JOIN Tenere AS t ON t.Docente = d.Utente
-            JOIN CORSO AS c ON c.Codice = t.Codice_Corso
+            LEFT JOIN Tenere AS t ON t.Docente = d.Utente
+            LEFT JOIN CORSO AS c ON c.Codice = t.Codice_Corso
             LEFT JOIN RATING_DOCENTE AS r ON (r.Docente = d.Utente)
             GROUP BY d.utente"
         );
@@ -418,7 +418,7 @@ class DatabaseHelper{
             "INSERT INTO PERSONA values
             (?, ?, ?, ?, ?)"
         );
-        $stmt->bind_param("sssss", $username, $password, $name, $surname, $role);
+        $stmt->bind_param("sssss", $username, $password, $name, $surname, strtoupper($role));
         $success = $stmt->execute();
         try {
             if (strtolower($role) == "admin") {
@@ -585,6 +585,47 @@ class DatabaseHelper{
             (?, ?, ?, ?, ?)"
         );
         $stmt->bind_param("sssss", $code, $name, $department, $years, $branch);
+        return $stmt->execute();
+    }
+
+    public function deleteCourse($code) {
+        $stmt = $this->db->prepare(
+            "DELETE FROM CORSO WHERE Codice = ?"
+        );
+        $stmt->bind_param("s", $code);
+        return $stmt->execute();
+    }
+
+    public function deleteAccount($code, $type) {
+        $stmt = null;
+        if ($type == "admin") {
+            $stmt = $this->db->prepare(
+                "DELETE FROM ADMIN WHERE Utente = ?"
+            );
+        } else if ($type == "professor") {
+            $stmt = $this->db->prepare(
+                "DELETE FROM DOCENTE WHERE Utente = ?"
+            );
+        } else {
+            return false;
+        }
+
+        $stmt->bind_param("s", $code);
+        if (!$stmt->execute()) {
+            return false;
+        }
+        $stmt = $this->db->prepare(
+            "DELETE FROM PERSONA WHERE Utente = ?"
+        );
+        $stmt->bind_param("s", $code);
+        return $stmt->execute();
+    }
+
+    public function deleteDegree($code) {
+        $stmt = $this->db->prepare(
+            "DELETE FROM FACOLTA WHERE Codice = ?"
+        );
+        $stmt->bind_param("s", $code);
         return $stmt->execute();
     }
 

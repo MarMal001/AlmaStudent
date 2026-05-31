@@ -18,6 +18,20 @@ switch ($_POST["action"]) {
             $GLOBALS["message"] = "Parametri mancanti";
         }
         break;
+    // case ADMIN_MODIFY_ACCOUNT:
+    //     if (isset($_POST["username"]) && isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["type"])) {
+    //         update_account($_POST["username"]);
+    //     } else {
+    //         $GLOBALS["message"] = "Parametri mancanti";
+    //     }
+    //     break;
+    case ADMIN_DELETE_ACCOUNT:
+        if (isset($_POST["username"]) && isset($_POST["type"])) {
+            delete_account($_POST["username"], $_POST["type"]);
+        } else {
+            $GLOBALS["message"] = "Parametri mancanti";
+        }
+        break;
     case ADMIN_ADD_COURSE:
         if (isset($_POST["degreeCode"]) && isset($_POST["name"]) && isset($_POST["year"]) && isset($_POST["semester"]) && isset($_POST["professors"]) && isset($_POST["courseId"])) {
             add_course($_POST["degreeCode"], $_POST["name"], $_POST["year"], $_POST["semester"], $_POST["professors"], $_POST["courseId"]);
@@ -25,9 +39,37 @@ switch ($_POST["action"]) {
             $GLOBALS["message"] = "Parametri mancanti";
         }
         break;
+    // case ADMIN_MODIFY_COURSE:
+    //     if (isset($_POST["code"]) && isset($_POST["name"]) && isset($_POST["year"]) && isset($_POST["semester"]) && isset($_POST["professors"])) {
+    //         update_course($_POST["code"], $_POST["name"], $_POST["year"], $_POST["semester"], $_POST["professors"]);
+    //     } else {
+    //         $GLOBALS["message"] = "Parametri mancanti";
+    //     }
+    //     break;
+    case ADMIN_DELETE_COURSE:
+        if (isset($_POST["code"])) {
+            delete_course($_POST["code"]);
+        } else {
+            $GLOBALS["message"] = "Parametri mancanti";
+        }
+        break;
     case ADMIN_ADD_DEGREE:
         if (isset($_POST["code"]) && isset($_POST["name"]) && isset($_POST["years"]) && isset($_POST["department"]) && isset($_POST["branch"])) {
             add_degree($_POST["code"], $_POST["name"], $_POST["department"], $_POST["years"], $_POST["branch"]);
+        } else {
+            $GLOBALS["message"] = "Parametri mancanti";
+        }
+        break;
+    // case ADMIN_MODIFY_DEGREE:
+    //     if (isset($_POST["code"]) && isset($_POST["name"]) && isset($_POST["nYears"]) && isset($_POST["campus"])) {
+    //         update_degree($_POST["code"], $_POST["name"], $_POST["nYears"], $_POST["campus"]);
+    //     } else {
+    //         $GLOBALS["message"] = "Parametri mancanti";
+    //     }
+    //     break;
+    case ADMIN_DELETE_DEGREE:
+        if (isset($_POST["code"])) {
+            delete_degree($_POST["code"]);
         } else {
             $GLOBALS["message"] = "Parametri mancanti";
         }
@@ -63,6 +105,14 @@ function add_account($username, $password, $name, $surname, $type) {
     }
 }
 
+function delete_account($username, $type) {
+    if ($GLOBALS["dbh"]->deleteAccount($username, $type)) {
+        $GLOBALS["message"] = "Account eliminato con successo";
+    } else {
+        $GLOBALS["message"] = "Non è stato possibile eliminare l'account";
+    }
+}
+
 function add_course($degreeCode, $name, $year, $semester, $professors, $courseId) {
     if ($GLOBALS["dbh"]->addCourse($courseId, $name, $degreeCode, $year, $semester, $professors)) {
         $GLOBALS["message"] = "Corso aggiunto con successo";
@@ -71,11 +121,27 @@ function add_course($degreeCode, $name, $year, $semester, $professors, $courseId
     }
 }
 
+function delete_course($username) {
+    if ($GLOBALS["dbh"]->deleteCourse($username)) {
+        $GLOBALS["message"] = "Account eliminato con successo";
+    } else {
+        $GLOBALS["message"] = "Non è stato possibile eliminare l'account";
+    }
+}
+
 function add_degree($code, $name, $department, $years, $branch) {
     if ($GLOBALS["dbh"]->addDegree($code, $name, $department, $years, $branch)) {
         $GLOBALS["message"] = "Corso di laurea aggiunto con successo";
     } else {
         $GLOBALS["message"] = "Non è stato possibile aggiungere il corso di laurea";
+    }
+}
+
+function delete_degree($username) {
+    if ($GLOBALS["dbh"]->deleteDegree($username)) {
+        $GLOBALS["message"] = "Account eliminato con successo";
+    } else {
+        $GLOBALS["message"] = "Non è stato possibile eliminare l'account";
     }
 }
 
