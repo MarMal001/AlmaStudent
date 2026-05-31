@@ -49,6 +49,18 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getAdmins() {
+        $stmt = $this->db->prepare(
+            "SELECT a.Utente AS username, p.Nome AS name, p.Cognome AS surname
+            FROM PERSONA AS p, ADMIN AS a
+            WHERE p.Utente = a.Utente"
+        );
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getDegreeByCode($degreeCode) {
         $stmt = $this->db->prepare(
             "SELECT Codice AS code, Nome as name, Numero_Anni AS nYears, Campus AS campus
@@ -348,9 +360,10 @@ class DatabaseHelper{
 
     public function getProfessorInfo($professor) {
         $stmt = $this->db->prepare(
-            "SELECT d.Dipartimento AS department, d.Sede AS campus, d.Info_Ricevimento AS infoReception, d.Foto_Profilo AS photo
-            FROM DOCENTE AS d
-            WHERE d.Utente = ?"
+            "SELECT p.Nome AS name, p.Cognome AS surname, d.Dipartimento AS department, d.Sede AS campus, d.Info_Ricevimento AS infoReception, d.Foto_Profilo AS photo
+            FROM DOCENTE AS d, PERSONA AS p
+            WHERE d.Utente = ?
+            AND d.Utente = p.Utente"
         );
         $stmt->bind_param("s", $professor);
         $stmt->execute();

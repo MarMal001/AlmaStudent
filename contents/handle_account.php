@@ -93,7 +93,7 @@
 
     <section class="container-fluid w-auto m-2 p-0 my-4">
         <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
-            <p class="m-0 p-2">Elimina account <?php echo $_GET["accountType"] == "professor" ? "professore" : "admin"; ?></p>
+            <p class="m-0 p-2">Modifica account <?php echo $_GET["accountType"] == "professor" ? "professore" : "admin"; ?></p>
             <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
         </button>
         
@@ -105,11 +105,23 @@
                     </label>
                 </li>
                 <li>
-                    <input type="email" id="username" name="username" />
+                    <?php if ($_GET["accountType"] == "professor"): ?>
+                        <select id="updateProfessorCode" name="username" onchange="getUpdateProfessorForm()">
+                            <option value="">-- Seleziona --</option>
+                            <?php foreach ($dbh->getProfessors() as $professor): ?>
+                                <option value="<?php echo $professor["professor"]; ?>"><?php echo $professor["name"] . " " . $professor["surname"] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    <?php elseif($_GET["accountType"] == "admin"): ?>
+                        <select id="updateAdminCode" name="username" onchange="getUpdateAdminForm()">
+                            <option value="">-- Seleziona --</option>
+                            <?php foreach ($dbh->getAdmins() as $admin): ?>
+                                <option value="<?php echo $admin["username"]; ?>"><?php echo $admin["name"] . " " . $admin["surname"] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    <?php endif; ?>
                 </li>
-                <li>
-                    <button type="submit" class="btn btn-primary mt-3" name="action" value="<?php echo ADMIN_DELETE_ACCOUNT; ?>">Elimina account</button>
-                </li>
+                <div id="<?php echo $_GET["accountType"] == "professor" ? "updateProfessorForm" : "updateAdminForm"; ?>"></div>
             </ul>
             <input type="hidden" name="type" value="<?php echo $_GET["accountType"]; ?>" />
         </form>

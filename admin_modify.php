@@ -9,6 +9,7 @@ $templateParams["title"] = "Create account";
 $templateParams["js"] = array("js/degrees.js");
 
 if ($_GET["type"] == "handleAccount") {
+    array_push($templateParams["js"], "js/accounts.js");
     $templateParams["content"] = "handle_account.php";
 } else if ($_GET["type"] == "handleCourse") {
     array_push($templateParams["js"], "js/courses.js");
