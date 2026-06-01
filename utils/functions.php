@@ -47,13 +47,24 @@
         return $mean;
     }
 
-    function subscriptionButton($student, $courseCode) {
+    function subscriptionButton($student, $courseCode, $professor = NULL) {
         $subscribed = $GLOBALS["dbh"]->checkIfSubscribedToACourse($student, $courseCode);
-        if ($subscribed[0]["subscribed"]){
-            echo "<a href='unsubscribe.php?course=" . $courseCode . "' class='btn btn-white border-primary ms-1'>Discriviti</a>";
+        $page = explode ("/", $_SERVER['SCRIPT_NAME'])[2];
+        if ($page == "professor.php") {
+            $professor = explode ("@", $professor)[0];
+            if ($subscribed[0]["subscribed"]){
+                echo "<a href='subscription.php?action=remove&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-white border-primary ms-1 mt-2'>Discriviti</a>";
+            } else {
+                echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-primary ms-1 mt-2'>Iscriviti</a>";
+            }
         } else {
-            echo "<a href='subscribe.php?course=" . $courseCode . "' class='btn btn-primary ms-1'>Iscriviti</a>";
+            if ($subscribed[0]["subscribed"]){
+                echo "<a href='subscription.php?action=remove&course=" . $courseCode . "&page=" . $page ."' class='btn btn-white border-primary ms-1 mt-2'>Discriviti</a>";
+            } else {
+                echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page ."' class='btn btn-primary ms-1 mt-2'>Iscriviti</a>";
+            }
         }
+        
     }
 
     function isUserLoggedIn() {
