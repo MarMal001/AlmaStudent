@@ -17,6 +17,8 @@ if ($_GET["page"] == "index.php") {
     header("location: index.php");
 } elseif ($_GET["page"] == "professor.php") {
     header("location: professor.php?professor=" . $_GET["professor"]);
-} else {
+} elseif ($_GET["page"] == "courses.php") {
+    header("location: courses.php");
+}else {
     header("location: course.php?course=" . $_GET["course"]);
 }
