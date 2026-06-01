@@ -5,19 +5,11 @@ $templateParams["title"] = "Rating";
 $templateParams["content"] = "rating_content.php";
 $templateParams["style"] = ["style.css"];
 
-if(!isStudent() || !isset($_GET["type"])) {
+if(!isStudent()) {
     header("location: index.php");
 } else {
         $dbh = $GLOBALS["dbh"];
-        $templateParams["type"] = $_GET["type"];
-        if (isset($_GET["professor"]) && $dbh->professorExists($_GET["professor"] . "@unibo.it")) {
-            $professor = $_GET["professor"] . "@unibo.it";
-            if ($dbh->canRateProfessor($user, $professor)[0]["existence"]) {
-                $templateParams["professor"] = $professor;
-            } else {
-                header("location: professor.php?professor=" . $_GET["professor"]);
-            } 
-        } elseif (isset($_GET["course"]) && $dbh->courseExists($_GET["course"])) {
+        if (isset($_GET["course"]) && $dbh->courseExists($_GET["course"])) {
             if ($dbh->canRateCourse($user, $_GET["course"])[0]["existence"]) {
                 $templateParams["course"] = $_GET["course"];
             } elseif ($dbh->courseExists($_GET["course"])) {

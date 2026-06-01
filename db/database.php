@@ -464,7 +464,7 @@ class DatabaseHelper{
 
     public function getReviewsByProfessor($professor) {
         $stmt = $this->db->prepare(
-            "SELECT r.Codice AS id, r.Data AS date, rd.Studente AS student, rv.Testo AS text, rv.Segnalazione AS reported
+            "SELECT r.Codice AS id, r.Data AS date, rd.Studente AS student, rd.Corso AS course, rv.Testo AS text, rv.Segnalazione AS reported
             FROM RATING AS r, RATING_DOCENTE AS rd, REVIEW AS rv
             WHERE r.Codice = rd.Codice
             AND rv.Codice_Rating = r.Codice
@@ -895,6 +895,22 @@ class DatabaseHelper{
             "
         );
         $stmt->bind_param("s", $course);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["existence"];
+    }
+
+    public function courseIsAlreadyRated($student, $course) {
+        $stmt = $this->db->prepare(
+            "SELECT EXISTS (
+                SELECT 1
+                FROM RATING_CORSO AS rc
+                WHERE rc.Studente = ?
+                AND rc.Corso = ?
+            ) AS existence
+            "
+        );
+        $stmt->bind_param("ss", $student, $course);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC)[0]["existence"];

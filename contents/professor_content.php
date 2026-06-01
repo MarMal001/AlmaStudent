@@ -25,7 +25,7 @@
             </div>
         </div>
         <?php $profInfo = $dbh->getProfessorInfo($professorId)[0]; ?>
-        <div class="card mb-3 bg-primary border-0 text-white" style="max-width: 600px;">
+        <div class="card mt-2 mb-3 bg-primary border-0 text-white" style="max-width: 600px;">
         <div class="row g-0">
                 
             <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
@@ -131,17 +131,10 @@
                 <?php foreach ($reviews as $review): ?>
                     <?php 
                         $page = explode("/", $_SERVER['REQUEST_URI']);
-                        generateProfessorReview($page[2], $review["id"], $review["student"], $review["date"], $review["text"], $review["reported"], $professorId); ?>
+                        generateProfessorReview($page[2], $review["id"], $review["student"], $review["date"], $review["text"], $review["reported"], $professorId, $review["course"]); ?>
                 <?php endforeach; ?>
             </div>
         </div>
-        <?php if (isStudent()): ?>
-            <div class="d-flex justify-content-end mb-5 me-2">
-                <a class="btn btn-primary 
-                <?php if (!$dbh->canRateProfessor($user, $professorId)[0]["existence"]) {
-                    echo "disabled";
-                } ; ?>" href="rating.php?type=professor&professor=<?php echo explode("@", $professorId)[0]; ?>">Recensisci</a>
-            </div>
-        <?php endif; ?>
+        
     </section>
 </main>
