@@ -851,6 +851,36 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function professorExists($professor) {
+        $stmt = $this->db->prepare(
+            "SELECT EXISTS (
+                SELECT 1
+                FROM DOCENTE AS d
+                WHERE d.Utente = ?
+            ) AS existence
+            "
+        );
+        $stmt->bind_param("s", $professor);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["existence"];
+    }
+
+    public function courseExists($course) {
+        $stmt = $this->db->prepare(
+            "SELECT EXISTS (
+                SELECT 1
+                FROM CORSO AS c
+                WHERE c.Codice = ?
+            ) AS existence
+            "
+        );
+        $stmt->bind_param("s", $course);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["existence"];
+    }
 }
 
 ?>
