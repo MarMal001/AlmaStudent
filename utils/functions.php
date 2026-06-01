@@ -142,7 +142,7 @@
         echo '</div>';
     }
 
-    function generateProfessorReview($url, $id, $studentId, $date, $text, $reported, $professor) {
+    function generateProfessorReview($url, $id, $studentId, $date, $text, $reported, $professor, $course) {
         $place = "start";
         $color = "rgb(30, 48, 80)";
         $ratings = $GLOBALS["dbh"]->getProfessorRatingbyStudent($professor, $studentId)[0];
@@ -182,6 +182,8 @@
                 </div>';
         }
         echo '</div>';
+        $courseName = $GLOBALS["dbh"]->getCourseInfo($course)[0]["name"];
+        echo '<h6 class="fw-bold ms-2 mt-2">' . $courseName . '</h6>';
         echo '<p>' . $text . '</p>';
         echo '</div>';
     }
