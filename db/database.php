@@ -509,7 +509,7 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function updateCourse($course, $description, $shortDescription, $material) {
+    public function updateCourseProfessor($course, $description, $shortDescription, $material) {
         $stmt = $this->db->prepare(
             "UPDATE CORSO
             SET Descrizione = ?, Descrizione_Breve = ?, Materiale = ?
@@ -559,26 +559,13 @@ class DatabaseHelper{
 
     }
 
-    public function addCourse($code, $name, $degreeCode, $year, $semester, $professors) {
+    public function addCourse($code, $name, $degreeCode, $year, $semester) {
         $stmt = $this->db->prepare(
-            "INSERT INTO CORSO (Codice, Nome, Anno, Semestre, Codice_Facolta) values
-            (?, ?, ?, ?, ?)"
+            "INSERT INTO CORSO values
+            (?, ?, ?, ?, ?, '', '', '')"
         );
-        $stmt->bind_param("sssss", $code, $name, $degreeCode, $year, $semester);
-        if (!$stmt->execute()) {
-            return false;
-        }
-        foreach ($professors as $professor) {
-            $stmt = $this->db->prepare(
-                "INSERT INTO Tenere values
-                (?, ?)"
-            );
-            $stmt->bind_param("ss", $professor, $code);
-            if (!$stmt->execute()) {
-                return false;
-            }
-        }
-        return true;
+        $stmt->bind_param("sssss", $code, $name, $year, $semester, $degreeCode);
+        return $stmt->execute();
     }
 
     public function addDegree($code, $name, $department, $years, $branch) {
@@ -605,18 +592,49 @@ class DatabaseHelper{
             if ($profilePicture == NULL) {
                 $stmt = $this->db->prepare(
                     "UPDATE DOCENTE
-                    SET Dipartimento = ?, Sede = ?, Info_Ricevimento = ?"
+                    SET Dipartimento = ?, Sede = ?, Info_Ricevimento = ?
+                    WHERE Utente = ?"
                 );
-                $stmt->bind_param("sss", $department, $seat, $infoReception);
+                $stmt->bind_param("ssss", $department, $seat, $infoReception, $username);
             } else {
                 $stmt = $this->db->prepare(
                     "UPDATE DOCENTE
-                    SET Dipartimento = ?, Sede = ?, Info_Ricevimento = ?, Foto_Profilo = ?"
+                    SET Dipartimento = ?, Sede = ?, Info_Ricevimento = ?, Foto_Profilo = ?
+                    WHERE Utente = ?"
                 );
-                $stmt->bind_param("ssss", $department, $seat, $infoReception, $profilePicture);
+                $stmt->bind_param("sssss", $department, $seat, $infoReception, $profilePicture, $username);
             }
             $success = $stmt->execute();
         }
+        return $success;
+    }
+
+    public function updateCourse($code, $name, $year, $semester, $professorToAdd, $professorToRemove) {
+        $stmt = $this->db->prepare(
+            "UPDATE CORSO
+            SET Nome = ?, Anno = ?, Semestre = ?
+            WHERE Codice = ?"
+        );
+        $success = $stmt->bind_param("ssss", $name, $year, $semester, $code);
+        if (!$success) {
+            return false;
+        }
+        if ($professorToAdd != "") {
+            $stmt = $this->db->prepare(
+                "INSERT INTO Tenere values
+                (?, ?)"
+            );
+            $stmt->bind_param("ss", $professorToAdd, $code);
+            $success = $stmt->execute();
+        }
+        if ($professorToRemove != "") {
+            $stmt = $this->db->prepare(
+                "DELETE FROM Tenere WHERE Docente = ? AND Codice_Corso = ?"
+            );
+            $stmt->bind_param("ss", $professorToRemove, $code);
+            $success = $stmt->execute();
+        }
+
         return $success;
     }
 

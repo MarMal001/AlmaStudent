@@ -5,9 +5,6 @@
         </section>
     <?php endif; ?>
 
-    <?php $selectedDegree = $templateParams["degrees"][0]; ?> <!-- TODO: fare in modo che si possa ottenere il corrente con js -->
-    <?php $selectedCourse["code"] = "00013"; ?>
-
     <section class="container-fluid w-auto m-2 p-0 my-4">
         <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
             <p class="m-0 p-2">Aggiungi corso</p>
@@ -31,7 +28,6 @@
                 </li>
                 <div id="addCourse"></div>
             </ul>
-            <input type="hidden" name="degreeCode" value="<?php echo $selectedDegree["code"]; ?>" />
         </form>
     </section>
         
@@ -58,7 +54,6 @@
                 </li>
                 <div id="coursesDropdown"></div>
             </ul>
-            <input type="hidden" name="degreeCode" value="<?php echo $selectedDegree["code"]; ?>" />
         </form>
     </section>
 </main>

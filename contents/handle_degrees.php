@@ -83,15 +83,21 @@
             <p class="m-0 p-2">Modifica corso di laurea</p>
             <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
         </button>
-        <div id="c2" class="collapse p-3 w-100 border border-primary border-2 rounded">
-            <label for="courses">Seleziona corso di laurea</label>
-            <select name="courses" id="degreeCode" onchange="getUpdateDegreesForm()">
-                <option value="" disabled selected hidden>-- Seleziona --</option>
-                <?php foreach ($templateParams["degrees"] as $degree): ?>
-                    <option value="<?php echo $degree["code"]; ?>"><?php echo $degree["code"] . " - " . $degree["name"] . " - " . $degree["campus"]; ?></option>
-                <?php endforeach; ?>
-            </select>
-            <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="formUpdate" class="mt-3"></form>
-        </div>
+        <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c2" class="collapse p-3 w-100 border border-primary border-2 rounded">
+            <ul>
+                <li>
+                    <label for="code">Seleziona corso di laurea</label>
+                </li>
+                <li>
+                    <select name="code" id="degreeCode" onchange="getUpdateDegreesForm()">
+                        <option value="" disabled selected hidden>-- Seleziona --</option>
+                        <?php foreach ($templateParams["degrees"] as $degree): ?>
+                            <option value="<?php echo $degree["code"]; ?>"><?php echo $degree["code"] . " - " . $degree["name"] . " - " . $degree["campus"]; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </li>
+                <div id="formUpdate"></div>
+            </ul>
+        </form>
     </section>
 </main>

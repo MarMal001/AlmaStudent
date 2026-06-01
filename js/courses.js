@@ -145,30 +145,30 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
         </div>
         <div>
             <li>
-                <label for="addProfessors">
+                <label for="addProfessor">
                     <h5>Aggiungi docente al corso</h5>
                 </label>
             </li>
             <li>
-                <select name="addProfesors" id="addProfessors">
+                <select name="addProfessor" id="addProfessor">
                     <option value="" selected>Nessuno</option>`;
         for (const professor of professors) {
-            content += `<option value="${professor["code"]}">${professor["name"]} ${professor["surname"]}</option>`;
+            content += `<option value="${professor["professor"]}">${professor["name"]} ${professor["surname"]}</option>`;
         }
         content += `</select>
             </li>
         </div>
         <div>
             <li>
-                <label for="removeProfessors">
+                <label for="removeProfessor">
                     <h5>Rimuovi docente dal corso</h5>
                 </label>
             </li>
             <li>
-                <select name="removeProfesors" id="removeProfessors">
+                <select name="removeProfessor" id="removeProfessor">
                     <option value="" selected>Nessuno</option>`;
         for (const professor of course["professors"]) {
-            content += `<option value="${professor["code"]}">${professor["name"]} ${professor["surname"]}</option>`;
+            content += `<option value="${professor["professor"]}">${professor["name"]} ${professor["surname"]}</option>`;
         }
         content += `</select>
             </li>
