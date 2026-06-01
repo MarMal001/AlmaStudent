@@ -43,13 +43,13 @@ switch ($_POST["action"]) {
             $GLOBALS["message"] = "Parametri mancanti";
         }
         break;
-    // case ADMIN_MODIFY_COURSE:
-    //     if (isset($_POST["code"]) && isset($_POST["name"]) && isset($_POST["year"]) && isset($_POST["semester"]) && isset($_POST["professors"])) {
-    //         update_course($_POST["code"], $_POST["name"], $_POST["year"], $_POST["semester"], $_POST["professors"]);
-    //     } else {
-    //         $GLOBALS["message"] = "Parametri mancanti";
-    //     }
-    //     break;
+    case ADMIN_MODIFY_COURSE:
+        if (isset($_POST["code"]) && isset($_POST["name"]) && isset($_POST["year"]) && isset($_POST["semester"]) && isset($_POST["addProfessor"]) && isset($_POST["removeProfessor"])) {
+            update_course($_POST["code"], $_POST["name"], $_POST["year"], $_POST["semester"], $_POST["addProfessor"], $_POST["removeProfessor"]);
+        } else {
+            $GLOBALS["message"] = "Parametri mancanti";
+        }
+        break;
     case ADMIN_DELETE_COURSE:
         if (isset($_POST["code"])) {
             delete_course($_POST["code"]);
@@ -129,6 +129,14 @@ function add_course($degreeCode, $name, $year, $semester, $courseId) {
         $GLOBALS["message"] = "Corso aggiunto con successo";
     } else {
         $GLOBALS["message"] = "Non è stato possibile aggiungere il corso";
+    }
+}
+
+function update_course($code, $name, $year, $semester, $professorToAdd, $professorToRemove) {
+    if ($GLOBALS["dbh"]->updateCourse($code, $name, $year, $semester, $professorToAdd, $professorToRemove)) {
+        $GLOBALS["message"] = "Corso modificato con successo";
+    } else {
+        $GLOBALS["message"] = "Non è stato possibile modificare il corso";
     }
 }
 
