@@ -60,7 +60,7 @@ function generateUpdateCoursesDropdown(courses, degreeYears) {
     return content;
 }
 
-function generateUpdateCoursesForm(course, degreeYears) {
+function generateUpdateCoursesForm(course, degreeYears, professors) {
     let content = `<li>
             <label for="name" class="text-left">
                 <h5>Nome</h5>
@@ -94,18 +94,36 @@ function generateUpdateCoursesForm(course, degreeYears) {
                 </select>
             </li> 
         </div>
-        <li>
-            <label for="professors">
-                <h5>Docenti</h5>
-            </label>
-        </li>
-        <li>
-            <select name="profesors" id="professors">`;
-    for (const professor of course["professors"]) {
-        content += `<option value="${professor["code"]}">${professor["name"]} ${professor["surname"]}</option>`;
-    }
-    content += `</select>
-        </li>
+        <div>
+            <li>
+                <label for="addProfessors">
+                    <h5>Aggiungi docente al corso</h5>
+                </label>
+            </li>
+            <li>
+                <select name="addProfesors" id="addProfessors">
+                    <option value="" selected>Nessuno</option>`;
+        for (const professor of professors) {
+            content += `<option value="${professor["code"]}">${professor["name"]} ${professor["surname"]}</option>`;
+        }
+        content += `</select>
+            </li>
+        </div>
+        <div>
+            <li>
+                <label for="removeProfessors">
+                    <h5>Rimuovi docente dal corso</h5>
+                </label>
+            </li>
+            <li>
+                <select name="removeProfesors" id="removeProfessors">
+                    <option value="" selected>Nessuno</option>`;
+        for (const professor of course["professors"]) {
+            content += `<option value="${professor["code"]}">${professor["name"]} ${professor["surname"]}</option>`;
+        }
+        content += `</select>
+            </li>
+        </div>
         <li>
             <button type="submit" class="btn btn-primary mt-3" name="action" value="${ADMIN_MODIFY_COURSE}">Modifica corso</button>
         </li>
@@ -189,7 +207,7 @@ async function getUpdateCoursesForm() {
         console.log(json);
         const section = document.querySelector("#updateCoursesForm");
         course = Object.values(json["courses"]).flat().find(item => item["code"] == courseCode);
-        section.innerHTML = generateUpdateCoursesForm(course, json["degreeYears"]);
+        section.innerHTML = generateUpdateCoursesForm(course, json["degreeYears"], json["professors"]);
     } catch (error) {
         console.log(error.message);
     }

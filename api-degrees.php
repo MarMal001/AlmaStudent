@@ -21,6 +21,7 @@ if (isset($_POST["degreeCode"]) && isset($_POST["type"])) {
         $data["isStudent"] = isStudent();
         $data["degreeYears"] = $degreeYears;
         $data["user"] = $user;
+        $data["professors"] = $dbh->getProfessors();
     } else if ($_POST["type"] == "professors") {
         $data["professors"] = array();
         $professors = $dbh->getProfessorsByDegree($degreeCode);
