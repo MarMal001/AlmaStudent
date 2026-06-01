@@ -881,6 +881,22 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC)[0]["existence"];
     }
+
+    public function courseIsAlreadyRated($student, $course) {
+        $stmt = $this->db->prepare(
+            "SELECT EXISTS (
+                SELECT 1
+                FROM RATING_CORSO AS rc
+                WHERE rc.Studente = ?
+                AND rc.Corso = ?
+            ) AS existence
+            "
+        );
+        $stmt->bind_param("ss", $student, $course);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["existence"];
+    }
 }
 
 ?>
