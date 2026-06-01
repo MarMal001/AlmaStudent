@@ -135,13 +135,6 @@
                 <?php endforeach; ?>
             </div>
         </div>
-        <?php if (isStudent()): ?>
-            <div class="d-flex justify-content-end mb-5 me-2">
-                <a class="btn btn-primary 
-                <?php if (!$dbh->canRateProfessor($user, $professorId)[0]["existence"]) {
-                    echo "disabled";
-                } ; ?>" href="rating.php?type=professor&professor=<?php echo explode("@", $professorId)[0]; ?>">Recensisci</a>
-            </div>
-        <?php endif; ?>
+        
     </section>
 </main>
