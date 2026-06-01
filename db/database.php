@@ -116,7 +116,8 @@ class DatabaseHelper{
             "SELECT c.Codice AS code, c.Nome AS name, c.Descrizione_Breve AS shortDescription
             FROM STUDENTE_IN_CORSO AS sc, CORSO AS c 
             WHERE sc.Utente = ?
-            AND sc.Codice_Corso = c.Codice"
+            AND sc.Codice_Corso = c.Codice
+            AND sc.Iscritto = true"
         );
         $stmt->bind_param('s', $student);
         $stmt->execute();
@@ -282,6 +283,7 @@ class DatabaseHelper{
                 FROM STUDENTE_IN_CORSO AS sc
                 WHERE sc.Utente = ?
                 AND sc.Codice_Corso = ?
+                AND sc.Iscritto = true
             ) AS subscribed"
         );
         $stmt->bind_param("ss", $student, $courseCode);
@@ -647,6 +649,95 @@ class DatabaseHelper{
         $stmt->bind_param("s", $id);
         $state = $stmt->execute();
         return $state;
+    }
+
+    public function studentIsExistentForCourse($student, $course) {
+        $stmt = $this->db->prepare(
+            "SELECT EXISTS (
+                SELECT 1
+                FROM STUDENTE_IN_CORSO AS sc
+                WHERE sc.Utente = ?
+                AND sc.Codice_Corso = ?
+            ) as existent
+            "
+        );
+        $stmt->bind_param("ss", $student, $course);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function createSubscribedStudent($student, $course){
+        $stmt = $this->db->prepare(
+            "INSERT INTO Studente_In_Corso (
+            Utente, Codice_Corso, Iscritto, Esame_Superato)
+            VALUES (?, ?, true, false)
+            "
+        );
+        $stmt->bind_param("ss", $student, $course);
+        $state = $stmt->execute();
+        return $state;
+    }
+
+    public function addSubscription($student, $course) {
+        $stmt = $this->db->prepare(
+            "UPDATE Studente_In_Corso AS sc
+            SET sc.Iscritto = true
+            WHERE sc.Utente = ?
+            AND sc.Codice_Corso = ?
+            "
+        );
+        $stmt->bind_param("ss", $student, $course);
+        $state = $stmt->execute();
+        return $state;
+    }
+
+    public function removeSubscription($student, $course) {
+        $stmt = $this->db->prepare(
+            "UPDATE Studente_In_Corso AS sc
+            SET sc.Iscritto = false
+            WHERE sc.Utente = ?
+            AND sc.Codice_Corso = ?
+            "
+        );
+        $stmt->bind_param("ss", $student, $course);
+        $state = $stmt->execute();
+        return $state;
+    }
+
+    public function canRateCourse($student, $course) {
+        $stmt = $this->db->prepare(
+            "SELECT EXISTS (
+                SELECT 1
+                FROM STUDENTE_IN_CORSO AS sc
+                WHERE sc.Utente = ?
+                AND sc.Codice_Corso = ?
+                AND sc.Esame_Superato = true
+            ) AS existence
+            "
+        );
+        $stmt->bind_param("ss", $student, $course);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function canRateProfessor($student, $professor) {
+        $stmt = $this->db->prepare(
+            "SELECT EXISTS (
+                SELECT 1
+                FROM STUDENTE_IN_CORSO AS sc, Tenere AS t
+                WHERE sc.Utente = ?
+                AND t.Docente = ?
+                AND sc.Codice_Corso = t.Codice_Corso
+                AND sc.Esame_Superato = true
+            ) AS existence
+            "
+        );
+        $stmt->bind_param("ss", $student, $professor);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 }
 
