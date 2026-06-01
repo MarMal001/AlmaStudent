@@ -1,8 +1,5 @@
 <section>
-    <?php
-        $userData = $dbh->getPersonInfo($user)[0];
-        $date = "2026-04-12";//date("Y-M-d");
-    ?>
+    <?php $userData = $dbh->getPersonInfo($user)[0]; ?>
     <h1 class="fw-bold">Ciao <?php echo $userData["name"]; ?>!</h1>
     <div>Gestisci facilmente e velocemente i tuoi corsi.</div>
 </section>
@@ -11,10 +8,10 @@
     <?php
         if (isStudent()) {
             $courses = $dbh->getStudentCourses($user);
-            $reservations = $dbh->getReservationsOfStudent($user, $date);
+            $reservations = $dbh->getReservationsOfStudent($user);
         } else if (isProfessor()) {
             $courses = $dbh->getCoursesByProfessor($user);
-            $reservations = $dbh->getReservationsOfProfessor($user, $date);
+            $reservations = $dbh->getReservationsOfProfessor($user);
         } else {
             header("location: login.php");
         }
@@ -54,11 +51,10 @@
 <section>
     <h1 class="fw-bold">I tuoi ricevimenti</h1>
     <ul>
-        <?php $date = "12 Aprile 2026"; ?>
         <?php foreach($reservations as $reservation): ?>
             <?php if ($reservation["name"] != NULL): ?>
                 <?php $timeRange = date("H:i", strtotime($reservation["startTime"])) . "-" . date("H:i", strtotime($reservation["endTime"])); ?>
-                <li><?php echo $date . " " . $timeRange . " " . $reservation["name"] . " " . $reservation["surname"] . " - " . $reservation["mode"]; ?></li>
+                <li><?php echo $reservation["date"] . " " . $timeRange . " " . $reservation["name"] . " " . $reservation["surname"] . " - " . $reservation["mode"]; ?></li>
             <?php endif; ?>
         <?php endforeach; ?>
     </ul>

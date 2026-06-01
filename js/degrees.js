@@ -1,5 +1,5 @@
-const ADMIN_MODIFY_DEGREE = 4;
-const ADMIN_DELETE_DEGREE = 7;
+const ADMIN_MODIFY_DEGREE = 5;
+const ADMIN_DELETE_DEGREE = 8;
 
 function generateUpdateDegreesForm(degree) {
     let content = `<ul>
@@ -18,7 +18,7 @@ function generateUpdateDegreesForm(degree) {
                 </label>
             </li>
             <li class="mt-2">
-                <select name="years" id="years">`;
+                <select name="years" id="years" class="mt-3 ms-2">`;
     for (let i = 1; i <= 6; i++) {
         content += `<option value="${i}" ${degree["nYears"] == i ? "selected" : ""}>${i}</option>`;
     }
@@ -32,19 +32,21 @@ function generateUpdateDegreesForm(degree) {
                 </label>
             </li>
             <li class="mt-2">
-                <select name="branch" id="branch">
+                <select name="branch" id="branch" class="mt-3 ms-2">
                     <option value="Bologna" ${degree["campus"] == "Bologna" ? "selected" : ""}>Bologna</option>
                     <option value="Cesena" ${degree["campus"] == "Cesena" ? "selected" : ""}>Cesena</option>
                     <option value="Forli" ${degree["campus"] == "Forli" ? "selected" : ""}>Forli</option>
                 </select>
             </li>
         </div>
-        <li>
-            <button type="submit" class="btn btn-primary" name="action" value="${ADMIN_MODIFY_DEGREE}">Modifica</button>
-        </li>
-        <li>
-            <button type="submit" class="btn btn-secondary" name="action" value="${ADMIN_DELETE_DEGREE}">Elimina</button>
-        </li>
+        <div class="d-flex">
+            <li>
+                <button type="submit" class="btn btn-primary mt-3 me-2" name="action" value="${ADMIN_MODIFY_DEGREE}">Modifica</button>
+            </li>
+            <li>
+                <button type="submit" class="btn btn-danger mt-3" name="action" value="${ADMIN_DELETE_DEGREE}">Elimina</button>
+            </li>
+        </div>
     </ul>
     <input type="hidden" name="degreeCode" value="${degree["code"]} />`;
     return content;

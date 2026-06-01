@@ -19,6 +19,48 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getCourses() {
+        $year = date('Y');    
+        $stmt = $this->db->prepare(
+            "SELECT c.Codice AS code, c.Nome AS name, c.Anno AS year, c.Semestre AS semester, f.Nome as degreeName, f.Campus as campus, Descrizione_Breve AS shortDescription, r.Rating_Lezioni AS ratingL, r.Rating_Materiale AS ratingM, r.Rating_Esame AS ratingE, r.Rating_Disponibilita_Docenti AS ratingD
+            FROM CORSO AS c
+            LEFT JOIN RATING_GENERALE AS r ON r.Anno = ? AND c.Codice = r.Codice_Corso
+            LEFT JOIN FACOLTA AS f ON c.Codice_Facolta = f.Codice"
+        );
+        $stmt->bind_param('s', $year);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getProfessors() {
+        $stmt = $this->db->prepare(
+            "SELECT d.Utente AS professor, p.Nome AS name, p.Cognome AS surname, AVG(r.Rating_Disponibilita) AS ratingD, AVG(r.Rating_Comprensibilita_Lezioni) AS ratingC, AVG(r.Rating_Interesse_Suscitato) AS ratingI
+            FROM PERSONA AS p JOIN DOCENTE AS d ON p.Utente = d.Utente
+            LEFT JOIN Tenere AS t ON t.Docente = d.Utente
+            LEFT JOIN CORSO AS c ON c.Codice = t.Codice_Corso
+            LEFT JOIN RATING_DOCENTE AS r ON (r.Docente = d.Utente)
+            GROUP BY d.utente"
+        );
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getAdmins() {
+        $stmt = $this->db->prepare(
+            "SELECT a.Utente AS username, p.Nome AS name, p.Cognome AS surname
+            FROM PERSONA AS p, ADMIN AS a
+            WHERE p.Utente = a.Utente"
+        );
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getDegreeByCode($degreeCode) {
         $stmt = $this->db->prepare(
             "SELECT Codice AS code, Nome as name, Numero_Anni AS nYears, Campus AS campus
@@ -157,9 +199,9 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getReservationsOfStudent($student, $date) {
+    public function getReservationsOfStudent($student) {
         $stmt = $this->db->prepare(
-            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, pr.Modalita_Scelta AS mode, p.Nome AS name, p.Cognome AS surname
+            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Data as date, pr.Modalita_Scelta AS mode, p.Nome AS name, p.Cognome AS surname
             FROM Prenotazione AS pr, RICEVIMENTO AS r, PERSONA AS p, DOCENTE AS d
             WHERE p.Utente = d.Utente
             AND r.Docente = d.Utente
@@ -167,28 +209,26 @@ class DatabaseHelper{
             AND r.Data = pr.Data
             AND r.Ora_Inizio = pr.Ora_Inizio
             AND pr.Studente = ?
-            AND r.Data = ?
             ORDER BY r.Ora_inizio"
         );
-        $stmt->bind_param("ss", $student, $date);
+        $stmt->bind_param("s", $student);
         $stmt->execute();
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getReservationsOfProfessor($professorCode, $date) {
+    public function getReservationsOfProfessor($professorCode) {
         $stmt = $this->db->prepare(
-            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Modalita AS mode, pr.Modalita_Scelta AS reservedMode, p.Nome AS name, p.Cognome AS surname
+            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Data as date, r.Modalita AS mode, pr.Modalita_Scelta AS reservedMode, p.Nome AS name, p.Cognome AS surname
             FROM RICEVIMENTO AS r
             LEFT JOIN Prenotazione AS pr ON r.Docente = pr.Docente AND r.Data = pr.Data AND r.Ora_Inizio = pr.Ora_Inizio
             LEFT JOIN STUDENTE AS s ON s.Utente = pr.Studente
             LEFT JOIN PERSONA AS p ON p.Utente = s.Utente
             WHERE r.Docente = ?
-            AND r.Data = ?
             ORDER BY r.Ora_inizio"
         );
-        $stmt->bind_param("ss", $professorCode, $date);
+        $stmt->bind_param("s", $professorCode);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -322,9 +362,10 @@ class DatabaseHelper{
 
     public function getProfessorInfo($professor) {
         $stmt = $this->db->prepare(
-            "SELECT d.Dipartimento AS department, d.Sede AS campus, d.Info_Ricevimento AS infoReception, d.Foto_Profilo AS photo
-            FROM DOCENTE AS d
-            WHERE d.Utente = ?"
+            "SELECT p.Nome AS name, p.Cognome AS surname, d.Dipartimento AS department, d.Sede AS campus, d.Info_Ricevimento AS infoReception, d.Foto_Profilo AS photo
+            FROM DOCENTE AS d, PERSONA AS p
+            WHERE d.Utente = ?
+            AND d.Utente = p.Utente"
         );
         $stmt->bind_param("s", $professor);
         $stmt->execute();
@@ -379,7 +420,7 @@ class DatabaseHelper{
             "INSERT INTO PERSONA values
             (?, ?, ?, ?, ?)"
         );
-        $stmt->bind_param("sssss", $username, $password, $name, $surname, $role);
+        $stmt->bind_param("sssss", $username, $password, $name, $surname, strtoupper($role));
         $success = $stmt->execute();
         try {
             if (strtolower($role) == "admin") {
@@ -546,6 +587,47 @@ class DatabaseHelper{
             (?, ?, ?, ?, ?)"
         );
         $stmt->bind_param("sssss", $code, $name, $department, $years, $branch);
+        return $stmt->execute();
+    }
+
+    public function deleteCourse($code) {
+        $stmt = $this->db->prepare(
+            "DELETE FROM CORSO WHERE Codice = ?"
+        );
+        $stmt->bind_param("s", $code);
+        return $stmt->execute();
+    }
+
+    public function deleteAccount($code, $type) {
+        $stmt = null;
+        if ($type == "admin") {
+            $stmt = $this->db->prepare(
+                "DELETE FROM ADMIN WHERE Utente = ?"
+            );
+        } else if ($type == "professor") {
+            $stmt = $this->db->prepare(
+                "DELETE FROM DOCENTE WHERE Utente = ?"
+            );
+        } else {
+            return false;
+        }
+
+        $stmt->bind_param("s", $code);
+        if (!$stmt->execute()) {
+            return false;
+        }
+        $stmt = $this->db->prepare(
+            "DELETE FROM PERSONA WHERE Utente = ?"
+        );
+        $stmt->bind_param("s", $code);
+        return $stmt->execute();
+    }
+
+    public function deleteDegree($code) {
+        $stmt = $this->db->prepare(
+            "DELETE FROM FACOLTA WHERE Codice = ?"
+        );
+        $stmt->bind_param("s", $code);
         return $stmt->execute();
     }
 

@@ -9,40 +9,41 @@
                 header("location: login.php");
             }
         ?>
-    </main><aside class="col-0 col-lg-6 w-md-100 px-0 mx-0">
-        <div>
-            <i class="fa-solid fa-angle-up"></i>
-            <i class="fa-solid fa-angle-left"></i>
+    </main><aside class="col-0 col-lg-6 w-md-100 px-0 mx-0 d-flex flex-column flex-lg-row justify-content-start justify-content-lg-end">
+        <div class="me-auto me-lg-0">
+            <i class="fa-solid fa-angle-up" onclick=toggleStatistics()></i>
+            <i class="fa-solid fa-angle-left" onclick=toggleStatistics()></i>
         </div>
-        <div class="px-4 py-3">
+        <div class="px-4 py-3" style="display: block" id="statistics">
             <h3>Le statistiche</h3>
             <div class="d-flex flex-wrap gap-3">
                 <div class="card text-center my-3">
-                    <div class="card-body bg-primary text-white rounded-top">
-                        <h6 class="card-title">Corsi</h6>
-                    </div>
-                    <h1 class="fw-bolder px-5 py-2">4</h1>
-                </div>
-                <div class="card text-center my-3">
-                    <div class="card-body bg-primary text-white rounded-top">
-                        <h6 class="card-title">Ricevimenti</h6>
-                        <h6 class="card-title">prenotati</h6>
-                    </div>
-                    <h1 class="fw-bolder px-5 py-2">3</h1>
-                </div>
-                <div class="card text-center my-3">
-                    <?php if (!isStudent()): ?>
+                    <?php if (!isAdmin()): ?>
                         <div class="card-body bg-primary text-white rounded-top">
-                            <h6 class="card-title">Numero</h6>
-                            <h6 class="card-title">messaggi</h6>
+                            <h6 class="card-title">Corsi</h6>
                         </div>
-                        <h1 class="fw-bolder px-5 py-2">7</h1>
-                    <?php else: ?>
+                        <h1 class="fw-bolder px-5 py-2"><?php echo count(isStudent() ? $dbh->getStudentCourses($user) : $dbh->getProfessorCourses($user)); ?></h1>
+                    <?php endif; ?>
+                </div>
+                <div class="card text-center my-3">
+                    <?php if (!isAdmin()): ?>
+                        <div class="card-body bg-primary text-white rounded-top">
+                            <h5 class="card-title">Ricevimenti</h6>
+                            <h5 class="card-title">prenotati</h6>
+                        </div>
+                        <h1 class="fw-bolder px-5 py-2"><?php echo count(isStudent() ? $dbh->getReservationsOfStudent($user) : $dbh->getReservationsOfProfessor($user)); ?></h1>
+                    <?php endif; ?>
+                </div>
+                <div class="card text-center my-3">
+                    <?php if (isStudent()): ?>
                         <div class="card-body bg-primary text-white rounded-top">
                             <h6 class="card-title">Numero</h6>
                             <h6 class="card-title">segnalazioni</h6>
                         </div>
                         <h1 class="fw-bolder px-5 py-2"><?php echo $dbh->getStudentNumberReports($user)[0]["numReports"]; ?></h1>
+                    <?php endif; ?>
+                    <?php if (isAdmin()): ?>
+                        <!--TODO aggiungere report da risolvere-->
                     <?php endif; ?>
                 </div>
             </div>

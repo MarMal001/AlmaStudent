@@ -14,18 +14,15 @@
             </div>
         </div>
     <?php endif; ?>
-    <?php
-        $userData = $dbh->getPersonInfo($user)[0];
-        $date = "2026-04-12";//date("Y-M-d");
-    ?>
+    <?php $userData = $dbh->getPersonInfo($user)[0]; ?>
     <h1 class="fw-bold">Ciao <?php echo $userData["name"]; ?>!</h1>
     <div>Gestisci le segnalazioni, i corsi e i professori dell'ateneo.</div>
 </section>
 <section>
     <a href="admin_modify.php?type=handleDegrees" class="btn btn-primary">Modifica le facoltà</a>
-    <a href="admin_modify.php?type=addCourse" class="btn btn-primary">Aggiungi corso</a>
-    <a href="admin_modify.php?type=addAccount&accountType=professor" class="btn btn-primary">Aggiungi account professore</a>
-    <a href="admin_modify.php?type=addAccount&accountType=admin" class="btn btn-primary">Aggiungi account admin</a>
+    <a href="admin_modify.php?type=handleCourse" class="btn btn-primary">Modifica corsi</a>
+    <a href="admin_modify.php?type=handleAccount&accountType=professor" class="btn btn-primary">Modifica account professori</a>
+    <a href="admin_modify.php?type=handleAccount&accountType=admin" class="btn btn-primary">Modifica account admins</a>
 </section>
 <section class="fw-bold">
     <h1>Segnalazioni da risolvere</h1>
