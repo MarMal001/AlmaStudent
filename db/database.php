@@ -615,7 +615,8 @@ class DatabaseHelper{
             SET Nome = ?, Anno = ?, Semestre = ?
             WHERE Codice = ?"
         );
-        $success = $stmt->bind_param("ssss", $name, $year, $semester, $code);
+        $stmt->bind_param("ssss", $name, $year, $semester, $code);
+        $success = $stmt->execute();
         if (!$success) {
             return false;
         }
@@ -636,6 +637,16 @@ class DatabaseHelper{
         }
 
         return $success;
+    }
+
+    public function updateDegree($code, $name, $department, $years, $branch) {
+        $stmt = $this->db->prepare(
+            "UPDATE FACOLTA
+            SET Nome = ?, Dipartimento = ?, Numero_Anni = ?, Campus = ?
+            WHERE Codice = ?"
+        );
+        $stmt->bind_param("sssss", $name, $department, $years, $branch, $code);
+        return $stmt->execute();
     }
 
     public function deleteCourse($code) {

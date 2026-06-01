@@ -64,13 +64,13 @@ switch ($_POST["action"]) {
             $GLOBALS["message"] = "Parametri mancanti";
         }
         break;
-    // case ADMIN_MODIFY_DEGREE:
-    //     if (isset($_POST["code"]) && isset($_POST["name"]) && isset($_POST["nYears"]) && isset($_POST["campus"])) {
-    //         update_degree($_POST["code"], $_POST["name"], $_POST["nYears"], $_POST["campus"]);
-    //     } else {
-    //         $GLOBALS["message"] = "Parametri mancanti";
-    //     }
-    //     break;
+    case ADMIN_MODIFY_DEGREE:
+        if (isset($_POST["code"]) && isset($_POST["name"]) && isset($_POST["department"]) && isset($_POST["years"]) && isset($_POST["branch"])) {
+            update_degree($_POST["code"], $_POST["name"], $_POST["department"], $_POST["years"], $_POST["branch"]);
+        } else {
+            $GLOBALS["message"] = "Parametri mancanti";
+        }
+        break;
     case ADMIN_DELETE_DEGREE:
         if (isset($_POST["code"])) {
             delete_degree($_POST["code"]);
@@ -153,6 +153,14 @@ function add_degree($code, $name, $department, $years, $branch) {
         $GLOBALS["message"] = "Corso di laurea aggiunto con successo";
     } else {
         $GLOBALS["message"] = "Non è stato possibile aggiungere il corso di laurea";
+    }
+}
+
+function update_degree($code, $name, $department, $years, $branch) {
+    if ($GLOBALS["dbh"]->updateDegree($code, $name, $department, $years, $branch)) {
+        $GLOBALS["message"] = "Corso di laurea modificato con successo";
+    } else {
+        $GLOBALS["mesasge"] = "Non è stato possibile modificare il corso di laurea";
     }
 }
 

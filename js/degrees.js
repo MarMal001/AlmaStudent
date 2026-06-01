@@ -26,6 +26,20 @@ function generateUpdateDegreesForm(degree) {
         </div>
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
+                <label for="department" class="text-left">
+                    <h5>Dipartimento</h5>
+                </label>
+            </li>
+            <li class="mt-2">
+                <select name="department" id="department" class="mt-3 ms-2">
+                    <option value="DISI" ${degree["department"] == "DISI" ? "selected" : ""}>DISI</option>
+                    <option value="DEI" ${degree["department"] == "DEI" ? "selected" : ""}>DEI</option>
+                    <option value="DIMEC" ${degree["department"] == "DIMEC" ? "selected" : ""}>DIMEC</option>
+                </select>
+            </li>
+        </div>
+        <div class="d-flex align-content-stretch">
+            <li class="mt-2">
                 <label for="branch" class="text-left">
                     <h5>Sede</h5>
                 </label>
