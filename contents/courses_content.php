@@ -17,7 +17,7 @@
                         <div>
                             <?php createStars(getMeanRating([$course["ratingL"], $course["ratingM"], $course["ratingE"], $course["ratingD"]]), "rgb(30, 48, 80)"); ?>
                         </div>
-                        <?php if (isStudent() && $course["isSubscribed"]): ?>
+                        <?php if (isStudent() && $dbh->checkIfSubscribedToACourse($user, $course["code"])): ?>
                             <i class="fa-solid fa-check mx-2" style="color: rgb(38, 246, 30);"></i>
                         <?php endif; ?>
                     </div>
@@ -33,7 +33,7 @@
                     <div class="d-flex justify-content-end m-2">
                         <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1">Apri corso</a>
                         <?php if (isStudent()) {
-                            subscriptionButton($username, $course["code"]);
+                            subscriptionButton($user, $course["code"]);
                         } ?>
                     </div>
                 </div>
