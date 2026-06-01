@@ -9,10 +9,23 @@
                 <a href="professor.php?professor=<?php echo idWithoutDomain($professor["professor"]); ?>" class="text-primary"><?php echo $professor["name"] . " " . $professor["surname"]; ?></a>
             <?php endforeach; ?>
         </h3>
+        <?php $gRatings = $dbh->getGeneralRatingsByCourse($courseId)[0]; ?>
         <div class="d-flex align-items-start align-items-center">
             <h6 class="m-0 me-2">Rating degli studenti:</h6>
-            <div>
-                <?php $gRatings = $dbh->getGeneralRatingsByCourse($courseId)[0]; ?>
+            <div data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="
+                <div class='d-flex inline-flex align-items-center'>
+                    <p class='mb-0 me-2'>Lezioni:</p>
+                    <?php createStars($gRatings["ratingL"], "#ffff"); ?>
+                </div>
+                <div class='d-flex inline-flex align-items-center'>
+                    <p class='mb-0 me-2'>Materiale:</p>
+                    <?php createStars($gRatings["ratingM"], "#ffff"); ?>
+                </div>
+                <div class='d-flex inline-flex align-items-center'>
+                    <p class='mb-0 me-2'>Esame:</p>
+                    <?php createStars($gRatings["ratingE"], "#ffff"); ?>
+                </div>
+            ">
                 <?php $ratings = [$gRatings["ratingL"], $gRatings["ratingM"], $gRatings["ratingE"], $gRatings["ratingD"]]; ?>
                 <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
             </div>
@@ -52,7 +65,7 @@
             } 
         ?>
 
-        <div class="card mb-4" style="height: clamp(200px, 60vh, 300px);">
+        <div class="card mb-3" style="height: clamp(200px, 60vh, 300px);">
             <div class="card-body overflow-auto bg-light <?php echo $style; ?>">
                 <?php if ($noReviews): ?>
                     <h4 class="text-center">Non è presente ancora nessuna recensione</h4>
@@ -64,7 +77,20 @@
                 <?php endforeach; ?>
             </div>
         </div>
-        
+        <?php if (isStudent()): ?>
+            <div class="d-flex justify-content-end mb-5 me-2">
+                <a class="btn btn-primary 
+                <?php if (!$dbh->canRateCourse($user, $courseId)[0]["existence"]) {
+                    echo "disabled";
+                } ; ?>" 
+                href="rating.php?type=course&course=<?php echo $courseId; ?>">Recensisci</a>
+            </div>
+        <?php endif; ?>
         
     </section>
 </main>    
+
+<script>
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+const tooltipList = [...tooltipTriggerList].map(el => new bootstrap.Tooltip(el));
+</script>
