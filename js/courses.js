@@ -150,7 +150,7 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
                 </label>
             </li>
             <li>
-                <select name="addProfesors" id="addProfessors">
+                <select name="addProfessor" id="addProfessor">
                     <option value="" selected>Nessuno</option>`;
         for (const professor of professors) {
             content += `<option value="${professor["code"]}">${professor["name"]} ${professor["surname"]}</option>`;
@@ -165,7 +165,7 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
                 </label>
             </li>
             <li>
-                <select name="removeProfesors" id="removeProfessors">
+                <select name="removeProfessor" id="removeProfessor">
                     <option value="" selected>Nessuno</option>`;
         for (const professor of course["professors"]) {
             content += `<option value="${professor["code"]}">${professor["name"]} ${professor["surname"]}</option>`;
