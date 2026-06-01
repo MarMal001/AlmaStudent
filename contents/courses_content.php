@@ -17,7 +17,7 @@
                         <div>
                             <?php createStars(getMeanRating([$course["ratingL"], $course["ratingM"], $course["ratingE"], $course["ratingD"]]), "rgb(30, 48, 80)"); ?>
                         </div>
-                        <?php if (isStudent() && $course["isSubscribed"]): ?>
+                        <?php if (isStudent() && $dbh->checkIfSubscribedToACourse($user, $course["code"])): ?>
                             <i class="fa-solid fa-check mx-2" style="color: rgb(38, 246, 30);"></i>
                         <?php endif; ?>
                     </div>

@@ -330,7 +330,7 @@ class DatabaseHelper{
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all(MYSQLI_ASSOC);
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["subscribed"];
     }
 
     public function getProfessorRatings($professor) {
@@ -415,7 +415,7 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
-    public function createAccout($username, $password, $name, $surname, $role, $studentId = NULL, $department = NULL, $seat = NULL, $infoReception = NULL, $profilePicture = NULL) {
+    public function createAccount($username, $password, $name, $surname, $role, $studentId = NULL, $department = NULL, $seat = NULL, $infoReception = NULL, $profilePicture = NULL) {
         $stmt = $this->db->prepare(
             "INSERT INTO PERSONA values
             (?, ?, ?, ?, ?)"
@@ -588,6 +588,36 @@ class DatabaseHelper{
         );
         $stmt->bind_param("sssss", $code, $name, $department, $years, $branch);
         return $stmt->execute();
+    }
+
+    public function updateAccount($username, $name, $surname, $department, $seat, $infoReception, $profilePicture) {
+        $stmt = $this->db->prepare(
+            "UPDATE PERSONA
+            SET Nome = ?, Cognome = ?
+            WHERE Utente = ?"
+        );
+        $stmt->bind_param("sss", $name, $surname, $username);
+        $success = $stmt->execute();
+        if (!success) {
+            return false;
+        }
+        if (strtolower($role) == "professor") {
+            if ($profilePicture == NULL) {
+                $stmt = $this->db->prepare(
+                    "UPDATE DOCENTE
+                    SET Dipartimento = ?, Sede = ?, Info_Ricevimento = ?"
+                );
+                $stmt->bind_param("sss", $department, $seat, $infoReception);
+            } else {
+                $stmt = $this->db->prepare(
+                    "UPDATE DOCENTE
+                    SET Dipartimento = ?, Sede = ?, Info_Ricevimento = ?, Foto_Profilo = ?"
+                );
+                $stmt->bind_param("ssss", $department, $seat, $infoReception, $profilePicture);
+            }
+            $success = $stmt->execute();
+        }
+        return $success;
     }
 
     public function deleteCourse($code) {

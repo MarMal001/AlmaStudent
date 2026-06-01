@@ -11,7 +11,7 @@ if (isset($_POST["degreeCode"]) && isset($_POST["type"])) {
             $data["courses"][$year] = array();
             foreach ($courses as $course) {
                 $course["professors"] = array();
-                $course["isSubscribed"] = $dbh->checkIfSubscribedToACourse($user, $course["code"])[0]["subscribed"];
+                $course["isSubscribed"] = $dbh->checkIfSubscribedToACourse($user, $course["code"]);
                 foreach ($dbh->getProfessorsByCourse($course["code"]) as $professor) {
                     array_push($course["professors"], $professor);
                 }

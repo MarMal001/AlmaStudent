@@ -18,13 +18,17 @@ switch ($_POST["action"]) {
             $GLOBALS["message"] = "Parametri mancanti";
         }
         break;
-    // case ADMIN_MODIFY_ACCOUNT:
-    //     if (isset($_POST["username"]) && isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["type"])) {
-    //         update_account($_POST["username"]);
-    //     } else {
-    //         $GLOBALS["message"] = "Parametri mancanti";
-    //     }
-    //     break;
+    case ADMIN_MODIFY_ACCOUNT:
+        if (isset($_POST["username"]) && isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["type"])) {
+            if ($_POST["type"] == "professor" || $_POST["type"] == "admin") {
+                update_account($_POST["username"], $_POST["name"], $_POST["surname"], $_POST["type"]);
+            } else {
+                $GLOBALS["message"] = "Tipo di account invalido";
+            }
+        } else {
+            $GLOBALS["message"] = "Parametri mancanti";
+        }
+        break;
     case ADMIN_DELETE_ACCOUNT:
         if (isset($_POST["username"]) && isset($_POST["type"])) {
             delete_account($_POST["username"], $_POST["type"]);
@@ -80,15 +84,9 @@ switch ($_POST["action"]) {
 }
 
 function add_account($username, $password, $name, $surname, $type) {
-    if (isset($_POST["department"]) && isset($_POST["seat"]) && isset($_POST["infoReception"])) {
-        $department = $_POST["department"];
-        $seat = $_POST["seat"];
-        $infoReception = $_POST["infoReception"];
-    } else {
-        $department = NULL;
-        $seat = NULL;
-        $infoReception = NULL;
-    }
+    $department = isset($_POST["department"]) ? $_POST["department"] : NULL;
+    $seat = isset($_POST["seat"]) ? $_POST["seat"] : NULL;
+    $infoReception = isset($_POST["infoReception"]) ? $_POST["infoReception"] : NULL;
 
     if (isset($_FILES["profilePicture"]) && $_FILES["profilePicture"]["name"] != "") {
         $profilePicture = idWithoutDomain($username) . ".png";
@@ -102,6 +100,19 @@ function add_account($username, $password, $name, $surname, $type) {
         $GLOBALS["message"] = "Account aggiunto con successo";
     } else {
         $GLOBALS["message"] = "Non è stato possibile aggiungere l'account";
+    }
+}
+
+function update_account($username, $name, $surname, $removeProfilePicture = false) {
+    $department = isset($_POST["department"]) ? $_POST["department"] : NULL;
+    $seat = isset($_POST["seat"]) ? $_POST["seat"] : NULL;
+    $infoReception = isset($_POST["infoReception"]) ? $_POST["infoReception"] : NULL;
+    $profilePicture = $removeProfilePicture ? "default.png" : NULL;
+
+    if ($GLOBALS["dbh"]->updateAccout($username, $name, $surname, $department, $seat, $infoReception, $profilePicture)) {
+        $GLOBALS["message"] = "Account modificato con successo";
+    } else {
+        $GLOBALS["message"] = "Non è stato possibile modificare l'account";
     }
 }
 
