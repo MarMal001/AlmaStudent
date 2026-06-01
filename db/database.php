@@ -590,7 +590,7 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
-    public function updateAccount($username, $name, $surname, $department, $seat, $infoReception, $profilePicture) {
+    public function updateAccount($username, $name, $surname, $role, $department, $seat, $infoReception, $profilePicture) {
         $stmt = $this->db->prepare(
             "UPDATE PERSONA
             SET Nome = ?, Cognome = ?
@@ -598,7 +598,7 @@ class DatabaseHelper{
         );
         $stmt->bind_param("sss", $name, $surname, $username);
         $success = $stmt->execute();
-        if (!success) {
+        if (!$success) {
             return false;
         }
         if (strtolower($role) == "professor") {

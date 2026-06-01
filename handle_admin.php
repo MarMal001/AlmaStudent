@@ -103,13 +103,13 @@ function add_account($username, $password, $name, $surname, $type) {
     }
 }
 
-function update_account($username, $name, $surname, $removeProfilePicture = false) {
+function update_account($username, $name, $surname, $type, $removeProfilePicture = false) {
     $department = isset($_POST["department"]) ? $_POST["department"] : NULL;
     $seat = isset($_POST["seat"]) ? $_POST["seat"] : NULL;
     $infoReception = isset($_POST["infoReception"]) ? $_POST["infoReception"] : NULL;
     $profilePicture = $removeProfilePicture ? "default.png" : NULL;
 
-    if ($GLOBALS["dbh"]->updateAccount($username, $name, $surname, $department, $seat, $infoReception, $profilePicture)) {
+    if ($GLOBALS["dbh"]->updateAccount($username, $name, $surname, $type, $department, $seat, $infoReception, $profilePicture)) {
         $GLOBALS["message"] = "Account modificato con successo";
     } else {
         $GLOBALS["message"] = "Non è stato possibile modificare l'account";
