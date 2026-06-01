@@ -131,7 +131,7 @@
                 <?php foreach ($reviews as $review): ?>
                     <?php 
                         $page = explode("/", $_SERVER['REQUEST_URI']);
-                        generateProfessorReview($page[2], $review["id"], $review["student"], $review["date"], $review["text"], $review["reported"], $professorId); ?>
+                        generateProfessorReview($page[2], $review["id"], $review["student"], $review["date"], $review["text"], $review["reported"], $professorId, $review["course"]); ?>
                 <?php endforeach; ?>
             </div>
         </div>
