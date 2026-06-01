@@ -61,7 +61,7 @@
                     <?php $ratings = [$gRatings["ratingL"], $gRatings["ratingM"], $gRatings["ratingE"], $gRatings["ratingD"]]; ?>
                     <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
                 </div>
-                <?php if ($dbh->checkIfSubscribedToACourse($user, $course["code"])[0]["subscribed"]): ?>
+                <?php if ($dbh->checkIfSubscribedToACourse($user, $course["code"])): ?>
                     <i class="fa-solid fa-check mx-2" style="color: rgb(38, 246, 30);"></i>
                 <?php endif; ?>
             </div>
