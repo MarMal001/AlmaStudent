@@ -559,26 +559,27 @@ class DatabaseHelper{
 
     }
 
-    public function addCourse($code, $name, $degreeCode, $year, $semester, $professors) {
+    public function addCourse($code, $name, $degreeCode, $year, $semester) {
         $stmt = $this->db->prepare(
-            "INSERT INTO CORSO (Codice, Nome, Anno, Semestre, Codice_Facolta) values
-            (?, ?, ?, ?, ?)"
+            "INSERT INTO CORSO values
+            (?, ?, ?, ?, ?, '', '', '')"
         );
-        $stmt->bind_param("sssss", $code, $name, $degreeCode, $year, $semester);
-        if (!$stmt->execute()) {
-            return false;
-        }
-        foreach ($professors as $professor) {
-            $stmt = $this->db->prepare(
-                "INSERT INTO Tenere values
-                (?, ?)"
-            );
-            $stmt->bind_param("ss", $professor, $code);
-            if (!$stmt->execute()) {
-                return false;
-            }
-        }
-        return true;
+        $stmt->bind_param("sssss", $code, $name, $year, $semester, $degreeCode);
+        return $stmt->execute();
+    //     if (!$stmt->execute()) {
+    //         return false;
+    //     }
+    //     foreach ($professors as $professor) {
+    //         $stmt = $this->db->prepare(
+    //             "INSERT INTO Tenere values
+    //             (?, ?)"
+    //         );
+    //         $stmt->bind_param("ss", $professor, $code);
+    //         if (!$stmt->execute()) {
+    //             return false;
+    //         }
+    //     }
+    //     return true;
     }
 
     public function addDegree($code, $name, $department, $years, $branch) {

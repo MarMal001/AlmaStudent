@@ -37,8 +37,8 @@ switch ($_POST["action"]) {
         }
         break;
     case ADMIN_ADD_COURSE:
-        if (isset($_POST["degreeCode"]) && isset($_POST["name"]) && isset($_POST["year"]) && isset($_POST["semester"]) && isset($_POST["professors"]) && isset($_POST["courseId"])) {
-            add_course($_POST["degreeCode"], $_POST["name"], $_POST["year"], $_POST["semester"], $_POST["professors"], $_POST["courseId"]);
+        if (isset($_POST["degree"]) && isset($_POST["name"]) && isset($_POST["year"]) && isset($_POST["semester"]) && isset($_POST["code"])) {
+            add_course($_POST["degree"], $_POST["name"], $_POST["year"], $_POST["semester"], $_POST["code"]);
         } else {
             $GLOBALS["message"] = "Parametri mancanti";
         }
@@ -124,8 +124,8 @@ function delete_account($username, $type) {
     }
 }
 
-function add_course($degreeCode, $name, $year, $semester, $professors, $courseId) {
-    if ($GLOBALS["dbh"]->addCourse($courseId, $name, $degreeCode, $year, $semester, $professors)) {
+function add_course($degreeCode, $name, $year, $semester, $courseId) {
+    if ($GLOBALS["dbh"]->addCourse($courseId, $name, $degreeCode, $year, $semester)) {
         $GLOBALS["message"] = "Corso aggiunto con successo";
     } else {
         $GLOBALS["message"] = "Non è stato possibile aggiungere il corso";
