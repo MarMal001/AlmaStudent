@@ -590,7 +590,7 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
-    public function updateAccout($username, $name, $surname, $department, $seat, $infoReception, $profilePicture) {
+    public function updateAccount($username, $name, $surname, $department, $seat, $infoReception, $profilePicture) {
         $stmt = $this->db->prepare(
             "UPDATE PERSONA
             SET Nome = ?, Cognome = ?
