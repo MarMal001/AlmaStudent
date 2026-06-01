@@ -30,10 +30,10 @@
                         <?php endforeach; ?>
                     </ul>
                     <p><?php echo $course["shortDescription"]; ?></p>
-                    <div class="d-flex justify-content-end m-2">
-                        <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1">Apri corso</a>
+                    <div class="d-flex justify-content-end">
+                        <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1 mt-2">Apri corso</a>
                         <?php if (isStudent()) {
-                            subscriptionButton($username, $course["code"]);
+                            subscriptionButton($user, $course["code"]);
                         } ?>
                     </div>
                 </div>
