@@ -154,6 +154,7 @@ create table STUDENTE (
 create table STUDENTE_IN_CORSO (
      Utente varchar(100) not null,
      Codice_Corso varchar(5) not null,
+     Iscritto tinyint not null,
      Esame_Superato tinyint not null,
      constraint ID_STUDENTE_IN_CORSO_ID primary key (Utente, Codice_Corso));
 
@@ -285,9 +286,9 @@ insert into RATING_DOCENTE values
 
 ### STUDENTE_IN_CORSO ###
 insert into STUDENTE_IN_CORSO values
-	("carla.anselmi3@studio.unibo.it", "70226", true), #1
-    ("carla.anselmi3@studio.unibo.it", "08574", true),
-	("alessandro.giacomini2@studio.unibo.it", "70226", true); #3
+	("carla.anselmi3@studio.unibo.it", "70226", true,true), #1
+    ("carla.anselmi3@studio.unibo.it", "08574", true, true),
+	("alessandro.giacomini2@studio.unibo.it", "70226", true, true); #3
 
 ### RATING_GENERALE ###
 insert into RATING_GENERALE values

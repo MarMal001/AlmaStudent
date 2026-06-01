@@ -6,8 +6,21 @@
     <section class="m-2">
         <div class="d-flex align-items-start align-items-center">
             <h6 class="m-0 me-2">Rating degli studenti:</h6>
-            <div>
-                <?php $ratings = $dbh->getProfessorRatings($professorId)[0]; ?>
+            <?php $ratings = $dbh->getProfessorRatings($professorId)[0]; ?>
+            <div data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="
+                <div class='d-flex inline-flex align-items-center'>
+                    <p class='mb-0 me-2'>Disponibilità:</p>
+                    <?php createStars($ratings["ratingD"], "#ffff"); ?>
+                </div>
+                <div class='d-flex inline-flex align-items-center'>
+                    <p class='mb-0 me-2'>Comprensibilità:</p>
+                    <?php createStars($ratings["ratingC"], "#ffff"); ?>
+                </div>
+                <div class='d-flex inline-flex align-items-center'>
+                    <p class='mb-0 me-2'>Interesse:</p>
+                    <?php createStars($ratings["ratingI"], "#ffff"); ?>
+                </div>
+            ">
                 <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
             </div>
         </div>
@@ -59,11 +72,11 @@
             <p>
             <?php echo $course["shortDescription"]; ?>
             </p>
-            <div class="d-flex justify-content-end m-2">
-                <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1">Apri corso</a>
+            <div class="d-flex justify-content-end">
+                <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1 mt-2">Apri corso</a>
                 <?php
                     if (isStudent())
-                        subscriptionButton($user, $course["code"]);
+                        subscriptionButton($user, $course["code"], $professorId);
                 ?>
             </div>
         </div>
@@ -110,7 +123,7 @@
             } 
         ?>
         
-        <div class="card mb-4" style="height: clamp(200px, 60vh, 300px);">
+        <div class="card mb-3" style="height: clamp(200px, 60vh, 300px);">
             <div class="card-body overflow-auto bg-light <?php echo $style; ?>">
                 <?php if ($noReviews): ?>
                     <h4 class="text-center">Non è presente ancora nessuna recensione</h4>
@@ -122,5 +135,18 @@
                 <?php endforeach; ?>
             </div>
         </div>
+        <?php if (isStudent()): ?>
+            <div class="d-flex justify-content-end mb-5 me-2">
+                <a class="btn btn-primary 
+                <?php if (!$dbh->canRateProfessor($user, $professorId)[0]["existence"]) {
+                    echo "disabled";
+                } ; ?>" href="rating.php?type=professor&professor=<?php echo explode("@", $professorId)[0]; ?>">Recensisci</a>
+            </div>
+        <?php endif; ?>
     </section>
 </main>    
+
+<script>
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+const tooltipList = [...tooltipTriggerList].map(el => new bootstrap.Tooltip(el));
+</script>
