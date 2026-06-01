@@ -22,7 +22,7 @@
                         <div class="card-body bg-primary text-white rounded-top">
                             <h5 class="card-title">Corsi</h5>
                         </div>
-                        <h1 class="fw-bolder px-5 py-2"><?php echo count(isStudent() ? $dbh->getStudentCourses($user) : $dbh->getProfessorCourses($user)); ?></h1>
+                        <h1 class="fw-bolder px-5 py-2"><?php echo count(isStudent() ? $dbh->getStudentCourses($user) : $dbh->getCoursesByProfessor($user)); ?></h1>
                     <?php endif; ?>
                 </div>
                 <div class="card text-center my-3">
