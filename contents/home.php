@@ -43,7 +43,7 @@
                         <h1 class="fw-bolder px-5 py-2"><?php echo $dbh->getStudentNumberReports($user)[0]["numReports"]; ?></h1>
                     <?php endif; ?>
                     <?php if (isAdmin()): ?>
-                        <!--TODO aggiungere report da risolvere-->
+                        <!--TODO: aggiungere report da risolvere-->
                     <?php endif; ?>
                 </div>
             </div>
