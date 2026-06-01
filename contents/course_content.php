@@ -80,7 +80,7 @@
         <?php if (isStudent()): ?>
             <div class="d-flex justify-content-end mb-5 me-2">
                 <a class="btn btn-primary 
-                <?php if (!$dbh->canRateCourse($user, $courseId)[0]["existence"]) {
+                <?php if (!$dbh->canRateCourse($user, $courseId)[0]["existence"] || $dbh->courseIsAlreadyRated($user, $courseId)) {
                     echo "disabled";
                 } ; ?>" 
                 href="rating.php?type=course&course=<?php echo $courseId; ?>">Recensisci</a>
