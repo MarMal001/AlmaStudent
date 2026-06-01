@@ -330,7 +330,7 @@ class DatabaseHelper{
         $stmt->execute();
         $result = $stmt->get_result();
 
-        return $result->fetch_all(MYSQLI_ASSOC);
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["subscribed"];
     }
 
     public function getProfessorRatings($professor) {
