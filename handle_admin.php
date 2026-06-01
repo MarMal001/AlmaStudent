@@ -96,7 +96,7 @@ function add_account($username, $password, $name, $surname, $type) {
         $profilePicture = "default.png";
     }
 
-    if ($GLOBALS["dbh"]->createAccout($username, $password, $name, $surname, $type, department: $department, seat: $seat, infoReception: $infoReception, profilePicture: $profilePicture)) {
+    if ($GLOBALS["dbh"]->createAccount($username, $password, $name, $surname, $type, department: $department, seat: $seat, infoReception: $infoReception, profilePicture: $profilePicture)) {
         $GLOBALS["message"] = "Account aggiunto con successo";
     } else {
         $GLOBALS["message"] = "Non è stato possibile aggiungere l'account";
@@ -109,7 +109,7 @@ function update_account($username, $name, $surname, $removeProfilePicture = fals
     $infoReception = isset($_POST["infoReception"]) ? $_POST["infoReception"] : NULL;
     $profilePicture = $removeProfilePicture ? "default.png" : NULL;
 
-    if ($GLOBALS["dbh"]->updateAccout($username, $name, $surname, $department, $seat, $infoReception, $profilePicture)) {
+    if ($GLOBALS["dbh"]->updateAccount($username, $name, $surname, $department, $seat, $infoReception, $profilePicture)) {
         $GLOBALS["message"] = "Account modificato con successo";
     } else {
         $GLOBALS["message"] = "Non è stato possibile modificare l'account";
