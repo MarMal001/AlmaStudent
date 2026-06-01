@@ -145,7 +145,7 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
         </div>
         <div>
             <li>
-                <label for="addProfessors">
+                <label for="addProfessor">
                     <h5>Aggiungi docente al corso</h5>
                 </label>
             </li>
@@ -160,7 +160,7 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
         </div>
         <div>
             <li>
-                <label for="removeProfessors">
+                <label for="removeProfessor">
                     <h5>Rimuovi docente dal corso</h5>
                 </label>
             </li>
