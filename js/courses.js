@@ -1,5 +1,54 @@
+const ADMIN_ADD_COURSE = 0;
 const ADMIN_MODIFY_COURSE = 3;
 const ADMIN_DELETE_COURSE = 6;
+
+function generateAddCourse(degreeYears) {
+    let content = `<li>
+            <label for="name" class="text-left">
+                <h5>Nome</h5>
+            </label>
+        </li>
+        <li>
+            <input type="text" id="name" name="name" />
+        </li>
+        <div class="d-flex align-content-stretch">
+            <li class="mt-2">
+                <label for="year" class="text-left">
+                    <h5>Anno</h5>
+                </label>
+            </li>
+            <li class="mt-2" id="degreeYears">
+                <select name="year" id="year" class="mt-3 ms-2 me-3">`;
+                    for (year = 1; year <= degreeYears; year++) {
+                        content += `<option value="${year}">${year}</option>`;
+                    }
+    content += `</select>
+            </li>
+            <li class="mt-2">
+                <label for="semester" class="text-left">
+                    <h5>Semestre</h5>
+                </label>
+            </li>
+            <li class="mt-2">
+                <select name="semester" id="semester" class="mt-3 ms-2">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </li> 
+        </div>
+        <li>
+            <label for="code" class="text-left">
+                <h5>Codice corso</h5>
+            </label>
+        </li>
+        <li>
+            <input type="text" id="code" name="code" />
+        </li>
+        <li>
+            <button type="submit" class="btn btn-primary mt-3" name="action" value="${ADMIN_ADD_COURSE}">Crea corso</button>
+        </li>`;
+    return content;
+}
 
 function generateCourses(user, courses, degreeYears, isStudent) {
     let content = "";
@@ -131,6 +180,32 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
             <button type="submit" class="btn btn-danger mt-3" name="action" value="${ADMIN_DELETE_COURSE}">Elimina corso</button>
         </li>`;
     return content;
+}
+
+async function getAddCourse() {
+    const url = "api-degrees.php";
+    const formData = new FormData();
+    let degreeCode = document.querySelector("#addDegreeCode").value;
+    if (degreeCode == "") {
+        return;
+    }
+    formData.append("degreeCode", degreeCode);
+    formData.append("type", "courses");
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            body: formData
+        });
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        const json = await response.json();
+        console.log(json);
+        const section = document.querySelector("#addCourse");
+        section.innerHTML = generateAddCourse(json["degreeYears"]);
+    } catch (error) {
+        console.log(error.message);
+    }
 }
 
 async function getCoursesData() {
