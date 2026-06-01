@@ -25,7 +25,7 @@
             </div>
         </div>
         <?php $profInfo = $dbh->getProfessorInfo($professorId)[0]; ?>
-        <div class="card mb-3 bg-primary border-0 text-white" style="max-width: 600px;">
+        <div class="card mt-2 mb-3 bg-primary border-0 text-white" style="max-width: 600px;">
         <div class="row g-0">
                 
             <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
