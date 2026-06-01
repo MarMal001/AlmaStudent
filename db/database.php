@@ -588,6 +588,36 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
+    public function updateAccout($username, $name, $surname, $department, $seat, $infoReception, $profilePicture) {
+        $stmt = $this->db->prepare(
+            "UPDATE PERSONA
+            SET Nome = ?, Cognome = ?
+            WHERE Utente = ?"
+        );
+        $stmt->bind_param("sss", $name, $surname, $username);
+        $success = $stmt->execute();
+        if (!success) {
+            return false;
+        }
+        if (strtolower($role) == "professor") {
+            if ($profilePicture == NULL) {
+                $stmt = $this->db->prepare(
+                    "UPDATE DOCENTE
+                    SET Dipartimento = ?, Sede = ?, Info_Ricevimento = ?"
+                );
+                $stmt->bind_param("sss", $department, $seat, $infoReception);
+            } else {
+                $stmt = $this->db->prepare(
+                    "UPDATE DOCENTE
+                    SET Dipartimento = ?, Sede = ?, Info_Ricevimento = ?, Foto_Profilo = ?"
+                );
+                $stmt->bind_param("ssss", $department, $seat, $infoReception, $profilePicture);
+            }
+            $success = $stmt->execute();
+        }
+        return $success;
+    }
+
     public function deleteCourse($code) {
         $stmt = $this->db->prepare(
             "DELETE FROM CORSO WHERE Codice = ?"
