@@ -21,7 +21,7 @@
 </div>
 <div>
 
-<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">
+<button class="btn btn-danger mb-5" data-bs-toggle="modal" data-bs-target="#confirmModal">
     Elimina
 </button>
 
@@ -46,7 +46,7 @@
   </div>
 </div>
 
-<button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#annulModal">
+<button class="btn btn-secondary mb-5" data-bs-toggle="modal" data-bs-target="#annulModal">
     Annulla segnalazione
 </button>
 
