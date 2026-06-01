@@ -40,12 +40,3 @@
         <p>Non sono presenti segnalazioni</p>
     <?php endif; ?>
 </section>
-
-
-<script> //TODO --> move into a js file
-  document.addEventListener("DOMContentLoaded", function () {
-    const toastEl = document.querySelector('.toast');
-    const toast = new bootstrap.Toast(toastEl);
-    toast.show();
-  });
-</script>
