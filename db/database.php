@@ -588,7 +588,7 @@ class DatabaseHelper{
         if (!$success) {
             return false;
         }
-        if (strtolower($role) == "professor") {
+        if ($role == "DOCENTE") {
             if ($profilePicture == NULL) {
                 $stmt = $this->db->prepare(
                     "UPDATE DOCENTE
