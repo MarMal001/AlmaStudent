@@ -211,7 +211,7 @@ insert into DOCENTE values
 ### STUDENTE ###
 insert into STUDENTE values
 	("carla.anselmi3@studio.unibo.it", null, 0),
-	("alessandro.giacomini2@studio.unibo.it", null, 1);
+	("alessandro.giacomini2@studio.unibo.it", "2026-06-02", 3);
 
 ### FACOLTA ###
 insert into FACOLTA values
@@ -287,7 +287,8 @@ insert into RATING_DOCENTE values
 insert into STUDENTE_IN_CORSO values
 	("carla.anselmi3@studio.unibo.it", "70226", true,true), #1
     ("carla.anselmi3@studio.unibo.it", "08574", true, true),
-	("alessandro.giacomini2@studio.unibo.it", "70226", true, true); #3
+	("alessandro.giacomini2@studio.unibo.it", "70226", true, true), #3
+    ("alessandro.giacomini2@studio.unibo.it", "08574", true, true);
 
 ### RATING_GENERALE ###
 insert into RATING_GENERALE values
@@ -413,7 +414,7 @@ alter table RATING_CORSO add constraint FKRAT_RAT_FK
      
  alter table RATING_CORSO add constraint FKStudente_in_Corso
      foreign key (Studente, Corso)
-     references STUDENTE_IN_CORSO (Utente, Codice_Corso);    
+     references STUDENTE_IN_CORSO (Utente, Codice_Corso) on delete cascade;    
 
 -- Not implemented
 -- alter table RATING_DOCENTE add constraint FKRAT_RAT_1_CHK
@@ -426,11 +427,11 @@ alter table RATING_DOCENTE add constraint FKRAT_RAT_1_FK
      
 alter table RATING_DOCENTE add constraint FKStud_Corso_FK
      foreign key (Studente, Corso)
-     references STUDENTE_IN_CORSO (Utente, Codice_Corso);
+     references STUDENTE_IN_CORSO (Utente, Codice_Corso) on delete cascade;
 
 alter table RATING_GENERALE add constraint FKValutazione_FK
      foreign key (Codice_Corso)
-     references CORSO (Codice);
+     references CORSO (Codice) on delete cascade;
 
 alter table REVIEW add constraint FKPresenza_FK
      foreign key (Codice_Rating)
@@ -451,7 +452,7 @@ alter table STUDENTE add constraint FKPER_STU_FK
 
 alter table STUDENTE_IN_CORSO add constraint FKIscrizione_FK
      foreign key (Codice_Corso)
-     references CORSO (Codice);
+     references CORSO (Codice) on delete cascade;
 
 alter table STUDENTE_IN_CORSO add constraint FKEssere
      foreign key (Utente)
