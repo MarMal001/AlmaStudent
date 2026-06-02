@@ -28,11 +28,11 @@ function getMeanRating(ratingArray) {
     return mean;
 }
 
-function subscriptionButton(courseCode, isSubscribed) {
+function subscriptionButton(courseCode, isSubscribed, page) {
     if (isSubscribed){
-        return `<a href='subscription.php?action=remove&course=${courseCode}&page=course.php?course=${courseCode}' class='btn btn-white border-primary ms-1 mt-2'>Discriviti</a>`;
+        return `<a href='subscription.php?action=remove&course=${courseCode}&page=${page}' class='btn btn-white border-primary ms-1 mt-2'>Discriviti</a>`;
     } else {
-        return `<a href='subscription.php?action=add&course=${courseCode}&page=course.php?course=${courseCode}' class='btn btn-primary ms-1 mt-2'>Iscriviti</a>`;
+        return `<a href='subscription.php?action=add&course=${courseCode}&page=${page}' class='btn btn-primary ms-1 mt-2'>Iscriviti</a>`;
     }
 }
 
