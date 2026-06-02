@@ -409,7 +409,7 @@ class DatabaseHelper{
     private function createStudent($studentId, $username) {
         $stmt = $this->db->prepare(
             "INSERT INTO STUDENTE values
-            (?, ?, false, null, 0)"
+            (?, ?, null, 0)"
         );
         $stmt->bind_param("ss", $studentId, $username);
         return $stmt->execute();
