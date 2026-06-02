@@ -21,6 +21,7 @@
                         <h5 class="fw-bold">Sei stato bloccato!</h5>
                         <p>Avendo raggiunto un numero di segnalazioni pari a tre non sarà possibile eseguire recensioni per la durata di un mese. Al primo accesso dopo un mese dal blocco potrai nuovamente recensire e il numero di segnalazioni sarà portato a zero.     
                         </p>
+                        <p class="text-center border border-light rounded">Ti restano <?php echo $dbh->getRemainingBanDays($user); ?> giorni prima che avvenga lo sblocco</p>
                     </div>
                 </div>
             <?php endif; ?>    
