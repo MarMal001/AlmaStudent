@@ -39,11 +39,11 @@
                     </ul>
                 <p><?php echo $course["shortDescription"]; ?></p>
                 <div class="d-flex justify-content-end">
-                    <?php if ($dbh->canRateCourse($user, $course["code"]) && !$dbh->courseIsAlreadyRated($user, $course["code"])): ?>
+                    <?php if (isStudent() && $dbh->canRateCourse($user, $course["code"]) && !$dbh->courseIsAlreadyRated($user, $course["code"])): ?>
                         <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-2 mt-2 <?php if ($dbh->isStudentBanned($user)){ echo "disabled";} ?>">Recensisci</a>
                     <?php endif; ?>
                     <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1 mt-2">Apri corso</a>
-                    <?php if(isStudent($user)) {
+                    <?php if(isStudent()) {
                         subscriptionButton($user, $course["code"]);
                     } ?>
                 </div>
