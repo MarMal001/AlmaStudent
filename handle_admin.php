@@ -9,7 +9,7 @@ if (!isAdmin() || !isset($_POST["action"])) {
 switch ($_POST["action"]) {
     case ADMIN_ADD_ACCOUNT:
         if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["type"])) {
-            if ($_POST["type"] == "admin" || $_POST["type"] == "professor") {
+            if ($_POST["type"] == "DOCENTE" || $_POST["type"] == "ADMIN") {
                 add_account($_POST["username"], $_POST["password"], $_POST["name"], $_POST["surname"], $_POST["type"]);
             } else {
                 $GLOBALS["message"] = "Tipo di account invalido";
@@ -20,7 +20,7 @@ switch ($_POST["action"]) {
         break;
     case ADMIN_MODIFY_ACCOUNT:
         if (isset($_POST["username"]) && isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["type"])) {
-            if ($_POST["type"] == "professor" || $_POST["type"] == "admin") {
+            if ($_POST["type"] == "DOCENTE" || $_POST["type"] == "ADMIN") {
                 update_account($_POST["username"], $_POST["name"], $_POST["surname"], $_POST["type"]);
             } else {
                 $GLOBALS["message"] = "Tipo di account invalido";
