@@ -105,7 +105,7 @@
         if (isUserReview($studentId)) {
             $place = "end";
         }
-        echo '<div class="float-' . $place . " " . 'border border-2 border-primary rounded-3 p-2 w-75 w-lg-55">';
+        echo '<div class="float-' . $place . " " . 'border border-2 border-primary rounded-3 mb-5 p-2 w-75 w-lg-55">';
         echo '<div class="d-flex justify-content-between align-items-center">';
         echo '<div class="d-md-inline-flex align-items-md-center p-0">';
         $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];
@@ -149,7 +149,7 @@
         if (isUserReview($studentId)) {
             $place = "end";
         }
-        echo '<div class="float-' . $place . " " . 'border border-2 border-primary rounded-3 p-2 w-75 w-lg-55">';
+        echo '<div class="float-' . $place . " " . 'border border-2 border-primary rounded-3 mb-3 p-2 w-75 w-lg-55">';
         echo '<div class="d-flex justify-content-between align-items-center">';
         echo '<div class="d-md-inline-flex align-items-md-center p-0">';
         $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];

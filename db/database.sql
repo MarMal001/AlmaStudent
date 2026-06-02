@@ -146,7 +146,6 @@ create table RICEVIMENTO (
 
 create table STUDENTE (
      Utente varchar(100) not null,
-     Segnalato tinyint not null,
      Data_Ban date,
      Numero_Segnalazioni int not null,
      constraint FKPER_STU_ID unique (Utente));
@@ -211,8 +210,8 @@ insert into DOCENTE values
 
 ### STUDENTE ###
 insert into STUDENTE values
-	("carla.anselmi3@studio.unibo.it", false, null, 0),
-	("alessandro.giacomini2@studio.unibo.it", true, "2026-01-15", 1);
+	("carla.anselmi3@studio.unibo.it", null, 0),
+	("alessandro.giacomini2@studio.unibo.it", null, 1);
 
 ### FACOLTA ###
 insert into FACOLTA values
