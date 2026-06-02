@@ -4,7 +4,7 @@ require_once "init.php";
 
 if ($_GET["action"] == "add") {
     if (!$GLOBALS["dbh"]->studentIsExistentForCourse($user, $_GET["course"])[0]["existent"]) {
-        $GLOBALS["dbh"]->createSubscribedStudent($user, $_GET["course"]) . "AAA";
+        $GLOBALS["dbh"]->createSubscribedStudent($user, $_GET["course"]);
     } else {
         $GLOBALS["dbh"]->addSubscription($user, $_GET["course"]);
     }
