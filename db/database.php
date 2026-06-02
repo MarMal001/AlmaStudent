@@ -1058,6 +1058,20 @@ class DatabaseHelper{
         );
         $stmt->execute();
     }
+
+    public function getRemainingBanDays($student) {
+        $stmt = $this->db->prepare(
+            "SELECT DATEDIFF(CURDATE(), s.Data_Ban) AS numDays
+            FROM STUDENTE AS s
+            WHERE s.Utente = ?
+            "
+        );
+        $stmt->bind_param("s", $student);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $numDays = $result->fetch_all(MYSQLI_ASSOC)[0]["numDays"];
+        return 31 - $numDays;
+    }
 }
 
 ?>
