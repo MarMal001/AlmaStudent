@@ -608,25 +608,12 @@ class DatabaseHelper{
                 $success = $stmt->execute();
             } else {
                 $stmt = $this->db->prepare(
-                    "SELECT Foto_Profilo AS profPic
-                    FROM DOCENTE
+                    "UPDATE DOCENTE
+                    SET Dipartimento = ?, Sede = ?, Info_Ricevimento = ?, Foto_Profilo = ?
                     WHERE Utente = ?"
                 );
-                $stmt->bind_param("s", $username);
+                $stmt->bind_param("sssss", $department, $seat, $infoReception, $profilePicture, $username);
                 $success = $stmt->execute();
-                $profilePictureFile = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["profPic"];
-                if ($success) {
-                    $stmt = $this->db->prepare(
-                        "UPDATE DOCENTE
-                        SET Dipartimento = ?, Sede = ?, Info_Ricevimento = ?, Foto_Profilo = ?
-                        WHERE Utente = ?"
-                    );
-                    $stmt->bind_param("sssss", $department, $seat, $infoReception, $profilePicture, $username);
-                    $success = $stmt->execute();
-                    if ($success && $profilePictureFile != "default.png") {
-                        unlink(UPLOAD_DIR . "/professor/" . $profilePictureFile);
-                    }
-                }
             }
         }
         return $success;
