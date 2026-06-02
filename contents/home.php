@@ -45,6 +45,15 @@
                         <h1 class="fw-bolder px-5 py-2"><?php echo $dbh->getStudentNumberReports($user)[0]["numReports"]; ?></h1>
                     </div>
                 <?php endif; ?>
+                <?php if (isStudent() && $dbh->isStudentBanned($user)): ?>
+                    <div class="card text-center my-3">
+                        <div class="card-body bg-primary text-white rounded">
+                            <h5 class="fw-bold">Sei stato bloccato!</h5>
+                            <p>Avendo raggiunto un numero di segnalazioni pari a tre non sarà possibile eseguire recensioni per la durata di un mese. Al primo accesso dopo un mese dal blocco potrai nuovamente recensire e il numero di segnalazioni sarà portato a zero.     
+                            </p>
+                        </div>
+                    </div>
+                <?php endif; ?>
                 <?php if (isAdmin()): ?>
                     <?php 
                         $nReportedReviewsProf = count($dbh->getReportedReviewsOfProfessors());

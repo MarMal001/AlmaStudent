@@ -14,5 +14,9 @@ if (isAdmin() && isset($_GET["message"])) {
 
 }
 
+if (isStudent() && $dbh->isStudentBanned($user) && $dbh->studentMustBeDebanned($user)) {
+    $dbh->debanStudent($user);
+}
+
 require "template/base.php";
 ?>

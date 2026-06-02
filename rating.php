@@ -5,7 +5,7 @@ $templateParams["title"] = "Rating";
 $templateParams["content"] = "rating_content.php";
 $templateParams["style"] = ["style.css"];
 
-if(!isStudent()) {
+if(!isStudent() || $dbh->isStudentBanned($user)) {
     header("location: index.php");
 } else {
         if (isset($_GET["course"]) && $dbh->courseExists($_GET["course"])) {
