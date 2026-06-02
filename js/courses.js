@@ -186,7 +186,8 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
             <li>
                 <select name="addProfessor" id="addProfessor">
                     <option value="" selected>Nessuno</option>`;
-        for (const professor of professors) {
+        const professorsToAdd = professors.filter(e => !course["professors"].find(t => t["professor"] == e["professor"]));
+        for (const professor of professorsToAdd) {
             content += `<option value="${professor["professor"]}">${professor["name"]} ${professor["surname"]}</option>`;
         }
         content += `</select>
