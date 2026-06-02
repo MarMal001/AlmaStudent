@@ -79,11 +79,13 @@
         </div>
         <?php if (isStudent()): ?>
             <div class="d-flex justify-content-end mb-5 me-2">
-                <a class="btn btn-primary 
-                <?php if (!$dbh->canRateCourse($user, $courseId)[0]["existence"] || $dbh->courseIsAlreadyRated($user, $courseId) || $dbh->isStudentBanned($user)) {
-                    echo "disabled";
-                } ; ?>" 
-                href="rating.php?course=<?php echo $courseId; ?>">Recensisci</a>
+                <?php if (!$dbh->canRateCourse($user, $courseId)[0]["existence"] || $dbh->courseIsAlreadyRated($user, $courseId) || $dbh->isStudentBanned($user)): ?>
+                    <div data-bs-toggle="tooltip" data-bs-placement="left" title="Non hai ancora sostenuto con esito positivo l'esame o hai già recensito o sei stato bloccato">
+                        <a class="btn btn-primary disabled" href="rating.php?course=<?php echo $courseId; ?>">Recensisci</a>
+                    </div>
+                <?php else: ?>
+                    <a class="btn btn-primary" href="rating.php?course=<?php echo $courseId; ?>">Recensisci</a>
+                <?php endif; ?>    
             </div>
         <?php endif; ?>
         
