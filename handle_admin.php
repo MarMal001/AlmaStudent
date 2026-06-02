@@ -88,7 +88,7 @@ function add_account($username, $password, $name, $surname, $type) {
     $seat = isset($_POST["seat"]) ? $_POST["seat"] : NULL;
     $infoReception = isset($_POST["infoReception"]) ? $_POST["infoReception"] : NULL;
 
-    if ($GLOBALS["dbh"]->createAccount($username, $password, $name, $surname, $type, department: $department, seat: $seat, infoReception: $infoReception)) {
+    if ($GLOBALS["dbh"]->createAccount($username, $password, $name, $surname, $type, $department, $seat, $infoReception)) {
         $GLOBALS["message"] = "Account aggiunto con successo";
     } else {
         $GLOBALS["message"] = "Non è stato possibile aggiungere l'account";

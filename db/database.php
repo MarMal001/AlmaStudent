@@ -422,13 +422,13 @@ class DatabaseHelper{
     private function createStudent($studentId, $username) {
         $stmt = $this->db->prepare(
             "INSERT INTO STUDENTE values
-            (?, ?, null, 0)"
+            (?, 0, null, 0)"
         );
-        $stmt->bind_param("ss", $studentId, $username);
+        $stmt->bind_param("s", $username);
         return $stmt->execute();
     }
 
-    public function createAccount($username, $password, $name, $surname, $role, $studentId = NULL, $department = NULL, $seat = NULL, $infoReception = NULL) {
+    public function createAccount($username, $password, $name, $surname, $role, $department = NULL, $seat = NULL, $infoReception = NULL) {
         $stmt = $this->db->prepare(
             "INSERT INTO PERSONA values
             (?, ?, ?, ?, ?)"
