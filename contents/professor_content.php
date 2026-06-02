@@ -37,8 +37,8 @@
                 <p>
                 <?php echo $profInfo["department"]; ?>
                 </p>
-                <?php if (isStudent()): ?>
-                    <a href=# class="btn btn-light text-primary">Contatta il docente</a>
+                <?php if (isProfessor()): ?>
+                    <a href=# class="btn btn-light text-primary">Modifica foto profilo</a>
                 <?php endif; ?>
             </div>
             </div>
