@@ -37,15 +37,14 @@
                 <p>
                 <?php echo $profInfo["department"]; ?>
                 </p>
-                <?php if (isStudent()): ?>
-                    <a href=# class="btn btn-light text-primary">Contatta il docente</a>
-                <?php endif; ?>
             </div>
             </div>
-
         </div>
         </div>
 
+        <?php if ($user == $professorId): ?>
+            <a href="update_profile_professor.php?professor=<?php echo idWithoutDomain($professorId); ?>" class="btn btn-primary">Modifica informazioni profilo</a>
+        <?php endif; ?>
 
     </section>
     <section>

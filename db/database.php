@@ -388,6 +388,19 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getProfilePicture($professor) {
+        $stmt = $this->db->prepare(
+            "SELECT Foto_Profilo AS profPic
+            FROM DOCENTE
+            WHERE Utente = ?"
+        );
+        $stmt->bind_param("s", $professor);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["profPic"];
+    }
+
     private function createAdmin($username) {
         $stmt = $this->db->prepare(
             "INSERT INTO ADMIN values
@@ -397,25 +410,25 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
-    private function createProfessor($username, $department, $seat, $infoReception, $profilePicture) {
+    private function createProfessor($username, $department, $seat, $infoReception) {
         $stmt = $this->db->prepare(
-            "INSERT INTO DOCENTE values
-            (?, ?, ?, ?, ?)"
+            'INSERT INTO DOCENTE values
+            (?, ?, ?, ?, "default.png")'
         );
-        $stmt->bind_param("sssss", $username, $department, $seat, $infoReception, $profilePicture);
+        $stmt->bind_param("ssss", $username, $department, $seat, $infoReception);
         return $stmt->execute();
     }
 
     private function createStudent($studentId, $username) {
         $stmt = $this->db->prepare(
             "INSERT INTO STUDENTE values
-            (?, ?, null, 0)"
+            (?, 0, null, 0)"
         );
-        $stmt->bind_param("ss", $studentId, $username);
+        $stmt->bind_param("s", $username);
         return $stmt->execute();
     }
 
-    public function createAccount($username, $password, $name, $surname, $role, $studentId = NULL, $department = NULL, $seat = NULL, $infoReception = NULL, $profilePicture = NULL) {
+    public function createAccount($username, $password, $name, $surname, $role, $department = NULL, $seat = NULL, $infoReception = NULL) {
         $stmt = $this->db->prepare(
             "INSERT INTO PERSONA values
             (?, ?, ?, ?, ?)"
@@ -426,7 +439,7 @@ class DatabaseHelper{
             if ($role == "ADMIN") {
                 $success = $this->createAdmin($username);
             } else if ($role == "DOCENTE") {
-                $success = $this->createProfessor($username, $department, $seat, $infoReception, $profilePicture);
+                $success = $this->createProfessor($username, $department, $seat, $infoReception);
             } else if ($role == "STUDENTE") {
                 $success = $this->createStudent($studentId, $username);
             }
@@ -592,15 +605,29 @@ class DatabaseHelper{
                     WHERE Utente = ?"
                 );
                 $stmt->bind_param("ssss", $department, $seat, $infoReception, $username);
+                $success = $stmt->execute();
             } else {
                 $stmt = $this->db->prepare(
-                    "UPDATE DOCENTE
-                    SET Dipartimento = ?, Sede = ?, Info_Ricevimento = ?, Foto_Profilo = ?
+                    "SELECT Foto_Profilo AS profPic
+                    FROM DOCENTE
                     WHERE Utente = ?"
                 );
-                $stmt->bind_param("sssss", $department, $seat, $infoReception, $profilePicture, $username);
+                $stmt->bind_param("s", $username);
+                $success = $stmt->execute();
+                $profilePictureFile = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["profPic"];
+                if ($success) {
+                    $stmt = $this->db->prepare(
+                        "UPDATE DOCENTE
+                        SET Dipartimento = ?, Sede = ?, Info_Ricevimento = ?, Foto_Profilo = ?
+                        WHERE Utente = ?"
+                    );
+                    $stmt->bind_param("sssss", $department, $seat, $infoReception, $profilePicture, $username);
+                    $success = $stmt->execute();
+                    if ($success && $profilePictureFile != "default.png") {
+                        unlink(UPLOAD_DIR . "/professor/" . $profilePictureFile);
+                    }
+                }
             }
-            $success = $stmt->execute();
         }
         return $success;
     }
@@ -655,11 +682,11 @@ class DatabaseHelper{
 
     public function deleteAccount($code, $type) {
         $stmt = null;
-        if ($type == "admin") {
+        if ($type == "ADMIN") {
             $stmt = $this->db->prepare(
                 "DELETE FROM ADMIN WHERE Utente = ?"
             );
-        } else if ($type == "professor") {
+        } else if ($type == "DOCENTE") {
             $stmt = $this->db->prepare(
                 "DELETE FROM DOCENTE WHERE Utente = ?"
             );

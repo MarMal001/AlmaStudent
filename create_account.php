@@ -1,8 +1,8 @@
 <?php
 require_once "init.php";
 
-if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["name"]) && isset($_POST["surname"]) && isset($_POST["studentId"])) {
-    $loginResult = $dbh->createAccout($_POST["username"], $_POST["password"], $_POST["name"], $_POST["surname"], "STUDENTE", $_POST["studentId"]);
+if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["name"]) && isset($_POST["surname"])) {
+    $loginResult = $dbh->createAccount($_POST["username"], $_POST["password"], $_POST["name"], $_POST["surname"], "STUDENTE");
     echo $loginResult;
     if ($loginResult) {
         registerLoggedUser($loginResult[0]);

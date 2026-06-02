@@ -24,14 +24,6 @@
                     <input type="text" id="surname" name="surname" />
                 </li>
                 <li>
-                    <label for="studentId" class="text-left">
-                        <h5>Matricola</h5>
-                    </label>
-                </li>
-                <li>
-                    <input type="text" id="studentId" name="studentId" />
-                </li>
-                <li>
                     <label for="username" class="text-left">
                         <h5>Username</h5>
                     </label>

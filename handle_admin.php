@@ -88,26 +88,18 @@ function add_account($username, $password, $name, $surname, $type) {
     $seat = isset($_POST["seat"]) ? $_POST["seat"] : NULL;
     $infoReception = isset($_POST["infoReception"]) ? $_POST["infoReception"] : NULL;
 
-    if (isset($_FILES["profilePicture"]) && $_FILES["profilePicture"]["name"] != "") {
-        $profilePicture = idWithoutDomain($username) . ".png";
-        $f = fopen(UPLOAD_DIR . "/professor/" . $profilePicture, "wb");
-        fwrite($f, file_get_contents($_FILES["profilePicture"]["tmp_name"]));
-    } else {
-        $profilePicture = "default.png";
-    }
-
-    if ($GLOBALS["dbh"]->createAccount($username, $password, $name, $surname, $type, department: $department, seat: $seat, infoReception: $infoReception, profilePicture: $profilePicture)) {
+    if ($GLOBALS["dbh"]->createAccount($username, $password, $name, $surname, $type, $department, $seat, $infoReception)) {
         $GLOBALS["message"] = "Account aggiunto con successo";
     } else {
         $GLOBALS["message"] = "Non è stato possibile aggiungere l'account";
     }
 }
 
-function update_account($username, $name, $surname, $type, $removeProfilePicture = false) {
+function update_account($username, $name, $surname, $type) {
     $department = isset($_POST["department"]) ? $_POST["department"] : NULL;
     $seat = isset($_POST["seat"]) ? $_POST["seat"] : NULL;
     $infoReception = isset($_POST["infoReception"]) ? $_POST["infoReception"] : NULL;
-    $profilePicture = $removeProfilePicture ? "default.png" : NULL;
+    $profilePicture = isset($_POST["removeProfilePicture"]) ? "default.png" : NULL;
 
     if ($GLOBALS["dbh"]->updateAccount($username, $name, $surname, $type, $department, $seat, $infoReception, $profilePicture)) {
         $GLOBALS["message"] = "Account modificato con successo";

@@ -74,14 +74,6 @@
                     <li>
                         <input type="text" id="infoReception" name="infoReception" />
                     </li>
-                    <li>
-                        <label for="profilePicture" class="text-left">
-                            <h5>Immagine profilo</h5>
-                        </label>
-                    </li>
-                    <li>
-                        <input type="file" id="profilePicture" name="profilePicture" />
-                    </li>
                 <?php endif; ?>
                 <li>
                     <button type="submit" class="btn btn-primary mt-3" name="action" value="<?php echo ADMIN_ADD_ACCOUNT; ?>">Crea account</button>

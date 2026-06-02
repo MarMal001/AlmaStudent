@@ -1,0 +1,24 @@
+<?php
+
+require_once("init.php");
+
+if (isset($_POST["department"]) && isset($_POST["seat"]) && isset($_POST["infoReception"])) {
+    if (isset($_FILES["profilePicture"]) && $_FILES["profilePicture"]["name"] != "") {
+        $profilePicture = idWithoutDomain($user) . ".png";
+        $f = fopen(UPLOAD_DIR . "/professor/" . $profilePicture, "wb");
+        fwrite($f, file_get_contents($_FILES["profilePicture"]["tmp_name"]));
+    } else {
+        $profilePicture = NULL;
+    }
+
+    $professorInfo = $dbh->getProfessorInfo($user)[0];
+    if ($dbh->updateAccount($user, $professorInfo["name"], $professorInfo["surname"], "DOCENTE", $_POST["department"], $_POST["seat"], $_POST["infoReception"], $profilePicture)) {
+        $message = "Descrizione modificata con successo";
+    } else {
+        $message = "Non è stato possibile modificare la descrizione";
+    }
+} else {
+    $message = "Parametri mancanti";
+}
+
+header("location: professor.php?professor=" . idWithoutDomain($user) . "&message=" . $message);
