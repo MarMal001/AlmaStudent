@@ -40,7 +40,13 @@
                 <p><?php echo $course["shortDescription"]; ?></p>
                 <div class="d-flex justify-content-end">
                     <?php if (isStudent() && $dbh->canRateCourse($user, $course["code"]) && !$dbh->courseIsAlreadyRated($user, $course["code"])): ?>
-                        <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-2 mt-2 <?php if ($dbh->isStudentBanned($user)){ echo "disabled";} ?>">Recensisci</a>
+                        <?php if ($dbh->isStudentBanned($user)): ?>
+                            <div data-bs-toggle="tooltip" data-bs-placement="left" title="Sei stato bloccato">
+                                <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-2 mt-2 disabled">Recensisci</a>
+                            </div>
+                        <?php else: ?>
+                            <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-2 mt-2">Recensisci</a>
+                        <?php endif; ?>
                     <?php endif; ?>
                     <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1 mt-2">Apri corso</a>
                     <?php if(isStudent()) {
