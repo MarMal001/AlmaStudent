@@ -376,7 +376,7 @@ alter table CHAT add constraint FKPartecipazione_FK
 
 alter table CORSO add constraint FKComposizione_FK
      foreign key (Codice_Facolta)
-     references FACOLTA (Codice);
+     references FACOLTA (Codice) on delete cascade;
 
 alter table DOCENTE add constraint FKPER_DOC_FK
      foreign key (Utente)
@@ -460,11 +460,11 @@ alter table STUDENTE_IN_CORSO add constraint FKEssere
 
 alter table Tenere add constraint FKTen_COR
      foreign key (Codice_Corso)
-     references CORSO (Codice);
+     references CORSO (Codice) on delete cascade;
 
 alter table Tenere add constraint FKTen_DOC_FK
      foreign key (Docente)
-     references DOCENTE (Utente);
+     references DOCENTE (Utente) on delete cascade;
 
 
 -- Index Section
