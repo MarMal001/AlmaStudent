@@ -1072,6 +1072,21 @@ class DatabaseHelper{
         $numDays = $result->fetch_all(MYSQLI_ASSOC)[0]["numDays"];
         return 31 - $numDays;
     }
+
+    public function idReviewExists($id) {
+        $stmt = $this->db->prepare(
+            "SELECT EXISTS (
+                SELECT 1
+                FROM REVIEW AS rv
+                WHERE rv.Codice_Rating = ?
+            ) AS existence
+            "
+        );
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["existence"];
+    }
 }
 
 ?>
