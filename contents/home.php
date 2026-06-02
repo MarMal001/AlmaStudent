@@ -15,7 +15,16 @@
             <i class="fa-solid fa-angle-left" onclick=toggleStatistics()></i>
         </div>
         <div class="px-4 py-3" style="display: block" id="statistics">
-            <h3>Le statistiche</h3>
+            <?php if (isStudent() && $dbh->isStudentBanned($user)): ?>
+                <div class="card text-center my-3">
+                    <div class="card-body bg-primary text-white rounded">
+                        <h5 class="fw-bold">Sei stato bloccato!</h5>
+                        <p>Avendo raggiunto un numero di segnalazioni pari a tre non sarà possibile eseguire recensioni per la durata di un mese. Al primo accesso dopo un mese dal blocco potrai nuovamente recensire e il numero di segnalazioni sarà portato a zero.     
+                        </p>
+                    </div>
+                </div>
+            <?php endif; ?>    
+        <h3>Le statistiche</h3>
             <div class="d-flex flex-wrap gap-3">
                 <?php if (!isAdmin()): ?>
                     <div class="card text-center my-3">
@@ -43,15 +52,6 @@
                             <h5 class="card-title">segnalazioni</h5>
                         </div>
                         <h1 class="fw-bolder px-5 py-2"><?php echo $dbh->getStudentNumberReports($user)[0]["numReports"]; ?></h1>
-                    </div>
-                <?php endif; ?>
-                <?php if (isStudent() && $dbh->isStudentBanned($user)): ?>
-                    <div class="card text-center my-3">
-                        <div class="card-body bg-primary text-white rounded">
-                            <h5 class="fw-bold">Sei stato bloccato!</h5>
-                            <p>Avendo raggiunto un numero di segnalazioni pari a tre non sarà possibile eseguire recensioni per la durata di un mese. Al primo accesso dopo un mese dal blocco potrai nuovamente recensire e il numero di segnalazioni sarà portato a zero.     
-                            </p>
-                        </div>
                     </div>
                 <?php endif; ?>
                 <?php if (isAdmin()): ?>
