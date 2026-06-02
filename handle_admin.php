@@ -103,11 +103,11 @@ function add_account($username, $password, $name, $surname, $type) {
     }
 }
 
-function update_account($username, $name, $surname, $type, $removeProfilePicture = false) {
+function update_account($username, $name, $surname, $type) {
     $department = isset($_POST["department"]) ? $_POST["department"] : NULL;
     $seat = isset($_POST["seat"]) ? $_POST["seat"] : NULL;
     $infoReception = isset($_POST["infoReception"]) ? $_POST["infoReception"] : NULL;
-    $profilePicture = $removeProfilePicture ? "default.png" : NULL;
+    $profilePicture = isset($_POST["removeProfilePicture"]) ? "default.png" : NULL;
 
     if ($GLOBALS["dbh"]->updateAccount($username, $name, $surname, $type, $department, $seat, $infoReception, $profilePicture)) {
         $GLOBALS["message"] = "Account modificato con successo";

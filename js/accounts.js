@@ -42,6 +42,14 @@ function generateUpdateProfessorForm(professor) {
         <li>
             <input type="text" id="infoReception" name="infoReception" value="${professor["infoReception"]}" />
         </li>
+        <div class="d-flex">
+            <li class="mt-3 me-2">
+                <input type="checkbox" id="removeProfilePicture" name="removeProfilePicture" />
+            </li>
+            <li>
+                <label for="removeProfilePicture">Rimuovi immagine profilo</label>
+            </li>
+        </div>        
         <li>
             <button type="submit" class="btn btn-primary mt-3" name="action" value="${ADMIN_MODIFY_ACCOUNT}">Modifica account</button>
         </li>
