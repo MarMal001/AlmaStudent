@@ -749,6 +749,20 @@ class DatabaseHelper{
         );
         $stmt->bind_param("s", $student);
         $state = $stmt->execute();
+        if (!$state) {
+            return false;
+        }
+        if($this->getStudentNumberReports($student)[0]["numReports"] == 3) {
+            $stmt = $this->db->prepare(
+                "UPDATE STUDENTE 
+                SET Data_Ban = CURDATE()
+                WHERE Utente = ?"
+            );
+
+            $stmt->bind_param("s", $student);
+            $state = $stmt->execute();
+        }
+        
         return $state;
     } 
 
@@ -990,6 +1004,45 @@ class DatabaseHelper{
         $stmt->bind_param("sssssss", $code, $professor, $student, $course, $ratingD, $ratingC, $ratingI);
         $state = $stmt->execute();
         return $code;
+    }
+
+    public function isStudentBanned($student) {
+        $stmt = $this->db->prepare(
+            "SELECT EXISTS (
+                SELECT 1
+                FROM STUDENTE AS s
+                WHERE s.Utente = ?
+                AND s.Data_Ban IS NOT null
+            ) AS existence
+            "
+        );
+        $stmt->bind_param("s", $student);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["existence"];
+    }
+
+    public function studentMustBeDebanned($student) {
+        $stmt = $this->db->prepare(
+            "SELECT DATEDIFF(CURDATE(), s.Data_Ban) AS numDays
+            FROM STUDENTE AS s
+            WHERE s.Utente = ?
+            "
+        );
+        $stmt->bind_param("s", $student);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $numDays = $result->fetch_all(MYSQLI_ASSOC)[0]["numDays"];
+        return $numDays > 30;
+    }
+
+    public function debanStudent($student) {
+        $stmt = $this->db->prepare(
+            "UPDATE STUDENTE AS s
+            SET s.Data_Ban = null, s.Numero_Segnalazioni = 0
+            "
+        );
+        $stmt->execute();
     }
 }
 
