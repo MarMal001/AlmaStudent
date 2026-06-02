@@ -409,7 +409,7 @@ class DatabaseHelper{
     private function createStudent($studentId, $username) {
         $stmt = $this->db->prepare(
             "INSERT INTO STUDENTE values
-            (?, ?, false, null, 0)"
+            (?, ?, null, 0)"
         );
         $stmt->bind_param("ss", $studentId, $username);
         return $stmt->execute();
@@ -420,14 +420,14 @@ class DatabaseHelper{
             "INSERT INTO PERSONA values
             (?, ?, ?, ?, ?)"
         );
-        $stmt->bind_param("sssss", $username, $password, $name, $surname, strtoupper($role));
+        $stmt->bind_param("sssss", $username, $password, $name, $surname, $role);
         $success = $stmt->execute();
         try {
-            if (strtolower($role) == "admin") {
+            if ($role == "ADMIN") {
                 $success = $this->createAdmin($username);
-            } else if (strtolower($role) == "professor") {
+            } else if ($role == "DOCENTE") {
                 $success = $this->createProfessor($username, $department, $seat, $infoReception, $profilePicture);
-            } else if (strtolower($role) == "student") {
+            } else if ($role == "STUDENTE") {
                 $success = $this->createStudent($studentId, $username);
             }
         } catch (mysqli_sql_exception $e) {
@@ -584,7 +584,7 @@ class DatabaseHelper{
         if (!$success) {
             return false;
         }
-        if (strtolower($role) == "professor") {
+        if ($role == "DOCENTE") {
             if ($profilePicture == NULL) {
                 $stmt = $this->db->prepare(
                     "UPDATE DOCENTE

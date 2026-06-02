@@ -28,14 +28,10 @@ function generateProfessors(professors) {
 }
 
 async function getProfessorsData() {
-    const url = "api-degrees.php";
+    const url = "api-professors.php";
     const formData = new FormData();
     let degreeCode = document.querySelector("#degreeCode").value;
-    if (degreeCode == "") {
-        return;
-    }
     formData.append("degreeCode", degreeCode);
-    formData.append("type", "professors");
     try {
         const response = await fetch(url, {
             method: "POST",
@@ -52,3 +48,5 @@ async function getProfessorsData() {
         console.log(error.message);
     }
 }
+
+getProfessorsData();

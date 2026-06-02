@@ -82,7 +82,7 @@
     }
 
     function isProfessor() {
-        return $GLOBALS["role"] == "PROFESSOR";
+        return $GLOBALS["role"] == "DOCENTE";
     }
 
     function isAdmin() {
