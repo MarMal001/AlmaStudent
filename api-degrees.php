@@ -44,13 +44,6 @@ if ($_POST["type"] == "courses") {
     }
     $data["degreeYears"] = $degreeYears;
     $data["professors"] = $dbh->getProfessors();
-} else if ($_POST["type"] == "professors") {
-    $data["professors"] = array();
-    $professors = $dbh->getProfessorsByDegree($degreeCode);
-    foreach($professors as $professor) {
-        $professor["courses"] = $dbh->getCoursesByProfessor($professor["professor"]);
-        array_push($data["professors"], $professor);
-    }
 } else if ($_POST["type"] == "updateDegree") {
     $data["degree"] = $dbh->getDegreeByCode($_POST["degreeCode"]);
 } else {
