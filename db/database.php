@@ -682,11 +682,11 @@ class DatabaseHelper{
 
     public function deleteAccount($code, $type) {
         $stmt = null;
-        if ($type == "admin") {
+        if ($type == "ADMIN") {
             $stmt = $this->db->prepare(
                 "DELETE FROM ADMIN WHERE Utente = ?"
             );
-        } else if ($type == "professor") {
+        } else if ($type == "DOCENTE") {
             $stmt = $this->db->prepare(
                 "DELETE FROM DOCENTE WHERE Utente = ?"
             );
