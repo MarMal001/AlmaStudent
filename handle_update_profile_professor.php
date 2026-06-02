@@ -2,6 +2,11 @@
 
 require_once("init.php");
 
+if (!isProfessor()) {
+    header("location: index.php");
+    exit();
+}
+
 if (isset($_POST["department"]) && isset($_POST["seat"]) && isset($_POST["infoReception"])) {
     if (isset($_FILES["profilePicture"]) && $_FILES["profilePicture"]["name"] != "") {
         $profilePicture = idWithoutDomain($user) . ".png";

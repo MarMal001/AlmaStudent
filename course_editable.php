@@ -1,6 +1,11 @@
 <?php
 require_once "init.php";
 
+if (!isProfessor() || (isset($_GET["course"]) && !isDesignatedProfessor($user, $_GET["course"]))) {
+    header("location: courses.php");
+    exit();
+}
+
 $templateParams["title"] = "Edit Course";
 $templateParams["content"] = "course_editable_content.php";
 $templateParams["style"] = ["style.css"];

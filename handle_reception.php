@@ -4,6 +4,7 @@ require_once "init.php";
 
 if (!isProfessor()) {
     header("location: course.php");
+    exit();
 }
 
 define("ONE_MINUTE_IN_SECONDS", 60);
