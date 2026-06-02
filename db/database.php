@@ -555,10 +555,6 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-        public function getReviewText($id) {
-
-    }
-
     public function addCourse($code, $name, $degreeCode, $year, $semester) {
         $stmt = $this->db->prepare(
             "INSERT INTO CORSO values
@@ -926,6 +922,76 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC)[0]["existence"];
     }
+
+    public function professorsOfCourseAlreadyRated($student, $course) {
+        $stmt = $this->db->prepare(
+            "SELECT EXISTS (
+                SELECT 1
+                FROM RATING_DOCENTE AS rd
+                WHERE rd.Studente = ?
+                AND rd.Corso = ?
+            ) AS existence
+            "
+        );
+        $stmt->bind_param("ss", $student, $course);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["existence"];
+    }
+
+    public function createCourseRating($student, $course, $ratingL, $ratingM, $ratingE) {
+        $stmt = $this->db->prepare(
+            'INSERT INTO RATING VALUES (null, "CORSO", CURDATE())'
+        );
+        $stmt->execute();
+        $stmt = $this->db->prepare(
+            "SELECT Codice AS code
+            FROM RATING AS r
+            WHERE r.Codice = LAST_INSERT_ID()
+            "
+        );
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $code = $result->fetch_all(MYSQLI_ASSOC)[0]["code"];
+        $stmt = $this->db->prepare(
+            "INSERT INTO RATING_CORSO VALUES (?, ?, ?, ?, ?, ?);"
+        );
+        $stmt->bind_param("ssssss", $code, $student, $course, $ratingL, $ratingM, $ratingE);
+        $state = $stmt->execute();
+        return $code;
+    }
+
+    public function createReview($code, $text) {
+        $stmt = $this->db->prepare(
+            "INSERT INTO REVIEW VALUES (?, ?, false);"
+        );
+        $stmt->bind_param("ss", $code, $text);
+        $state = $stmt->execute();
+        return $state;
+    }
+
+    public function createProfessorRating($professor, $student, $course, $ratingD, $ratingC, $ratingI) {
+        $stmt = $this->db->prepare(
+            'INSERT INTO RATING VALUES (null, "DOCENTE", CURDATE())'
+        );
+        $stmt->execute();
+        $stmt = $this->db->prepare(
+            "SELECT Codice AS code
+            FROM RATING AS r
+            WHERE r.Codice = LAST_INSERT_ID()
+            "
+        );
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $code = $result->fetch_all(MYSQLI_ASSOC)[0]["code"];
+        $stmt = $this->db->prepare(
+            "INSERT INTO RATING_DOCENTE VALUES (?, ?, ?, ?, ?, ?, ?);"
+        );
+        $stmt->bind_param("sssssss", $code, $professor, $student, $course, $ratingD, $ratingC, $ratingI);
+        $state = $stmt->execute();
+        return $code;
+    }
 }
 
 ?>
+             
