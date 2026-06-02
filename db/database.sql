@@ -269,8 +269,8 @@ insert into RATING values
 	(null, "DOCENTE", "2025-03-12"),
 	(null, "CORSO", "2025-05-12"),
 	(null, "DOCENTE", "2025-07-12"),
-	(null, "CORSO", "2025-08-12"),
-    (null, "DOCENTE", "2025-12-12");
+	(null, "CORSO", "2025-08-12");
+    #(null, "DOCENTE", "2025-12-12");
 
 ### RATING_CORSO ###
 insert into RATING_CORSO values
@@ -280,8 +280,8 @@ insert into RATING_CORSO values
 ### RATING_DOCENTE ###
 insert into RATING_DOCENTE values
 	(1, "stefano.ferretti@unibo.it", "carla.anselmi3@studio.unibo.it", "08574", 2, 3, 5), #id docente studente corso valore valore valore
-	(3, "franco.callegati@unibo.it", "alessandro.giacomini2@studio.unibo.it","70226", 5, 3, 3),
-    (5, "vittorio.ghini@unibo.it", "carla.anselmi3@studio.unibo.it", "08574", 5, 5, 5);
+	(3, "franco.callegati@unibo.it", "alessandro.giacomini2@studio.unibo.it","70226", 5, 3, 3);
+    #(5, "vittorio.ghini@unibo.it", "carla.anselmi3@studio.unibo.it", "08574", 5, 5, 5);
 
 ### STUDENTE_IN_CORSO ###
 insert into STUDENTE_IN_CORSO values
