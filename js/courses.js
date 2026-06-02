@@ -75,11 +75,11 @@ function generateCourses(user, courses, degreeYears, isStudent) {
             }
             content += `</ul>
                     <p>${course["shortDescription"]}</p>
-                    <div class="d-flex justify-content-end m-2">
-                        <a href="course.php?course=${course["code"]}" class="btn btn-primary me-1">Apri corso</a>`;
+                    <div class="d-flex justify-content-end">
+                        <a href="course.php?course=${course["code"]}" class="btn btn-primary me-1 mt-2">Apri corso</a>`;
 
             if (isStudent) {
-                subscriptionButton(user, course["code"]);
+                content += subscriptionButton(user, course["code"], "course.php?course=" + course["code"]);
             }
             content += `</div>
                 </div>
