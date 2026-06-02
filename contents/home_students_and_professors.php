@@ -39,13 +39,16 @@
                     </ul>
                 <p><?php echo $course["shortDescription"]; ?></p>
                 <div class="d-flex justify-content-end">
-                    <?php if ($dbh->canRateCourse($user, $course["code"]) && !$dbh->courseIsAlreadyRated($user, $course["code"])): ?>
-                        <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-2 mt-2 <?php if ($dbh->isStudentBanned($user)){ echo "disabled";} ?>">Recensisci</a>
+                    <?php if (isStudent()): ?>
+                        <a class="btn btn-primary mt-2
+                        <?php if (!$dbh->canRateCourse($user, $courseId)[0]["existence"] || $dbh->courseIsAlreadyRated($user, $courseId) || $dbh->isStudentBanned($user)) {
+                            echo "disabled";
+                        } ; ?>" 
+                        href="rating.php?course=<?php echo $courseId; ?>">Recensisci</a>
+
+                        <?php subscriptionButton($user, $course["code"]); ?>
                     <?php endif; ?>
-                    <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1 mt-2">Apri corso</a>
-                    <?php if(isStudent($user)) {
-                        subscriptionButton($user, $course["code"]);
-                    } ?>
+                    <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary mx-1 mt-2">Apri corso</a>
                 </div>
             </div>
         </div>    
