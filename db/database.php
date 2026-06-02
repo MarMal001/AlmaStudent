@@ -388,6 +388,19 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getProfilePicture($professor) {
+        $stmt = $this->db->prepare(
+            "SELECT Foto_Profilo AS profPic
+            FROM DOCENTE
+            WHERE Utente = ?"
+        );
+        $stmt->bind_param("s", $professor);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["profPic"];
+    }
+
     private function createAdmin($username) {
         $stmt = $this->db->prepare(
             "INSERT INTO ADMIN values
@@ -397,12 +410,12 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
-    private function createProfessor($username, $department, $seat, $infoReception, $profilePicture) {
+    private function createProfessor($username, $department, $seat, $infoReception) {
         $stmt = $this->db->prepare(
-            "INSERT INTO DOCENTE values
-            (?, ?, ?, ?, ?)"
+            'INSERT INTO DOCENTE values
+            (?, ?, ?, ?, "default.png")'
         );
-        $stmt->bind_param("sssss", $username, $department, $seat, $infoReception, $profilePicture);
+        $stmt->bind_param("ssss", $username, $department, $seat, $infoReception);
         return $stmt->execute();
     }
 
@@ -415,7 +428,7 @@ class DatabaseHelper{
         return $stmt->execute();
     }
 
-    public function createAccount($username, $password, $name, $surname, $role, $studentId = NULL, $department = NULL, $seat = NULL, $infoReception = NULL, $profilePicture = NULL) {
+    public function createAccount($username, $password, $name, $surname, $role, $studentId = NULL, $department = NULL, $seat = NULL, $infoReception = NULL) {
         $stmt = $this->db->prepare(
             "INSERT INTO PERSONA values
             (?, ?, ?, ?, ?)"
@@ -426,7 +439,7 @@ class DatabaseHelper{
             if ($role == "ADMIN") {
                 $success = $this->createAdmin($username);
             } else if ($role == "DOCENTE") {
-                $success = $this->createProfessor($username, $department, $seat, $infoReception, $profilePicture);
+                $success = $this->createProfessor($username, $department, $seat, $infoReception);
             } else if ($role == "STUDENTE") {
                 $success = $this->createStudent($studentId, $username);
             }

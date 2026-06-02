@@ -88,15 +88,7 @@ function add_account($username, $password, $name, $surname, $type) {
     $seat = isset($_POST["seat"]) ? $_POST["seat"] : NULL;
     $infoReception = isset($_POST["infoReception"]) ? $_POST["infoReception"] : NULL;
 
-    if (isset($_FILES["profilePicture"]) && $_FILES["profilePicture"]["name"] != "") {
-        $profilePicture = idWithoutDomain($username) . ".png";
-        $f = fopen(UPLOAD_DIR . "/professor/" . $profilePicture, "wb");
-        fwrite($f, file_get_contents($_FILES["profilePicture"]["tmp_name"]));
-    } else {
-        $profilePicture = "default.png";
-    }
-
-    if ($GLOBALS["dbh"]->createAccount($username, $password, $name, $surname, $type, department: $department, seat: $seat, infoReception: $infoReception, profilePicture: $profilePicture)) {
+    if ($GLOBALS["dbh"]->createAccount($username, $password, $name, $surname, $type, department: $department, seat: $seat, infoReception: $infoReception)) {
         $GLOBALS["message"] = "Account aggiunto con successo";
     } else {
         $GLOBALS["message"] = "Non è stato possibile aggiungere l'account";
