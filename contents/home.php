@@ -17,35 +17,50 @@
         <div class="px-4 py-3" style="display: block" id="statistics">
             <h3>Le statistiche</h3>
             <div class="d-flex flex-wrap gap-3">
-                <div class="card text-center my-3">
-                    <?php if (!isAdmin()): ?>
+                <?php if (!isAdmin()): ?>
+                    <div class="card text-center my-3">
                         <div class="card-body bg-primary text-white rounded-top">
                             <h5 class="card-title">Corsi</h5>
                         </div>
                         <h1 class="fw-bolder px-5 py-2"><?php echo count(isStudent() ? $dbh->getStudentCourses($user) : $dbh->getCoursesByProfessor($user)); ?></h1>
-                    <?php endif; ?>
-                </div>
-                <div class="card text-center my-3">
-                    <?php if (!isAdmin()): ?>
+                    </div>
+                <?php endif; ?>
+                
+                <?php if (!isAdmin()): ?>
+                    <div class="card text-center my-3">
+                    
                         <div class="card-body bg-primary text-white rounded-top">
                             <h5 class="card-title">Ricevimenti</h6>
                             <h5 class="card-title">prenotati</h6>
                         </div>
-                        <h1 class="fw-bolder px-5 py-2"><?php echo count(isStudent() ? $dbh->getReservationsOfStudent($user) : $dbh->getReservationsOfProfessor($user)); ?></h1>
-                    <?php endif; ?>
-                </div>
-                <div class="card text-center my-3">
-                    <?php if (isStudent()): ?>
+                        <h1 class="fw-bolder px-5 py-2"><?php echo count(isStudent() ? $dbh->getReservationsOfStudent($user) : $dbh->getReservationsOfProfessor($user)); ?></h1>   
+                    </div>
+                <?php endif; ?>
+                <?php if (isStudent()): ?>
+                    <div class="card text-center my-3">
                         <div class="card-body bg-primary text-white rounded-top">
                             <h5 class="card-title">Numero</h5>
                             <h5 class="card-title">segnalazioni</h5>
                         </div>
                         <h1 class="fw-bolder px-5 py-2"><?php echo $dbh->getStudentNumberReports($user)[0]["numReports"]; ?></h1>
+                    </div>
+                <?php endif; ?>
+                <?php if (isAdmin()): ?>
+                    <?php 
+                        $nReportedReviewsProf = count($dbh->getReportedReviewsOfProfessors());
+                        $nReportedReviewsCourses = count($dbh->getReportedReviewsOfCourses()); 
+                        $nReports = $nReportedReviewsCourses + $nReportedReviewsProf;
+                    ?>
+                    
+                    <div class="card text-center my-3">
+                        <div class="card-body bg-primary text-white rounded-top">
+                            <h5 class="card-title">Segnalazioni</h6>
+                            <h5 class="card-title">da gestire</h6>
+                        </div>
+                        <h1 class="fw-bolder px-5 py-2"><?php echo $nReports; ?></h1>
+                    </div>
+                    
                     <?php endif; ?>
-                    <?php if (isAdmin()): ?>
-                        <!--TODO: aggiungere report da risolvere-->
-                    <?php endif; ?>
-                </div>
             </div>
             <h3>Il calendario</h3>
             <div class="card">
