@@ -4,6 +4,7 @@ require_once "init.php";
 
 if (!isProfessor() || (isset($_GET["course"]) && !isDesignatedProfessor($user, $_GET["course"]))) {
     header("location: course.php?course=" . (isset($_GET["course"]) ? $_GET["course"] : ""));
+    exit();
 }
 
 if (isset($_GET["course"]) && isset($_POST["description"]) && isset($_POST["shortDescription"]) && isset($_POST["material"])) {

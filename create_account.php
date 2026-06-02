@@ -1,6 +1,11 @@
 <?php
 require_once "init.php";
 
+if (isUserLoggedIn()) {
+    header("location: index.php");
+    exit();
+}
+
 if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["name"]) && isset($_POST["surname"])) {
     $loginResult = $dbh->createAccount($_POST["username"], $_POST["password"], $_POST["name"], $_POST["surname"], "STUDENTE");
     echo $loginResult;

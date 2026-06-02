@@ -1,8 +1,9 @@
 <?php
 require_once "init.php";
 
-if (!isset($_GET["type"])) {
+if (!isAdmin() || !isset($_GET["type"])) {
     header("location: index.php");
+    exit();
 }
 
 $templateParams["title"] = "Create account";

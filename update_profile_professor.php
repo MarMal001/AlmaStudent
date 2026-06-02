@@ -1,8 +1,9 @@
 <?php
 require_once "init.php";
 
-if (idWithoutDomain($user) != $_GET["professor"]) {
+if (!isProfessor() || (isset($_GET["professor"]) && idWithoutDomain($user) != $_GET["professor"])) {
     header("location: index.php");
+    exit();
 }
 
 $templateParams["title"] = "Aggiorna dettagli account";

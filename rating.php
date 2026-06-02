@@ -7,6 +7,7 @@ $templateParams["style"] = ["style.css"];
 
 if(!isStudent() || $dbh->isStudentBanned($user)) {
     header("location: index.php");
+    exit();
 } else {
         if (isset($_GET["course"]) && $dbh->courseExists($_GET["course"])) {
             if ($dbh->canRateCourse($user, $_GET["course"])[0]["existence"] && !$dbh->courseIsAlreadyRated($user, $_GET["course"])) {

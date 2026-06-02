@@ -10,6 +10,7 @@ if (isset($_GET["id"]) && isset($_GET["type"]) && $dbh->idReviewExists($_GET["id
    $templateParams["type"] = $_GET["type"];
 } else {
    header("location: index.php");
+    exit();
 }
 
 require "template/base.php";
