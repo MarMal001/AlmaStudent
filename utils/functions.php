@@ -199,4 +199,8 @@
     function isProfessorReview($type) {
         return $type == "professor";
     }
+
+    function reportTypeExists($type) {
+        return $type == "professor" || $type == "course";
+    }
 ?>
