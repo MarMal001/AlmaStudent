@@ -14,10 +14,10 @@
         <form action="handle_reception.php" method="POST" enctype="multipart/form-data" id="c0" class="collapse p-3 w-100 border border-primary border-2 rounded">
             <ul>
                 <li>
-                    <label for="date">Data</label>
+                    <label for="receptionDate">Data</label>
                 </li>
                 <li>
-                    <input type="date" id="date" name="date" />
+                    <input type="date" id="receptionDate" name="receptionDate" />
                 </li>
                 <li>
                     <label for="startTimeHour">Fascia oraria da</label>
@@ -114,8 +114,8 @@
         <form action="handle_reception.php" method="POST" enctype="multipart/form-data" id="c1" class="collapse p-3 w-100 border border-primary border-2 rounded">
             <ul>
                 <li>
-                    <label for="date">Data</label>
-                    <input type="date" id="date" name="date" />
+                    <label for="receptionDate">Data</label>
+                    <input type="date" id="receptionDate" name="receptionDate" />
                 </li>
                 <li>
                     <label for="startTimeHour">Fascia oraria da</label>
@@ -207,35 +207,7 @@
 
     <section>
         <h2>Visualizza disponibilità</h2>
-        <table class="table table-bordered">
-            <thead class="table-primary text-center">
-                <tr>
-                    <th id="day" scope="colgroup" colspan="3" class="fs-5"> < 12 Aprile 2026 ></th>
-                </tr>
-                <tr class="fs-6">
-                    <th id="time" scope="col">Ore</th>
-                    <th id="type" scope="col">Disponibilità</th>
-                    <th id="reservations" scope="col">Prenotazioni</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($dbh->getReservationsOfProfessor($user, "2026-04-12") as $reservation): ?>
-                    <?php $timeRange = date("H:i", strtotime($reservation["startTime"])) . " - " . date("H:i", strtotime($reservation["endTime"])); ?>
-                    <tr>
-                        <th id="<?php echo $timeRange; ?>" scope="row" headers="time" class="text-center"><div><?php echo $timeRange; ?></div></th>
-                        <td id="<?php echo "type_" . $timeRange; ?>" headers="type <?php echo $timeRange; ?>"><div>Modalità: <?php echo strtolower($reservation["mode"]); ?></div></td>
-                        <td id="<?php echo "reservation_" . $timeRange; ?>" headers="reservations <?php echo $timeRange; ?>">
-                            <?php if ($reservation["name"] != null): ?>
-                                <div>Prenotato con studente: <?php echo $reservation["name"] . " " . $reservation["surname"]; ?></div>
-                                <div>Modalità: <?php echo strtolower($reservation["reservedMode"]); ?></div>
-                            <?php else: ?>
-                                <div>Nessuna prenotazione</div>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-        
+        <table class="table table-bordered" id="receptionTable"></table>
     </section>
+    <input type="hidden" id="professor" value=<?php echo $user;?> />
 </main>    

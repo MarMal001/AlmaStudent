@@ -55,7 +55,7 @@
                 <label for="review" class="mt-4 mb-2">Se desideri poi lasciare qui sotto una recensione scritta della tua esperienza in questo corso:</label>
             </li>
             <li>
-                <textarea id="review" name="review" class="form-control mt-2"></textarea>
+                <textarea id="review" name="review" class="form-control mt-2" maxlength="1000"></textarea>
             </li>
                      
         </div>

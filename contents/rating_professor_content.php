@@ -58,7 +58,7 @@
                                 <label for="review<?php echo $professor["professor"]; ?>" class="mt-4 mb-2">Se desideri poi lasciare qui sotto una recensione scritta della tua esperienza con questo docente:</label>
                             </li>
                             <li>
-                                <textarea id="review<?php echo $professor["professor"]; ?>" name="review<?php echo $professor["professor"]; ?>" class="form-control mt-2"></textarea>
+                                <textarea id="review<?php echo $professor["professor"]; ?>" name="review<?php echo $professor["professor"]; ?>" class="form-control mt-2" maxlength="1000"></textarea>
                             </li>
                         </div>
                     </div>

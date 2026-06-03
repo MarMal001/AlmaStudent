@@ -4,7 +4,7 @@
     <div>Gestisci facilmente e velocemente i tuoi corsi.</div>
 </section>
 <section>
-    <h1 class="fw-bold">I tuoi corsi</h1>
+    <h2 class="fw-bold">I tuoi corsi</h2>
     <?php
         if (isStudent()) {
             $courses = $dbh->getStudentCourses($user);
@@ -39,7 +39,7 @@
                     </ul>
                 <p><?php echo $course["shortDescription"]; ?></p>
                 <div class="d-flex justify-content-end">
-                    <?php if (isStudent() && $dbh->canRateCourse($user, $course["code"]) && !$dbh->courseIsAlreadyRated($user, $course["code"])): ?>
+                    <?php if (isStudent() && $dbh->canRateCourse($user, $course["code"])[0]["existence"] && !$dbh->courseIsAlreadyRated($user, $course["code"])): ?>
                         <?php if ($dbh->isStudentBanned($user)): ?>
                             <div data-bs-toggle="tooltip" data-bs-placement="left" title="Sei stato bloccato">
                                 <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-2 mt-2 disabled">Recensisci</a>
@@ -58,7 +58,7 @@
     <?php endforeach; ?>
 </section>
 <section>
-    <h1 class="fw-bold">I tuoi ricevimenti</h1>
+    <h2 class="fw-bold">I tuoi ricevimenti</h2>
     <ul>
         <?php foreach($reservations as $reservation): ?>
             <?php if ($reservation["name"] != NULL): ?>

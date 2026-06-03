@@ -25,7 +25,7 @@
     <a href="admin_modify.php?type=handleAccount&accountType=ADMIN" class="btn btn-primary">Modifica account admin</a>
 </section>
 <section class="fw-bold">
-    <h1>Segnalazioni da risolvere</h1>
+    <h2>Segnalazioni da risolvere</h2>
     <?php $reportedReviewsProf = $dbh->getReportedReviewsOfProfessors(); ?>
     <?php $reportedReviewsCourses = $dbh->getReportedReviewsOfCourses(); ?>
     <ul>

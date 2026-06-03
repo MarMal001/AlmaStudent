@@ -138,7 +138,7 @@
                 </div>';
         }
         echo '</div>';
-        echo '<p>' . $text . '</p>';
+        echo '<p>' . htmlspecialchars($text) . '</p>';
         echo '</div>';
     }
 
@@ -184,7 +184,7 @@
         echo '</div>';
         $courseName = $GLOBALS["dbh"]->getCourseInfo($course)[0]["name"];
         echo '<h6 class="fw-bold ms-2 mt-2">' . $courseName . '</h6>';
-        echo '<p>' . $text . '</p>';
+        echo '<p>' . htmlspecialchars($text) . '</p>';
         echo '</div>';
     }
     
