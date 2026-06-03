@@ -190,6 +190,10 @@ button.dropdown-toggle::after {
   display: none !important;
 }
 
+tr > th i:hover {
+    cursor: pointer;
+}
+
 /* TODO Passare queste tre media query in un altro foglio di stile apposito per quella pagina */
 @media (min-width: 992px) {
     .w-lg-50 {
