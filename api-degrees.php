@@ -13,7 +13,7 @@ if ($_POST["type"] == "courses") {
     $data["isStudent"] = isStudent();
     $data["user"] = $user;
     if ($degreeCode == "") {
-        $courses = $dbh->getCourses($degreeCode, $year);
+        $courses = $dbh->getCourses();
         $data["courses"] = array();
         foreach ($courses as $course) {
             $course["professors"] = array();
