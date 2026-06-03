@@ -20,13 +20,13 @@ if (isset($_POST["receptionDate"]) && isset($_POST["startTimeHour"]) && isset($_
         $endTimeSlot = $startTime + ($i + ONE_QUARTER_OF_HOUR) * ONE_MINUTE_IN_SECONDS;
         switch ($_POST["action"]) {
         case RECEPTION_ACTION_ADD:
-            addReception(receptionDate("H:i", $startTimeSlot), receptionDate("H:i", $endTimeSlot));
+            addReception(date("H:i", $startTimeSlot), date("H:i", $endTimeSlot));
             break;
         case RECEPTION_ACTION_MODIFY:
-            modifyReception(receptionDate("H:i", $startTimeSlot));
+            modifyReception(date("H:i", $startTimeSlot));
             break;
         case RECEPTION_ACTION_DELETE:
-            deleteReception(receptionDate("H:i", $startTimeSlot));
+            deleteReception(date("H:i", $startTimeSlot));
             break;
         default:
             $GLOBALS["message"] = "Azione sconosciuta: " . $_POST["action"];
