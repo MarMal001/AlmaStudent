@@ -47,7 +47,7 @@
 </div>
 
 <button class="btn btn-secondary mb-5" data-bs-toggle="modal" data-bs-target="#annulModal">
-    Annulla segnalazione
+    Ignora segnalazione
 </button>
 
 <div class="modal fade" id="annulModal" tabindex="-1">
@@ -59,7 +59,7 @@
       </div>
 
       <div class="modal-body">
-        Annullando questa segnalazione l'utente non verrà segnalato per la recensione
+        Ignorando questa segnalazione l'utente non verrà segnalato per la recensione
       </div>
 
       <div class="modal-footer">
