@@ -220,7 +220,7 @@ class DatabaseHelper{
 
     public function getReservationsOfProfessor($professorCode) {
         $stmt = $this->db->prepare(
-            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Data as date, r.Modalita AS mode, pr.Modalita_Scelta AS reservedMode, p.Nome AS name, p.Cognome AS surname
+            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Data as date, r.Modalita AS mode, pr.Modalita_Scelta AS reservedMode, p.Nome AS name, p.Cognome AS surname, p.Utente AS studentCode
             FROM RICEVIMENTO AS r
             LEFT JOIN Prenotazione AS pr ON r.Docente = pr.Docente AND r.Data = pr.Data AND r.Ora_Inizio = pr.Ora_Inizio
             LEFT JOIN STUDENTE AS s ON s.Utente = pr.Studente
@@ -233,6 +233,22 @@ class DatabaseHelper{
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function reserveSlot($timeStart, $date, $professorCode, $studentCode, $mode) {
+        $stmt = $this->db->prepare(
+            "INSERT INTO Prenotazione values (?, ?, ?, ?, ?)"
+        );
+        $stmt->bind_param("sssss", $professorCode, $date, $timeStart, $studentCode, $mode);
+        return $stmt->execute();
+    }
+
+    public function cancelReservedSlot($timeStart, $date, $professorCode) {
+        $stmt = $this->db->prepare(
+            "DELETE FROM Prenotazione WHERE Ora_inizio = ? AND Docente = ? AND Data = ?"
+        );
+        $stmt->bind_param("sss", $timeStart, $professorCode, $date);
+        return $stmt->execute();
     }
 
     public function addAvailabilityOfProfessor($professorCode, $date, $startTime, $endTime, $mode) {

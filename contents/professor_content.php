@@ -104,7 +104,23 @@
                     <tr>
                         <th id="<?php echo $timeRange; ?>" scope="row" headers="time" class="text-center"><div><?php echo $timeRange; ?></div></th>
                         <td id="<?php echo "type_" . $timeRange; ?>" headers="type <?php echo $timeRange; ?>"><div>Modalità: <?php echo strtolower($reservation["mode"]); ?></div></td>
-                        <td id="<?php echo "availability_" . $timeRange; ?>"><a href="reserve.php?start=<?php echo $reservation["startTime"]; ?>&professor=<?php echo $professorId ?>" class="btn btn-primary" <?php echo $reservation["name"] != NULL ? "disabled" : "" ?>>Prenota</a></td>
+                        <?php if (isProfessor()): ?>
+                            
+                        <?php endif; ?>
+                        <?php if (isStudent()): ?>
+                            <?php if ($reservation["studentCode"] == $user): ?>
+                                <td id="<?php echo "availability_" . $timeRange; ?>">
+                                    <a href="reserve.php?type=unreserve&date=<?php echo $reservation["date"] ?>&start=<?php echo $reservation["startTime"]; ?>&professor=<?php echo idWithoutDomain($professorId); ?>" class="btn btn-primary">Cancella ricevimento</a>
+                            </td>
+                            <?php else: ?>
+                                <td id="<?php echo "availability_" . $timeRange; ?>">
+                                    <?php if (strtolower($reservation["mode"]) == "online e in presenza"): ?>
+                                        <a href="reserve.php?type=reserve&mode=Presenza&date=<?php echo $reservation["date"] ?>&start=<?php echo $reservation["startTime"]; ?>&professor=<?php echo idWithoutDomain($professorId); ?>" class="btn btn-primary <?php echo $reservation["studentCode"] != NULL ? "disabled" : ""; ?>" <?php echo $reservation["studentCode"] != NULL ? "disabled" : ""; ?>>Prenota ricevimento in presenza</a>
+                                    <?php endif; ?>
+                                    <a href="reserve.php?type=reserve&mode=Online&date=<?php echo $reservation["date"] ?>&start=<?php echo $reservation["startTime"]; ?>&professor=<?php echo idWithoutDomain($professorId); ?>" class="btn btn-primary <?php echo $reservation["studentCode"] != NULL ? "disabled" : ""; ?>" <?php echo $reservation["studentCode"] != NULL ? "disabled" : ""; ?>>Prenota ricevimento online</a>
+                                </td>
+                            <?php endif; ?>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
