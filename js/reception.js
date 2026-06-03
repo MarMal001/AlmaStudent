@@ -4,7 +4,6 @@ async function getReceptionTable() {
     const formData = new FormData();
     let date = null;
     let professor = null;
-    console.log(document.querySelector("#professor"));
     if (document.querySelector("#professor") == null) {
         return;
     }
@@ -28,7 +27,6 @@ async function getReceptionTable() {
         const json = await response.json();
         console.log(json);
         const section = document.querySelector("#receptionTable");
-        console.log(json["reservations"]);
         section.innerHTML = generateReceptionTable(date, json["user"], professor, json["reservations"], json["isStudent"]);
     } catch (error) {
         console.log(error.message);
@@ -53,7 +51,6 @@ function getNextDay(currDay) {
 }
 
 function generateReceptionTable(date, user, professor, reservations, isStudent) {
-    console.log(date);
     let isWithoutReceptionSlots = false;
     let content = `<thead class="table-primary text-center">
         <tr>
