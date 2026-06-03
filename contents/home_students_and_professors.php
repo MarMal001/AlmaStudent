@@ -39,7 +39,7 @@
                     </ul>
                 <p><?php echo $course["shortDescription"]; ?></p>
                 <div class="d-flex justify-content-end">
-                    <?php if (isStudent() && $dbh->canRateCourse($user, $course["code"]) && !$dbh->courseIsAlreadyRated($user, $course["code"])): ?>
+                    <?php if (isStudent() && $dbh->canRateCourse($user, $course["code"])[0]["existence"] && !$dbh->courseIsAlreadyRated($user, $course["code"])): ?>
                         <?php if ($dbh->isStudentBanned($user)): ?>
                             <div data-bs-toggle="tooltip" data-bs-placement="left" title="Sei stato bloccato">
                                 <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-2 mt-2 disabled">Recensisci</a>
