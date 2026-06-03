@@ -260,27 +260,27 @@ insert into Tenere values
 	("vittorio.ghini@unibo.it", "96642");
 
 ### REVIEW ###
-insert into REVIEW values
-	(1, "Eww", true),
-    (2, "Il corso è molto bello ed estremamente ben fatto. I docenti sono disponibili e le loro spiegazioni molto comprensibili. Unica pecca è che sarebbe bello avere più materiali di riferimento per lo studio individuale", true);
+#insert into REVIEW values
+#	(1, "Eww", true),
+#   (2, "Il corso è molto bello ed estremamente ben fatto. I docenti sono disponibili e le loro spiegazioni molto comprensibili. Unica pecca è che sarebbe bello avere più materiali di riferimento per lo studio individuale", true);
 
 ### RATING ###
-insert into RATING values
-	(null, "DOCENTE", "2025-03-12"),
-	(null, "CORSO", "2025-05-12"),
-	(null, "DOCENTE", "2025-07-12"),
-	(null, "CORSO", "2025-08-12");
+#insert into RATING values
+#	(null, "DOCENTE", "2025-03-12"),
+#	(null, "CORSO", "2025-05-12"),
+#	(null, "DOCENTE", "2025-07-12"),
+#	(null, "CORSO", "2025-08-12");
     #(null, "DOCENTE", "2025-12-12");
 
 ### RATING_CORSO ###
-insert into RATING_CORSO values
-	(2, "carla.anselmi3@studio.unibo.it", "70226", 4, 5, 4), #id studente corso valore valore valore
-	(4, "alessandro.giacomini2@studio.unibo.it", "70226", 3, 2, 4);
+#insert into RATING_CORSO values
+	#(2, "carla.anselmi3@studio.unibo.it", "70226", 4, 5, 4), #id studente corso valore valore valore
+	#(4, "alessandro.giacomini2@studio.unibo.it", "70226", 3, 2, 4);
 
 ### RATING_DOCENTE ###
-insert into RATING_DOCENTE values
-	(1, "stefano.ferretti@unibo.it", "carla.anselmi3@studio.unibo.it", "08574", 2, 3, 5), #id docente studente corso valore valore valore
-	(3, "franco.callegati@unibo.it", "alessandro.giacomini2@studio.unibo.it","70226", 5, 3, 3);
+#insert into RATING_DOCENTE values
+	#(1, "stefano.ferretti@unibo.it", "carla.anselmi3@studio.unibo.it", "08574", 2, 3, 5), #id docente studente corso valore valore valore
+	#(3, "franco.callegati@unibo.it", "alessandro.giacomini2@studio.unibo.it","70226", 5, 3, 3),
     #(5, "vittorio.ghini@unibo.it", "carla.anselmi3@studio.unibo.it", "08574", 5, 5, 5);
 
 ### STUDENTE_IN_CORSO ###
@@ -326,24 +326,24 @@ insert into CHAT values
 
 ### RICEVIMENTO ###
 insert into RICEVIMENTO values
-	("vittorio.ghini@unibo.it", "2026-04-12", "9:00:00", "9:15:00", "Online e in presenza"),
-	("vittorio.ghini@unibo.it", "2026-04-12", "9:15:00", "9:30:00", "Online e in presenza"),
-	("vittorio.ghini@unibo.it", "2026-04-12", "9:30:00", "9:45:00", "Online e in presenza"),
-	("vittorio.ghini@unibo.it", "2026-04-12", "9:45:00", "10:00:00", "Online e in presenza"),
-	("vittorio.ghini@unibo.it", "2026-04-12", "10:15:00", "10:30:00", "Online e in presenza"),
-	("vittorio.ghini@unibo.it", "2026-04-12", "15:15:00", "15:30:00", "Online"),
-	("vittorio.ghini@unibo.it", "2026-04-12", "15:30:00", "15:45:00", "Online"),
-	("vittorio.ghini@unibo.it", "2026-04-12", "15:45:00", "16:00:00", "Online"),
-	("franco.callegati@unibo.it", "2026-04-12", "9:00:00", "9:15:00", "Online e in presenza"),
-	("franco.callegati@unibo.it", "2026-04-12", "9:15:00", "9:30:00", "Online e in presenza"),
-	("franco.callegati@unibo.it", "2026-04-12", "9:30:00", "9:45:00", "Online e in presenza"),
-	("franco.callegati@unibo.it", "2026-04-12", "9:45:00", "10:00:00", "Online e in presenza");
+	("vittorio.ghini@unibo.it", "2026-06-12", "9:00:00", "9:15:00", "Online e in presenza"),
+	("vittorio.ghini@unibo.it", "2026-06-12", "9:15:00", "9:30:00", "Online e in presenza"),
+	("vittorio.ghini@unibo.it", "2026-06-12", "9:30:00", "9:45:00", "Online e in presenza"),
+	("vittorio.ghini@unibo.it", "2026-06-12", "9:45:00", "10:00:00", "Online e in presenza"),
+	("vittorio.ghini@unibo.it", "2026-06-12", "10:15:00", "10:30:00", "Online e in presenza"),
+	("vittorio.ghini@unibo.it", "2026-06-12", "15:15:00", "15:30:00", "Online"),
+	("vittorio.ghini@unibo.it", "2026-06-12", "15:30:00", "15:45:00", "Online"),
+	("vittorio.ghini@unibo.it", "2026-06-12", "15:45:00", "16:00:00", "Online"),
+	("franco.callegati@unibo.it", "2026-06-12", "9:00:00", "9:15:00", "Online e in presenza"),
+	("franco.callegati@unibo.it", "2026-06-12", "9:15:00", "9:30:00", "Online e in presenza"),
+	("franco.callegati@unibo.it", "2026-06-12", "9:30:00", "9:45:00", "Online e in presenza"),
+	("franco.callegati@unibo.it", "2026-06-12", "9:45:00", "10:00:00", "Online e in presenza");
     
     ### PRENOTAZIONE ###
 insert into Prenotazione values
-    ("vittorio.ghini@unibo.it", "2026-04-12", "9:00:00", "alessandro.giacomini2@studio.unibo.it", "Presenza"),
-    ("vittorio.ghini@unibo.it", "2026-04-12", "10:15:00", "carla.anselmi3@studio.unibo.it", "Online"),
-    ("franco.callegati@unibo.it", "2026-04-12", "9:00:00", "carla.anselmi3@studio.unibo.it", "Presenza");
+    ("vittorio.ghini@unibo.it", "2026-06-12", "9:00:00", "alessandro.giacomini2@studio.unibo.it", "Presenza"),
+    ("vittorio.ghini@unibo.it", "2026-06-12", "10:15:00", "carla.anselmi3@studio.unibo.it", "Online"),
+    ("franco.callegati@unibo.it", "2026-06-12", "9:00:00", "carla.anselmi3@studio.unibo.it", "Presenza");
     
     
 -- Constraints Section
@@ -397,11 +397,11 @@ alter table MESSAGGIO_CHAT add constraint FKComprensione_FK
 
 alter table Prenotazione add constraint FKPre_STU_FK
      foreign key (Studente)
-     references STUDENTE (Utente) on delete cascade;
+     references STUDENTE (Utente);
 
 alter table Prenotazione add constraint FKPre_RIC_FK
      foreign key (Docente, Data, Ora_Inizio)
-     references RICEVIMENTO (Docente, Data, Ora_Inizio) on delete cascade;
+     references RICEVIMENTO (Docente, Data, Ora_Inizio);
 
 -- Not implemented
 -- alter table RATING_CORSO add constraint FKRAT_RAT_CHK
@@ -444,7 +444,7 @@ alter table REVIEW add constraint FKPresenza_FK
 
 alter table RICEVIMENTO add constraint FKDisponibilita_FK
      foreign key (Docente)
-     references DOCENTE (Utente) on delete cascade;
+     references DOCENTE (Utente);
 
 alter table STUDENTE add constraint FKPER_STU_FK
      foreign key (Utente)
