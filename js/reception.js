@@ -95,7 +95,7 @@ function generateReceptionTable(date, user, professor, reservations, isStudent) 
                     content += `</td>`;
                     if (user == professor) {
                         content += `<td id="reservation_${timeRange}" headers="reservations ${timeRange}">`;
-                            if ($reservation["name"] != null) {
+                            if (reservation["name"] != null) {
                                 content += `<div>Prenotato con studente: ${reservation["name"]} ${reservation["surname"]}</div>
                                 <div>Modalità: ${reservation["reservedMode"].toLowerCase()}</div>`;
                             } else {
