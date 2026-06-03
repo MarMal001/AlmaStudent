@@ -4,14 +4,10 @@ require_once "init.php";
 $templateParams["title"] = "Home";
 $templateParams["content"] = "home.php";
 $templateParams["style"] = ["style.css"];
-$templateParams["js"] = array("js/functions.js", "js/toast.js", "js/tooltip.js");
+$templateParams["js"] = array("js/functions.js", "js/tooltip.js");
 
-if (isAdmin() && isset($_GET["message"])) {
-    $_SESSION["message"] = $_GET["message"];
-    
-    header("Location: index.php");
-    exit();
-
+if (isset($_SESSION["message"])) {
+    array_push($templateParams["js"], ("js/toast.js"));
 }
 
 if (isStudent() && $dbh->isStudentBanned($user) && $dbh->studentMustBeDebanned($user)) {

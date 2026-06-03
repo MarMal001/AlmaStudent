@@ -26,6 +26,10 @@ if (!isUserLoggedIn() && $_SERVER['PHP_SELF'] != SERVER_ROOT . "login.php" && $_
     header("location: login.php");
 }
 
+if (isset($_GET["message"])) {
+    $_SESSION["message"] = $_GET["message"];
+}
+
 if (isUserLoggedIn()) {
     $user = $_SESSION["username"];
     $role = $_SESSION["role"];
