@@ -95,36 +95,45 @@
                 <tr class="fs-6">
                     <th id="time" scope="col">Ore</th>
                     <th id="type" scope="col">Disponibilità</th>
-                    <th id="reservations" scope="col">Prenotazioni</th>
+                    <?php if (isProfessor() && $user == $professorId): ?>
+                        <th id="reservations" scope="col">Prenotazioni</th>
+                    <?php endif; ?>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach($dbh->getReservationsOfProfessor($professorId, $date) as $reservation): ?>
                     <?php $timeRange = date("H:i", strtotime($reservation["startTime"])) . " - " . date("H:i", strtotime($reservation["endTime"])); ?>
                     <tr>
-                        <th id="<?php echo $timeRange; ?>" scope="row" headers="time" class="text-center"><div><?php echo $timeRange; ?></div></th>
-                        <td id="<?php echo "type_" . $timeRange; ?>" headers="type <?php echo $timeRange; ?>"><div>Modalità: <?php echo strtolower($reservation["mode"]); ?></div></td>
-                        <?php if (isProfessor()): ?>
-                            
-                        <?php endif; ?>
-                        <?php if (isStudent()): ?>
-                            <?php if ($reservation["studentCode"] == $user): ?>
-                                <td id="<?php echo "availability_" . $timeRange; ?>">
-                                    <a href="reserve.php?type=unreserve&date=<?php echo $reservation["date"] ?>&start=<?php echo $reservation["startTime"]; ?>&professor=<?php echo idWithoutDomain($professorId); ?>" class="btn btn-primary">Cancella ricevimento</a>
-                            </td>
-                            <?php else: ?>
-                                <td id="<?php echo "availability_" . $timeRange; ?>">
+                        <th id="<?php echo $timeRange; ?>" scope="row" headers="time" class="text-center"><?php echo $timeRange; ?></th>
+                        <td id="<?php echo "type_" . $timeRange; ?>" headers="type <?php echo $timeRange; ?>">Modalità <?php echo (isStudent() && $reservation["studentCode"] == $user) ? ("scelta: " . strtolower($reservation["reservedMode"])) : (" disponibili: " . strtolower($reservation["mode"])); ?>
+                            <?php if (isStudent()): ?>
+                                <?php if ($reservation["studentCode"] == $user): ?>
+                                    <a href="reserve.php?type=unreserve&date=<?php echo $reservation["date"] ?>&start=<?php echo $reservation["startTime"]; ?>&professor=<?php echo idWithoutDomain($professorId); ?>" class="btn btn-white text-primary border-primary">Cancella ricevimento</a>
+                                <?php else: ?>
                                     <?php if (strtolower($reservation["mode"]) == "online e in presenza"): ?>
                                         <a href="reserve.php?type=reserve&mode=Presenza&date=<?php echo $reservation["date"] ?>&start=<?php echo $reservation["startTime"]; ?>&professor=<?php echo idWithoutDomain($professorId); ?>" class="btn btn-primary <?php echo $reservation["studentCode"] != NULL ? "disabled" : ""; ?>" <?php echo $reservation["studentCode"] != NULL ? "disabled" : ""; ?>>Prenota ricevimento in presenza</a>
                                     <?php endif; ?>
                                     <a href="reserve.php?type=reserve&mode=Online&date=<?php echo $reservation["date"] ?>&start=<?php echo $reservation["startTime"]; ?>&professor=<?php echo idWithoutDomain($professorId); ?>" class="btn btn-primary <?php echo $reservation["studentCode"] != NULL ? "disabled" : ""; ?>" <?php echo $reservation["studentCode"] != NULL ? "disabled" : ""; ?>>Prenota ricevimento online</a>
-                                </td>
+                                <?php endif; ?>
                             <?php endif; ?>
+                        </td>
+                        <?php if (isProfessor() && $user == $professorId): ?>
+                            <td id="<?php echo "reservation_" . $timeRange; ?>" headers="reservations <?php echo $timeRange; ?>">
+                                <?php if ($reservation["name"] != null): ?>
+                                    <div>Prenotato con studente: <?php echo $reservation["name"] . " " . $reservation["surname"]; ?></div>
+                                    <div>Modalità: <?php echo strtolower($reservation["reservedMode"]); ?></div>
+                                <?php else: ?>
+                                    <div>Nessuna prenotazione</div>
+                                <?php endif; ?>
+                            </td>
                         <?php endif; ?>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <?php if (isProfessor() && $user == $professorId): ?>
+            <a href="reception_editable.php" class="btn btn-primary">Modifica Disponibilità</a>
+        <?php endif; ?>
     </article>
     <section>
         <h2>Opinioni degli studenti</h2>
