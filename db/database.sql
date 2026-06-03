@@ -397,11 +397,11 @@ alter table MESSAGGIO_CHAT add constraint FKComprensione_FK
 
 alter table Prenotazione add constraint FKPre_STU_FK
      foreign key (Studente)
-     references STUDENTE (Utente);
+     references STUDENTE (Utente) on delete cascade;
 
 alter table Prenotazione add constraint FKPre_RIC_FK
      foreign key (Docente, Data, Ora_Inizio)
-     references RICEVIMENTO (Docente, Data, Ora_Inizio);
+     references RICEVIMENTO (Docente, Data, Ora_Inizio) on delete cascade;
 
 -- Not implemented
 -- alter table RATING_CORSO add constraint FKRAT_RAT_CHK
@@ -444,7 +444,7 @@ alter table REVIEW add constraint FKPresenza_FK
 
 alter table RICEVIMENTO add constraint FKDisponibilita_FK
      foreign key (Docente)
-     references DOCENTE (Utente);
+     references DOCENTE (Utente) on delete cascade;
 
 alter table STUDENTE add constraint FKPER_STU_FK
      foreign key (Utente)
