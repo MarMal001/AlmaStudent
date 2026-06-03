@@ -26,7 +26,6 @@ if (!isUserLoggedIn() && $_SERVER['PHP_SELF'] != SERVER_ROOT . "login.php" && $_
     header("location: login.php");
 }
 
-define("UPLOAD_DIR", DIR . "/upload/");
 if (!is_dir(UPLOAD_DIR)) {
     mkdir(UPLOAD_DIR, 0777, true);
     chmod(UPLOAD_DIR, 0777);
