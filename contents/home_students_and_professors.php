@@ -4,7 +4,7 @@
     <div>Gestisci facilmente e velocemente i tuoi corsi.</div>
 </section>
 <section>
-    <h1 class="fw-bold">I tuoi corsi</h1>
+    <h2 class="fw-bold">I tuoi corsi</h2>
     <?php
         if (isStudent()) {
             $courses = $dbh->getStudentCourses($user);
@@ -58,7 +58,7 @@
     <?php endforeach; ?>
 </section>
 <section>
-    <h1 class="fw-bold">I tuoi ricevimenti</h1>
+    <h2 class="fw-bold">I tuoi ricevimenti</h2>
     <ul>
         <?php foreach($reservations as $reservation): ?>
             <?php if ($reservation["name"] != NULL): ?>
