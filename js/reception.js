@@ -71,8 +71,7 @@ function generateReceptionTable(date, user, professor, reservations, isStudent) 
     content += `</tr>
     </thead>
     <tbody>`;
-            for (const reservation of reservations) {
-                if (date == reservation["date"]) {
+            for (const reservation of reservations.filter(e => e["date"] == date)) {
                 let timeRange = reservation["timeRange"];
                 content += `<tr>
                     <th id="${timeRange}" scope="row" headers="time" class="text-center">${timeRange}</th>
@@ -104,11 +103,8 @@ function generateReceptionTable(date, user, professor, reservations, isStudent) 
                         content += `</td>`;
                     }
                 content += `</tr>`;
-                } else {
-                    isWithoutReceptionSlots = true;
-                }
             }
-        if(isWithoutReceptionSlots) {
+        if(reservations.filter(e => e["date"] == date).length == 0) {
             content += `<td id="noTime" headers="time" class="text-center">Non sono presenti ricevimenti in questa data</td>
             <td id="noAvailability" headers="type" class="text-center">Nessuna</td>`;
         }

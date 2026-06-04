@@ -26,6 +26,15 @@ if (!isUserLoggedIn() && $_SERVER['PHP_SELF'] != SERVER_ROOT . "login.php" && $_
     header("location: login.php");
 }
 
+if (!is_dir(UPLOAD_DIR)) {
+    mkdir(UPLOAD_DIR, 0777, true);
+    chmod(UPLOAD_DIR, 0777);
+}
+
+if (isset($_GET["message"])) {
+    $_SESSION["message"] = $_GET["message"];
+}
+
 if (isUserLoggedIn()) {
     $user = $_SESSION["username"];
     $role = $_SESSION["role"];

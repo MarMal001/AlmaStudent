@@ -240,7 +240,11 @@ class DatabaseHelper{
             "INSERT INTO Prenotazione values (?, ?, ?, ?, ?)"
         );
         $stmt->bind_param("sssss", $professorCode, $date, $timeStart, $studentCode, $mode);
-        return $stmt->execute();
+        try {
+            return $stmt->execute();
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     public function cancelReservedSlot($timeStart, $date, $professorCode) {
@@ -248,7 +252,11 @@ class DatabaseHelper{
             "DELETE FROM Prenotazione WHERE Ora_inizio = ? AND Docente = ? AND Data = ?"
         );
         $stmt->bind_param("sss", $timeStart, $professorCode, $date);
-        return $stmt->execute();
+        try {
+            return $stmt->execute();
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     public function addAvailabilityOfProfessor($professorCode, $date, $startTime, $endTime, $mode) {
@@ -266,7 +274,11 @@ class DatabaseHelper{
             $parsedMode = "Online e in presenza";
         }
         $stmt->bind_param("sssss", $professorCode, $date, $startTime, $endTime, $parsedMode);
-        return $stmt->execute();
+        try {
+            return $stmt->execute();
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     public function checkAvailabilityReferencesOfProfessor($professorCode) {
@@ -304,7 +316,11 @@ class DatabaseHelper{
             $parsedMode = "Online e in presenza";
         }
         $stmt->bind_param("ssss", $parsedMode, $professorCode, $date, $startTime);
-        return $stmt->execute();
+        try {
+            return $stmt->execute();
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     public function removeAvailabilityOfProfessor($professorCode, $date, $startTime) {
@@ -423,7 +439,11 @@ class DatabaseHelper{
             (?)"
         );
         $stmt->bind_param("s", $username);
-        return $stmt->execute();
+        try {
+            return $stmt->execute();
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     private function createProfessor($username, $department, $seat, $infoReception) {
@@ -432,7 +452,11 @@ class DatabaseHelper{
             (?, ?, ?, ?, "default.png")'
         );
         $stmt->bind_param("ssss", $username, $department, $seat, $infoReception);
-        return $stmt->execute();
+        try {
+            return $stmt->execute();
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     private function createStudent($studentId, $username) {
@@ -441,7 +465,11 @@ class DatabaseHelper{
             (?, 0, null, 0)"
         );
         $stmt->bind_param("s", $username);
-        return $stmt->execute();
+        try {
+            return $stmt->execute();
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     public function createAccount($username, $password, $name, $surname, $role, $department = NULL, $seat = NULL, $infoReception = NULL) {
@@ -468,8 +496,11 @@ class DatabaseHelper{
                 "DELETE FROM PERSONA WHERE Utente = ?"
             );
             $stmt->bind_param("s", $username);
-            $stmt->execute();
-            return false;
+            try {
+                return $stmt->execute();
+            } catch (Exception $e) {
+                return false;
+            }
         }
         return true;
     }
@@ -545,7 +576,11 @@ class DatabaseHelper{
             WHERE Codice = ?"
         );
         $stmt->bind_param("ssss", $description, $shortDescription, $material, $course);
-        return $stmt->execute();
+        try {
+            return $stmt->execute();
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     public function getReportedReviewsOfProfessors() {
@@ -590,7 +625,11 @@ class DatabaseHelper{
             (?, ?, ?, ?, ?, '', '', '')"
         );
         $stmt->bind_param("sssss", $code, $name, $year, $semester, $degreeCode);
-        return $stmt->execute();
+        try {
+            return $stmt->execute();
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     public function addDegree($code, $name, $department, $years, $branch) {
@@ -599,7 +638,11 @@ class DatabaseHelper{
             (?, ?, ?, ?, ?)"
         );
         $stmt->bind_param("sssss", $code, $name, $department, $years, $branch);
-        return $stmt->execute();
+        try {
+            return $stmt->execute();
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     public function updateAccount($username, $name, $surname, $role, $department, $seat, $infoReception, $profilePicture) {
@@ -642,7 +685,11 @@ class DatabaseHelper{
             WHERE Codice = ?"
         );
         $stmt->bind_param("ssss", $name, $year, $semester, $code);
-        $success = $stmt->execute();
+        try {
+            $success = $stmt->execute();
+        } catch (Exception $e) {
+            $success = false;
+        }
         if (!$success) {
             return false;
         }
@@ -652,14 +699,22 @@ class DatabaseHelper{
                 (?, ?)"
             );
             $stmt->bind_param("ss", $professorToAdd, $code);
-            $success = $stmt->execute();
+            try {
+                $success = $stmt->execute();
+            } catch (Exception $e) {
+                $success = false;
+            }
         }
         if ($professorToRemove != "") {
             $stmt = $this->db->prepare(
                 "DELETE FROM Tenere WHERE Docente = ? AND Codice_Corso = ?"
             );
             $stmt->bind_param("ss", $professorToRemove, $code);
-            $success = $stmt->execute();
+            try {
+                $success = $stmt->execute();
+            } catch (Exception $e) {
+                $success = false;
+            }
         }
 
         return $success;
@@ -672,7 +727,11 @@ class DatabaseHelper{
             WHERE Codice = ?"
         );
         $stmt->bind_param("sssss", $name, $department, $years, $branch, $code);
-        return $stmt->execute();
+        try {
+            return $stmt->execute();
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     public function deleteCourse($code) {
@@ -680,7 +739,11 @@ class DatabaseHelper{
             "DELETE FROM CORSO WHERE Codice = ?"
         );
         $stmt->bind_param("s", $code);
-        return $stmt->execute();
+        try {
+            return $stmt->execute();
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     public function deleteAccount($code, $type) {
@@ -698,14 +761,20 @@ class DatabaseHelper{
         }
 
         $stmt->bind_param("s", $code);
-        if (!$stmt->execute()) {
+        try {
+            return $stmt->execute();
+        } catch (Exception $e) {
             return false;
         }
         $stmt = $this->db->prepare(
             "DELETE FROM PERSONA WHERE Utente = ?"
         );
         $stmt->bind_param("s", $code);
-        return $stmt->execute();
+        try {
+            return $stmt->execute();
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     public function deleteDegree($code) {
@@ -713,7 +782,11 @@ class DatabaseHelper{
             "DELETE FROM FACOLTA WHERE Codice = ?"
         );
         $stmt->bind_param("s", $code);
-        return $stmt->execute();
+        try {
+            return $stmt->execute();
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     public function getReviewInfo($id) {
@@ -768,9 +841,11 @@ class DatabaseHelper{
             WHERE Codice = ?"
         );
         $stmt->bind_param("s", $id);
-        $state= $stmt->execute();
-        if (!$state) {
-            return false;
+
+        try {
+            $state = $stmt->execute();
+        } catch (Exception $e) {
+            $state = false;
         }
         $stmt = $this->db->prepare(
             "UPDATE STUDENTE 
@@ -778,9 +853,10 @@ class DatabaseHelper{
             WHERE Utente = ?"
         );
         $stmt->bind_param("s", $student);
-        $state = $stmt->execute();
-        if (!$state) {
-            return false;
+        try {
+            $state = $stmt->execute();
+        } catch (Exception $e) {
+            $state = false;
         }
         if($this->getStudentNumberReports($student)[0]["numReports"] == 3) {
             $stmt = $this->db->prepare(
@@ -790,7 +866,11 @@ class DatabaseHelper{
             );
 
             $stmt->bind_param("s", $student);
-            $state = $stmt->execute();
+            try {
+                $state = $stmt->execute();
+            } catch (Exception $e) {
+                $state = false;
+            }
         }
         
         return $state;
@@ -803,7 +883,11 @@ class DatabaseHelper{
             WHERE Codice_Rating = ?"
         );
         $stmt->bind_param("s", $id);
-        $state = $stmt->execute();
+        try {
+            $state = $stmt->execute();
+        } catch (Exception $e) {
+            $state = false;
+        }
         return $state;
     }
 
@@ -828,7 +912,11 @@ class DatabaseHelper{
             "
         );
         $stmt->bind_param("s", $id);
-        $state = $stmt->execute();
+        try {
+            $state = $stmt->execute();
+        } catch (Exception $e) {
+            $state = false;
+        }
         return $state;
     }
 
@@ -856,7 +944,11 @@ class DatabaseHelper{
             "
         );
         $stmt->bind_param("ss", $student, $course);
-        $state = $stmt->execute();
+        try {
+            $state = $stmt->execute();
+        } catch (Exception $e) {
+            $state = false;
+        }
         return $state;
     }
 
@@ -869,7 +961,11 @@ class DatabaseHelper{
             "
         );
         $stmt->bind_param("ss", $student, $course);
-        $state = $stmt->execute();
+        try {
+            $state = $stmt->execute();
+        } catch (Exception $e) {
+            $state = false;
+        }
         return $state;
     }
 
@@ -882,7 +978,11 @@ class DatabaseHelper{
             "
         );
         $stmt->bind_param("ss", $student, $course);
-        $state = $stmt->execute();
+        try {
+            $state = $stmt->execute();
+        } catch (Exception $e) {
+            $state = false;
+        }
         return $state;
     }
 
@@ -1010,7 +1110,11 @@ class DatabaseHelper{
             "INSERT INTO REVIEW VALUES (?, ?, false);"
         );
         $stmt->bind_param("ss", $code, $text);
-        $state = $stmt->execute();
+        try {
+            $state = $stmt->execute();
+        } catch (Exception $e) {
+            $state = false;
+        }
         return $state;
     }
 
