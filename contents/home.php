@@ -15,17 +15,7 @@
             <i class="fa-solid fa-angle-up" onclick=toggleStatistics()></i>
             <i class="fa-solid fa-angle-left" onclick=toggleStatistics()></i>
         </div>
-        <div class="px-4 py-3" style="display: block" id="statistics">
-            <?php if (isStudent() && $dbh->isStudentBanned($user)): ?>
-                <div class="card text-center my-3">
-                    <div class="card-body bg-primary text-white rounded">
-                        <h5 class="fw-bold">Sei stato bloccato!</h5>
-                        <p>Avendo raggiunto un numero di segnalazioni pari a tre non sarà possibile eseguire recensioni per la durata di un mese. Al primo accesso dopo un mese dal blocco potrai nuovamente recensire e il numero di segnalazioni sarà portato a zero.     
-                        </p>
-                        <p class="text-center border border-light rounded">Ti restano <?php echo $dbh->getRemainingBanDays($user); ?> giorni prima che avvenga lo sblocco</p>
-                    </div>
-                </div>
-            <?php endif; ?>    
+        <div class="px-4 py-3" style="display: block" id="statistics">   
         <h3>Le statistiche</h3>
             <div class="d-flex flex-wrap gap-3">
                 <?php if (!isAdmin()): ?>
