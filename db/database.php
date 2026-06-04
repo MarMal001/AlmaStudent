@@ -1207,6 +1207,192 @@ class DatabaseHelper{
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC)[0]["existence"];
     }
+
+    public function getProfessorsDisponibilityOfCourse($course) {
+        $stmt = $this->db->prepare(
+            "SELECT AVG(rd.Rating_Disponibilita) AS availability
+            FROM RATING_DOCENTE AS rd
+            WHERE rd.Corso = ? "
+        );
+        $stmt->bind_param("s", $course);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["availability"];
+    }
+
+    public function getCourseRatings($course){
+            $stmt = $this->db->prepare(
+            "SELECT AVG(rd.Rating_Lezioni) AS RL, AVG(rd.Rating_Materiale) AS RM, AVG(rd.Rating_Esame) AS RE
+            FROM RATING_CORSO AS rd
+            WHERE rd.Corso = ?
+            "
+        );
+        $stmt->bind_param("s", $course);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC)[0];
+    }
+
+    public function currentYearCourseGeneralRatingExists($course) {
+        $year = date("Y");
+        $stmt = $this->db->prepare(
+            "SELECT EXISTS (
+                SELECT 1
+                FROM RATING_GENERALE AS r
+                WHERE r.Codice_Corso = ?
+                AND r.Anno = ?
+            ) AS existence
+            "
+        );
+        $stmt->bind_param("ss", $course, $year);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["existence"];
+    }  
+
+    public function RatingsForCourseExist($course) {
+        $year = date("Y");
+        $stmt = $this->db->prepare(
+            "SELECT EXISTS (
+                SELECT 1
+                FROM RATING_CORSO AS r
+                WHERE r.Corso = ?
+            ) AS existence
+            "
+        );
+        $stmt->bind_param("s", $course);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["existence"];
+    }
+
+    public function ProfessorsRatingsForCourseExist($course) {
+        $year = date("Y");
+        $stmt = $this->db->prepare(
+            "SELECT EXISTS (
+                SELECT 1
+                FROM RATING_DOCENTE AS r
+                WHERE r.Corso = ?
+            ) AS existence
+            "
+        );
+        $stmt->bind_param("s", $course);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC)[0]["existence"];
+    }
+
+    public function updateGeneralCourseRatingCourse($course) {
+        $result = false;
+        try {
+            $year = date("Y");
+            $ratings = $this->getCourseRatings($course);
+            var_dump($ratings);
+            $stmt = $this->db->prepare(
+                "UPDATE RATING_GENERALE
+                SET Rating_Lezioni = ?, Rating_Materiale = ?, Rating_Esame = ?
+                WHERE Codice_Corso = ?
+                AND Anno = ?
+                "
+            ); 
+            $stmt->bind_param("sssss", $ratings["RL"], $ratings["RM"], $ratings["RE"], $course, $year);
+            $result = $stmt->execute();
+
+        } catch (Exception $e) {
+            return false;
+        }
+        return $result;
+    }
+
+    public function updateGeneralCourseRatingProfAvailability($course) {
+        $result = false;
+        try {
+            $year = date("Y");
+            $ratingDD = $ratingDD = $this->getProfessorsDisponibilityOfCourse($course);
+            $stmt = $this->db->prepare(
+                "UPDATE RATING_GENERALE
+                SET Rating_Disponibilita_Docenti = ?
+                WHERE Codice_Corso = ?
+                AND Anno = ?
+                "
+            ); 
+            $stmt->bind_param("sss", $ratingDD, $course, $year);
+            $result = $stmt->execute();
+
+        } catch (Exception $e) {
+            return false;
+        }
+        return $result;
+    }
+
+    public function generateNewGeneralCourseRating($course) {
+        $result = false;
+        try {
+            $date = (int) date("Y");
+            $yearBefore = strval($date - 1);
+            $stmt = $this->db->prepare(
+            "SELECT EXISTS (
+                SELECT 1
+                FROM RATING_GENERALE AS r
+                WHERE r.Anno = ?
+                AND r.Codice_Corso = ?
+            ) AS existence
+            "
+            );
+            $stmt->bind_param("ss", $yearBefore, $course);
+            $stmt->execute();
+            $existence = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["existence"];
+            if (!$existence) {
+                $ratingDD = 0;
+                if($this->ProfessorsRatingsForCourseExist($course)) {
+                    $ratingDD = $this->getProfessorsDisponibilityOfCourse($course);
+                }
+                $ratingL = 0;
+                $ratingM = 0; 
+                $ratingE = 0;
+                if($this->RatingsForCourseExist($course)) {
+                    $ratings = $this->dbh->getCourseRatings($course);
+                    $ratingL = $ratings["RL"];
+                    $ratingM = $ratings["RM"];
+                    $ratingE = $ratings["RE"];
+                }
+                $stmt = $this->db->prepare(
+                    "INSERT INTO RATING_GENERALE VALUES (?, ?, ?, ?, ?, ?)"
+                );
+                $stmt->bind_param("ssssss", $course, $date, $ratingL, $ratingM, $ratingE, $ratingDD);
+            } else {
+                $oldRatings = $this->getGeneralCourseRatings($course, $yearBefore)[0];
+                $stmt = $this->db->prepare(
+                    "INSERT INTO RATING_GENERALE VALUES (?, ?, ?, ?, ?, ?)"
+                );
+                $stmt->bind_param("ssssss", $course, $date, $oldRatings["RL"], $oldRatings["RM"], $oldRatings["RE"], $oldRatings["RDD"]);
+            }
+            $result = $stmt->execute(); 
+
+        } catch (Exception $e) {
+            return false;
+        }
+        return $result;
+            
+    }
+
+    public function getGeneralCourseRatings($course, $year) {
+        $stmt = $this->db->prepare(
+            "SELECT Rating_Lezioni AS RL, Rating_Materiale AS RM, Rating_Esame AS RE, Rating_Disponibilita_Docenti AS RDD
+            FROM RATING_GENERALE AS r
+            WHERE r.Codice_Corso = ?
+            AND r.Anno = ?
+            "
+        );
+        $stmt->bind_param("ss", $course, $year);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+//per ogni corso controllo se per l'anno corrente esiste il rating generale se  non esiste allora crea quello di quel corso
+// ogni volta che inserisco un nuovo rating devo aggiornare quello generale
 }
 
 ?>
