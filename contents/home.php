@@ -1,5 +1,6 @@
 <div class="row mx-0">
     <main class="col-12 col-lg-6 mx-0 py-2 px-4 w-md-100">
+        <?php showMessage(); ?>
         <?php
             if (isAdmin()) {
                 include("contents/home_admin.php");
