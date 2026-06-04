@@ -40,4 +40,10 @@ if (isUserLoggedIn()) {
     $role = $_SESSION["role"];
 }
 
+foreach ($dbh->getCourses() as $course) {
+    if (!$dbh->currentYearCourseGeneralRatingExists($course["code"])) {
+        $dbh->generateNewGeneralCourseRating($course["code"]);
+    }
+}
+
 ?>
