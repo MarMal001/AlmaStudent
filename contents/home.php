@@ -74,12 +74,16 @@
                     <?php endif; ?>
             </div>
             <h3>Il calendario</h3>
-            <div class="card">
-                <div class="bg-primary text-white text-center py-3">
-                    <   Marzo 2026   >
+            <div class="card" id="calendar-container">
+                <div class="bg-primary text-white text-center py-3 rounded-top" id="calendar-header">
+                    <div class="d-flex inline-flex justify-content-center align-items-center" id="calendar-navigation">
+                        <i id="calendar-prev" class="fa-solid fa-angle-left"></i>
+                        <div id="calendar-current-date" class="mx-2"></div>
+                        <i id="calendar-next" class="fa-solid fa-angle-right"></i>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <ul class="text-primary fw-bold text-center">
+                <div class="card-body" id="calendar-body">
+                    <ul class="text-primary fw-bold text-center" id="calendar-weekdays">
                         <li>Lun</li>
                         <li>Mar</li>
                         <li>Mer</li>
@@ -88,39 +92,7 @@
                         <li>Sab</li>
                         <li>Dom</li>
                     </ul>
-                    <ul class="text-center">
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                        <li>4</li>
-                        <li>5</li>
-                        <li>6</li>
-                        <li>7</li>
-                        <li>8</li>
-                        <li>9</li>
-                        <li>10</li>
-                        <li>11</li>
-                        <li>12</li>
-                        <li>13</li>
-                        <li>14</li>
-                        <li>15</li>
-                        <li>16</li>
-                        <li>17</li>
-                        <li class="bg-primary text-white rounded-3 border-grey">18</li>
-                        <li>19</li>
-                        <li>20</li>
-                        <li>21</li>
-                        <li>22</li>
-                        <li>23</li>
-                        <li>24</li>
-                        <li>25</li>
-                        <li>26</li>
-                        <li>27</li>
-                        <li>28</li>
-                        <li>29</li>
-                        <li>30</li>
-                        <li>31</li>
-                    </ul>
+                    <ul class="text-center" id="calendar-dates"></ul>
                 </div>
             </div>
         </div>
