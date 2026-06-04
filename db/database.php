@@ -201,7 +201,7 @@ class DatabaseHelper{
 
     public function getReservationsOfStudent($student) {
         $stmt = $this->db->prepare(
-            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Data as date, pr.Modalita_Scelta AS mode, p.Nome AS name, p.Cognome AS surname
+            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Data as date, pr.Modalita_Scelta AS mode, p.Nome AS name, p.Cognome AS surname, d.Utente AS professor
             FROM Prenotazione AS pr, RICEVIMENTO AS r, PERSONA AS p, DOCENTE AS d
             WHERE p.Utente = d.Utente
             AND r.Docente = d.Utente
@@ -225,6 +225,23 @@ class DatabaseHelper{
             LEFT JOIN Prenotazione AS pr ON r.Docente = pr.Docente AND r.Data = pr.Data AND r.Ora_Inizio = pr.Ora_Inizio
             LEFT JOIN STUDENTE AS s ON s.Utente = pr.Studente
             LEFT JOIN PERSONA AS p ON p.Utente = s.Utente
+            WHERE r.Docente = ?
+            ORDER BY r.Ora_inizio"
+        );
+        $stmt->bind_param("s", $professorCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getReservedReservationsOfProfessor($professorCode) {
+        $stmt = $this->db->prepare(
+            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Data as date, r.Modalita AS mode, pr.Modalita_Scelta AS reservedMode, p.Nome AS name, p.Cognome AS surname, p.Utente AS studentCode
+            FROM RICEVIMENTO AS r
+            JOIN Prenotazione AS pr ON r.Docente = pr.Docente AND r.Data = pr.Data AND r.Ora_Inizio = pr.Ora_Inizio
+            JOIN STUDENTE AS s ON s.Utente = pr.Studente
+            JOIN PERSONA AS p ON p.Utente = s.Utente
             WHERE r.Docente = ?
             ORDER BY r.Ora_inizio"
         );
@@ -439,11 +456,7 @@ class DatabaseHelper{
             (?)"
         );
         $stmt->bind_param("s", $username);
-        try {
-            return $stmt->execute();
-        } catch (Exception $e) {
-            return false;
-        }
+        return $stmt->execute();
     }
 
     private function createProfessor($username, $department, $seat, $infoReception) {
@@ -452,57 +465,40 @@ class DatabaseHelper{
             (?, ?, ?, ?, "default.png")'
         );
         $stmt->bind_param("ssss", $username, $department, $seat, $infoReception);
-        try {
-            return $stmt->execute();
-        } catch (Exception $e) {
-            return false;
-        }
+        return $stmt->execute();
     }
 
-    private function createStudent($studentId, $username) {
+    private function createStudent($username) {
         $stmt = $this->db->prepare(
             "INSERT INTO STUDENTE values
-            (?, 0, null, 0)"
+            (?, null, 0)"
         );
         $stmt->bind_param("s", $username);
-        try {
-            return $stmt->execute();
-        } catch (Exception $e) {
-            return false;
-        }
+        return $stmt->execute();
     }
 
     public function createAccount($username, $password, $name, $surname, $role, $department = NULL, $seat = NULL, $infoReception = NULL) {
+        $this->db->begin_transaction();
         $stmt = $this->db->prepare(
             "INSERT INTO PERSONA values
             (?, ?, ?, ?, ?)"
         );
         $stmt->bind_param("sssss", $username, $password, $name, $surname, $role);
-        $success = $stmt->execute();
         try {
+            $success = $stmt->execute();
             if ($role == "ADMIN") {
                 $success = $this->createAdmin($username);
             } else if ($role == "DOCENTE") {
                 $success = $this->createProfessor($username, $department, $seat, $infoReception);
             } else if ($role == "STUDENTE") {
-                $success = $this->createStudent($studentId, $username);
+                $success = $this->createStudent($username);
             }
-        } catch (mysqli_sql_exception $e) {
-            echo $e;
+            $this->db->commit();
+        } catch (Exception $e) {
             $success = false;
+            $this->db->rollback();
         }
-        if (!$success) {
-            $stmt = $this->db->prepare(
-                "DELETE FROM PERSONA WHERE Utente = ?"
-            );
-            $stmt->bind_param("s", $username);
-            try {
-                return $stmt->execute();
-            } catch (Exception $e) {
-                return false;
-            }
-        }
-        return true;
+        return $success;
     }
 
     public function getReviewsByCourse($course) {

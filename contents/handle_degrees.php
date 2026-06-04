@@ -19,7 +19,7 @@
                     </label>
                 </li>
                 <li>
-                    <input type="text" id="name" name="name" />
+                    <input type="text" id="name" name="name" required />
                 </li>
                 <div class="d-flex align-content-stretch">
                     <li class="mt-2">
@@ -28,7 +28,7 @@
                         </label>
                     </li>
                     <li class="mt-2">
-                        <select name="years" id="years" class="mt-3 ms-2">
+                        <select name="years" id="years" class="mt-3 ms-2" required>
                             <?php for ($i = 1; $i <= 6; $i++): ?>
                                 <option value="<?php echo $i; ?>"><?php echo $i ?></option>
                             <?php endfor; ?>
@@ -42,7 +42,7 @@
                         </label>
                     </li>
                     <li class="mt-2">
-                        <select name="department" id="deparment" class="mt-3 ms-2">
+                        <select name="department" id="deparment" class="mt-3 ms-2" required>
                             <option value="DISI">DISI</option>
                             <option value="DEI">DEI</option>
                             <option value="DIMEC">DIMEC</option>
@@ -56,7 +56,7 @@
                         </label>
                     </li>
                     <li class="mt-2">
-                        <select name="branch" id="branch" class="mt-3 ms-2 me-3">
+                        <select name="branch" id="branch" class="mt-3 ms-2 me-3" required>
                             <option value="Bologna">Bologna</option>
                             <option value="Cesena">Cesena</option>
                             <option value="Forli">Forli</option>
@@ -69,7 +69,7 @@
                     </label>
                 </li>
                 <li>
-                    <input type="text" id="code" name="code" />
+                    <input type="text" id="code" name="code" required />
                 </li>
                 <li>
                     <button type="submit" class="btn btn-primary mt-3" name="action" value="<?php echo ADMIN_ADD_DEGREE; ?>">Crea</button>
@@ -89,7 +89,7 @@
                     <label for="code">Seleziona corso di laurea</label>
                 </li>
                 <li>
-                    <select name="code" id="degreeCode" onchange="getUpdateDegreesForm()">
+                    <select name="code" id="degreeCode" onchange="getUpdateDegreesForm()" required>
                         <option value="" disabled selected hidden>-- Seleziona --</option>
                         <?php foreach ($templateParams["degrees"] as $degree): ?>
                             <option value="<?php echo $degree["code"]; ?>"><?php echo $degree["code"] . " - " . $degree["name"] . " - " . $degree["campus"]; ?></option>

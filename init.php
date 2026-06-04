@@ -35,6 +35,10 @@ if (isset($_GET["message"])) {
     $_SESSION["message"] = $_GET["message"];
 }
 
+if (isset($_SESSION["message"])) {
+    $templateParams["toast"] = "js/toast.js";
+}
+
 if (isUserLoggedIn()) {
     $user = $_SESSION["username"];
     $role = $_SESSION["role"];

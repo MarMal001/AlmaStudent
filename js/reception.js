@@ -27,7 +27,8 @@ async function getReceptionTable() {
         const json = await response.json();
         console.log(json);
         const section = document.querySelector("#receptionTable");
-        section.innerHTML = generateReceptionTable(date, json["user"], professor, json["reservations"], json["isStudent"]);
+        const canStudentReserve = json["reservationsOfStudent"].filter(e => e["date"] == date && e["professor"] == professor).length < 4;
+        section.innerHTML = generateReceptionTable(date, json["user"], professor, json["reservations"], json["isStudent"], canStudentReserve);
     } catch (error) {
         console.log(error.message);
     }
@@ -50,8 +51,7 @@ function getNextDay(currDay) {
     getReceptionTable();
 }
 
-function generateReceptionTable(date, user, professor, reservations, isStudent) {
-    let isWithoutReceptionSlots = false;
+function generateReceptionTable(date, user, professor, reservations, isStudent, canStudentReserve) {
     let content = `<thead class="table-primary text-center">
         <tr>
             <th id="day" scope="colgroup" colspan="3" class="fs-5"><div class="d-flex inline-flex justify-content-center align-items-center">`;
@@ -80,17 +80,19 @@ function generateReceptionTable(date, user, professor, reservations, isStudent) 
                             if (reservation["studentCode"] == user) {
                                 content += `<a href="reserve.php?type=unreserve&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-white text-primary border-primary ms-3">Cancella ricevimento</a>`;
                             } else {
+                                const isButtonBlocked = reservation["studentCode"] != null || !canStudentReserve ? "disabled" : "";
+                                const buttonPresence = `<a href="reserve.php?type=reserve&mode=Presenza&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-primary ${isButtonBlocked} ms-3 me-2" ${isButtonBlocked}>Prenota ricevimento in presenza</a>`;
+                                const buttonOnline = `<a href="reserve.php?type=reserve&mode=Online&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-primary ${isButtonBlocked}" ${isButtonBlocked}>Prenota ricevimento online</a>`;
                                 if (reservation["mode"].toLowerCase() == "online e in presenza"){
-                                    content += `<a href="reserve.php?type=reserve&mode=Presenza&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-primary ${reservation["studentCode"] != null ? "disabled" : ""} ms-3 me-2" ${reservation["studentCode"] != null ? "disabled" : ""}>Prenota ricevimento in presenza</a>`;
-                                    content += `<a href="reserve.php?type=reserve&mode=Online&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-primary ${reservation["studentCode"] != null ? "disabled" : ""}" ${reservation["studentCode"] != null ? "disabled" : ""}>Prenota ricevimento online</a>`;
-                                } else if (reservation["mode"].toLowerCase() == "in presenza") {
-                                    content += `<a href="reserve.php?type=reserve&mode=Presenza&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-primary ms-3 ${reservation["studentCode"] != null ? "disabled" : ""}" ${reservation["studentCode"] != null ? "disabled" : ""}>Prenota ricevimento in presenza</a>`;
+                                    content += buttonPresence;
+                                    content += buttonOnline;
+                                } else if (reservation["mode"].toLowerCase() == "presenza") {
+                                    content += buttonPresence;
                                 } else {
-                                    content += `<a href="reserve.php?type=reserve&mode=Online&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-primary ms-3 ${reservation["studentCode"] != null ? "disabled" : ""}" ${reservation["studentCode"] != null ? "disabled" : ""}>Prenota ricevimento online</a>`;
+                                    content += buttonOnline;
                                 }
-                                
-                            }   
-                        }       
+                            }
+                        }
                     content += `</td>`;
                     if (user == professor) {
                         content += `<td id="reservation_${timeRange}" headers="reservations ${timeRange}">`;

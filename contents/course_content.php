@@ -1,4 +1,5 @@
 <main>
+    <?php showMessage(); ?>
     <?php $courseId = $templateParams["course"]; ?>
     <?php $courseInfo = $dbh->getCourseInfo($courseId)[0]; ?>  
     <?php $professors = $dbh->getProfessorsByCourse($courseId); ?>

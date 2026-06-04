@@ -203,4 +203,23 @@
     function reportTypeExists($type) {
         return $type == "professor" || $type == "course";
     }
+
+    function showMessage() {
+        if (isset($_SESSION["message"])):
+            ?><div class="toast-container position-fixed top-0 end-0 p-3">
+                <div class="toast align-items-center text-bg-primary border-0" role="alert">
+                    <div class="d-flex">
+                    <div class="toast-body">
+                        <?php 
+                            echo $_SESSION["message"];
+                            unset($_SESSION["message"]);
+                        ?>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                    </div>
+                </div>
+            </div>
+        <?php endif;
+    }
+
 ?>

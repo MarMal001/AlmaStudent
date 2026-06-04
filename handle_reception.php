@@ -67,6 +67,8 @@ function deleteReception($startTimeSlot) {
     }
 }
 
-header("location: reception_editable.php?message=" . $GLOBALS["message"]);
+$_SESSION["message"] = $GLOBALS["message"];
+
+header("location: reception_editable.php");
 
 ?>

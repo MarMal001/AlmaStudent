@@ -26,4 +26,6 @@ if (isset($_POST["department"]) && isset($_POST["seat"]) && isset($_POST["infoRe
     $message = "Parametri mancanti";
 }
 
-header("location: professor.php?professor=" . idWithoutDomain($user) . "&message=" . $message);
+$_SESSION["message"] = $message;
+
+header("location: professor.php?professor=" . idWithoutDomain($user));

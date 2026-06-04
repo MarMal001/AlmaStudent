@@ -10,6 +10,7 @@ foreach ($dbh->getReservationsOfProfessor($_POST["professor"], $_POST["date"]) a
 
 $data["user"] = $user;
 $data["isStudent"] = isStudent();
+$data["reservationsOfStudent"] = $dbh->getReservationsOfStudent($user);
 
 header("Content-Type: application/json");
 echo json_encode($data);

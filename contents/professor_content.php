@@ -1,4 +1,5 @@
 <main> 
+    <?php showMessage(); ?>
     <?php $professorId = $templateParams["professor"]; ?>
     <input type="hidden" id="professor" value=<?php echo $professorId;?> />
     <?php $professor = $dbh->getPersonInfo($professorId)[0]; ?>

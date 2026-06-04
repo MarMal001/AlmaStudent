@@ -111,7 +111,7 @@ aside > div:first-child > i, aside > div {
     background-color: rgb(180, 225, 255);
 }
 
-aside > div:first-child > i {
+aside > div:first-child > i, tr > th i:hover, div > i:hover {
     cursor: pointer;
 }
 
@@ -188,10 +188,6 @@ p {
 
 button.dropdown-toggle::after {
   display: none !important;
-}
-
-tr > th i:hover {
-    cursor: pointer;
 }
 
 /* TODO Passare queste tre media query in un altro foglio di stile apposito per quella pagina */

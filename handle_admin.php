@@ -135,9 +135,9 @@ function update_course($code, $name, $year, $semester, $professorToAdd, $profess
 
 function delete_course($username) {
     if ($GLOBALS["dbh"]->deleteCourse($username)) {
-        $GLOBALS["message"] = "Account eliminato con successo";
+        $GLOBALS["message"] = "Corso eliminato con successo";
     } else {
-        $GLOBALS["message"] = "Non è stato possibile eliminare l'account";
+        $GLOBALS["message"] = "Non è stato possibile eliminare il corso";
     }
 }
 
@@ -159,9 +159,9 @@ function update_degree($code, $name, $department, $years, $branch) {
 
 function delete_degree($username) {
     if ($GLOBALS["dbh"]->deleteDegree($username)) {
-        $GLOBALS["message"] = "Account eliminato con successo";
+        $GLOBALS["message"] = "Corso di laure eliminato con successo";
     } else {
-        $GLOBALS["message"] = "Non è stato possibile eliminare l'account";
+        $GLOBALS["message"] = "Non è stato possibile eliminare corso di laurea";
     }
 }
 
