@@ -43,7 +43,7 @@
                             <h5 class="card-title">Ricevimenti</h6>
                             <h5 class="card-title">prenotati</h6>
                         </div>
-                        <h1 class="fw-bolder px-5 py-2"><?php echo count(isStudent() ? $dbh->getReservationsOfStudent($user) : $dbh->getReservationsOfProfessor($user)); ?></h1>   
+                        <h1 class="fw-bolder px-5 py-2"><?php echo count(isStudent() ? $dbh->getReservationsOfStudent($user) : $dbh->getReservedReservationsOfProfessor($user)); ?></h1>   
                     </div>
                 <?php endif; ?>
                 <?php if (isStudent()): ?>
