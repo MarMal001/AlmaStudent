@@ -1,10 +1,5 @@
 <main>
-    <?php if (isset($templateParams["message"])): ?>
-        <section>
-            <?php echo $templateParams["message"]; ?>
-        </section>
-    <?php endif; ?>
-
+    <?php showMessage(); ?>
     <section class="container-fluid w-auto m-2 p-0 my-4">
         <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c0">
             <p class="m-0 p-2">Aggiungi disponibilità</p>
@@ -17,82 +12,88 @@
                     <label for="receptionDate">Data</label>
                 </li>
                 <li>
-                    <input type="date" id="receptionDate" name="receptionDate" />
+                    <input type="date" id="receptionDate" name="receptionDate" required />
                 </li>
-                <li>
-                    <label for="startTimeHour">Fascia oraria da</label>
-                </li>
-                <li>
-                    <select name="startTimeHour">
-                        <option value="--" disabled selected hidden>--</option>
-                        <option value="09">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                    </select>
-                </li>
-                <li>
-                    <label for="startTimeMinute">:</label>
-                </li>
-                <li>
-                    <select name="startTimeMinute">
-                        <option value="--" disabled selected hidden>--</option>
-                        <option value="00">00</option>
-                        <option value="15">15</option>
-                        <option value="30">30</option>
-                        <option value="45">45</option>
-                    </select>
-                </li>
-                <li>
-                    <label for="endTimeHour">a</label>
-                </li>
-                <li>
-                    <select name="endTimeHour">
-                        <option value="--" disabled selected hidden>--</option>
-                        <option value="09">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                    </select>
-                </li>
-                <li>
-                    <label for="endTimeMinute">:</label>
-                </li>
-                <li>
-                    <select name="endTimeMinute">
-                        <option value="--" disabled selected hidden>--</option>
-                        <option value="00">00</option>
-                        <option value="15">15</option>
-                        <option value="30">30</option>
-                        <option value="45">45</option>
-                    </select>
-                </li>
-                <li>
-                    <label for="mode">Modalità</label>
-                </li>
-                <li>
-                    <select name="mode">
-                        <option value="select" disabled selected hidden>--Seleziona--</option>
-                        <option value="online">Online</option>
-                        <option value="presence">Presenza</option>
-                        <option value="online_presence">Online e in presenza</option>
-                    </select>
-                </li>
+                <div class="d-flex">
+                    <li>
+                        <label for="startTimeHour">Da</label>
+                    </li>
+                    <li class="mt-3 mx-1">
+                        <select name="startTimeHour" required>
+                            <option value="" disabled selected hidden>--</option>
+                            <option value="09">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="startTimeMinute">:</label>
+                    </li>
+                    <li class="mt-3 ms-1">
+                        <select name="startTimeMinute" required>
+                            <option value="" disabled selected hidden>--</option>
+                            <option value="00">00</option>
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                    </li>
+                </div>
+                <div class="d-flex">
+                    <li>
+                        <label for="endTimeHour">a</label>
+                    </li>
+                    <li class="mt-3 mx-1">
+                        <select name="endTimeHour" required>
+                            <option value="" disabled selected hidden>--</option>
+                            <option value="09">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="endTimeMinute">:</label>
+                    </li>
+                    <li class="mt-3 mx-1">
+                        <select name="endTimeMinute" required>
+                            <option value="" disabled selected hidden>--</option>
+                            <option value="00">00</option>
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                    </li>
+                </div>
+                <div class="d-flex">
+                    <li>
+                        <label for="mode">Modalità</label>
+                    </li>
+                    <li class="mt-3 mx-1">
+                        <select name="mode" required>
+                            <option value="" disabled selected hidden>--Seleziona--</option>
+                            <option value="online">Online</option>
+                            <option value="presence">Presenza</option>
+                            <option value="online_presence">Online e in presenza</option>
+                        </select>
+                    </li>
+                </div>
                 <div class="d-flex m-2">
                     <li>
                         <button class="btn btn-white border-primary me-1" type="reset">Annulla</button>
@@ -115,82 +116,90 @@
             <ul>
                 <li>
                     <label for="receptionDate">Data</label>
-                    <input type="date" id="receptionDate" name="receptionDate" />
                 </li>
                 <li>
-                    <label for="startTimeHour">Fascia oraria da</label>
+                    <input type="date" id="receptionDate" name="receptionDate" required />
                 </li>
-                <li>
-                    <select name="startTimeHour">
-                        <option value="--" disabled selected hidden>--</option>
-                        <option value="09">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                    </select>
-                </li>
-                <li>
-                    <label for="startTimeMinute">:</label>
-                </li>
-                <li>
-                    <select name="startTimeMinute">
-                        <option value="--" disabled selected hidden>--</option>
-                        <option value="00">00</option>
-                        <option value="15">15</option>
-                        <option value="30">30</option>
-                        <option value="45">45</option>
-                    </select>
-                </li>
-                <li>
-                    <label for="endTimeHour">a</label>
-                </li>
-                <li>
-                    <select name="endTimeHour">
-                        <option value="--" disabled selected hidden>--</option>
-                        <option value="09">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                    </select>
-                </li>
-                <li>
-                    <label for="endTimeMinute">:</label>
-                </li>
-                <li>
-                    <select name="endTimeMinute">
-                        <option value="--" disabled selected hidden>--</option>
-                        <option value="00">00</option>
-                        <option value="15">15</option>
-                        <option value="30">30</option>
-                        <option value="45">45</option>
-                    </select>
-                </li>
-                <li>
-                    <label for="mode">Modalità</label>
-                </li>
-                    <select name="mode">
-                        <option value="select" disabled selected hidden>--Seleziona--</option>
-                        <option value="online">Online</option>
-                        <option value="presence">Presenza</option>
-                        <option value="online_presence">Online e in presenza</option>
-                    </select>
-                </li>
-                <div class="d-flex m-2">
+                <div class="d-flex">
+                    <li>
+                        <label for="startTimeHour">Da</label>
+                    </li>
+                    <li class="mt-3 mx-1">
+                        <select name="startTimeHour" required>
+                            <option value="" disabled selected hidden>--</option>
+                            <option value="09">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="startTimeMinute">:</label>
+                    </li>
+                    <li class="mt-3 ms-1">
+                        <select name="startTimeMinute" required>
+                            <option value="" disabled selected hidden>--</option>
+                            <option value="00">00</option>
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                    </li>
+                </div>
+                <div class="d-flex">
+                    <li>
+                        <label for="endTimeHour">a</label>
+                    </li>
+                    <li class="mt-3 mx-1">
+                        <select name="endTimeHour" required>
+                            <option value="" disabled selected hidden>--</option>
+                            <option value="09">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="endTimeMinute">:</label>
+                    </li>
+                    <li class="mt-3 mx-1">
+                        <select name="endTimeMinute" required>
+                            <option value="" disabled selected hidden>--</option>
+                            <option value="00">00</option>
+                            <option value="15">15</option>
+                            <option value="30">30</option>
+                            <option value="45">45</option>
+                        </select>
+                    </li>
+                </div>
+                <div class="d-flex">
+                    <li>
+                        <label for="mode">Modalità</label>
+                    </li>
+                    <li class="mt-3 mx-1">
+                        <select name="mode">
+                            <option value="" disabled selected hidden>--Seleziona--</option>
+                            <option value="online">Online</option>
+                            <option value="presence">Presenza</option>
+                            <option value="online_presence">Online e in presenza</option>
+                        </select>
+                    </li>
+                </div>                <div class="d-flex m-2">
                     <li>
                         <button class="btn btn-white border-primary me-1" type="reset">Annulla</button>
                     </li>

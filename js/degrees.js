@@ -8,7 +8,7 @@ function generateUpdateDegreesForm(degree) {
             </label>
         </li>
         <li>
-            <input type="text" id="name" name="name" value="${degree["name"]}" />
+            <input type="text" id="name" name="name" value="${degree["name"]}" required />
         </li>
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
@@ -17,7 +17,7 @@ function generateUpdateDegreesForm(degree) {
                 </label>
             </li>
             <li class="mt-2">
-                <select name="years" id="years" class="mt-3 ms-2">`;
+                <select name="years" id="years" class="mt-3 ms-2" required>`;
     for (let i = 1; i <= 6; i++) {
         content += `<option value="${i}" ${degree["nYears"] == i ? "selected" : ""}>${i}</option>`;
     }
@@ -31,7 +31,7 @@ function generateUpdateDegreesForm(degree) {
                 </label>
             </li>
             <li class="mt-2">
-                <select name="department" id="department" class="mt-3 ms-2">
+                <select name="department" id="department" class="mt-3 ms-2" required>
                     <option value="DISI" ${degree["department"] == "DISI" ? "selected" : ""}>DISI</option>
                     <option value="DEI" ${degree["department"] == "DEI" ? "selected" : ""}>DEI</option>
                     <option value="DIMEC" ${degree["department"] == "DIMEC" ? "selected" : ""}>DIMEC</option>
@@ -45,7 +45,7 @@ function generateUpdateDegreesForm(degree) {
                 </label>
             </li>
             <li class="mt-2">
-                <select name="branch" id="branch" class="mt-3 ms-2">
+                <select name="branch" id="branch" class="mt-3 ms-2" required>
                     <option value="Bologna" ${degree["campus"] == "Bologna" ? "selected" : ""}>Bologna</option>
                     <option value="Cesena" ${degree["campus"] == "Cesena" ? "selected" : ""}>Cesena</option>
                     <option value="Forli" ${degree["campus"] == "Forli" ? "selected" : ""}>Forli</option>

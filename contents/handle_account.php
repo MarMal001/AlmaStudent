@@ -23,7 +23,7 @@
                     </label>
                 </li>
                 <li>
-                    <input type="text" id="name" name="name" />
+                    <input type="text" id="name" name="name" required />
                 </li>
                 <li>
                     <label for="surname" class="text-left">
@@ -31,7 +31,7 @@
                     </label>
                 </li>
                 <li>
-                    <input type="text" id="surname" name="surname" />
+                    <input type="text" id="surname" name="surname" required />
                 </li>
                 <li>
                     <label for="username" class="text-left">
@@ -39,7 +39,7 @@
                     </label>
                 </li>
                 <li>
-                    <input type="email" id="username" name="username" />
+                    <input type="email" id="username" name="username" required />
                 </li>
                 <li>
                     <label for="password" class="text-left">
@@ -47,7 +47,7 @@
                     </label>
                 </li>
                 <li>
-                    <input type="password" id="password" name="password" />
+                    <input type="password" id="password" name="password" required />
                 </li>
                 <?php if ($_GET["accountType"] == "DOCENTE"): ?>
                     <li>
@@ -98,14 +98,14 @@
                 </li>
                 <li>
                     <?php if ($_GET["accountType"] == "DOCENTE"): ?>
-                        <select id="updateProfessorCode" name="username" onchange="getUpdateProfessorForm()">
+                        <select id="updateProfessorCode" name="username" onchange="getUpdateProfessorForm()" required>
                             <option value="">-- Seleziona --</option>
                             <?php foreach ($dbh->getProfessors() as $professor): ?>
                                 <option value="<?php echo $professor["professor"]; ?>"><?php echo $professor["name"] . " " . $professor["surname"] ?></option>
                             <?php endforeach; ?>
                         </select>
                     <?php elseif($_GET["accountType"] == "ADMIN"): ?>
-                        <select id="updateAdminCode" name="username" onchange="getUpdateAdminForm()">
+                        <select id="updateAdminCode" name="username" onchange="getUpdateAdminForm()" required>
                             <option value="">-- Seleziona --</option>
                             <?php foreach ($dbh->getAdmins() as $admin): ?>
                                 <option value="<?php echo $admin["username"]; ?>"><?php echo $admin["name"] . " " . $admin["surname"] ?></option>

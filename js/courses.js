@@ -9,7 +9,7 @@ function generateAddCourse(degreeYears) {
             </label>
         </li>
         <li>
-            <input type="text" id="name" name="name" />
+            <input type="text" id="name" name="name" required />
         </li>
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
@@ -18,7 +18,7 @@ function generateAddCourse(degreeYears) {
                 </label>
             </li>
             <li class="mt-2" id="degreeYears">
-                <select name="year" id="year" class="mt-3 ms-2 me-3">`;
+                <select name="year" id="year" class="mt-3 ms-2 me-3" required>`;
                     for (year = 1; year <= degreeYears; year++) {
                         content += `<option value="${year}">${year}</option>`;
                     }
@@ -30,7 +30,7 @@ function generateAddCourse(degreeYears) {
                 </label>
             </li>
             <li class="mt-2">
-                <select name="semester" id="semester" class="mt-3 ms-2">
+                <select name="semester" id="semester" class="mt-3 ms-2" required>
                     <option value="1">1</option>
                     <option value="2">2</option>
                 </select>
@@ -42,7 +42,7 @@ function generateAddCourse(degreeYears) {
             </label>
         </li>
         <li>
-            <input type="text" id="code" name="code" />
+            <input type="text" id="code" name="code" required />
         </li>
         <li>
             <button type="submit" class="btn btn-primary mt-3" name="action" value="${ADMIN_ADD_COURSE}">Crea corso</button>
@@ -130,7 +130,7 @@ function generateUpdateCoursesDropdown(courses, degreeYears) {
             </label>
         </li>
         <li>
-            <select name="code" id="updateCourseCode" onchange="getUpdateCoursesForm()">
+            <select name="code" id="updateCourseCode" onchange="getUpdateCoursesForm()" required>
                 <option value="" disabled selected hidden>-- Seleziona --</option>`;
     for (let year = 1; year <= degreeYears; year++) {
         for (const course of courses[year]) {
@@ -150,7 +150,7 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
             </label>
         </li>
         <li>
-            <input type="text" id="name" name="name" value="${course["name"]}" />
+            <input type="text" id="name" name="name" value="${course["name"]}" required />
         </li>
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
@@ -159,7 +159,7 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
                 </label>
             </li>
             <li class="mt-2">
-                <select name="year" id="year" class="mt-3 ms-2 me-3">`;
+                <select name="year" id="year" class="mt-3 ms-2 me-3" required>`;
     for (let year = 1; year <= degreeYears; year++) {
         content += `<option value="${year}" ${course["year"] == year ? "selected" : ""}>${year}</option>`;
     }
@@ -171,7 +171,7 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
                 </label>
             </li>
             <li class="mt-2">
-                <select name="semester" id="semester" class="mt-3 ms-2">
+                <select name="semester" id="semester" class="mt-3 ms-2" required>
                     <option value="1" ${course["semester"] == "1" ? "selected" : ""}>1</option>
                     <option value="2" ${course["semester"] == "2" ? "selected" : ""}>2</option>
                 </select>

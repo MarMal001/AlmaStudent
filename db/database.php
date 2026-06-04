@@ -495,8 +495,8 @@ class DatabaseHelper{
             (?, ?, ?, ?, ?)"
         );
         $stmt->bind_param("sssss", $username, $password, $name, $surname, $role);
-        $success = $stmt->execute();
         try {
+            $success = $stmt->execute();
             if ($role == "ADMIN") {
                 $success = $this->createAdmin($username);
             } else if ($role == "DOCENTE") {
@@ -504,22 +504,11 @@ class DatabaseHelper{
             } else if ($role == "STUDENTE") {
                 $success = $this->createStudent($studentId, $username);
             }
-        } catch (mysqli_sql_exception $e) {
-            echo $e;
+        } catch (Exception $e) {
             $success = false;
+            $this->db->rollback();
         }
-        if (!$success) {
-            $stmt = $this->db->prepare(
-                "DELETE FROM PERSONA WHERE Utente = ?"
-            );
-            $stmt->bind_param("s", $username);
-            try {
-                return $stmt->execute();
-            } catch (Exception $e) {
-                return false;
-            }
-        }
-        return true;
+        return $success;
     }
 
     public function getReviewsByCourse($course) {

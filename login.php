@@ -12,7 +12,8 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         registerLoggedUser($loginResult[0]);
         header("location: index.php");
     } else {
-        $templateParams["loginError"] = "Username or password wrong";
+        $templateParams["toast"] = "js/toast.js";
+        $_SESSION["message"] = "Username or password wrong";
     }
 }
 

@@ -8,7 +8,7 @@ function generateUpdateProfessorForm(professor) {
             </label>
         </li>
         <li>
-            <input type="text" id="name" name="name" value="${professor["name"]}" />
+            <input type="text" id="name" name="name" value="${professor["name"]}" required />
         </li>
         <li>
             <label for="surname" class="text-left">
@@ -16,7 +16,7 @@ function generateUpdateProfessorForm(professor) {
             </label>
         </li>
         <li>
-            <input type="text" id="surname" name="surname" value="${professor["surname"]}" />
+            <input type="text" id="surname" name="surname" value="${professor["surname"]}" required />
         </li>
         <li>
             <label for="department" class="text-left">
@@ -24,7 +24,7 @@ function generateUpdateProfessorForm(professor) {
             </label>
         </li>
         <li>
-            <input type="text" id="department" name="department" value="${professor["department"]}" />
+            <input type="text" id="department" name="department" value="${professor["department"]}" required />
         </li>
         <li>
             <label for="seat" class="text-left">
@@ -32,7 +32,7 @@ function generateUpdateProfessorForm(professor) {
             </label>
         </li>
         <li>
-            <input type="text" id="seat" name="seat" value="${professor["campus"]}" />
+            <input type="text" id="seat" name="seat" value="${professor["campus"]}" required />
         </li>
         <li>
             <label for="infoReception" class="text-left">
@@ -40,7 +40,7 @@ function generateUpdateProfessorForm(professor) {
             </label>
         </li>
         <li>
-            <input type="text" id="infoReception" name="infoReception" value="${professor["infoReception"]}" />
+            <input type="text" id="infoReception" name="infoReception" value="${professor["infoReception"]}" required />
         </li>
         <div class="d-flex">
             <li class="mt-3 me-2">
@@ -66,7 +66,7 @@ function generateUpdateAdminForm(admin) {
             </label>
         </li>
         <li>
-            <input type="text" id="name" name="name" value="${admin["name"]}" />
+            <input type="text" id="name" name="name" value="${admin["name"]}" required />
         </li>
         <li>
             <label for="surname" class="text-left">
@@ -74,7 +74,7 @@ function generateUpdateAdminForm(admin) {
             </label>
         </li>
         <li>
-            <input type="text" id="surname" name="surname" value="${admin["surname"]}" />
+            <input type="text" id="surname" name="surname" value="${admin["surname"]}" required />
         </li>
         <li>
             <button type="submit" class="btn btn-primary mt-3" name="action" value="${ADMIN_MODIFY_ACCOUNT}">Modifica account</button>

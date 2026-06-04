@@ -8,12 +8,12 @@ if (isUserLoggedIn()) {
 
 if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["name"]) && isset($_POST["surname"])) {
     $loginResult = $dbh->createAccount($_POST["username"], $_POST["password"], $_POST["name"], $_POST["surname"], "STUDENTE");
-    echo $loginResult;
     if ($loginResult) {
         registerLoggedUser($loginResult[0]);
         header("location: index.php");
     } else {
-        $templateParams["createAccountError"] = "Account already exists";
+        $templateParams["toast"] = "js/toast.js";
+        $_SESSION["message"] = "Account already exists";
     }
 }
 

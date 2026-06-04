@@ -47,5 +47,8 @@
         endforeach;
     endif;
     ?>
+    <?php if(isset($templateParams["toast"])): ?>
+        <script src="<?php echo $templateParams["toast"]; ?>"></script>
+    <?php endif; ?>
 </body>
 </html>
