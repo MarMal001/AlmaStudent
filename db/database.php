@@ -456,11 +456,7 @@ class DatabaseHelper{
             (?)"
         );
         $stmt->bind_param("s", $username);
-        try {
-            return $stmt->execute();
-        } catch (Exception $e) {
-            return false;
-        }
+        return $stmt->execute();
     }
 
     private function createProfessor($username, $department, $seat, $infoReception) {
@@ -469,27 +465,20 @@ class DatabaseHelper{
             (?, ?, ?, ?, "default.png")'
         );
         $stmt->bind_param("ssss", $username, $department, $seat, $infoReception);
-        try {
-            return $stmt->execute();
-        } catch (Exception $e) {
-            return false;
-        }
+        return $stmt->execute();
     }
 
-    private function createStudent($studentId, $username) {
+    private function createStudent($username) {
         $stmt = $this->db->prepare(
             "INSERT INTO STUDENTE values
-            (?, 0, null, 0)"
+            (?, null, 0)"
         );
         $stmt->bind_param("s", $username);
-        try {
-            return $stmt->execute();
-        } catch (Exception $e) {
-            return false;
-        }
+        return $stmt->execute();
     }
 
     public function createAccount($username, $password, $name, $surname, $role, $department = NULL, $seat = NULL, $infoReception = NULL) {
+        $this->db->begin_transaction();
         $stmt = $this->db->prepare(
             "INSERT INTO PERSONA values
             (?, ?, ?, ?, ?)"
@@ -502,8 +491,9 @@ class DatabaseHelper{
             } else if ($role == "DOCENTE") {
                 $success = $this->createProfessor($username, $department, $seat, $infoReception);
             } else if ($role == "STUDENTE") {
-                $success = $this->createStudent($studentId, $username);
+                $success = $this->createStudent($username);
             }
+            $this->db->commit();
         } catch (Exception $e) {
             $success = false;
             $this->db->rollback();
