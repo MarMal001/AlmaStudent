@@ -7,6 +7,6 @@ foreach ($dbh->getProfessorsByCourse($_POST["course"]) as $professor) {
     if (isset($_POST["review" . $professorId]) && $_POST["review" . $professorId] != "") {
         $dbh->createReview($code, $_POST["review" . $professorId]);
     }
-    
+    $dbh->updateGeneralCourseRatingProfAvailability($_POST["course"]);
     header("location: rating_professor.php?course=" . $_POST["course"]);
 }
