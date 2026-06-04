@@ -13,7 +13,7 @@ if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["name
         header("location: index.php");
     } else {
         $templateParams["toast"] = "js/toast.js";
-        $_SESSION["message"] = "Account already exists";
+        $_SESSION["message"] = "L'account con questo username esiste già";
     }
 }
 

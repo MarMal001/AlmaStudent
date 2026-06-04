@@ -13,7 +13,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         header("location: index.php");
     } else {
         $templateParams["toast"] = "js/toast.js";
-        $_SESSION["message"] = "Username or password wrong";
+        $_SESSION["message"] = "Username o password sbagliati";
     }
 }
 
