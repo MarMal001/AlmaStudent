@@ -235,6 +235,23 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getReservedReservationsOfProfessor($professorCode) {
+        $stmt = $this->db->prepare(
+            "SELECT r.Ora_inizio AS startTime, r.Ora_fine AS endTime, r.Data as date, r.Modalita AS mode, pr.Modalita_Scelta AS reservedMode, p.Nome AS name, p.Cognome AS surname, p.Utente AS studentCode
+            FROM RICEVIMENTO AS r
+            JOIN Prenotazione AS pr ON r.Docente = pr.Docente AND r.Data = pr.Data AND r.Ora_Inizio = pr.Ora_Inizio
+            JOIN STUDENTE AS s ON s.Utente = pr.Studente
+            JOIN PERSONA AS p ON p.Utente = s.Utente
+            WHERE r.Docente = ?
+            ORDER BY r.Ora_inizio"
+        );
+        $stmt->bind_param("s", $professorCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function reserveSlot($timeStart, $date, $professorCode, $studentCode, $mode) {
         $stmt = $this->db->prepare(
             "INSERT INTO Prenotazione values (?, ?, ?, ?, ?)"
