@@ -26,6 +26,10 @@
                     <p class='mb-0 me-2'>Esame:</p>
                     <?php createStars($gRatings["ratingE"], "#ffff"); ?>
                 </div>
+                <div class='d-flex inline-flex align-items-center'>
+                    <p class='mb-0 me-2'>Disponibilità:</p>
+                    <?php createStars($dbh->getProfessorsDisponibilityOfCourse($courseId), "#ffff"); ?>
+                </div>
             ">
                 <?php $ratings = [$gRatings["ratingL"], $gRatings["ratingM"], $gRatings["ratingE"], $gRatings["ratingD"]]; ?>
                 <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>

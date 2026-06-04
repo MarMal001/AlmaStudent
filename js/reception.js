@@ -4,7 +4,6 @@ async function getReceptionTable() {
     const formData = new FormData();
     let date = null;
     let professor = null;
-    console.log(document.querySelector("#professor"));
     if (document.querySelector("#professor") == null) {
         return;
     }

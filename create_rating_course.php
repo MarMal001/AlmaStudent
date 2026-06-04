@@ -6,5 +6,5 @@
     if (isset($_POST["review"]) && $_POST["review"] != "") {
         $dbh->createReview($code, $_POST["review"]);
     }
-    
+    $dbh->updateGeneralCourseRatingCourse($_POST["course"]);
     header("location: rating_professor.php?course=" . $_POST["course"]);
