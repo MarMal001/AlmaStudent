@@ -235,6 +235,7 @@ class DatabaseHelper{
             AND r.Data = pr.Data
             AND r.Ora_Inizio = pr.Ora_Inizio
             AND pr.Studente = ?
+            AND r.Data >= CURDATE()
             ORDER BY r.Ora_inizio"
         );
         $stmt->bind_param("s", $student);
@@ -252,6 +253,7 @@ class DatabaseHelper{
             LEFT JOIN STUDENTE AS s ON s.Utente = pr.Studente
             LEFT JOIN PERSONA AS p ON p.Utente = s.Utente
             WHERE r.Docente = ?
+            AND r.Data >= CURDATE()
             ORDER BY r.Ora_inizio"
         );
         $stmt->bind_param("s", $professorCode);
@@ -269,6 +271,7 @@ class DatabaseHelper{
             JOIN STUDENTE AS s ON s.Utente = pr.Studente
             JOIN PERSONA AS p ON p.Utente = s.Utente
             WHERE r.Docente = ?
+            AND r.Data >= CURDATE()
             ORDER BY r.Ora_inizio"
         );
         $stmt->bind_param("s", $professorCode);
