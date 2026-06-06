@@ -65,7 +65,7 @@
                             <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
                         </div>
                         <?php if ($dbh->checkIfSubscribedToACourse($user, $course["code"])): ?>
-                            <i class="fa-solid fa-check mx-2 mt-2" style="color: #008000;"></i>
+                            <i class="fa-solid fa-check mx-2 mt-2" style="color: rgb(30, 48, 80);"></i>
                         <?php endif; ?>
                     </div>
                     <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
@@ -82,9 +82,6 @@
                         ?>
                     </div>
                 </div>
-                <?php if ($dbh->checkIfSubscribedToACourse($user, $course["code"])): ?>
-                    <i class="fa-solid fa-check mx-2 mt-2" style="color: rgb(30, 48, 80);"></i>
-                <?php endif; ?>
             </div>
         </div> 
         <?php endforeach; ?>   
