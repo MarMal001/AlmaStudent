@@ -14,6 +14,7 @@ header {
 header h1 {
     font-family: Garamond;
     font-weight: bold;
+    color: white !important;
 }
 
 header img {
@@ -76,6 +77,10 @@ aside > div:first-child {
     display: inline-block;
     padding: 0 6px 0 4px;
     border-radius: 5px 5px 0 0;
+}
+
+aside h1 {
+    color: black !important;
 }
 
 @media only screen and (min-width: 992px) {
@@ -161,6 +166,11 @@ aside div > ul:nth-child(2) li {
     position: fixed; 
     bottom: 0;
 } */
+
+h1, h2, h3, h4 {
+    color: rgb(30, 48, 80) !important;
+    font-weight: bold !important;
+}
 
 div > ul > li, nav > ul > li{
     float: left;
@@ -249,4 +259,10 @@ tbody tr:nth-child(even) {
 
 .link-deepskyblue {
     color: #154388;
+}
+
+.tooltip {
+    --bs-tooltip-bg: rgba(30, 48, 80, 1.0) !important;
+    --bs-tooltip-color: white;
+    --bs-tooltip-opacity: 1.0 !important;
 }

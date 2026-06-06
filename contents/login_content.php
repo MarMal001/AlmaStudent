@@ -3,7 +3,7 @@
     <div class="col-xl col"></div>
     <div class="col-xl-3 col-5 bg-deepskyblue text-center text-white rounded-4">
         <form action="login.php" method="post" class="pt-5">
-            <h2>Accedi al tuo account</h2>
+            <h2 class="text-white">Accedi al tuo account</h2>
             <ul>
                 <li>
                     <label for="username" class="text-left">
