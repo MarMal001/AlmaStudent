@@ -1,0 +1,20 @@
+@media only screen and (min-width: 992px) {
+    section > div {
+        max-width: 75%;
+    }
+
+    section:last-child > div {
+        max-width: 100%;
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+}
+
+section:last-child > div {
+    height: 250px;
+}
+
+main h1, h2, h3, h4 {
+    color: rgb(30, 48, 80) !important;
+    font-weight: bold !important;
+}
