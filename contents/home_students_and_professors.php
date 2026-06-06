@@ -66,6 +66,9 @@
             </div>
         </div>    
     <?php endforeach; ?>
+    <?php if (count($courses) == 0): ?>
+        <div class="m-2 p-0"><?php echo isStudent() ? "Non sei iscritto a nessun corso" : "Non hai nessun corso assegnato"; ?></div>
+    <?php endif; ?>
 </section>
 <section>
     <h2 class="fw-bold">I tuoi ricevimenti</h2>
@@ -77,4 +80,7 @@
             <?php endif; ?>
         <?php endforeach; ?>
     </ul>
+    <?php if (count($reservations) == 0): ?>
+        <div class="m-2 p-0"><?php echo isStudent() ? "Non hai prenotato nessun ricevimento" : "Non hai ricevimenti prenotati"; ?></div>
+    <?php endif; ?>
 </section>

@@ -9,6 +9,17 @@ class DatabaseHelper{
         }        
     }
 
+    public function getStudents() {
+        $stmt = $this->db->prepare("
+            SELECT Utente
+            FROM STUDENTE"
+        );
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
     public function getDegrees() {
         $stmt = $this->db->prepare("SELECT Codice AS code, Nome AS name, Numero_Anni AS nYears, Campus AS campus 
         FROM FACOLTA 
@@ -168,6 +179,21 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getNumberOfSubscribedStudentToCoursesOfProfessor($professorCode) {
+        $stmt = $this->db->prepare(
+            "SELECT s.Utente, c.Nome FROM CORSO AS c, DOCENTE AS d, Tenere AS t, STUDENTE_IN_CORSO AS s
+            WHERE s.Codice_Corso = c.Codice
+            AND c.Codice = t.Codice_Corso
+            AND t.Docente = d.Utente
+            AND d.Utente = ?"
+        );
+        $stmt->bind_param("s", $professorCode);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return count($result->fetch_all(MYSQLI_ASSOC));
+    }
+
     public function getGeneralRatingsByCourse($courseCode) {
         $year = date("Y");
         $stmt = $this->db->prepare(
@@ -209,6 +235,7 @@ class DatabaseHelper{
             AND r.Data = pr.Data
             AND r.Ora_Inizio = pr.Ora_Inizio
             AND pr.Studente = ?
+            AND r.Data >= CURDATE()
             ORDER BY r.Ora_inizio"
         );
         $stmt->bind_param("s", $student);
@@ -226,6 +253,7 @@ class DatabaseHelper{
             LEFT JOIN STUDENTE AS s ON s.Utente = pr.Studente
             LEFT JOIN PERSONA AS p ON p.Utente = s.Utente
             WHERE r.Docente = ?
+            AND r.Data >= CURDATE()
             ORDER BY r.Ora_inizio"
         );
         $stmt->bind_param("s", $professorCode);
@@ -243,6 +271,7 @@ class DatabaseHelper{
             JOIN STUDENTE AS s ON s.Utente = pr.Studente
             JOIN PERSONA AS p ON p.Utente = s.Utente
             WHERE r.Docente = ?
+            AND r.Data >= CURDATE()
             ORDER BY r.Ora_inizio"
         );
         $stmt->bind_param("s", $professorCode);
@@ -535,6 +564,28 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getNumberOfReviewsOfStudent($user) {
+        $stmt = $this->db->prepare(
+            "SELECT *
+            FROM RATING_CORSO
+            WHERE Studente = ?"
+        );
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $result1 = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC));
+
+        $stmt = $this->db->prepare(
+            "SELECT *
+            FROM RATING_DOCENTE
+            WHERE Studente = ?"
+        );
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $result2 = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC));
+
+        return $result1 + $result2;
+    }
+
     public function getCourseRatingbyStudent($course, $student) {
         $stmt = $this->db->prepare(
             "SELECT rd.Rating_Lezioni AS rating_L, rd.Rating_Materiale AS rating_M, rd.Rating_Esame AS rating_E
@@ -613,6 +664,18 @@ class DatabaseHelper{
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getNumberOfBannedStudents() {
+        $stmt = $this->db->prepare(
+            "SELECT Data_Ban
+            FROM STUDENTE
+            WHERE Numero_Segnalazioni = 3"
+        );
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return count($result->fetch_all(MYSQLI_ASSOC));
     }
 
     public function addCourse($code, $name, $degreeCode, $year, $semester) {
