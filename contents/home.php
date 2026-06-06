@@ -72,7 +72,7 @@
                         <h1 class="fw-bolder px-5 py-2"><?php echo $dbh->getStudentNumberReports($user)[0]["numReports"]; ?></h1>
                     </div>
                     <div class="card text-center my-3">
-                        <div class="card-body bg-primary text-white rounded-top">
+                        <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Numero di</h5>
                             <h5 class="card-title">recensioni scritte</h5>
                         </div>
@@ -93,28 +93,28 @@
                         <h1 class="fw-bolder px-5 py-2"><?php echo $nReports; ?></h1>
                     </div>
                     <div class="card text-center my-3">
-                        <div class="card-body bg-primary text-white rounded-top">
+                        <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Numero di</h5>
                             <h5 class="card-title">persone bloccate</h5>
                         </div>
                         <h1 class="fw-bolder px-5 py-2"><?php echo $dbh->getNumberOfBannedStudents(); ?></h1>
                     </div>
                     <div class="card text-center my-3">
-                        <div class="card-body bg-primary text-white rounded-top">
+                        <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Numero di</h5>
                             <h5 class="card-title">corsi</h5>
                         </div>
                         <h1 class="fw-bolder px-5 py-2"><?php echo count($dbh->getCourses()); ?></h1>
                     </div>
                     <div class="card text-center my-3">
-                        <div class="card-body bg-primary text-white rounded-top">
+                        <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Numero di</h5>
                             <h5 class="card-title">professori</h5>
                         </div>
                         <h1 class="fw-bolder px-5 py-2"><?php echo count($dbh->getProfessors()); ?></h1>
                     </div>
                     <div class="card text-center my-3">
-                        <div class="card-body bg-primary text-white rounded-top">
+                        <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Numero di</h5>
                             <h5 class="card-title">studenti</h5>
                         </div>

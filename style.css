@@ -179,7 +179,7 @@ form > ul > li > a {
 }
 
 nav ul li:hover {
-    background-color: blue;
+    background-color: #1a65d5;
 }
 
 nav {
@@ -219,6 +219,10 @@ button.dropdown-toggle::after {
     background-color: #1455B4 !important;
 }
 
+.bg-darkred {
+    background-color: #B21212 !important;
+}
+
 thead tr:first-child th {
     border-color: #E2E3E5;
     background-color: #1455B4;
@@ -226,6 +230,7 @@ thead tr:first-child th {
 }
 
 thead tr:nth-child(2) th {
+    color: #1E3050 !important;
     background-color: #CFE2FF;
     border-color: #E2E3E5;
 }

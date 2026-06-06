@@ -1,10 +1,11 @@
-<section>
+<section class="ms-4 mt-4">
     <?php $userData = $dbh->getPersonInfo($user)[0]; ?>
     <h1 class="fw-bold">Ciao <?php echo $userData["name"]; ?>!</h1>
     <div>Gestisci facilmente e velocemente i tuoi corsi.</div>
     <?php if (isStudent() && $dbh->isStudentBanned($user)): ?>
         <div class="card text-center my-3">
-            <div class="card-body bg-danger text-white rounded">
+            <div class="card-body bg-darkred text-white rounded p-4">
+                <i class="fa-solid fa-triangle-exclamation mb-4" style="color: rgb(255, 255, 255); font-size: 32px"></i>
                 <h5 class="fw-bold">Sei stato bloccato!</h5>
                 <p>Avendo raggiunto un numero di segnalazioni pari a tre non sarà possibile eseguire recensioni per la durata di un mese. Al primo accesso dopo un mese dal blocco potrai nuovamente recensire e il numero di segnalazioni sarà portato a zero.     
                 </p>
@@ -13,7 +14,7 @@
         </div>
     <?php endif; ?> 
 </section>
-<section>
+<section class="ms-4">
     <h2 class="fw-bold">I tuoi corsi</h2>
     <?php
         if (isStudent()) {
@@ -70,7 +71,7 @@
         <div class="m-2 p-0"><?php echo isStudent() ? "Non sei iscritto a nessun corso" : "Non hai nessun corso assegnato"; ?></div>
     <?php endif; ?>
 </section>
-<section>
+<section class="ms-4">
     <h2 class="fw-bold">I tuoi ricevimenti</h2>
     <ul>
         <?php foreach($reservations as $reservation): ?>
