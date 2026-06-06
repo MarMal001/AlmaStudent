@@ -20,7 +20,7 @@
             <div class="d-flex flex-wrap gap-3">
                 <?php if (!isAdmin()): ?>
                     <div class="card text-center my-3">
-                        <div class="card-body bg-primary text-white rounded-top">
+                        <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Corsi</h5>
                         </div>
                         <h1 class="fw-bolder px-5 py-2"><?php echo count(isStudent() ? $dbh->getStudentCourses($user) : $dbh->getCoursesByProfessor($user)); ?></h1>
@@ -30,7 +30,7 @@
                 <?php if (!isAdmin()): ?>
                     <div class="card text-center my-3">
                     
-                        <div class="card-body bg-primary text-white rounded-top">
+                        <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Ricevimenti</h6>
                             <h5 class="card-title">prenotati</h6>
                         </div>
@@ -39,7 +39,7 @@
                 <?php endif; ?>
                 <?php if (isStudent()): ?>
                     <div class="card text-center my-3">
-                        <div class="card-body bg-primary text-white rounded-top">
+                        <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Numero</h5>
                             <h5 class="card-title">segnalazioni</h5>
                         </div>
@@ -54,7 +54,7 @@
                     ?>
                     
                     <div class="card text-center my-3">
-                        <div class="card-body bg-primary text-white rounded-top">
+                        <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Segnalazioni</h6>
                             <h5 class="card-title">da gestire</h6>
                         </div>
@@ -65,7 +65,7 @@
             </div>
             <h3>Il calendario</h3>
             <div class="card" id="calendar-container">
-                <div class="bg-primary text-white text-center py-3 rounded-top" id="calendar-header">
+                <div class="bg-deepskyblue text-white text-center py-3 rounded-top" id="calendar-header">
                     <div class="d-flex inline-flex justify-content-center align-items-center" id="calendar-navigation">
                         <i id="calendar-prev" class="fa-solid fa-angle-left"></i>
                         <div id="calendar-current-date" class="mx-2"></div>
@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="card-body" id="calendar-body">
-                    <ul class="text-primary fw-bold text-center" id="calendar-weekdays">
+                    <ul class="text-deepskyblue fw-bold text-center" id="calendar-weekdays">
                         <li>Lun</li>
                         <li>Mar</li>
                         <li>Mer</li>

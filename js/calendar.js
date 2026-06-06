@@ -26,7 +26,7 @@ const manipulate = () => {
     for (let i = 1; i <= lastdate; i++) {
         let isToday = (i === date.getDate()
             && month === new Date().getMonth()
-            && year === new Date().getFullYear()) ? "bg-primary text-white rounded-3 border-grey" : "";
+            && year === new Date().getFullYear()) ? "bg-deepskyblue text-white rounded-3 border-grey" : "";
 
         lit += `<li class="${isToday}">${i}</li>`;
     }

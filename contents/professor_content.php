@@ -1,11 +1,11 @@
-<main> 
+<main class="p-5"> 
     <?php showMessage(); ?>
     <?php $professorId = $templateParams["professor"]; ?>
     <input type="hidden" id="professor" value=<?php echo $professorId;?> />
     <?php $professor = $dbh->getPersonInfo($professorId)[0]; ?>
     <?php $date = "2026-04-12";//date("Y-M-d"); ?>
     <h1><?php echo $professor["name"] . " " . $professor["surname"]; ?></h1>
-    <section class="m-2">
+    <section class="m-2 mb-4">
         <div class="d-flex align-items-start align-items-center">
             <h6 class="m-0 me-2">Rating degli studenti:</h6>
             <?php $ratings = $dbh->getProfessorRatings($professorId)[0]; ?>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <?php $profInfo = $dbh->getProfessorInfo($professorId)[0]; ?>
-        <div class="card mt-2 mb-3 bg-primary border-0 text-white" style="max-width: 600px;">
+        <div class="card mt-2 mb-3 bg-deepskyblue border-0 text-white" style="max-width: 600px;">
         <div class="row g-0">
                 
             <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
@@ -36,9 +36,10 @@
 
             <div class="col-md-8">
             <div class="p-2">
-                <p>
+                <p class="m-3 me-4">
                 <?php echo $profInfo["department"]; ?>
                 </p>
+                <p></p>
             </div>
             </div>
         </div>
@@ -50,11 +51,11 @@
 
     </section>
     <section>
-        <h2>Corsi</h2>
+        <h2 class="mb-4">Corsi</h2>
         <?php $courses = $dbh->getCoursesByProfessor($professorId); ?>
         <?php foreach($courses as $course): ?>
-        <div class="container-fluid w-auto w-lg-55 m-2 p-0">
-        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
+        <div class="container-fluid w-auto w-lg-55 m-2 ms-3 p-0">
+        <button class="btn btn-primary bg-primary-subtle d-flex justify-content-between text-black border border-secondary-subtle align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
             <div class="d-md-inline-flex align-items-md-center p-0">
                 <p class="m-0  p-2 text-start"><?php echo $course["name"]; ?></p>
                 <div>
@@ -63,13 +64,13 @@
                     <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
                 </div>
                 <?php if ($dbh->checkIfSubscribedToACourse($user, $course["code"])): ?>
-                    <i class="fa-solid fa-check mx-2" style="color: rgb(38, 246, 30);"></i>
+                    <i class="fa-solid fa-check mx-2 mt-2" style="color: #008000;"></i>
                 <?php endif; ?>
             </div>
-            <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
+            <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
         </button>
         
-        <div id="<?php echo $course["code"]; ?>" class="collapse p-3 w-100 border border-primary border-2 rounded">
+        <div id="<?php echo $course["code"]; ?>" class="collapse p-3 border border-light-subtle border-2 rounded">
             <p>
             <?php echo $course["shortDescription"]; ?>
             </p>
@@ -86,16 +87,18 @@
 
     </section>
 
-    <article>
+    <article class="mt-4">
         <h2>Ricevimento</h2>
         <p><?php echo $profInfo["infoReception"]; ?></p>
-        <table class="table table-bordered" id="receptionTable">
-        </table>
+        <div class="d-flex justify-content-center">
+            <table class="table table-bordered" id="receptionTable">
+            </table>
+        </div>
         <?php if ($user == $professorId): ?>
             <a href="reception_editable.php" class="btn btn-primary">Modifica Disponibilità</a>
         <?php endif; ?>
     </article>
-    <section>
+    <section class="mt-3">
         <h2>Opinioni degli studenti</h2>
 
         <?php $reviews = $dbh->getReviewsByProfessor($professorId); 
@@ -107,18 +110,18 @@
             } 
         ?>
         
-        <div class="card mb-3" style="height: clamp(200px, 60vh, 300px);">
-            <div class="card-body overflow-auto bg-light <?php echo $style; ?>">
-                <?php if ($noReviews): ?>
-                    <h4 class="text-center">Non è presente ancora nessuna recensione</h4>
-                <?php endif; ?>
-                <?php foreach ($reviews as $review): ?>
-                    <?php 
-                        $page = explode("/", $_SERVER['REQUEST_URI']);
-                        generateProfessorReview($page[2], $review["id"], $review["student"], $review["date"], $review["text"], $review["reported"], $professorId, $review["course"]); ?>
-                <?php endforeach; ?>
+            <div class="card mb-3 mt-4">
+                <div class="card-body overflow-auto bg-light-subtle <?php echo $style; ?>">
+                    <?php if ($noReviews): ?>
+                        <h4 class="text-center">Non è presente ancora nessuna recensione</h4>
+                    <?php endif; ?>
+                    <?php foreach ($reviews as $review): ?>
+                        <?php 
+                            $page = explode("/", $_SERVER['REQUEST_URI']);
+                            generateProfessorReview($page[2], $review["id"], $review["student"], $review["date"], $review["text"], $review["reported"], $professorId, $review["course"]); ?>
+                    <?php endforeach; ?>
+                </div>
             </div>
-        </div>
         
     </section>
 </main>

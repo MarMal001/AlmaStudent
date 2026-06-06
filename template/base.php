@@ -15,13 +15,13 @@
     <title><?php echo $templateParams["title"]; ?></title>
 </head>
 <body>
-    <header class="container-fluid py-5 px-1 bg-primary text-white text-center">
+    <header class="container-fluid  py-5 px-1 bg-deepskyblue text-white text-center">
         <div class="d-inline-flex">
             <img src="images/logo.png" class="img-fluid" alt="">
             <h1>AlmaStudent</h1>
         </div>
         <?php if (isUserLoggedIn()): ?>
-        <nav>
+        <nav class="pb-0">
             <ul>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="professors.php">Docenti</a></li>
@@ -37,7 +37,7 @@
         require("contents/" . $templateParams["content"]);
     }
     ?>
-    <footer class="container-fluid p-2 bg-primary text-white text-center">© Copyright 2026 - ALMA MATER STUDIORUM - Università di Bologna</footer>
+    <footer class="container-fluid p-2 bg-deepskyblue text-white text-center">© Copyright 2026 - ALMA MATER STUDIORUM - Università di Bologna</footer>
     <?php
     if(isset($templateParams["js"])):
         foreach($templateParams["js"] as $script):

@@ -4,7 +4,7 @@
     <div>Gestisci facilmente e velocemente i tuoi corsi.</div>
     <?php if (isStudent() && $dbh->isStudentBanned($user)): ?>
         <div class="card text-center my-3">
-            <div class="card-body bg-primary text-white rounded">
+            <div class="card-body bg-danger text-white rounded">
                 <h5 class="fw-bold">Sei stato bloccato!</h5>
                 <p>Avendo raggiunto un numero di segnalazioni pari a tre non sarà possibile eseguire recensioni per la durata di un mese. Al primo accesso dopo un mese dal blocco potrai nuovamente recensire e il numero di segnalazioni sarà portato a zero.     
                 </p>
@@ -28,7 +28,7 @@
     ?>
     <?php foreach($courses as $course): ?>
         <div class="container-fluid w-auto m-2 p-0">
-            <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
+            <button class="btn btn-primary bg-primary-subtle border border-secondary-subtle d-flex justify-content-between align-items-center text-black text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
                 <div class="d-md-inline-flex align-items-md-center p-0">
                     <p class="m-0  p-2 text-start"><?php echo $course["name"]; ?></p>
                     <div>
@@ -37,10 +37,10 @@
                         <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
                     </div>
                 </div>
-                <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
+                <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
             </button>
             
-            <div id="<?php echo $course["code"]; ?>" class="collapse p-3 w-100 border border-primary border-2 rounded">
+            <div id="<?php echo $course["code"]; ?>" class="collapse p-3 w-100 border border-secondary-subtle border-2 rounded">
                 <?php $professors = $dbh->getProfessorsByCourse($course["code"]); ?>
                     <ul class="d-flex flex-column align-items-start">
                     <?php foreach($professors as $professor): ?>
