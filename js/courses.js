@@ -64,7 +64,7 @@ function generateCourses(courses, degreeYears, isStudent) {
                                 ${createStars(getMeanRating([course["ratingL"], course["ratingM"], course["ratingE"], course["ratingD"]]), "rgb(30, 48, 80)")}
                             </div>`
             if (isStudent && course["isSubscribed"]) {
-                content += `<i class="fa-solid fa-check mx-2" style="color: #008000;"></i>`
+                content += `<i class="fa-solid fa-check mx-2 mt-2" style="color: rgb(30, 48, 80);"></i>`
             }
             content += `</div>
                         <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
@@ -102,7 +102,7 @@ function generateAllCourses(courses, isStudent) {
                             ${createStars(getMeanRating([course["ratingL"], course["ratingM"], course["ratingE"], course["ratingD"]]), "rgb(30, 48, 80)")}
                         </div>`;
         if (isStudent && course["isSubscribed"]) {
-            content += `<i class="fa-solid fa-check mx-2" style="color: #008000;"></i>`
+            content += `<i class="fa-solid fa-check mx-2 mt-2" style="color: rgb(30, 48, 80);"></i>`
         }
         content += `</div>
                     <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
