@@ -55,33 +55,37 @@
         <?php $courses = $dbh->getCoursesByProfessor($professorId); ?>
         <?php foreach($courses as $course): ?>
         <div class="container-fluid w-auto w-lg-55 m-2 ms-3 p-0">
-        <button class="btn btn-primary bg-primary-subtle d-flex justify-content-between text-black border border-secondary-subtle align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
-            <div class="d-md-inline-flex align-items-md-center p-0">
-                <p class="m-0  p-2 text-start"><?php echo $course["name"]; ?></p>
-                <div>
-                    <?php $gRatings = $dbh->getGeneralRatingsByCourse($course["code"])[0]; ?>
-                    <?php $ratings = [$gRatings["ratingL"], $gRatings["ratingM"], $gRatings["ratingE"], $gRatings["ratingD"]]; ?>
-                    <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
+            <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100 fw-bold">
+                <div class="d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
+                    <div class="d-md-inline-flex align-items-md-center p-0">
+                        <p class="m-0 p-2 text-start"><?php echo $course["name"]; ?></p>
+                        <div>
+                            <?php $gRatings = $dbh->getGeneralRatingsByCourse($course["code"])[0]; ?>
+                            <?php $ratings = [$gRatings["ratingL"], $gRatings["ratingM"], $gRatings["ratingE"], $gRatings["ratingD"]]; ?>
+                            <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
+                        </div>
+                        <?php if ($dbh->checkIfSubscribedToACourse($user, $course["code"])): ?>
+                            <i class="fa-solid fa-check mx-2 mt-2" style="color: #008000;"></i>
+                        <?php endif; ?>
+                    </div>
+                    <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
+                </div>
+                <div id="<?php echo $course["code"]; ?>" class="collapse p-3">
+                    <p>
+                    <?php echo $course["shortDescription"]; ?>
+                    </p>
+                    <div class="d-flex justify-content-end">
+                        <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1 mt-2">Apri corso</a>
+                        <?php
+                            if (isStudent())
+                                subscriptionButton($user, $course["code"], $professorId);
+                        ?>
+                    </div>
                 </div>
                 <?php if ($dbh->checkIfSubscribedToACourse($user, $course["code"])): ?>
                     <i class="fa-solid fa-check mx-2 mt-2" style="color: rgb(30, 48, 80);"></i>
                 <?php endif; ?>
             </div>
-            <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
-        </button>
-        
-        <div id="<?php echo $course["code"]; ?>" class="collapse p-3 border border-light-subtle border-2 rounded">
-            <p>
-            <?php echo $course["shortDescription"]; ?>
-            </p>
-            <div class="d-flex justify-content-end">
-                <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1 mt-2">Apri corso</a>
-                <?php
-                    if (isStudent())
-                        subscriptionButton($user, $course["code"], $professorId);
-                ?>
-            </div>
-        </div>
         </div> 
         <?php endforeach; ?>   
 
