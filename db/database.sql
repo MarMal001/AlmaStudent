@@ -199,7 +199,8 @@ insert into DOCENTE values
 	("a.melis@unibo.it", "", "", "", "default.png"),
 	("davide.maltoni@unibo.it", "", "", "", "default.png"),
 	("matteo.ferrara@unibo.it", "", "", "", "default.png"),
-	("vittorio.ghini@unibo.it", "", "", "", "vic25.png"),
+	("vittorio.ghini@unibo.it", "Dipartimento di Informatica - Scienza e Ingegneria. Settore scientifico disciplinare: INFO-01/A Informatica 
+    ", "Cesena", "Il ricevimento può essere effettuato in modalità online, mediate una call con l'applicativo Teams. E' comunque possibile effettuare il ricevimento in presenza, presso la sede del Campus di Cesena, via dell'Università 50, stanza 4022b.", "vic25.png"),
 	("stefano.ferretti@unibo.it", "", "", "", "default.png"),
 	("luigi.guiducci3@unibo.it", "", "", "", "default.png"),
 	("damiana.lazzaro@unibo.it", "", "", "", "default.png"),
@@ -211,7 +212,7 @@ insert into DOCENTE values
 ### STUDENTE ###
 insert into STUDENTE values
 	("carla.anselmi3@studio.unibo.it", null, 0),
-	("alessandro.giacomini2@studio.unibo.it", "2026-06-02", 3);
+	("alessandro.giacomini2@studio.unibo.it", "2026-04-02", 3);
 
 ### FACOLTA ###
 insert into FACOLTA values
