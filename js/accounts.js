@@ -3,51 +3,51 @@ const ADMIN_DELETE_ACCOUNT = 7;
 
 function generateUpdateProfessorForm(professor) {
     let content = `<li>
-            <label for="name" class="text-left">
+            <label for="updateName" class="text-left">
                 <h5>Nome</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="name" name="name" value="${professor["name"]}" required />
+            <input type="text" id="updateName" name="name" value="${professor["name"]}" required />
         </li>
         <li>
-            <label for="surname" class="text-left">
+            <label for="updateSurname" class="text-left">
                 <h5>Cognome</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="surname" name="surname" value="${professor["surname"]}" required />
+            <input type="text" id="updateSurname" name="surname" value="${professor["surname"]}" required />
         </li>
         <li>
-            <label for="department" class="text-left">
+            <label for="updateDepartment" class="text-left">
                 <h5>Dipartimento</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="department" name="department" value="${professor["department"]}" required />
+            <input type="text" id="updateDepartment" name="department" value="${professor["department"]}" required />
         </li>
         <li>
-            <label for="seat" class="text-left">
+            <label for="updateSeat" class="text-left">
                 <h5>Sede</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="seat" name="seat" value="${professor["campus"]}" required />
+            <input type="text" id="updateSeat" name="seat" value="${professor["campus"]}" required />
         </li>
         <li>
-            <label for="infoReception" class="text-left">
+            <label for="updateInfoReception" class="text-left">
                 <h5>Info ricevimento</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="infoReception" name="infoReception" value="${professor["infoReception"]}" required />
+            <input type="text" id="updateInfoReception" name="infoReception" value="${professor["infoReception"]}" required />
         </li>
         <div class="d-flex">
             <li class="mt-3 me-2">
-                <input type="checkbox" id="removeProfilePicture" name="removeProfilePicture" />
+                <input type="checkbox" id="updateRemoveProfilePicture" name="removeProfilePicture" />
             </li>
             <li>
-                <label for="removeProfilePicture">Rimuovi immagine profilo</label>
+                <label for="updateRemoveProfilePicture">Rimuovi immagine profilo</label>
             </li>
         </div>        
         <li>
@@ -61,20 +61,20 @@ function generateUpdateProfessorForm(professor) {
 
 function generateUpdateAdminForm(admin) {
     let content = `<li>
-            <label for="name" class="text-left">
+            <label for="updateName" class="text-left">
                 <h5>Nome</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="name" name="name" value="${admin["name"]}" required />
+            <input type="text" id="updateName" name="name" value="${admin["name"]}" required />
         </li>
         <li>
-            <label for="surname" class="text-left">
+            <label for="updateSurname" class="text-left">
                 <h5>Cognome</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="surname" name="surname" value="${admin["surname"]}" required />
+            <input type="text" id="updateSurname" name="surname" value="${admin["surname"]}" required />
         </li>
         <li>
             <button type="submit" class="btn btn-primary mt-3" name="action" value="${ADMIN_MODIFY_ACCOUNT}">Modifica account</button>

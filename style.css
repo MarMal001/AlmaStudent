@@ -117,7 +117,7 @@ aside > div:first-child > i, aside > div {
     background-color: #CFE2FF;
 }
 
-aside > div:first-child > i, tr > th i:hover, div > i:hover {
+aside > div:first-child > i, tr > th i:hover, div > i:hover, select:hover, input[type="checkbox"], label:hover {
     cursor: pointer;
 }
 
@@ -201,6 +201,10 @@ button.dropdown-toggle::after {
     .w-lg-50 {
         width: 50% !important;
     }
+
+    .w-lg-25 {
+        width: 25% !important;
+    }
 }
 
 @media (min-width: 992px) {
@@ -239,9 +243,10 @@ tbody tr:nth-child(even) {
     background-color: #f2f2f2 !important; 
 }
 
-.text-deepskyblue {
+.text-deepskyblue, .link-deepskyblue:hover {
     color: #1455B4;
 }
 
-
-
+.link-deepskyblue {
+    color: #154388;
+}

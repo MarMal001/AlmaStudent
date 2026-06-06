@@ -14,21 +14,21 @@
         <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c1" class="collapse p-3 w-100 border border-primary border-2 rounded">
             <ul>
                 <li>
-                    <label for="name" class="text-left">
+                    <label for="addName" class="text-left">
                         <h5>Nome</h5>
                     </label>
                 </li>
                 <li>
-                    <input type="text" id="name" name="name" required />
+                    <input type="text" id="addName" name="name" required />
                 </li>
                 <div class="d-flex align-content-stretch">
                     <li class="mt-2">
-                        <label for="years" class="text-left">
+                        <label for="addYears" class="text-left">
                             <h5>Anni</h5>
                         </label>
                     </li>
                     <li class="mt-2">
-                        <select name="years" id="years" class="mt-3 ms-2" required>
+                        <select name="years" id="addYears" class="form-select mt-2 ms-2" required>
                             <?php for ($i = 1; $i <= 6; $i++): ?>
                                 <option value="<?php echo $i; ?>"><?php echo $i ?></option>
                             <?php endfor; ?>
@@ -37,12 +37,12 @@
                 </div>
                 <div class="d-flex align-content-stretch">
                     <li class="mt-2">
-                        <label for="department" class="text-left">
+                        <label for="addDepartment" class="text-left">
                             <h5>Dipartimento</h5>
                         </label>
                     </li>
                     <li class="mt-2">
-                        <select name="department" id="deparment" class="mt-3 ms-2" required>
+                        <select name="department" id="addDepartment" class="form-select mt-2 ms-2" required>
                             <option value="DISI">DISI</option>
                             <option value="DEI">DEI</option>
                             <option value="DIMEC">DIMEC</option>
@@ -51,12 +51,12 @@
                 </div>
                 <div class="d-flex align-content-stretch">
                     <li class="mt-2">
-                        <label for="branch" class="text-left">
+                        <label for="addBranch" class="text-left">
                             <h5>Sede</h5>
                         </label>
                     </li>
                     <li class="mt-2">
-                        <select name="branch" id="branch" class="mt-3 ms-2 me-3" required>
+                        <select name="branch" id="addBranch" class="form-select mt-2 ms-2 me-3" required>
                             <option value="Bologna">Bologna</option>
                             <option value="Cesena">Cesena</option>
                             <option value="Forli">Forli</option>
@@ -64,12 +64,12 @@
                     </li>
                 </div>
                 <li>
-                    <label for="code" class="text-left">
+                    <label for="addCode" class="text-left">
                         <h5>Codice corso</h5>
                     </label>
                 </li>
                 <li>
-                    <input type="text" id="code" name="code" required />
+                    <input type="text" id="addCode" name="code" required />
                 </li>
                 <li>
                     <button type="submit" class="btn btn-primary mt-3" name="action" value="<?php echo ADMIN_ADD_DEGREE; ?>">Crea</button>
@@ -86,10 +86,10 @@
         <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c2" class="collapse p-3 w-100 border border-primary border-2 rounded">
             <ul>
                 <li>
-                    <label for="code">Seleziona corso di laurea</label>
+                    <label for="degreeCode">Seleziona corso di laurea</label>
                 </li>
                 <li>
-                    <select name="code" id="degreeCode" onchange="getUpdateDegreesForm()" required>
+                    <select name="code" id="degreeCode" onchange="getUpdateDegreesForm()" class="form-select w-25" required>
                         <option value="" disabled selected hidden>-- Seleziona --</option>
                         <?php foreach ($templateParams["degrees"] as $degree): ?>
                             <option value="<?php echo $degree["code"]; ?>"><?php echo $degree["code"] . " - " . $degree["name"] . " - " . $degree["campus"]; ?></option>

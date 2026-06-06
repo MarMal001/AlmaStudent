@@ -4,45 +4,45 @@ const ADMIN_DELETE_COURSE = 6;
 
 function generateAddCourse(degreeYears) {
     let content = `<li>
-            <label for="name" class="text-left">
+            <label for="addName" class="text-left">
                 <h5>Nome</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="name" name="name" required />
+            <input type="text" id="addName" name="name" required />
         </li>
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
-                <label for="year" class="text-left">
+                <label for="addYear" class="text-left">
                     <h5>Anno</h5>
                 </label>
             </li>
             <li class="mt-2" id="degreeYears">
-                <select name="year" id="year" class="mt-3 ms-2 me-3" required>`;
+                <select name="year" id="addYear" class="form-select mt-2 ms-2 me-3" required>`;
                     for (year = 1; year <= degreeYears; year++) {
                         content += `<option value="${year}">${year}</option>`;
                     }
     content += `</select>
             </li>
-            <li class="mt-2">
-                <label for="semester" class="text-left">
+            <li class="mt-2 ms-4">
+                <label for="addSemester" class="text-left">
                     <h5>Semestre</h5>
                 </label>
             </li>
             <li class="mt-2">
-                <select name="semester" id="semester" class="mt-3 ms-2" required>
+                <select name="semester" id="addSemester" class="form-select mt-2 ms-2" required>
                     <option value="1">1</option>
                     <option value="2">2</option>
                 </select>
             </li> 
         </div>
         <li>
-            <label for="code" class="text-left">
+            <label for="addCode" class="text-left">
                 <h5>Codice corso</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="code" name="code" required />
+            <input type="text" id="addCode" name="code" required />
         </li>
         <li>
             <button type="submit" class="btn btn-primary mt-3" name="action" value="${ADMIN_ADD_COURSE}">Crea corso</button>
@@ -56,32 +56,33 @@ function generateCourses(courses, degreeYears, isStudent) {
         content += `<h3>${parseCourseYear(year)} anno</h3>`;
         for (const course of courses[year]) {
             content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
-                <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
-                    <div class="d-md-inline-flex align-items-md-center p-0">
-                        <p class="m-0 p-2 text-start">${course["name"]}</p>
-                        <div>
-                            ${createStars(getMeanRating([course["ratingL"], course["ratingM"], course["ratingE"], course["ratingD"]]), "rgb(30, 48, 80)")}
-                        </div>`
+                <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100 fw-bold">
+                    <div class="d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
+                        <div class="d-md-inline-flex align-items-md-center p-0">
+                            <p class="m-0 p-2 text-start">${course["name"]}</p>
+                            <div>
+                                ${createStars(getMeanRating([course["ratingL"], course["ratingM"], course["ratingE"], course["ratingD"]]), "rgb(30, 48, 80)")}
+                            </div>`
             if (isStudent && course["isSubscribed"]) {
-                content += `<i class="fa-solid fa-check mx-2" style="color: rgb(38, 246, 30);"></i>`
+                content += `<i class="fa-solid fa-check mx-2" style="color: #008000;"></i>`
             }
             content += `</div>
-                    <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
-                </button>
-                <div id="${course["code"]}" class="collapse p-3 w-100 border border-primary border-2 rounded">
+                        <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
+                    </div>
+                    <div id="${course["code"]}" class="collapse p-3 w-100">
                         <ul class="d-flex flex-column align-items-start">`
             for (const professor of course["professors"]) {
-                content += `<li><a href="professor.php?professor=${idWithoutDomain(professor["professor"])}" class="text-primary">${professor["name"]} ${professor["surname"]}</a></li>`;
+                content += `<li><a href="professor.php?professor=${idWithoutDomain(professor["professor"])}" class="link-deepskyblue">${professor["name"]} ${professor["surname"]}</a></li>`;
             }
             content += `</ul>
                     <p>${course["shortDescription"]}</p>
                     <div class="d-flex justify-content-end">
                         <a href="course.php?course=${course["code"]}" class="btn btn-primary me-1 mt-2">Apri corso</a>`;
-
             if (isStudent) {
                 content += subscriptionButton(course["code"], course["isSubscribed"], "courses.php");
             }
             content += `</div>
+                    </div>
                 </div>
             </div>`;
         }
@@ -93,21 +94,23 @@ function generateAllCourses(courses, isStudent) {
     let content = "";
     for (const course of courses) {
         content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
-            <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
-                <div class="d-md-inline-flex align-items-md-center p-0">
-                    <p class="m-0 p-2 text-start">${course["code"]} ${course["name"]}: ${course["degreeName"]} - ${course["campus"]}</p>
-                    <div>${createStars(getMeanRating([course["ratingL"], course["ratingM"], course["ratingE"], course["ratingD"]]), "rgb(30, 48, 80)")}
-                    </div>`;
+            <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100 fw-bold">
+                <div class="d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
+                    <div class="d-md-inline-flex align-items-md-center p-0">
+                        <p class="m-0 p-2 text-start">${course["code"]} ${course["name"]}: ${course["degreeName"]} - ${course["campus"]}</p>
+                        <div>
+                            ${createStars(getMeanRating([course["ratingL"], course["ratingM"], course["ratingE"], course["ratingD"]]), "rgb(30, 48, 80)")}
+                        </div>`;
         if (isStudent && course["isSubscribed"]) {
-            content += `<i class="fa-solid fa-check mx-2" style="color: rgb(38, 246, 30);"></i>`
+            content += `<i class="fa-solid fa-check mx-2" style="color: #008000;"></i>`
         }
         content += `</div>
-                <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
-            </button>
-            <div id="${course["code"]}" class="collapse p-3 w-100 border border-primary border-2 rounded">
-                <ul class="d-flex flex-column align-items-start">`;
+                    <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
+                </div>
+                <div id="${course["code"]}" class="collapse p-3 w-100">
+                    <ul class="d-flex flex-column align-items-start">`;
         for (const professor of course["professors"]) {
-            content += `<li><a href="professor.php?professor=${idWithoutDomain(professor["professor"])}" class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">${professor["name"]} ${professor["surname"]}</a></li>`;
+            content += `<li><a href="professor.php?professor=${idWithoutDomain(professor["professor"])}" class="link-deepskyblue">${professor["name"]} ${professor["surname"]}</a></li>`;
         }
         content += `</ul>
                 <p>${course["shortDescription"]}</p>
@@ -117,6 +120,7 @@ function generateAllCourses(courses, isStudent) {
             content += subscriptionButton(course["code"], course["isSubscribed"], "courses.php");
         }
         content += `</div>
+                </div>
             </div>
         </div>`;
     }
@@ -125,12 +129,12 @@ function generateAllCourses(courses, isStudent) {
 
 function generateUpdateCoursesDropdown(courses, degreeYears) {
     let content = `<li>
-            <label for="code">
+            <label for="updateCourseCode">
                 <h5>Corso</h5>
             </label>
         </li>
         <li>
-            <select name="code" id="updateCourseCode" onchange="getUpdateCoursesForm()" required>
+            <select name="code" id="updateCourseCode" onchange="getUpdateCoursesForm()" class="form-select w-lg-25" required>
                 <option value="" disabled selected hidden>-- Seleziona --</option>`;
     for (let year = 1; year <= degreeYears; year++) {
         for (const course of courses[year]) {
@@ -145,33 +149,33 @@ function generateUpdateCoursesDropdown(courses, degreeYears) {
 
 function generateUpdateCoursesForm(course, degreeYears, professors) {
     let content = `<li>
-            <label for="name" class="text-left">
+            <label for="updateName" class="text-left">
                 <h5>Nome</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="name" name="name" value="${course["name"]}" required />
+            <input type="text" id="updateName" name="name" value="${course["name"]}" required />
         </li>
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
-                <label for="year" class="text-left">
+                <label for="updateYear" class="text-left">
                     <h5>Anno</h5>
                 </label>
             </li>
             <li class="mt-2">
-                <select name="year" id="year" class="mt-3 ms-2 me-3" required>`;
+                <select name="year" id="updateYear" class="form-select mt-2 ms-2 me-3" required>`;
     for (let year = 1; year <= degreeYears; year++) {
         content += `<option value="${year}" ${course["year"] == year ? "selected" : ""}>${year}</option>`;
     }
     content += `</select>
             </li>
-            <li class="mt-2">
-                <label for="semester" class="text-left">
+            <li class="mt-2 ms-4">
+                <label for="updateSemester" class="text-left">
                     <h5>Semestre</h5>
                 </label>
             </li>
             <li class="mt-2">
-                <select name="semester" id="semester" class="mt-3 ms-2" required>
+                <select name="semester" id="updateSemester" class="form-select mt-2 ms-2" required>
                     <option value="1" ${course["semester"] == "1" ? "selected" : ""}>1</option>
                     <option value="2" ${course["semester"] == "2" ? "selected" : ""}>2</option>
                 </select>
@@ -184,7 +188,7 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
                 </label>
             </li>
             <li>
-                <select name="addProfessor" id="addProfessor">
+                <select name="addProfessor" id="addProfessor" class="form-select w-lg-25">
                     <option value="" selected>Nessuno</option>`;
         const professorsToAdd = professors.filter(e => !course["professors"].find(t => t["professor"] == e["professor"]));
         for (const professor of professorsToAdd) {
@@ -200,7 +204,7 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
                 </label>
             </li>
             <li>
-                <select name="removeProfessor" id="removeProfessor">
+                <select name="removeProfessor" id="removeProfessor" class="form-select w-lg-25">
                     <option value="" selected>Nessuno</option>`;
         for (const professor of course["professors"]) {
             content += `<option value="${professor["professor"]}">${professor["name"]} ${professor["surname"]}</option>`;

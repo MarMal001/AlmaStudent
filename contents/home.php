@@ -42,21 +42,21 @@
                         }
                     ?>
                     <div class="card text-center my-3">
-                        <div class="card-body bg-primary text-white rounded-top">
+                        <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Numero iscritti</h5>
                             <h5 class="card-title">ai propri corsi</h5>
                         </div>
                         <h1 class="fw-bolder px-5 py-2"><?php echo $dbh->getNumberOfSubscribedStudentToCoursesOfProfessor($user); ?></h1>
                     </div>
                     <div class="card text-center my-3">
-                        <div class="card-body bg-primary text-white rounded-top">
+                        <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Rating medio</h5>
                             <h5 class="card-title">corsi</h5>
                         </div>
                         <h1 class="fw-bolder px-5 py-2"><?php echo round(getMeanRating($ratingsByCourse) * 10) / 10; ?> / 5</h1>
                     </div>
                     <div class="card text-center my-3">
-                        <div class="card-body bg-primary text-white rounded-top">
+                        <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Rating</h5>
                             <h5 class="card-title">docente</h5>
                         </div>
