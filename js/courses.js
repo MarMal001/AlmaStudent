@@ -56,8 +56,8 @@ function generateCourses(courses, degreeYears, isStudent) {
         content += `<h3>${parseCourseYear(year)} anno</h3>`;
         for (const course of courses[year]) {
             content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
-                <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100 fw-bold">
-                    <div class="d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
+                <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100">
+                    <div class="d-flex justify-content-between align-items-center fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
                         <div class="d-md-inline-flex align-items-md-center p-0">
                             <p class="m-0 p-2 text-start">${course["name"]}</p>
                             <div>
@@ -94,8 +94,8 @@ function generateAllCourses(courses, isStudent) {
     let content = "";
     for (const course of courses) {
         content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
-            <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100 fw-bold">
-                <div class="d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
+            <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100">
+                <div class="d-flex justify-content-between align-items-center fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
                     <div class="d-md-inline-flex align-items-md-center p-0">
                         <p class="m-0 p-2 text-start">${course["code"]} ${course["name"]}: ${course["degreeName"]} - ${course["campus"]}</p>
                         <div>
