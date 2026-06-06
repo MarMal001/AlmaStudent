@@ -3,7 +3,7 @@ require_once "init.php";
 
 $templateParams["title"] = "Professor";
 $templateParams["content"] = "professor_content.php";
-$templateParams["style"] = ["style.css"];
+$templateParams["style"] = ["style.css", "professor.css"];
 $templateParams["js"] = array("js/tooltip.js", "js/reception.js");
 
 if (isset($_GET["professor"]) && $dbh->professorExists($_GET["professor"] . "@unibo.it")) {
