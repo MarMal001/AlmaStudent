@@ -212,7 +212,7 @@ insert into DOCENTE values
 ### STUDENTE ###
 insert into STUDENTE values
 	("carla.anselmi3@studio.unibo.it", null, 0),
-	("alessandro.giacomini2@studio.unibo.it", "2026-04-02", 3);
+	("alessandro.giacomini2@studio.unibo.it", "2026-06-02", 3);
 
 ### FACOLTA ###
 insert into FACOLTA values

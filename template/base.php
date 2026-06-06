@@ -15,13 +15,13 @@
     <title><?php echo $templateParams["title"]; ?></title>
 </head>
 <body>
-    <header class="container-fluid  py-5 px-1 bg-deepskyblue text-white text-center">
+    <header class="container-fluid py-5 px-1 bg-deepskyblue text-white text-center">
         <div class="d-inline-flex">
             <img src="images/logo.png" class="img-fluid" alt="">
             <h1>AlmaStudent</h1>
         </div>
         <?php if (isUserLoggedIn()): ?>
-        <nav class="pb-0">
+        <nav>
             <ul>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="professors.php">Docenti</a></li>
