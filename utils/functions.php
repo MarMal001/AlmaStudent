@@ -55,13 +55,13 @@
             if ($subscribed){
                 echo "<a href='subscription.php?action=remove&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-white border-primary ms-1 mt-2'>Discriviti</a>";
             } else {
-                echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-primary ms-1 mt-2'>Iscriviti</a>";
+                echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-deepskyblue ms-1 mt-2'>Iscriviti</a>";
             }
         } else {
             if ($subscribed){
                 echo "<a href='subscription.php?action=remove&course=" . $courseCode . "&page=" . $page ."' class='btn btn-white border-primary ms-1 mt-2'>Discriviti</a>";
             } else {
-                echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page ."' class='btn btn-primary ms-1 mt-2'>Iscriviti</a>";
+                echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page ."' class='btn btn-deepskyblue ms-1 mt-2'>Iscriviti</a>";
             }
         }
         

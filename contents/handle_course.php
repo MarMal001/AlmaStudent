@@ -1,6 +1,6 @@
 <main>
     <section class="container-fluid w-auto m-2 p-0 my-4">
-        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
+        <button class="btn btn-deepskyblue d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
             <p class="m-0 p-2">Aggiungi corso</p>
             <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
         </button>
@@ -26,7 +26,7 @@
     </section>
         
     <section class="container-fluid w-auto m-2 p-0 my-4">
-        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
+        <button class="btn btn-deepskyblue d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
             <p class="m-0 p-2">Modifica corso</p>
             <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
         </button>

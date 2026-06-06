@@ -4,7 +4,7 @@
         <li><label class="text-secondary small mt-5 mb-2 mx-5">I campi con * sono da riempire obbligatoriamente</label></li>
         <?php foreach ($dbh->getProfessorsByCourse($templateParams["course"]) as $professor): ?>
                     <div class="container-fluid w-auto w-lg-55 mt-0 mb-3 mx-5 p-0">
-                        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $professor["professor"]; ?>">
+                        <button class="btn btn-deepskyblue d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $professor["professor"]; ?>">
                         <p class="m-0 p-2 text-start">Recensisci: <?php echo $professor["name"] . " " . $professor["surname"]; ?></p>
                         <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
                     </button>
@@ -64,7 +64,7 @@
                     </div>
         <?php endforeach; ?>
         <li class="d-flex justify-content-end">
-            <input type="submit" value="Invia" class="btn btn-primary me-5 mb-5" />
+            <input type="submit" value="Invia" class="btn btn-deepskyblue me-5 mb-5" />
         </li>
     </ul>
     <input type="hidden" id="course" name="course" value="<?php echo $templateParams["course"]; ?>">

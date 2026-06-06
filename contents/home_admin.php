@@ -4,10 +4,10 @@
     <div>Gestisci le segnalazioni, i corsi e i professori dell'ateneo.</div>
 </section>
 <section class="d-flex flex-column align-items-start">
-    <a href="admin_modify.php?type=handleDegrees" class="btn btn-primary m-1 p-3">Gestisci le facoltà</a>
-    <a href="admin_modify.php?type=handleCourse" class="btn btn-primary m-1 p-3">Gestisci corsi</a>
-    <a href="admin_modify.php?type=handleAccount&accountType=DOCENTE" class="btn btn-primary m-1 p-3">Gestisci account docenti</a>
-    <a href="admin_modify.php?type=handleAccount&accountType=ADMIN" class="btn btn-primary m-1 p-3">Gestisci account admin</a>
+    <a href="admin_modify.php?type=handleDegrees" class="btn btn-deepskyblue m-1 p-3">Gestisci le facoltà</a>
+    <a href="admin_modify.php?type=handleCourse" class="btn btn-deepskyblue m-1 p-3">Gestisci corsi</a>
+    <a href="admin_modify.php?type=handleAccount&accountType=DOCENTE" class="btn btn-deepskyblue m-1 p-3">Gestisci account docenti</a>
+    <a href="admin_modify.php?type=handleAccount&accountType=ADMIN" class="btn btn-deepskyblue m-1 p-3">Gestisci account admin</a>
 </section>
 <section class="fw-bold">
     <h2>Segnalazioni da risolvere</h2>

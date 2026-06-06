@@ -1,7 +1,7 @@
 <main>
     <?php showMessage(); ?>
     <section class="container-fluid w-auto m-2 p-0 my-4">
-        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c0">
+        <button class="btn btn-deepskyblue d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c0">
             <p class="m-0 p-2">Aggiungi disponibilità</p>
             <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
         </button>
@@ -99,7 +99,7 @@
                         <button class="btn btn-white border-primary me-1" type="reset">Annulla</button>
                     </li>
                     <li>
-                        <button class="btn btn-primary ms-1" name="action" value="<?php echo RECEPTION_ACTION_ADD; ?>" type="submit">Aggiungi</button>
+                        <button class="btn btn-deepskyblue ms-1" name="action" value="<?php echo RECEPTION_ACTION_ADD; ?>" type="submit">Aggiungi</button>
                     </li>
                 </div>
             </ul>
@@ -107,7 +107,7 @@
     </section>
 
     <section class="container-fluid w-auto m-2 p-0 my-4">
-        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
+        <button class="btn btn-deepskyblue d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
             <p class="m-0  p-2">Modifica disponibilità</p>
             <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
         </button>
@@ -208,7 +208,7 @@
                         <button class="btn btn-white border-primary mx-1" name="action" value="<?php echo RECEPTION_ACTION_DELETE; ?>" type="submit">Elimina</button>
                     </li>
                     <li>
-                        <button class="btn btn-primary ms-1" name="action" value="<?php echo RECEPTION_ACTION_MODIFY; ?>" type="submit">Salva</button>
+                        <button class="btn btn-deepskyblue ms-1" name="action" value="<?php echo RECEPTION_ACTION_MODIFY; ?>" type="submit">Salva</button>
                     </li>
                 </div>
             </ul>

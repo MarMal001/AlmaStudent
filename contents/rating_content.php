@@ -2,7 +2,7 @@
     <ul>
         <li><label class="text-secondary small mt-5 mb-2 mx-5">I campi con * sono da riempire obbligatoriamente</label></li>
     <div class="card mt-0 mb-3 mx-5">
-        <div class="card-header bg-primary text-white fw-bold">
+        <div class="card-header bg-primary-subtle text-white fw-bold">
             Recensisci: <?php echo $GLOBALS["dbh"]->getCourseInfo($templateParams["course"])[0]["name"]; ?>
         </div>
         <div class="card-body">
@@ -61,7 +61,7 @@
         </div>
     </div>
     <li class="d-flex justify-content-end">
-        <input type="submit" value="Passa alla recensione docenti" class="btn btn-primary me-5 mb-5" />
+        <input type="submit" value="Passa alla recensione docenti" class="btn btn-deepskyblue me-5 mb-5" />
     </li>
     </ul>
     <input type="hidden" id="course" name="course" value="<?php echo $templateParams["course"]; ?>">

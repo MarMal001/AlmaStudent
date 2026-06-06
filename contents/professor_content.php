@@ -46,7 +46,7 @@
         </div>
 
         <?php if ($user == $professorId): ?>
-            <a href="update_profile_professor.php?professor=<?php echo idWithoutDomain($professorId); ?>" class="btn btn-primary">Modifica informazioni profilo</a>
+            <a href="update_profile_professor.php?professor=<?php echo idWithoutDomain($professorId); ?>" class="btn btn-deepskyblue">Modifica informazioni profilo</a>
         <?php endif; ?>
 
     </section>
@@ -55,8 +55,8 @@
         <?php $courses = $dbh->getCoursesByProfessor($professorId); ?>
         <?php foreach($courses as $course): ?>
         <div class="container-fluid w-auto w-lg-55 m-2 ms-3 p-0">
-            <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100 fw-bold">
-                <div class="d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
+            <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100">
+                <div class="d-flex justify-content-between align-items-center fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
                     <div class="d-md-inline-flex align-items-md-center p-0">
                         <p class="m-0 p-2 text-start"><?php echo $course["name"]; ?></p>
                         <div>
@@ -75,7 +75,7 @@
                     <?php echo $course["shortDescription"]; ?>
                     </p>
                     <div class="d-flex justify-content-end">
-                        <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1 mt-2">Apri corso</a>
+                        <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-1 mt-2">Apri corso</a>
                         <?php
                             if (isStudent())
                                 subscriptionButton($user, $course["code"], $professorId);
@@ -96,7 +96,7 @@
             </table>
         </div>
         <?php if ($user == $professorId): ?>
-            <a href="reception_editable.php" class="btn btn-primary">Modifica Disponibilità</a>
+            <a href="reception_editable.php" class="btn btn-deepskyblue">Modifica Disponibilità</a>
         <?php endif; ?>
     </article>
     <section class="mt-3">
