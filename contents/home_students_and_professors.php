@@ -30,13 +30,13 @@
     <?php foreach($courses as $course): ?>
         <div class="container-fluid w-auto m-2 p-0">
             <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100">
-                <div class="d-flex justify-content-between align-items-center fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
+                <div class="d-flex justify-content-between align-items-center text-darkbluenavy fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
                     <div class="d-md-inline-flex align-items-md-center p-0">
                         <p class="m-0  p-2 text-start"><?php echo $course["name"]; ?></p>
                         <div>
                             <?php $gRatings = $dbh->getGeneralRatingsByCourse($course["code"])[0]; ?>
                             <?php $ratings = [$gRatings["ratingL"], $gRatings["ratingM"], $gRatings["ratingE"], $gRatings["ratingD"]]; ?>
-                            <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
+                            <?php createStars(getMeanRating($ratings), "#154388"); ?>
                         </div>
                     </div>
                     <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>

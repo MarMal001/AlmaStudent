@@ -235,6 +235,7 @@ button.dropdown-toggle::after {
 
 .btn-deepskyblue {
     color: white !important;
+    border-radius: 15px !important;
 }
 
 .bg-darkred {
@@ -270,3 +271,9 @@ tbody tr:nth-child(even) {
     --bs-tooltip-color: white;
     --bs-tooltip-opacity: 1.0 !important;
 }
+
+.text-darkbluenavy {
+    color: #1E3050 !important;
+}
+
+

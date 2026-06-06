@@ -23,7 +23,7 @@
                         <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Corsi</h5>
                         </div>
-                        <h2 class="fw-bolder px-5 py-2"><?php echo count(isStudent() ? $dbh->getStudentCourses($user) : $dbh->getCoursesByProfessor($user)); ?></h2>
+                        <h2 class="fw-bolder text-black px-5 py-2"><?php echo count(isStudent() ? $dbh->getStudentCourses($user) : $dbh->getCoursesByProfessor($user)); ?></h2>
                     </div>
                     <div class="card text-center my-3">
                     
@@ -31,7 +31,7 @@
                             <h5 class="card-title">Ricevimenti</h6>
                             <h5 class="card-title">prenotati</h6>
                         </div>
-                        <h2 class="fw-bolder px-5 py-2"><?php echo count(isStudent() ? $dbh->getReservationsOfStudent($user) : $dbh->getReservedReservationsOfProfessor($user)); ?></h2>   
+                        <h2 class="fw-bolder text-black px-5 py-2"><?php echo count(isStudent() ? $dbh->getReservationsOfStudent($user) : $dbh->getReservedReservationsOfProfessor($user)); ?></h2>   
                     </div>
                 <?php endif; ?>
                 <?php if (isProfessor()): ?>
@@ -46,21 +46,21 @@
                             <h5 class="card-title">Numero iscritti</h5>
                             <h5 class="card-title">ai propri corsi</h5>
                         </div>
-                        <h2 class="fw-bolder px-5 py-2"><?php echo $dbh->getNumberOfSubscribedStudentToCoursesOfProfessor($user); ?></h2>
+                        <h2 class="fw-bolder text-black px-5 py-2"><?php echo $dbh->getNumberOfSubscribedStudentToCoursesOfProfessor($user); ?></h2>
                     </div>
                     <div class="card text-center my-3">
                         <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Rating medio</h5>
                             <h5 class="card-title">corsi</h5>
                         </div>
-                        <h2 class="fw-bolder px-5 py-2"><?php echo round(getMeanRating($ratingsByCourse) * 10) / 10; ?> / 5</h2>
+                        <h2 class="fw-bolder text-black px-5 py-2"><?php echo round(getMeanRating($ratingsByCourse) * 10) / 10; ?> / 5</h2>
                     </div>
                     <div class="card text-center my-3">
                         <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Rating</h5>
                             <h5 class="card-title">docente</h5>
                         </div>
-                        <h2 class="fw-bolder px-5 py-2"><?php echo round(getMeanRating($dbh->getProfessorRatings($user)[0]) * 10) / 10; ?> / 5</h2>
+                        <h2 class="fw-bolder text-black px-5 py-2"><?php echo round(getMeanRating($dbh->getProfessorRatings($user)[0]) * 10) / 10; ?> / 5</h2>
                     </div>
                 <?php endif; ?>
                 <?php if (isStudent()): ?>
@@ -69,21 +69,21 @@
                             <h5 class="card-title">Numero</h5>
                             <h5 class="card-title">segnalazioni</h5>
                         </div>
-                        <h2 class="fw-bolder px-5 py-2"><?php echo $dbh->getStudentNumberReports($user)[0]["numReports"]; ?></h2>
+                        <h2 class="fw-bolder text-black px-5 py-2"><?php echo $dbh->getStudentNumberReports($user)[0]["numReports"]; ?></h2>
                     </div>
                     <div class="card text-center my-3">
                         <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Numero di</h5>
                             <h5 class="card-title">professori valutati</h5>
                         </div>
-                        <h2 class="fw-bolder px-5 py-2"><?php echo $dbh->getNumberOfProfessorReviewsOfStudent($user); ?></h2>
+                        <h2 class="fw-bolder text-black px-5 py-2"><?php echo $dbh->getNumberOfProfessorReviewsOfStudent($user); ?></h2>
                     </div>
                     <div class="card text-center my-3">
                         <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Numero di</h5>
                             <h5 class="card-title">corsi valutati</h5>
                         </div>
-                        <h2 class="fw-bolder px-5 py-2"><?php echo $dbh->getNumberOfCourseReviewsOfStudent($user); ?></h2>
+                        <h2 class="fw-bolder text-black px-5 py-2"><?php echo $dbh->getNumberOfCourseReviewsOfStudent($user); ?></h2>
                     </div>
                 <?php endif; ?>
                 <?php if (isAdmin()): ?>

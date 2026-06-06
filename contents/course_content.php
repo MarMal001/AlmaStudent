@@ -32,7 +32,7 @@
                 </div>
             ">
                 <?php $ratings = [$gRatings["ratingL"], $gRatings["ratingM"], $gRatings["ratingE"], $gRatings["ratingD"]]; ?>
-                <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
+                <?php createStars(getMeanRating($ratings), "#154388"); ?>
             </div>
         </div>
         <div class="mb-3">

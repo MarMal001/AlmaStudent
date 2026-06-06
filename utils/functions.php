@@ -100,7 +100,7 @@
 
     function generateCourseReview($url, $id, $studentId, $date, $text, $reported, $course) {
         $place = "start";
-        $color = "rgb(30, 48, 80)";
+        $color = "#154388";
         $bg = "bg-body-secondary";
         $ratings = $GLOBALS["dbh"]->getCourseRatingbyStudent($course, $studentId)[0];
         if (isUserReview($studentId)) {
@@ -147,7 +147,7 @@
     function generateProfessorReview($url, $id, $studentId, $date, $text, $reported, $professor, $course) {
         $place = "start";
         $bg = "bg-body-secondary";
-        $color = "rgb(30, 48, 80)";
+        $color = "#154388";
         $ratings = $GLOBALS["dbh"]->getProfessorRatingbyStudent($professor, $studentId)[0];
         if (isUserReview($studentId)) {
             $place = "end";
