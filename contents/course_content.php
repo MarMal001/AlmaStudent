@@ -42,7 +42,7 @@
             ?>
             <?php 
             if (isProfessor() && isDesignatedProfessor($user, $courseId)): ?>
-                <a href="course_editable.php?course=<?php echo $courseId; ?>" class="btn btn-primary me-1">Modifica</a>
+                <a href="course_editable.php?course=<?php echo $courseId; ?>" class="btn btn-deepskyblue me-1">Modifica</a>
             <?php endif; ?>
         </div>
     </section>
@@ -86,10 +86,10 @@
             <div class="d-flex justify-content-end mb-5 me-2">
                 <?php if (!$dbh->canRateCourse($user, $courseId)[0]["existence"] || $dbh->courseIsAlreadyRated($user, $courseId) || $dbh->isStudentBanned($user)): ?>
                     <div data-bs-toggle="tooltip" data-bs-placement="left" title="Non hai ancora sostenuto con esito positivo l'esame o hai già recensito o sei stato bloccato">
-                        <a class="btn btn-primary disabled" href="rating.php?course=<?php echo $courseId; ?>">Recensisci</a>
+                        <a class="btn btn-deepskyblue disabled" href="rating.php?course=<?php echo $courseId; ?>">Recensisci</a>
                     </div>
                 <?php else: ?>
-                    <a class="btn btn-primary" href="rating.php?course=<?php echo $courseId; ?>">Recensisci</a>
+                    <a class="btn btn-deepskyblue" href="rating.php?course=<?php echo $courseId; ?>">Recensisci</a>
                 <?php endif; ?>    
             </div>
         <?php endif; ?>

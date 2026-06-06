@@ -178,8 +178,8 @@ form > ul > li > a {
     text-decoration: underline;
 }
 
-nav ul li:hover {
-    background-color: #1a65d5;
+nav ul li:hover, .btn-deepskyblue:hover {
+    background-color: #1a65d5 !important;
 }
 
 nav {
@@ -219,8 +219,12 @@ button.dropdown-toggle::after {
     }
 }
 
-.bg-deepskyblue {
+.bg-deepskyblue, .btn-deepskyblue {
     background-color: #1455B4 !important;
+}
+
+.btn-deepskyblue {
+    color: white !important;
 }
 
 .bg-darkred {

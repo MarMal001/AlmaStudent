@@ -53,13 +53,13 @@
                         <?php if (isStudent() && $dbh->canRateCourse($user, $course["code"])[0]["existence"] && !$dbh->courseIsAlreadyRated($user, $course["code"])): ?>
                             <?php if ($dbh->isStudentBanned($user)): ?>
                                 <div data-bs-toggle="tooltip" data-bs-placement="left" title="Sei stato bloccato">
-                                    <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-2 mt-2 disabled">Recensisci</a>
+                                    <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-2 mt-2 disabled">Recensisci</a>
                                 </div>
                             <?php else: ?>
-                                <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-2 mt-2">Recensisci</a>
+                                <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-2 mt-2">Recensisci</a>
                             <?php endif; ?>
                         <?php endif; ?>
-                        <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1 mt-2">Apri corso</a>
+                        <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-1 mt-2">Apri corso</a>
                         <?php if(isStudent()) {
                             subscriptionButton($user, $course["code"]);
                         } ?>

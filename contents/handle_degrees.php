@@ -6,7 +6,7 @@
     <?php endif; ?>
 
     <section class="container-fluid w-auto m-2 p-0 my-4">
-        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
+        <button class="btn btn-deepskyblue d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
             <p class="m-0 p-2">Crea corso di laurea</p>
             <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
         </button>
@@ -72,14 +72,14 @@
                     <input type="text" id="addCode" name="code" required />
                 </li>
                 <li>
-                    <button type="submit" class="btn btn-primary mt-3" name="action" value="<?php echo ADMIN_ADD_DEGREE; ?>">Crea</button>
+                    <button type="submit" class="btn btn-deepskyblue mt-3" name="action" value="<?php echo ADMIN_ADD_DEGREE; ?>">Crea</button>
                 </li>
             </ul>
         </form>
     </section>
 
     <section class="container-fluid w-auto m-2 p-0 my-4">
-        <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
+        <button class="btn btn-deepskyblue d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
             <p class="m-0 p-2">Modifica corso di laurea</p>
             <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
         </button>

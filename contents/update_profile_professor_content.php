@@ -47,7 +47,7 @@ $professorInfo = $dbh->getProfessorInfo($user)[0];
                     <img src="<?php echo UPLOAD_DIR . "/professor/" . $dbh->getProfilePicture($_GET["professor"] . "@unibo.it"); ?>" alt=""></img>
                 </li>
                 <li>
-                    <input type="submit" class="btn btn-primary mt-3" value="Modifica" />
+                    <input type="submit" class="btn btn-deepskyblue mt-3" value="Modifica" />
                 </li>
             </ul>
         </form>

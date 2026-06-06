@@ -20,7 +20,7 @@ function generateProfessors(professors) {
         }
         content += `</ul>
                     <div class="d-flex justify-content-end m-2">
-                        <a href="professor.php?professor=${idWithoutDomain(professor["professor"])}" class="btn btn-primary me-1">Vai alla pagina</a>
+                        <a href="professor.php?professor=${idWithoutDomain(professor["professor"])}" class="btn btn-deepskyblue me-1">Vai alla pagina</a>
                     </div>
                 </div>
             </div>

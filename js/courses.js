@@ -45,7 +45,7 @@ function generateAddCourse(degreeYears) {
             <input type="text" id="addCode" name="code" required />
         </li>
         <li>
-            <button type="submit" class="btn btn-primary mt-3" name="action" value="${ADMIN_ADD_COURSE}">Crea corso</button>
+            <button type="submit" class="btn btn-deepskyblue mt-3" name="action" value="${ADMIN_ADD_COURSE}">Crea corso</button>
         </li>`;
     return content;
 }
@@ -77,7 +77,7 @@ function generateCourses(courses, degreeYears, isStudent) {
             content += `</ul>
                     <p>${course["shortDescription"]}</p>
                     <div class="d-flex justify-content-end">
-                        <a href="course.php?course=${course["code"]}" class="btn btn-primary me-1 mt-2">Apri corso</a>`;
+                        <a href="course.php?course=${course["code"]}" class="btn btn-deepskyblue me-1 mt-2">Apri corso</a>`;
             if (isStudent) {
                 content += subscriptionButton(course["code"], course["isSubscribed"], "courses.php");
             }
@@ -115,7 +115,7 @@ function generateAllCourses(courses, isStudent) {
         content += `</ul>
                 <p>${course["shortDescription"]}</p>
                 <div class="d-flex justify-content-end">
-                    <a href="course.php?course=${course["code"]}" class="btn btn-primary me-1 mt-2">Apri corso</a>`;
+                    <a href="course.php?course=${course["code"]}" class="btn btn-deepskyblue me-1 mt-2">Apri corso</a>`;
         if (isStudent) {
             content += subscriptionButton(course["code"], course["isSubscribed"], "courses.php");
         }
@@ -213,7 +213,7 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
             </li>
         </div>
         <li>
-            <button type="submit" class="btn btn-primary mt-3" name="action" value="${ADMIN_MODIFY_COURSE}">Modifica corso</button>
+            <button type="submit" class="btn btn-deepskyblue mt-3" name="action" value="${ADMIN_MODIFY_COURSE}">Modifica corso</button>
         </li>
         <li>
             <button type="submit" class="btn btn-danger mt-3" name="action" value="${ADMIN_DELETE_COURSE}">Elimina corso</button>

@@ -46,7 +46,7 @@
         </div>
 
         <?php if ($user == $professorId): ?>
-            <a href="update_profile_professor.php?professor=<?php echo idWithoutDomain($professorId); ?>" class="btn btn-primary">Modifica informazioni profilo</a>
+            <a href="update_profile_professor.php?professor=<?php echo idWithoutDomain($professorId); ?>" class="btn btn-deepskyblue">Modifica informazioni profilo</a>
         <?php endif; ?>
 
     </section>
@@ -75,7 +75,7 @@
                     <?php echo $course["shortDescription"]; ?>
                     </p>
                     <div class="d-flex justify-content-end">
-                        <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1 mt-2">Apri corso</a>
+                        <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-1 mt-2">Apri corso</a>
                         <?php
                             if (isStudent())
                                 subscriptionButton($user, $course["code"], $professorId);
@@ -96,7 +96,7 @@
             </table>
         </div>
         <?php if ($user == $professorId): ?>
-            <a href="reception_editable.php" class="btn btn-primary">Modifica Disponibilità</a>
+            <a href="reception_editable.php" class="btn btn-deepskyblue">Modifica Disponibilità</a>
         <?php endif; ?>
     </article>
     <section class="mt-3">

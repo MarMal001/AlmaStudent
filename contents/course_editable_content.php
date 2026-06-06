@@ -34,7 +34,7 @@
                     <button class="btn btn-white border-primary me-1" type="reset">Annulla</button>
                 </li>
                 <li>
-                    <button class="btn btn-primary ms-1" name="action" type="submit">Salva</button>
+                    <button class="btn btn-deepskyblue ms-1" name="action" type="submit">Salva</button>
                 </li>
             </div>
         </ul>
