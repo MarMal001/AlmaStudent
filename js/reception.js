@@ -74,8 +74,8 @@ function generateReceptionTable(date, user, professor, reservations, isStudent, 
     for (const reservation of reservations.filter(e => e["date"] == date)) {
         let timeRange = reservation["timeRange"];
         content += `<tr>
-            <th id="${timeRange}" scope="row" headers="time" class="text-center">${timeRange}</th>
-            <td class="d-flex inline-flex" id="type_${timeRange}" headers="type ${timeRange}">Modalità ${reservation["studentCode"] == user ? ("scelta: " + reservation["reservedMode"].toLowerCase()) : (" disponibili: " + reservation["mode"].toLowerCase())}`;
+            <th id="${timeRange.replaceAll(" ", "")}" scope="row" headers="time" class="text-center">${timeRange}</th>
+            <td class="d-flex inline-flex" id="type_${timeRange.replaceAll(" ", "")}" headers="type ${timeRange.replaceAll(" ", "")}">Modalità ${reservation["studentCode"] == user ? ("scelta: " + reservation["reservedMode"].toLowerCase()) : (" disponibili: " + reservation["mode"].toLowerCase())}`;
         if (isStudent) {
             if (reservation["studentCode"] == user) {
                 content += `<a href="reserve.php?type=unreserve&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-white text-primary border-primary ms-2">Cancella ricevimento</a>`;

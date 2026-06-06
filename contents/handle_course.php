@@ -1,10 +1,4 @@
 <main>
-    <?php if (isset($templateParams["message"])): ?>
-        <section>
-            <?php echo $templateParams["message"]; ?>
-        </section>
-    <?php endif; ?>
-
     <section class="container-fluid w-auto m-2 p-0 my-4">
         <button class="btn btn-primary d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
             <p class="m-0 p-2">Aggiungi corso</p>
@@ -14,12 +8,12 @@
         <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c1" class="collapse p-3 w-100 border border-primary border-2 rounded">
             <ul>
                 <li>
-                    <label for="degree">
+                    <label for="addDegreeCode">
                         <h5>Corso di laurea</h5>
                     </label>
                 </li>
                 <li>
-                   <select name="degree" id="addDegreeCode" onchange="getAddCourse()">
+                   <select name="degree" id="addDegreeCode" onchange="getAddCourse()" class="form-select w-25">
                         <option value="" disabled selected hidden>-- Seleziona --</option>
                         <?php foreach ($templateParams["degrees"] as $degree): ?>
                             <option value="<?php echo $degree["code"]; ?>"><?php echo $degree["code"] . " - " . $degree["name"] . " - " . $degree["campus"]; ?></option>
@@ -40,12 +34,12 @@
         <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c2" class="collapse p-3 w-100 border border-primary border-2 rounded">
             <ul>
                 <li>
-                    <label for="degree">
+                    <label for="updateDegreeCode">
                         <h5>Corso di laurea</h5>
                     </label>
                 </li>
                 <li>
-                   <select name="degree" id="updateDegreeCode" onchange="getUpdateCoursesDropdown()">
+                   <select name="degree" id="updateDegreeCode" onchange="getUpdateCoursesDropdown()" class="form-select w-25">
                         <option value="" disabled selected hidden>-- Seleziona --</option>
                         <?php foreach ($templateParams["degrees"] as $degree): ?>
                             <option value="<?php echo $degree["code"]; ?>"><?php echo $degree["code"] . " - " . $degree["name"] . " - " . $degree["campus"]; ?></option>

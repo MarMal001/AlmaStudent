@@ -9,17 +9,17 @@
         <form action="handle_reception.php" method="POST" enctype="multipart/form-data" id="c0" class="collapse p-3 w-100 border border-primary border-2 rounded">
             <ul>
                 <li>
-                    <label for="receptionDate">Data</label>
+                    <label for="addReceptionDate">Data</label>
                 </li>
                 <li>
-                    <input type="date" id="receptionDate" name="receptionDate" required />
+                    <input type="date" id="addReceptionDate" name="receptionDate" required />
                 </li>
                 <div class="d-flex">
                     <li>
-                        <label for="startTimeHour">Da</label>
+                        <label for="addStartTimeHour">Da</label>
                     </li>
                     <li class="mt-3 mx-1">
-                        <select name="startTimeHour" required>
+                        <select id="addStartTimeHour" name="startTimeHour" class="form-select" required>
                             <option value="" disabled selected hidden>--</option>
                             <option value="09">9</option>
                             <option value="10">10</option>
@@ -35,10 +35,10 @@
                         </select>
                     </li>
                     <li>
-                        <label for="startTimeMinute">:</label>
+                        <label for="addStartTimeMinute">:</label>
                     </li>
                     <li class="mt-3 ms-1">
-                        <select name="startTimeMinute" required>
+                        <select id="addStartTimeMinute" name="startTimeMinute" class="form-select" required>
                             <option value="" disabled selected hidden>--</option>
                             <option value="00">00</option>
                             <option value="15">15</option>
@@ -49,10 +49,10 @@
                 </div>
                 <div class="d-flex">
                     <li>
-                        <label for="endTimeHour">a</label>
+                        <label for="addEndTimeHour">a</label>
                     </li>
                     <li class="mt-3 mx-1">
-                        <select name="endTimeHour" required>
+                        <select id="addEndTimeHour" name="endTimeHour" class="form-select" required>
                             <option value="" disabled selected hidden>--</option>
                             <option value="09">9</option>
                             <option value="10">10</option>
@@ -69,10 +69,10 @@
                         </select>
                     </li>
                     <li>
-                        <label for="endTimeMinute">:</label>
+                        <label for="addEndTimeMinute">:</label>
                     </li>
                     <li class="mt-3 mx-1">
-                        <select name="endTimeMinute" required>
+                        <select id="addEndTimeMinute" name="endTimeMinute" class="form-select" required>
                             <option value="" disabled selected hidden>--</option>
                             <option value="00">00</option>
                             <option value="15">15</option>
@@ -83,10 +83,10 @@
                 </div>
                 <div class="d-flex">
                     <li>
-                        <label for="mode">Modalità</label>
+                        <label for="addMode">Modalità</label>
                     </li>
                     <li class="mt-3 mx-1">
-                        <select name="mode" required>
+                        <select id="addMode" name="mode" class="form-select" required>
                             <option value="" disabled selected hidden>--Seleziona--</option>
                             <option value="online">Online</option>
                             <option value="presence">Presenza</option>
@@ -115,17 +115,17 @@
         <form action="handle_reception.php" method="POST" enctype="multipart/form-data" id="c1" class="collapse p-3 w-100 border border-primary border-2 rounded">
             <ul>
                 <li>
-                    <label for="receptionDate">Data</label>
+                    <label for="updateReceptionDate">Data</label>
                 </li>
                 <li>
-                    <input type="date" id="receptionDate" name="receptionDate" required />
+                    <input type="date" id="updateReceptionDate" name="receptionDate" required />
                 </li>
                 <div class="d-flex">
                     <li>
-                        <label for="startTimeHour">Da</label>
+                        <label for="updateStartTimeHour">Da</label>
                     </li>
                     <li class="mt-3 mx-1">
-                        <select name="startTimeHour" required>
+                        <select id="udpateStartTimeHour" name="startTimeHour" class="form-select" required>
                             <option value="" disabled selected hidden>--</option>
                             <option value="09">9</option>
                             <option value="10">10</option>
@@ -141,10 +141,10 @@
                         </select>
                     </li>
                     <li>
-                        <label for="startTimeMinute">:</label>
+                        <label for="updateStartTimeMinute">:</label>
                     </li>
                     <li class="mt-3 ms-1">
-                        <select name="startTimeMinute" required>
+                        <select id="updateStartTimeMinute" name="startTimeMinute" class="form-select" required>
                             <option value="" disabled selected hidden>--</option>
                             <option value="00">00</option>
                             <option value="15">15</option>
@@ -155,10 +155,10 @@
                 </div>
                 <div class="d-flex">
                     <li>
-                        <label for="endTimeHour">a</label>
+                        <label for="updateEndTimeHour">a</label>
                     </li>
                     <li class="mt-3 mx-1">
-                        <select name="endTimeHour" required>
+                        <select id="updateEndTimeHour" name="endTimeHour" class="form-select" required>
                             <option value="" disabled selected hidden>--</option>
                             <option value="09">9</option>
                             <option value="10">10</option>
@@ -175,10 +175,10 @@
                         </select>
                     </li>
                     <li>
-                        <label for="endTimeMinute">:</label>
+                        <label for="updateEndTimeMinute">:</label>
                     </li>
                     <li class="mt-3 mx-1">
-                        <select name="endTimeMinute" required>
+                        <select id="updateEndTimeMinute" name="endTimeMinute" class="form-select" required>
                             <option value="" disabled selected hidden>--</option>
                             <option value="00">00</option>
                             <option value="15">15</option>
@@ -189,17 +189,18 @@
                 </div>
                 <div class="d-flex">
                     <li>
-                        <label for="mode">Modalità</label>
+                        <label for="updateMode">Modalità</label>
                     </li>
                     <li class="mt-3 mx-1">
-                        <select name="mode">
+                        <select id="updateMode" name="mode" class="form-select">
                             <option value="" disabled selected hidden>--Seleziona--</option>
                             <option value="online">Online</option>
                             <option value="presence">Presenza</option>
                             <option value="online_presence">Online e in presenza</option>
                         </select>
                     </li>
-                </div>                <div class="d-flex m-2">
+                </div>
+                <div class="d-flex m-2">
                     <li>
                         <button class="btn btn-white border-primary me-1" type="reset">Annulla</button>
                     </li>

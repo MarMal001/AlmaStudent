@@ -3,21 +3,21 @@ const ADMIN_DELETE_DEGREE = 8;
 
 function generateUpdateDegreesForm(degree) {
     let content = `<li>
-            <label for="name" class="text-left">
+            <label for="updateName" class="text-left">
                 <h5>Nome</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="name" name="name" value="${degree["name"]}" required />
+            <input type="text" id="updateName" name="name" value="${degree["name"]}" required />
         </li>
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
-                <label for="years" class="text-left">
+                <label for="updateYears" class="text-left">
                     <h5>Anni</h5>
                 </label>
             </li>
             <li class="mt-2">
-                <select name="years" id="years" class="mt-3 ms-2" required>`;
+                <select name="years" id="updateYears" class="form-select mt-2 ms-2" required>`;
     for (let i = 1; i <= 6; i++) {
         content += `<option value="${i}" ${degree["nYears"] == i ? "selected" : ""}>${i}</option>`;
     }
@@ -26,12 +26,12 @@ function generateUpdateDegreesForm(degree) {
         </div>
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
-                <label for="department" class="text-left">
+                <label for="updateDepartment" class="text-left">
                     <h5>Dipartimento</h5>
                 </label>
             </li>
             <li class="mt-2">
-                <select name="department" id="department" class="mt-3 ms-2" required>
+                <select name="department" id="updateDepartment" class="form-select mt-2 ms-2" required>
                     <option value="DISI" ${degree["department"] == "DISI" ? "selected" : ""}>DISI</option>
                     <option value="DEI" ${degree["department"] == "DEI" ? "selected" : ""}>DEI</option>
                     <option value="DIMEC" ${degree["department"] == "DIMEC" ? "selected" : ""}>DIMEC</option>
@@ -40,12 +40,12 @@ function generateUpdateDegreesForm(degree) {
         </div>
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
-                <label for="branch" class="text-left">
+                <label for="updateBranch" class="text-left">
                     <h5>Sede</h5>
                 </label>
             </li>
             <li class="mt-2">
-                <select name="branch" id="branch" class="mt-3 ms-2" required>
+                <select name="branch" id="updateBranch" class="form-select mt-2 ms-2" required>
                     <option value="Bologna" ${degree["campus"] == "Bologna" ? "selected" : ""}>Bologna</option>
                     <option value="Cesena" ${degree["campus"] == "Cesena" ? "selected" : ""}>Cesena</option>
                     <option value="Forli" ${degree["campus"] == "Forli" ? "selected" : ""}>Forli</option>

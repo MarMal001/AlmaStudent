@@ -28,40 +28,41 @@
     ?>
     <?php foreach($courses as $course): ?>
         <div class="container-fluid w-auto m-2 p-0">
-            <button class="btn btn-primary bg-primary-subtle border border-secondary-subtle d-flex justify-content-between align-items-center text-black text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
-                <div class="d-md-inline-flex align-items-md-center p-0">
-                    <p class="m-0  p-2 text-start"><?php echo $course["name"]; ?></p>
-                    <div>
-                        <?php $gRatings = $dbh->getGeneralRatingsByCourse($course["code"])[0]; ?>
-                        <?php $ratings = [$gRatings["ratingL"], $gRatings["ratingM"], $gRatings["ratingE"], $gRatings["ratingD"]]; ?>
-                        <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
+            <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100 fw-bold">
+                <div class="d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
+                    <div class="d-md-inline-flex align-items-md-center p-0">
+                        <p class="m-0  p-2 text-start"><?php echo $course["name"]; ?></p>
+                        <div>
+                            <?php $gRatings = $dbh->getGeneralRatingsByCourse($course["code"])[0]; ?>
+                            <?php $ratings = [$gRatings["ratingL"], $gRatings["ratingM"], $gRatings["ratingE"], $gRatings["ratingD"]]; ?>
+                            <?php createStars(getMeanRating($ratings), "rgb(30, 48, 80)"); ?>
+                        </div>
                     </div>
+                    <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
                 </div>
-                <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
-            </button>
-            
-            <div id="<?php echo $course["code"]; ?>" class="collapse p-3 w-100 border border-secondary-subtle border-2 rounded">
-                <?php $professors = $dbh->getProfessorsByCourse($course["code"]); ?>
-                    <ul class="d-flex flex-column align-items-start">
-                    <?php foreach($professors as $professor): ?>
-                        <li><a href="professor.php?professor=<?php echo idWithoutDomain($professor["professor"]); ?>" class="text-primary"><?php echo $professor["name"] . " " . $professor["surname"]; ?></a></li>
-                    <?php endforeach; ?>
-                    </ul>
-                <p><?php echo $course["shortDescription"]; ?></p>
-                <div class="d-flex justify-content-end">
-                    <?php if (isStudent() && $dbh->canRateCourse($user, $course["code"])[0]["existence"] && !$dbh->courseIsAlreadyRated($user, $course["code"])): ?>
-                        <?php if ($dbh->isStudentBanned($user)): ?>
-                            <div data-bs-toggle="tooltip" data-bs-placement="left" title="Sei stato bloccato">
-                                <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-2 mt-2 disabled">Recensisci</a>
-                            </div>
-                        <?php else: ?>
-                            <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-2 mt-2">Recensisci</a>
+                <div id="<?php echo $course["code"]; ?>" class="collapse p-3 w-100">
+                    <?php $professors = $dbh->getProfessorsByCourse($course["code"]); ?>
+                        <ul class="d-flex flex-column align-items-start">
+                        <?php foreach($professors as $professor): ?>
+                            <li><a href="professor.php?professor=<?php echo idWithoutDomain($professor["professor"]); ?>" class="link-deepskyblue"><?php echo $professor["name"] . " " . $professor["surname"]; ?></a></li>
+                        <?php endforeach; ?>
+                        </ul>
+                    <p><?php echo $course["shortDescription"]; ?></p>
+                    <div class="d-flex justify-content-end">
+                        <?php if (isStudent() && $dbh->canRateCourse($user, $course["code"])[0]["existence"] && !$dbh->courseIsAlreadyRated($user, $course["code"])): ?>
+                            <?php if ($dbh->isStudentBanned($user)): ?>
+                                <div data-bs-toggle="tooltip" data-bs-placement="left" title="Sei stato bloccato">
+                                    <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-2 mt-2 disabled">Recensisci</a>
+                                </div>
+                            <?php else: ?>
+                                <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-2 mt-2">Recensisci</a>
+                            <?php endif; ?>
                         <?php endif; ?>
-                    <?php endif; ?>
-                    <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1 mt-2">Apri corso</a>
-                    <?php if(isStudent()) {
-                        subscriptionButton($user, $course["code"]);
-                    } ?>
+                        <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-primary me-1 mt-2">Apri corso</a>
+                        <?php if(isStudent()) {
+                            subscriptionButton($user, $course["code"]);
+                        } ?>
+                    </div>
                 </div>
             </div>
         </div>    

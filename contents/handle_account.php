@@ -91,21 +91,27 @@
         
         <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c2" class="collapse p-3 w-100 border border-primary border-2 rounded">
             <ul>
-                <li>
-                    <label for="username" class="text-left">
-                        <h5>Username</h5>
-                    </label>
-                </li>
-                <li>
-                    <?php if ($_GET["accountType"] == "DOCENTE"): ?>
-                        <select id="updateProfessorCode" name="username" onchange="getUpdateProfessorForm()" required>
+                <?php if ($_GET["accountType"] == "DOCENTE"): ?>
+                    <li>
+                        <label for="updateProfessorCode" class="text-left">
+                            <h5>Username</h5>
+                        </label>
+                    </li>
+                    <li>
+                        <select id="updateProfessorCode" name="username" onchange="getUpdateProfessorForm()" class="form-select w-25" required>
                             <option value="">-- Seleziona --</option>
                             <?php foreach ($dbh->getProfessors() as $professor): ?>
                                 <option value="<?php echo $professor["professor"]; ?>"><?php echo $professor["name"] . " " . $professor["surname"] ?></option>
                             <?php endforeach; ?>
                         </select>
-                    <?php elseif($_GET["accountType"] == "ADMIN"): ?>
-                        <select id="updateAdminCode" name="username" onchange="getUpdateAdminForm()" required>
+                <?php elseif($_GET["accountType"] == "ADMIN"): ?>
+                    <li>
+                        <label for="updateAdminCode" class="text-left">
+                            <h5>Username</h5>
+                        </label>
+                    </li>
+                    <li>
+                        <select id="updateAdminCode" name="username" onchange="getUpdateAdminForm()" class="form-select w-25" required>
                             <option value="">-- Seleziona --</option>
                             <?php foreach ($dbh->getAdmins() as $admin): ?>
                                 <option value="<?php echo $admin["username"]; ?>"><?php echo $admin["name"] . " " . $admin["surname"] ?></option>
