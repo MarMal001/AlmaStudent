@@ -105,10 +105,16 @@ aside > div:first-child {
     nav li:last-child {
         display: none;
     }
+
+    table {
+        max-width: 90% ;
+    }
+
+
 }
 
 aside > div:first-child > i, aside > div {
-    background-color: rgb(180, 225, 255);
+    background-color: #CFE2FF;
 }
 
 aside > div:first-child > i, tr > th i:hover, div > i:hover {
@@ -208,5 +214,29 @@ button.dropdown-toggle::after {
         border-radius: 0px !important;
     }
 }
+
+.bg-deepskyblue {
+    background-color: #1455B4 !important;
+}
+
+thead tr:first-child th {
+    border-color: #E2E3E5;
+    background-color: #1455B4;
+    color: white;
+}
+
+thead tr:nth-child(2) th {
+    background-color: #CFE2FF;
+    border-color: #E2E3E5;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2 !important; 
+}
+
+.text-deepskyblue {
+    color: #1455B4;
+}
+
 
 
