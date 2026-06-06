@@ -74,9 +74,16 @@
                     <div class="card text-center my-3">
                         <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Numero di</h5>
-                            <h5 class="card-title">recensioni scritte</h5>
+                            <h5 class="card-title">professori valutati</h5>
                         </div>
-                        <h1 class="fw-bolder px-5 py-2"><?php echo $dbh->getNumberOfReviewsOfStudent($user); ?></h1>
+                        <h1 class="fw-bolder px-5 py-2"><?php echo $dbh->getNumberOfProfessorReviewsOfStudent($user); ?></h1>
+                    </div>
+                    <div class="card text-center my-3">
+                        <div class="card-body bg-deepskyblue text-white rounded-top">
+                            <h5 class="card-title">Numero di</h5>
+                            <h5 class="card-title">corsi valutati</h5>
+                        </div>
+                        <h1 class="fw-bolder px-5 py-2"><?php echo $dbh->getNumberOfCourseReviewsOfStudent($user); ?></h1>
                     </div>
                 <?php endif; ?>
                 <?php if (isAdmin()): ?>

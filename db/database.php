@@ -564,7 +564,7 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    public function getNumberOfReviewsOfStudent($user) {
+    public function getNumberOfCourseReviewsOfStudent($user) {
         $stmt = $this->db->prepare(
             "SELECT *
             FROM RATING_CORSO
@@ -572,8 +572,12 @@ class DatabaseHelper{
         );
         $stmt->bind_param("s", $user);
         $stmt->execute();
-        $result1 = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC));
+        $result = $stmt->get_result();
 
+        return count($result->fetch_all(MYSQLI_ASSOC));
+    }
+
+    public function getNumberOfProfessorReviewsOfStudent($user) {
         $stmt = $this->db->prepare(
             "SELECT *
             FROM RATING_DOCENTE
@@ -581,9 +585,9 @@ class DatabaseHelper{
         );
         $stmt->bind_param("s", $user);
         $stmt->execute();
-        $result2 = count($stmt->get_result()->fetch_all(MYSQLI_ASSOC));
+        $result = $stmt->get_result();
 
-        return $result1 + $result2;
+        return count($result->fetch_all(MYSQLI_ASSOC));
     }
 
     public function getCourseRatingbyStudent($course, $student) {
