@@ -454,7 +454,7 @@ class DatabaseHelper{
 
     public function getCourseInfo($course) {
         $stmt = $this->db->prepare(
-            "SELECT c.Nome AS name, c.Descrizione AS description, c.Descrizione_Breve AS shortDescription, c.Materiale AS material
+            "SELECT c.Nome AS name, c.Descrizione AS description, c.Descrizione_Breve AS shortDescription, c.Materiale AS material, c.Codice_Facolta AS degree
             FROM CORSO AS c
             WHERE c.Codice = ?
             "
@@ -464,6 +464,21 @@ class DatabaseHelper{
         $result = $stmt->get_result();
 
         return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getCourseDegree($course) {
+        $stmt = $this->db->prepare(
+            "SELECT f.Nome AS degreeName, f.Campus AS campus
+            FROM FACOLTA AS f, CORSO AS c
+            WHERE c.Codice_Facolta = f.Codice 
+            AND c.Codice = ?
+            "
+        );
+        $stmt->bind_param("s", $course);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC)[0];
     }
 
     public function getProfilePicture($professor) {
@@ -854,7 +869,7 @@ class DatabaseHelper{
 
     public function getReviewInfo($id) {
         $stmt = $this->db->prepare(
-            "SELECT rv.Testo AS text, r.Data AS date,
+            "SELECT rv.Testo AS text, r.Data AS date, r.Tipo AS type, rc.Corso AS cCourse, rd.Corso AS dCourse, rd.Docente AS professor,
             CASE 
 	            WHEN r.Codice = rd.Codice THEN rd.Studente
 	            WHEN r.Codice = rc.Codice THEN rc.Studente
