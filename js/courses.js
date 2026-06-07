@@ -5,7 +5,7 @@ const ADMIN_DELETE_COURSE = 6;
 function generateAddCourse(degreeYears) {
     let content = `<li>
             <label for="addName" class="text-left form-label">
-                <h5>Nome</h5>
+                Nome
             </label>
         </li>
         <li>
@@ -14,7 +14,7 @@ function generateAddCourse(degreeYears) {
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
                 <label for="addYear" class="text-left form-label">
-                    <h5>Anno</h5>
+                    Anno
                 </label>
             </li>
             <li class="mt-2" id="degreeYears">
@@ -26,7 +26,7 @@ function generateAddCourse(degreeYears) {
             </li>
             <li class="mt-2 ms-4">
                 <label for="addSemester" class="text-left form-label">
-                    <h5>Semestre</h5>
+                    Semestre
                 </label>
             </li>
             <li class="mt-2">
@@ -38,7 +38,7 @@ function generateAddCourse(degreeYears) {
         </div>
         <li>
             <label for="addCode" class="text-left form-label">
-                <h5>Codice corso</h5>
+                Codice corso
             </label>
         </li>
         <li>
@@ -132,7 +132,7 @@ function generateAllCourses(courses, isStudent) {
 function generateUpdateCoursesDropdown(courses, degreeYears) {
     let content = `<li>
             <label for="updateCourseCode" class="form-label">
-                <h5>Corso</h5>
+                Corso
             </label>
         </li>
         <li>
@@ -152,7 +152,7 @@ function generateUpdateCoursesDropdown(courses, degreeYears) {
 function generateUpdateCoursesForm(course, degreeYears, professors) {
     let content = `<li>
             <label for="updateName" class="text-left form-label">
-                <h5>Nome</h5>
+                Nome
             </label>
         </li>
         <li>
@@ -161,7 +161,7 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
                 <label for="updateYear" class="text-left form-label">
-                    <h5>Anno</h5>
+                    Anno
                 </label>
             </li>
             <li class="mt-2">
@@ -173,7 +173,7 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
             </li>
             <li class="mt-2 ms-4">
                 <label for="updateSemester" class="text-left form-label">
-                    <h5>Semestre</h5>
+                    Semestre
                 </label>
             </li>
             <li class="mt-2">
@@ -186,7 +186,7 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
         <div>
             <li>
                 <label for="addProfessor" class="form-label">
-                    <h5>Aggiungi docente al corso</h5>
+                    Aggiungi docente al corso
                 </label>
             </li>
             <li>
@@ -202,7 +202,7 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
         <div>
             <li>
                 <label for="removeProfessor" class="form-label">
-                    <h5>Rimuovi docente dal corso</h5>
+                    Rimuovi docente dal corso
                 </label>
             </li>
             <li>

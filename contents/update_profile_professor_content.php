@@ -5,7 +5,7 @@
             <ul>
                 <li>
                     <label for="department" class="text-left form-label">
-                        <h5>Dipartimento</h5>
+                        Dipartimento
                     </label>
                 </li>
                 <li>
@@ -13,7 +13,7 @@
                 </li>
                 <li>
                     <label for="seat" class="text-left form-label">
-                        <h5>Sede</h5>
+                        Sede
                     </label>
                 </li>
                 <li>
@@ -21,15 +21,15 @@
                 </li>
                 <li>
                     <label for="infoReception" class="text-left">
-                        <h5>Info ricevimento</h5>
+                        Info ricevimento
                     </label>
                 </li>
                 <li>
-                    <textarea type="text" id="infoReception" name="infoReception" class="form-control rounded-pill" maxlength="500"><?php echo $professorInfo["infoReception"]; ?></textarea>
+                    <textarea type="text" id="infoReception" name="infoReception" class="form-control" maxlength="500"><?php echo $professorInfo["infoReception"]; ?></textarea>
                 </li>
                 <li>
                     <label for="profilePicture" class="text-left form-label">
-                        <h5>Immagine profilo</h5>
+                        Immagine profilo
                     </label>
                 </li>
                 <li>
@@ -37,7 +37,7 @@
                 </li>
                 <li>
                     <label for="currentProfilePicture" class="form-label">
-                        <h5>Immagine profilo corrente</h5>
+                        Immagine profilo corrente
                     </label>
                 </li>
                 <li>
