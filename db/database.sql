@@ -196,18 +196,12 @@ insert into ADMIN values
 insert into DOCENTE values
 	("eleonora.cinti5@unibo.it", "", "", "", "default.png"),
 	("luciano.margara@unibo.it", "", "", "", "default.png"),
-	("a.melis@unibo.it", "", "", "", "default.png"),
 	("davide.maltoni@unibo.it", "", "", "", "default.png"),
-	("matteo.ferrara@unibo.it", "", "", "", "default.png"),
-	("vittorio.ghini@unibo.it", "Dipartimento di Informatica - Scienza e Ingegneria. Settore scientifico disciplinare: INFO-01/A Informatica 
-    ", "Cesena", "Il ricevimento può essere effettuato in modalità online, mediate una call con l'applicativo Teams. E' comunque possibile effettuare il ricevimento in presenza, presso la sede del Campus di Cesena, via dell'Università 50, stanza 4022b.", "vic25.png"),
+	("vittorio.ghini@unibo.it", "Dipartimento di Informatica - Scienza e Ingegneria. Settore scientifico disciplinare: INFO-01/A Informatica", "Cesena", "Il ricevimento può essere effettuato in modalità online, mediate una call con l'applicativo Teams. E' comunque possibile effettuare il ricevimento in presenza, presso la sede del Campus di Cesena, via dell'Università 50, stanza 4022b.", "vic25.png"),
 	("stefano.ferretti@unibo.it", "", "", "", "default.png"),
-	("luigi.guiducci3@unibo.it", "", "", "", "default.png"),
+	("mirko.viroli@unibo.it", "Dipartimento di Informatica - Scienza e Ingegneria. Settore scientifico disciplinare: IINF-05/A Sistemi di elaborazione delle informazioni", "Cesena", "Il docente riceverà nel suo studio il lunedì e martedì dalle 12 alle 13. E' utile se possibile ricevere una mail per anticipare l'argomento dell'incontro.", "default.png"),
 	("damiana.lazzaro@unibo.it", "", "", "", "default.png"),
-	("l.pellegrini@unibo.it", "", "", "", "default.png"),
 	("franco.callegati@unibo.it", "", "", "", "default.png"),
-	("andrea.piroddi@unibo.it", "", "", "", "default.png"),
-	("a.ricci@unibo.it", "", "", "", "default.png");
 
 ### STUDENTE ###
 insert into STUDENTE values
@@ -224,18 +218,17 @@ insert into FACOLTA values
 ### CORSO ###
 insert into CORSO values
 	# PRIMO ANNO
-	("00013", "Analisi matematica", 1, 1, 6673, "", "Lorem", ""),
+	("00013", "Analisi matematica", 1, 1, 6673, "", "", ""),
 	("11929", "Algoritmi e strutture dati", 1, 2, 6673, "", "", ""),
 	("69731", "Architetture degli elaboratori", 1, 2, 6673, "", "", ""),
     # SECONDO ANNO
 	("08574", "Sistemi Operativi", 2, 1, 6673, "", "", ""),
-	("00405", "Fisica", 2, 2, 6673, "", "", ""),
+	("70219", "Programmazione ad oggetti", 2, 1, 6673, "", "", ""),
 	("B2561", "Metodi numerici per l'intelligenza artificiale", 2, 2, 6673, "", "", ""),
 	("70226", "Programmazione di reti", 2, 2, 6673, "", "", ""),
     # TERZO ANNO
 	("70218", "Reti di telecomunicazione", 3, 1, 6673, "", "", ""),
 	("70090", "Computer graphics", 3, 1, 6673, "", "", ""),
-	("77780", "Sistemi embedded e internet-of-things", 3, 1, 6673, "", "", ""),
 	("14015", "Crittografia", 3, 2, 6673, "", "", ""),
 	("96642", "Virtualizzazione e Integrazione di Sistemi", 3, 2, 6673, "", "", "");
 
@@ -243,7 +236,7 @@ insert into CORSO values
 insert into Tenere values
 	("eleonora.cinti5@unibo.it", "00013"),
 	("luciano.margara@unibo.it", "11929"),
-	("a.melis@unibo.it", "11929"),
+    ("mirko.viroli@unibo.it", "70219"),
 	("davide.maltoni@unibo.it", "69731"),
 	("matteo.ferrara@unibo.it", "69731"),
 	("vittorio.ghini@unibo.it", "08574"),
