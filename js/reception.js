@@ -60,7 +60,7 @@ function generateReceptionTable(date, user, professor, reservations, isStudent, 
     if (toDayDate != date) {
         content += `<i class="fa-solid fa-angle-left" style="color: white;" onClick='getPreviousDay("${date}")'></i>`;
     }
-    content += `<div id="date" class="mb-1 mx-2">${date}</div><i class="fa-solid fa-angle-right" style="color: white;" onClick='getNextDay("${date}")'></i></div></th>
+    content += `<div id="date" class="mb-1 mx-2">${parseDate(date)}</div><i class="fa-solid fa-angle-right" style="color: white;" onClick='getNextDay("${date}")'></i></div></th>
     </tr>`;
     content += `<tr class="fs-6">
     <th id="time" scope="col">Ore</th>

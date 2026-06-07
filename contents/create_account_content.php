@@ -1,5 +1,4 @@
 <main class="row align-items-center text-white text-center">
-    <?php showMessage(); ?>
     <div class="col-xl col"></div>
     <div class="col-xl-3 col-5 bg-deepskyblue text-center text-white rounded-4 d-flex justify-content-center">
         <form action="create_account.php" method="post" class="pt-5">

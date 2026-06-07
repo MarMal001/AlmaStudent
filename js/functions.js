@@ -57,3 +57,14 @@ function toggleStatistics() {
     const style = document.querySelector("#statistics").style;
     style["display"] = style["display"] == "block" ? "none" : "block";
 }
+
+function parseDate(date) {
+    const months = [
+        "Gennaio", "Febbrario", "Marzo", "Aprile", "Maggio", "Giugno",
+        "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
+    ];
+    const day = Number(date.split("-")[2]);
+    const month = months[date.split("-")[1] - 1];
+    const year = date.split("-")[0];
+    return day + " " + month + " " + year;
+}
