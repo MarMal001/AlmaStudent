@@ -2,7 +2,6 @@
     <?php $professorId = $templateParams["professor"]; ?>
     <input type="hidden" id="professor" value=<?php echo $professorId;?> />
     <?php $professor = $dbh->getPersonInfo($professorId)[0]; ?>
-    <?php $date = "2026-04-12";//date("Y-M-d"); ?>
     <h1><?php echo $professor["name"] . " " . $professor["surname"]; ?></h1>
     <section class="m-2 mb-4">
         <div class="d-flex align-items-start align-items-center">
