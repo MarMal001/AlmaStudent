@@ -431,7 +431,8 @@ class DatabaseHelper{
             WHERE p.Utente = ?
             AND p.Password = ?"
         );
-        $stmt->bind_param("ss", $username, $password);
+        $hashedPassword = hash("sha256", $password);
+        $stmt->bind_param("ss", $username, $hashedPassword);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -527,7 +528,8 @@ class DatabaseHelper{
             "INSERT INTO PERSONA values
             (?, ?, ?, ?, ?)"
         );
-        $stmt->bind_param("sssss", $username, $password, $name, $surname, $role);
+        $hashedPassword = hash("sha256", $password);
+        $stmt->bind_param("sssss", $username, $hashedPassword, $name, $surname, $role);
         try {
             $success = $stmt->execute();
             if ($role == "ADMIN") {
