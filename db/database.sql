@@ -152,20 +152,20 @@ create table Tenere (
 
 ### PERSONA ###
 insert into PERSONA values
-	("mario.rossi@unibo.it", "admin12345", "Mario", "Rossi", "ADMIN"),
-	("luigia.verdi@unibo.it", "admin0000", "Luigia", "Verdi", "ADMIN"),
+	("mario.rossi@unibo.it", "41e5653fc7aeb894026d6bb7b2db7f65902b454945fa8fd65a6327047b5277fb", "Mario", "Rossi", "ADMIN"), #PASSWORD: admin12345
+	("luigia.verdi@unibo.it", "53d6316bd7b9044e6bb5deaa87fe8316c2fde3938b78f8448875b08e551ccc95", "Luigia", "Verdi", "ADMIN"), #PASSWORD: admin0000
     # PROFESSORI
-	("eleonora.cinti5@unibo.it", "matematica!", "Eleonora", "Cinti", "DOCENTE"),
-	("luciano.margara@unibo.it", "#massaggiInchiaroAmante", "Luciano", "Margara", "DOCENTE"),
-	("davide.maltoni@unibo.it", "vivalAI!", "Davide", "Maltoni", "DOCENTE"),
-	("vittorio.ghini@unibo.it", "madonnadiPompei!", "Vittorio", "Ghini", "DOCENTE"),
-	("stefano.ferretti@unibo.it", "soloCodice@", "Stefano", "Ferretti", "DOCENTE"),
-    ("mirko.viroli@unibo.it", "ciao", "Mirko", "Viroli", "DOCENTE"),
-	("damiana.lazzaro@unibo.it", "vivalAI@", "Damiana", "Lazzaro", "DOCENTE"),
-	("franco.callegati@unibo.it", "mercredÃ¬5#", "Franco", "Callegati", "DOCENTE"),
+	("eleonora.cinti5@unibo.it", "bdfc14da21c3f8167aff1fbe6fc452e06b20c0fb5c76bca3efa946a89e417cce", "Eleonora", "Cinti", "DOCENTE"), #PASSWORD: matematica!
+	("luciano.margara@unibo.it", "bd15d66d9a4b1144e0cca4496357ce0def376a1e9c94e759f4400ad8d3f2e7ad", "Luciano", "Margara", "DOCENTE"), #PASSWORD: #hash256
+	("davide.maltoni@unibo.it", "eef5826ed59baa4ea8feaf89a0c114e332029bc9369964bf7275ec4f5f1c4ed5", "Davide", "Maltoni", "DOCENTE"), #PASSWORD: vivalAI!
+	("vittorio.ghini@unibo.it", "f1746eb5d07c352c30e62aff064bf84590aa7894f57176da68636358af0de9e0", "Vittorio", "Ghini", "DOCENTE"), #PASSWORD: madonnadiPompei!
+	("stefano.ferretti@unibo.it", "7561f6ec42fb44f78175b466a6ca254d3031c581bdba404d1f5c562ad27ae9cd", "Stefano", "Ferretti", "DOCENTE"), #PASSWORD: soloCodice@
+    ("mirko.viroli@unibo.it", "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2", "Mirko", "Viroli", "DOCENTE"), #PASSWORD: ciao
+	("damiana.lazzaro@unibo.it", "02190283faa0780252de7760365afbaf4b7f69a934098f97768b5df0c9e6715f", "Damiana", "Lazzaro", "DOCENTE"), #PASSWORD: vivalAI@
+	("franco.callegati@unibo.it", "ccc9a68ab2466a84ef651ba19a5eb05f459f92382f8448cb9055a1fd4ecdf18e", "Franco", "Callegati", "DOCENTE"), #PASSWORD: #imolaFibra
     #STUDENTI
-	("carla.anselmi3@studio.unibo.it", "PolloAlladivola8@", "Carla", "Anselmi", "STUDENTE"),
-	("alessandro.giacomini2@studio.unibo.it", "FrierenBestWaifu4ever!", "Alessandro", "Giacomini", "STUDENTE");
+	("carla.anselmi3@studio.unibo.it", "ada6b0cd6eb25185b58c096aec96f6e70fc7fc4e25be9558f8b2ad091077aed3", "Carla", "Anselmi", "STUDENTE"), #PASSWORD: PolloAlladivola8@
+	("alessandro.giacomini2@studio.unibo.it", "942953f8a9ea3d36966569fc81871530a96e9fe3de49740a67b8ac2f0a3d1bd5", "Alessandro", "Giacomini", "STUDENTE"); #PASSWORD: FrierenBestWaifu4ever!
 
 ### ADMIN ###
 insert into ADMIN values
