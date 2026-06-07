@@ -26,12 +26,32 @@
                 <li><a href="index.php">Home</a></li>
                 <li><a href="professors.php">Docenti</a></li>
                 <li><a href="courses.php">Corsi</a></li>
-                <li><a href="logout.php">Logout</a></li>
+                <li><a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</a></li>
                 <li><i class="fa-solid fa-bars"></i></li>
             </ul>
         </nav>
         <?php endif; ?>
     </header>
+    <div class="modal fade" id="logoutModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Sei sicuro?</h5>
+                </div>
+
+                <div class="modal-body">
+                    Premendo conferma tornerai alla scermata di login
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <a class="btn btn-deepskyblue" href="logout.php">Conferma</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <?php
     if (isset($templateParams["content"])) {
         require("contents/" . $templateParams["content"]);
