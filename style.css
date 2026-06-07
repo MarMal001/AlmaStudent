@@ -170,11 +170,15 @@ div > ul > li, nav > ul > li{
     float: left;
 }
 
-li a {
+nav li a {
     display: block;
     color: white;
     text-align: center;
     padding: 10px 12px;
+    text-decoration: none;
+}
+
+li a {
     text-decoration: none;
 }
 

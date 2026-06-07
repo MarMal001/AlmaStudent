@@ -2,8 +2,8 @@ function generateProfessors(professors) {
     let content = "";
     for (const professor of professors) {
         content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
-            <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-lg-75">
-                <div class="d-flex justify-content-between align-items-center text-darkbluenavy fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#${professor["professor"]}">
+            <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-lg-75 p-0">
+                <div class="d-flex justify-content-between align-items-center text-darkbluenavy fw-bold py-4 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#${professor["professor"]}">
                     <div class="d-md-inline-flex align-items-md-center ps-2">
                         <p class="m-0 p-0 text-start">${professor["name"]} ${professor["surname"]}</p>
                         <div class="ms-md-2">
@@ -12,8 +12,8 @@ function generateProfessors(professors) {
                     </div>
                     <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
                 </div>
-                <div id="${professor["professor"]}" class="collapse p-3 w-100">
-                    <h6>Corsi:</h6>
+                <div id="${professor["professor"]}" class="collapse p-3 ms-2 w-100">
+                    Corsi:
                     <ul class="d-flex flex-column align-items-start">`;
         for (const course of professor["courses"]) {
             content += `<li><a href="course.php?course=${course["code"]}" class="link-deepskyblue">${course["name"]}</a></li>`;
