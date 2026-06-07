@@ -9,4 +9,4 @@
         </select>
     </section>
     <section class="m-2" id="courses"></section>
-</main>    
+</main>
