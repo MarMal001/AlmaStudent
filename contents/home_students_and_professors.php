@@ -80,7 +80,7 @@
         <div class="m-2 p-0"><?php echo isStudent() ? "Non sei iscritto a nessun corso" : "Non hai nessun corso assegnato"; ?></div>
     <?php endif; ?>
 </section>
-<section class="mx-5 mt-4">
+<section class="mx-5 mt-4 mb-5">
     <h2 class="fw-bold">I tuoi ricevimenti</h2>
     <ul>
         <?php foreach($reservations as $reservation): ?>

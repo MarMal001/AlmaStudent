@@ -3,7 +3,7 @@
     <h1 class="fw-bold">Ciao <?php echo $userData["name"]; ?>!</h1>
     <div>Gestisci le segnalazioni, i corsi e i professori dell'ateneo.</div>
 </section>
-<section class="d-flex flex-column flex-lg-row align-items-start ms-5">
+<section class="d-flex flex-column flex-lg-row align-items-start mx-5">
     <a href="admin_modify.php?type=handleDegrees" class="btn btn-deepskyblue m-1 p-3">Gestisci le facoltà</a>
     <a href="admin_modify.php?type=handleCourse" class="btn btn-deepskyblue m-1 p-3">Gestisci corsi</a>
     <a href="admin_modify.php?type=handleAccount&accountType=DOCENTE" class="btn btn-deepskyblue m-1 p-3">Gestisci account docenti</a>

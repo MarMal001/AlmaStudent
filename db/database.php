@@ -1471,8 +1471,6 @@ class DatabaseHelper{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-//per ogni corso controllo se per l'anno corrente esiste il rating generale se  non esiste allora crea quello di quel corso
-// ogni volta che inserisco un nuovo rating devo aggiornare quello generale
 }
 
 ?>

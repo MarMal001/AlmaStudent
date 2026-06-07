@@ -12,14 +12,24 @@ header {
 }
 
 header h1 {
-    font-family: Garamond;
-    font-weight: bold;
+    font-family: serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 350 !important;
     color: white !important;
+}
+
+header a:link {
+  text-decoration: none;
 }
 
 header img {
     width: 10%;
     height: auto;
+}
+
+header nav li a {
+    font-size: large;
 }
 
 main {
