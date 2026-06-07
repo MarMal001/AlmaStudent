@@ -54,8 +54,8 @@ function parseCourseYear(year) {
 }
 
 function toggleStatistics() {
-    const style = document.querySelector("#statistics").style;
-    style["display"] = style["display"] == "block" ? "none" : "block";
+    const style = document.querySelector("aside > div:nth-child(2)").style;
+    style["display"] = style["display"] != "none" ? "none" : "block";
 }
 
 function parseDate(date) {

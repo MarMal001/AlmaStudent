@@ -102,7 +102,7 @@ aside h1 {
     aside > div:first-child > i:nth-child(2) {
         display: inline-block;
     }
-    
+
     nav li:last-child {
         display: none;
     }
@@ -110,8 +110,6 @@ aside h1 {
     table {
         max-width: 90% ;
     }
-
-
 }
 
 aside > div:first-child > i, aside > div {
@@ -202,20 +200,17 @@ button.dropdown-toggle::after {
   display: none !important;
 }
 
-/* TODO Passare queste tre media query in un altro foglio di stile apposito per quella pagina */
 @media (min-width: 992px) {
+    .w-lg-55 {
+        width: 55% !important;
+    }
+
     .w-lg-50 {
         width: 50% !important;
     }
 
     .w-lg-25 {
         width: 25% !important;
-    }
-}
-
-@media (min-width: 992px) {
-    .w-lg-55 {
-        width: 55% !important;
     }
 }
 
