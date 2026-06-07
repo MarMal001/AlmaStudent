@@ -155,6 +155,7 @@ insert into PERSONA values
 	("mario.rossi@unibo.it", "41e5653fc7aeb894026d6bb7b2db7f65902b454945fa8fd65a6327047b5277fb", "Mario", "Rossi", "ADMIN"), #PASSWORD: admin12345
 	("luigia.verdi@unibo.it", "53d6316bd7b9044e6bb5deaa87fe8316c2fde3938b78f8448875b08e551ccc95", "Luigia", "Verdi", "ADMIN"), #PASSWORD: admin0000
     # PROFESSORI
+    # Ingegneria e scienze informatiche
 	("eleonora.cinti5@unibo.it", "bdfc14da21c3f8167aff1fbe6fc452e06b20c0fb5c76bca3efa946a89e417cce", "Eleonora", "Cinti", "DOCENTE"), #PASSWORD: matematica!
 	("luciano.margara@unibo.it", "bd15d66d9a4b1144e0cca4496357ce0def376a1e9c94e759f4400ad8d3f2e7ad", "Luciano", "Margara", "DOCENTE"), #PASSWORD: #hash256
 	("davide.maltoni@unibo.it", "eef5826ed59baa4ea8feaf89a0c114e332029bc9369964bf7275ec4f5f1c4ed5", "Davide", "Maltoni", "DOCENTE"), #PASSWORD: vivalAI!
@@ -163,6 +164,20 @@ insert into PERSONA values
     ("mirko.viroli@unibo.it", "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2", "Mirko", "Viroli", "DOCENTE"), #PASSWORD: ciao
 	("damiana.lazzaro@unibo.it", "02190283faa0780252de7760365afbaf4b7f69a934098f97768b5df0c9e6715f", "Damiana", "Lazzaro", "DOCENTE"), #PASSWORD: vivalAI@
 	("franco.callegati@unibo.it", "ccc9a68ab2466a84ef651ba19a5eb05f459f92382f8448cb9055a1fd4ecdf18e", "Franco", "Callegati", "DOCENTE"), #PASSWORD: #imolaFibra
+    # Ingegneria elettronica
+	("massimo.cicognani@unibo.it", "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2", "Massimo", "Cicognani", "DOCENTE"), #PASSWORD: #ciao
+	("paolo.bonifazi3@unibo.it", "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2", "Paolo", "Bonifazi", "DOCENTE"), #PASSWORD: #ciao
+	("f.bellini@unibo.it", "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2", "Francesca", "Bellini", "DOCENTE"), #PASSWORD: #ciao
+	("giovannieugenio.comi@unibo.it", "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2", "Giovanni Eugenio", "Comi", "DOCENTE"), #PASSWORD: #ciao
+	("claudio.fiegna@unibo.it", "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2", "Claudio", "Fiegna", "DOCENTE"), #PASSWORD: #ciao
+	("arturo.popoli@unibo.it", "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2", "Arturo", "Popoli", "DOCENTE"), #PASSWORD: #ciao
+	("luca.roffia@unibo.it", "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2", "Luca", "Roffia", "DOCENTE"), #PASSWORD: #ciao
+	("paolo.castaldi@unibo.it", "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2", "Paolo", "Castaldi", "DOCENTE"), #PASSWORD: #ciao
+	("v.degliesposti@unibo.it", "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2", "Vittorio", "Degli Esposti", "DOCENTE"), #PASSWORD: #ciao
+	("walter.cerroni@unibo.it", "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2", "Walter", "Cerroni", "DOCENTE"), #PASSWORD: #ciao
+	("aldo.romani@unibo.it", "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2", "Aldo", "Romani", "DOCENTE"), #PASSWORD: #ciao
+	("marco.tartagni@unibo.it", "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2", "Marco", "Tartagni", "DOCENTE"), #PASSWORD: #ciao
+
     #STUDENTI
 	("carla.anselmi3@studio.unibo.it", "ada6b0cd6eb25185b58c096aec96f6e70fc7fc4e25be9558f8b2ad091077aed3", "Carla", "Anselmi", "STUDENTE"), #PASSWORD: PolloAlladivola8@
 	("alessandro.giacomini2@studio.unibo.it", "942953f8a9ea3d36966569fc81871530a96e9fe3de49740a67b8ac2f0a3d1bd5", "Alessandro", "Giacomini", "STUDENTE"); #PASSWORD: FrierenBestWaifu4ever!
@@ -174,14 +189,28 @@ insert into ADMIN values
 
 ### DOCENTE ###
 insert into DOCENTE values
-	("eleonora.cinti5@unibo.it", "", "", "", "default.png"),
-	("luciano.margara@unibo.it", "", "", "", "default.png"),
-	("davide.maltoni@unibo.it", "", "", "", "default.png"),
+    # Ingegneria e scienze informatiche
+	("eleonora.cinti5@unibo.it", "Dipartimento di Matematica. Settore scientifico disciplinare: MATH-03/A Analisi matematica", "Bologna", "Giovedì dalle 11 alle 13 presso il Dipartimento di Matematica - Ufficio L8. Per i corsi nel Campus di Cesena il ricevimento è su appuntamento (da prendersi via e-mail).", "default.png"),
+	("luciano.margara@unibo.it", "Dipartimento di Informatica - Scienza e Ingegneria. Settore scientifico disciplinare: INFO-01/A Informatica", "Cesena", "Lunedì alle 11. Ufficio 4129, via dell'Università 50. N.B.: consigliabile concordare incontro via email", "default.png"),
+	("davide.maltoni@unibo.it", "Dipartimento di Informatica - Scienza e Ingegneria. Settore scientifico disciplinare: IINF-05/A Sistemi di elaborazione delle informazioni", "Cesena", "Mercoledì dalle 9:30 alle 11", "default.png"),
 	("vittorio.ghini@unibo.it", "Dipartimento di Informatica - Scienza e Ingegneria. Settore scientifico disciplinare: INFO-01/A Informatica", "Cesena", "Il ricevimento può essere effettuato in modalità online, mediate una call con l'applicativo Teams. E' comunque possibile effettuare il ricevimento in presenza, presso la sede del Campus di Cesena, via dell'Università 50, stanza 4022b.", "vic25.png"),
-	("stefano.ferretti@unibo.it", "", "", "", "default.png"),
+	("stefano.ferretti@unibo.it", "Dipartimento di Informatica - Scienza e Ingegneria. Settore scientifico disciplinare: INFO-01/A Informatica", "Cesena", "Mercoledì 13:00 - 14:00 (orientativo, necessaria richiesta e conferma via e-mail) ", "default.png"),
 	("mirko.viroli@unibo.it", "Dipartimento di Informatica - Scienza e Ingegneria. Settore scientifico disciplinare: IINF-05/A Sistemi di elaborazione delle informazioni", "Cesena", "Il docente riceverà nel suo studio il lunedì e martedì dalle 12 alle 13. E' utile se possibile ricevere una mail per anticipare l'argomento dell'incontro.", "default.png"),
-	("damiana.lazzaro@unibo.it", "", "", "", "default.png"),
-	("franco.callegati@unibo.it", "", "", "", "default.png");
+	("damiana.lazzaro@unibo.it", "Dipartimento di Matematica. Settore scientifico disciplinare: MATH-05/A Analisi numerica", "Cesena", "Il ricevimento verrà effettuato, nella sede del Nuovo Campus Universitario di Cesena, Via dell'Università 50, studio n. 4141, nei giorni di Mercoledì ore 11-13, Giovedì ore 9-11 (si prega comunque di fissare l’appuntamento via email ed attendere  conferma). E' possibile anche fissare un appuntamento telematico tramite applicativo teams in giorno ed ora da	concordare con il docente.", "default.png"),
+	("franco.callegati@unibo.it", "Dipartimento di Informatica - Scienza e Ingegneria. Settore scientifico disciplinare: INFO-01/A Informatica", "Cesena", "Durante il periodo delle lezioni il Prof. Callegati può ricevere gli studenti su richiesta al termine delle lezioni oppure il mercoledì pomeriggio dalle 14.30 alle 16.30. Per eventuali ricevimenti a Bologna gli studenti sono pregati di contattare il Prof. Callegati utilizzando la loro e-mail @unibo.it per concordare un appuntamento presso la Facolta' di Ingegneria", "default.png"),
+    # Ingegneria elettronica
+    ("massimo.cicognani@unibo.it", "Dipartimento di Matematica. Settore scientifico disciplinare: MATH-03/A Analisi matematica", "Bologna", "Mandare richiesta per e-mail all'indirizzo massimo.cicognani@unibo.it specificando nome cognome e corso di laurea.  Utilizzare il proprio indirizzo nome.cognome@studio.unibo.it fornito all'atto dell'iscrizione. La  risposta con conferma dell'appuntamento da parte del docente verrà rispedita nel più breve tempo possibile.", "default.png"),
+    ("paolo.bonifazi3@unibo.it", 'Dipartimento di Fisica e Astronomia "Augusto Righi". Settore scientifico disciplinare: PHYS-06/A Fisica per le scienze della vita, l’ambiente e i beni culturali', "Bologna", "", "default.png"),
+    ("f.bellini@unibo.it", 'Dipartimento di Fisica e Astronomia "Augusto Righi". Settore scientifico disciplinare: PHYS-01/A Fisica sperimentale delle interazioni fondamentali e applicazioni', "Bologna", "La docente riceve su appuntamento: - a Bologna, il lunedì dalle 16:30 alle 17:30 presso lo studio in DIFA, Via Irnerio 46 - primo piano, stanza 72, - a Cesena, il martedì dalle 11:00 alle 12:00 presso l'edificio in via dell'Università. Si prega di contattare la docente via email per fissare un appuntamento in giorni e orari diversi, oppure per un colloquio virtuale tramite piattaforma Teams.", "default.png"),
+    ("giovannieugenio.comi@unibo.it", "Dipartimento di Matematica. Settore scientifico disciplinare: MATH-03/A Analisi matematica", "Cesena", "Per Analisi Matematica B: dal 29/04/2026 al 04/06/2026 ogni giovedì dalle 12:00 alle 13:00 in Aula 2.9 Piano terra Ex-Zuccherificio – Edificio 1 (Campus di Cesena). Altrimenti, su appuntamento via email. Il mio ufficio a Bologna si trova in Viale Filopanti 5 (primo piano - ufficio 4).", "default.png"),
+    ("claudio.fiegna@unibo.it", 'Dipartimento di Ingegneria dell''Energia Elettrica e dell''Informazione "Guglielmo Marconi". Settore scientifico disciplinare: IINF-01/A Elettronica', "Cesena", "Ricevimento su appuntamento (claudio.fiegna@unibo.it)", "default.png"),
+    ("arturo.popoli@unibo.it", 'Dipartimento di Ingegneria dell''Energia Elettrica e dell''Informazione "Guglielmo Marconi". Settore scientifico disciplinare: IIET-01/A Elettrotecnica', "Bologna", "Ricevimento in presenza o su Microsoft Teams su appuntamento contatto via e-mail istituzionale.", "default.png"),
+    ("luca.roffia@unibo.it", 'Dipartimento di Informatica - Scienza e Ingegneria. Dipartimento di Ingegneria dell''Energia Elettrica e dell''Informazione "Guglielmo Marconi"', "Bologna", "Su appuntamento inviando una richiesta all'indirizzo luca.roffia@unibo.it", "default.png"),
+    ("paolo.castaldi@unibo.it", 'Dipartimento di Ingegneria dell''Energia Elettrica e dell''Informazione "Guglielmo Marconi". Settore scientifico disciplinare: IINF-04/A Automatica', "Cesena", "Thursday 16-19 c/o DEI, studio 4005, Campus Ingegneria Via Dell'università 50, Cesena (or by appointment: email paolo.castaldi@unibo.it)", "default.png"),
+    ("v.degliesposti@unibo.it", 'Dipartimento di Ingegneria dell''Energia Elettrica e dell''Informazione "Guglielmo Marconi". Settore scientifico disciplinare: IINF-02/A Campi elettromagnetici', "Cesena", "Il Mercoledì  ore 10-11:00 nello studio del Campus di Cesena, Dipartimento DEI, ultimo piano, oppure online su TEAMS. Si consiglia comunque di avvertire via email preventivamente prima di venire a ricevimento. Per disponibilità in altri orari o luoghi prego di contattarmi via email", "default.png"),
+    ("walter.cerroni@unibo.it", 'Dipartimento di Ingegneria dell''Energia Elettrica e dell''Informazione "Guglielmo Marconi". Settore scientifico disciplinare: IINF-03/A Telecomunicazioni', "Cesena", "Bologna: mercoledì 10:30-12:00 e su appuntamento Cesena: su appuntamento", "default.png"),
+    ("aldo.romani@unibo.it", 'Dipartimento di Ingegneria dell''Energia Elettrica e dell''Informazione "Guglielmo Marconi". Settore scientifico disciplinare: IINF-01/A Elettronica', "Cesena", "Martedì dalle ore 11.00 alle ore 12.00 o su appuntamento. Eventuali variazioni o integrazioni saranno comunicate tempestivamente su Avvisi Web.", "default.png"),
+    ("marco.tartagni@unibo.it", 'Dipartimento di Ingegneria dell''Energia Elettrica e dell''Informazione "Guglielmo Marconi". Settore scientifico disciplinare: IINF-01/A Elettronica', "Cesena", "Il ricevimento sara' disponibile tutte le settimane nelle giornate del giovedi' alle 15:15-16:00. Si consiglia sempre di inviare email per conferma. Grazie", "default.png");
 
 ### STUDENTE ###
 insert into STUDENTE values
@@ -196,23 +225,36 @@ insert into FACOLTA values
 
 ### CORSO ###
 insert into CORSO values
-	# PRIMO ANNO
+    # Ingegneria e scienze informatiche
 	("00013", "Analisi matematica", 1, 1, 6673, "", "", ""),
 	("11929", "Algoritmi e strutture dati", 1, 2, 6673, "", "", ""),
 	("69731", "Architetture degli elaboratori", 1, 2, 6673, "", "", ""),
-    # SECONDO ANNO
 	("08574", "Sistemi Operativi", 2, 1, 6673, "", "", ""),
 	("70219", "Programmazione ad oggetti", 2, 1, 6673, "", "", ""),
 	("B2561", "Metodi numerici per l'intelligenza artificiale", 2, 2, 6673, "", "", ""),
 	("70226", "Programmazione di reti", 2, 2, 6673, "", "", ""),
-    # TERZO ANNO
 	("70218", "Reti di telecomunicazione", 3, 1, 6673, "", "", ""),
 	("70090", "Computer graphics", 3, 1, 6673, "", "", ""),
 	("14015", "Crittografia", 3, 2, 6673, "", "", ""),
-	("96642", "Virtualizzazione e Integrazione di Sistemi", 3, 2, 6673, "", "", "");
+	("96642", "Virtualizzazione e Integrazione di Sistemi", 3, 2, 6673, "", "", ""),
+    # Ingegneria elettronica
+    ("15300", "Analisi matematica A", 1, 1, 6670, "", "", ""),
+    ("16726", "Fisica generale A", 1, 1, 6670, "", "", ""),
+    ("16314", "Analisi matematica B", 1, 2, 6670, "", "", ""),
+    ("19704", "Fisica generale B", 1, 2, 6670, "", "", ""),
+    ("00269", "Elettronica", 2, 1, 6670, "", "", ""),
+    ("B5603", "Sistemi e circuiti elettrici lineari", 2, 1, 6670, "", "", ""),
+    ("03716", "Calcolatori elettronici", 2, 2, 6670, "", "", ""),
+    ("00196", "Controlli automatici", 2, 2, 6670, "", "", ""),
+    ("07941", "Campi elettromagnetici", 3, 1, 6670, "", "", ""),
+    ("69774", "Comunicazione digitali e internet", 3, 1, 6670, "", "", ""),
+    ("10907", "Elettronica dei sistemi digitali", 3, 2, 6670, "", "", ""),
+    ("69773", "Progetto di circuiti elettronici", 3, 2, 6670, "", "", "");
+    # Ingegneria informatica
 
 ### Tenere ###
 insert into Tenere values
+    # Ingegneria e scienze informatiche
 	("eleonora.cinti5@unibo.it", "00013"),
 	("luciano.margara@unibo.it", "11929"),
 	("davide.maltoni@unibo.it", "69731"),
@@ -224,7 +266,20 @@ insert into Tenere values
 	("franco.callegati@unibo.it", "70218"),
     ("damiana.lazzaro@unibo.it", "70090"),
     ("luciano.margara@unibo.it", "14015"),
-	("vittorio.ghini@unibo.it", "96642");
+	("vittorio.ghini@unibo.it", "96642"),
+    # Ingegneria elettronica
+	("massimo.cicognani@unibo.it", "15300"),
+	("paolo.bonifazi3@unibo.it", "16726"),
+	("f.bellini@unibo.it", "19704"),
+	("giovannieugenio.comi@unibo.it", "16314"),
+	("claudio.fiegna@unibo.it", "00269"),
+	("arturo.popoli@unibo.it", "B5603"),
+	("luca.roffia@unibo.it", "03716"),
+	("paolo.castaldi@unibo.it", "00196"),
+	("v.degliesposti@unibo.it", "07941"),
+	("walter.cerroni@unibo.it", "69774"),
+	("aldo.romani@unibo.it", "10907"),
+	("marco.tartagni@unibo.it", "69773");
 
 ### REVIEW ###
 #insert into REVIEW values
