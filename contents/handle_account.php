@@ -10,118 +10,121 @@
     <?php endif; ?>
 
     <section class="container-fluid w-auto m-2 p-0 my-4">
-        <button class="btn btn-deepskyblue d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
-            <p class="m-0 p-2">Aggiungi account <?php echo strtolower($_GET["accountType"]); ?></p>
-            <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
-        </button>
-        
-        <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c1" class="collapse p-3 w-100 border border-primary border-2 rounded">
-            <ul>
-                <li>
-                    <label for="name" class="text-left">
-                        <h5>Nome</h5>
-                    </label>
-                </li>
-                <li>
-                    <input type="text" id="name" name="name" required />
-                </li>
-                <li>
-                    <label for="surname" class="text-left">
-                        <h5>Cognome</h5>
-                    </label>
-                </li>
-                <li>
-                    <input type="text" id="surname" name="surname" required />
-                </li>
-                <li>
-                    <label for="username" class="text-left">
-                        <h5>Username</h5>
-                    </label>
-                </li>
-                <li>
-                    <input type="email" id="username" name="username" required />
-                </li>
-                <li>
-                    <label for="password" class="text-left">
-                        <h5>Password</h5>
-                    </label>
-                </li>
-                <li>
-                    <input type="password" id="password" name="password" required />
-                </li>
-                <?php if ($_GET["accountType"] == "DOCENTE"): ?>
+        <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-75 mx-auto">
+            <div class="d-flex justify-content-between align-items-center fw-bold p-3" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
+                <h4 class="m-0 p-2 text-darkbluenavy">Aggiungi account <?php echo strtolower($_GET["accountType"]); ?></h4>
+                <i class="fa-solid fa-angle-down me-1 mt-1" style="color: rgb(30, 48, 80);"></i>
+            </div>
+            <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c1" class="collapse p-3 w-100 show">
+                <ul class="mb-0">
                     <li>
-                        <label for="department" class="text-left">
-                            <h5>Dipartimento</h5>
+                        <label for="name" class="text-left">
+                            <h5>Nome</h5>
                         </label>
                     </li>
                     <li>
-                        <input type="text" id="department" name="department" />
+                        <input type="text" id="name" name="name" class="form-control rounded-pill" required />
                     </li>
                     <li>
-                        <label for="seat" class="text-left">
-                            <h5>Sede</h5>
+                        <label for="surname" class="text-left">
+                            <h5>Cognome</h5>
                         </label>
                     </li>
                     <li>
-                        <input type="text" id="seat" name="seat" />
+                        <input type="text" id="surname" name="surname" class="form-control rounded-pill" required />
                     </li>
                     <li>
-                        <label for="infoReception" class="text-left">
-                            <h5>Info ricevimento</h5>
-                        </label>
-                    </li>
-                    <li>
-                        <input type="text" id="infoReception" name="infoReception" />
-                    </li>
-                <?php endif; ?>
-                <li>
-                    <button type="submit" class="btn btn-deepskyblue mt-3" name="action" value="<?php echo ADMIN_ADD_ACCOUNT; ?>">Crea account</button>
-                </li>
-            </ul>
-            <input type="hidden" name="type" value="<?php echo $_GET["accountType"]; ?>" />
-        </form>
-    </section>
-
-    <section class="container-fluid w-auto m-2 p-0 my-4">
-        <button class="btn btn-deepskyblue d-flex justify-content-between align-items-center text-start w-100 fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
-            <p class="m-0 p-2">Modifica account <?php echo strtolower($_GET["accountType"]); ?></p>
-            <i class="fa-solid fa-angle-down" style="color: rgb(255, 255, 255);"></i>
-        </button>
-        
-        <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c2" class="collapse p-3 w-100 border border-primary border-2 rounded">
-            <ul>
-                <?php if ($_GET["accountType"] == "DOCENTE"): ?>
-                    <li>
-                        <label for="updateProfessorCode" class="text-left">
+                        <label for="username" class="text-left">
                             <h5>Username</h5>
                         </label>
                     </li>
                     <li>
-                        <select id="updateProfessorCode" name="username" onchange="getUpdateProfessorForm()" class="form-select w-25" required>
-                            <option value="">-- Seleziona --</option>
-                            <?php foreach ($dbh->getProfessors() as $professor): ?>
-                                <option value="<?php echo $professor["professor"]; ?>"><?php echo $professor["name"] . " " . $professor["surname"] ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                <?php elseif($_GET["accountType"] == "ADMIN"): ?>
+                        <input type="email" id="username" name="username" class="form-control rounded-pill" required />
+                    </li>
                     <li>
-                        <label for="updateAdminCode" class="text-left">
-                            <h5>Username</h5>
+                        <label for="password" class="text-left">
+                            <h5>Password</h5>
                         </label>
                     </li>
                     <li>
-                        <select id="updateAdminCode" name="username" onchange="getUpdateAdminForm()" class="form-select w-25" required>
-                            <option value="">-- Seleziona --</option>
-                            <?php foreach ($dbh->getAdmins() as $admin): ?>
-                                <option value="<?php echo $admin["username"]; ?>"><?php echo $admin["name"] . " " . $admin["surname"] ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <input type="password" id="password" name="password" class="form-control rounded-pill" required />
+                    </li>
+                    <?php if ($_GET["accountType"] == "DOCENTE"): ?>
+                        <li>
+                            <label for="department" class="text-left">
+                                <h5>Dipartimento</h5>
+                            </label>
+                        </li>
+                        <li>
+                            <input type="text" id="department" name="department" class="form-control rounded-pill" />
+                        </li>
+                        <li>
+                            <label for="seat" class="text-left">
+                                <h5>Sede</h5>
+                            </label>
+                        </li>
+                        <li>
+                            <input type="text" id="seat" name="seat" class="form-control rounded-pill" />
+                        </li>
+                        <li>
+                            <label for="infoReception" class="text-left">
+                                <h5>Info ricevimento</h5>
+                            </label>
+                        </li>
+                        <li>
+                            <input type="text" id="infoReception" name="infoReception" class="form-control rounded-pill" />
+                        </li>
                     <?php endif; ?>
-                </li>
-                <div id="<?php echo $_GET["accountType"] == "DOCENTE" ? "updateProfessorForm" : "updateAdminForm"; ?>"></div>
-            </ul>
-            <input type="hidden" name="type" value="<?php echo $_GET["accountType"]; ?>" />
-        </form>
+                    <li>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-deepskyblue mt-3 me-5" name="action" value="<?php echo ADMIN_ADD_ACCOUNT; ?>">Crea account</button>
+                        </div>
+                    </li>
+                </ul>
+                <input type="hidden" name="type" value="<?php echo $_GET["accountType"]; ?>" />
+            </form>
+        </div>
+    </section>
+    <section class="container-fluid w-auto m-2 p-0 my-4">
+        <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-75 mx-auto">
+            <div class="d-flex justify-content-between align-items-center fw-bold p-3" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
+                <h4 class="m-0 p-2">Modifica account <?php echo strtolower($_GET["accountType"]); ?></h4>
+                <i class="fa-solid fa-angle-down me-1 mt-1" style="color: rgb(30, 48, 80);"></i>
+            </div>
+            <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c2" class="collapse p-3 w-100">
+                <ul class="mb-0">
+                    <?php if ($_GET["accountType"] == "DOCENTE"): ?>
+                        <li>
+                            <label for="updateProfessorCode" class="text-left">
+                                <h5>Username</h5>
+                            </label>
+                        </li>
+                        <li>
+                            <select id="updateProfessorCode" name="username" onchange="getUpdateProfessorForm()" class="form-select rounded-pill w-25" required>
+                                <option value="">-- Seleziona --</option>
+                                <?php foreach ($dbh->getProfessors() as $professor): ?>
+                                    <option value="<?php echo $professor["professor"]; ?>"><?php echo $professor["name"] . " " . $professor["surname"] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                    <?php elseif($_GET["accountType"] == "ADMIN"): ?>
+                        <li>
+                            <label for="updateAdminCode" class="text-left">
+                                <h5>Username</h5>
+                            </label>
+                        </li>
+                        <li>
+                            <select id="updateAdminCode" name="username" onchange="getUpdateAdminForm()" class="form-select rounded-pill w-25" required>
+                                <option value="">-- Seleziona --</option>
+                                <?php foreach ($dbh->getAdmins() as $admin): ?>
+                                    <option value="<?php echo $admin["username"]; ?>"><?php echo $admin["name"] . " " . $admin["surname"] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        <?php endif; ?>
+                    </li>
+                    <div id="<?php echo $_GET["accountType"] == "DOCENTE" ? "updateProfessorForm" : "updateAdminForm"; ?>"></div>
+                </ul>
+                <input type="hidden" name="type" value="<?php echo $_GET["accountType"]; ?>" />
+            </form>
+        </div>
     </section>
 </main>

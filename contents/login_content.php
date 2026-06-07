@@ -1,25 +1,25 @@
 <main class="row align-items-center text-white text-center">
     <?php showMessage(); ?>
     <div class="col-xl col"></div>
-    <div class="col-xl-3 col-5 bg-deepskyblue text-center text-white rounded-4">
+    <div class="col-xl-3 col-5 bg-deepskyblue text-center text-white rounded-4 d-flex justify-content-center">
         <form action="login.php" method="post" class="pt-5">
             <h2 class="text-white">Accedi al tuo account</h2>
             <ul>
                 <li>
-                    <label for="username" class="text-left">
+                    <label for="username" class="text-left form-label">
                         <h5>Username</h5>
                     </label>
                 </li>
                 <li>
-                    <input type="email" id="username" name="username" required />
+                    <input type="email" id="username" name="username" class="form-control rounded-pill w-100" required />
                 </li>
                 <li>
-                    <label for="password" class="text-left">
+                    <label for="password" class="text-left form-label">
                         <h5>Password</h5>
                     </label>
                 </li>
                 <li>
-                    <input type="password" id="password" name="password" required />
+                    <input type="password" id="password" name="password" class="form-control rounded-pill w-100" required />
                 </li>
                 <li>
                     <input type="submit" class="btn btn-outline-primary bg-white text-primary" value="Accedi" />

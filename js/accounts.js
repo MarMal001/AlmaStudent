@@ -3,85 +3,89 @@ const ADMIN_DELETE_ACCOUNT = 7;
 
 function generateUpdateProfessorForm(professor) {
     let content = `<li>
-            <label for="updateName" class="text-left">
+            <label for="updateName" class="text-left form-label">
                 <h5>Nome</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="updateName" name="name" value="${professor["name"]}" required />
+            <input type="text" id="updateName" name="name" value="${professor["name"]}" class="form-control rounded-pill" required />
         </li>
         <li>
-            <label for="updateSurname" class="text-left">
+            <label for="updateSurname" class="text-left form-label">
                 <h5>Cognome</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="updateSurname" name="surname" value="${professor["surname"]}" required />
+            <input type="text" id="updateSurname" name="surname" value="${professor["surname"]}" class="form-control rounded-pill" required />
         </li>
         <li>
-            <label for="updateDepartment" class="text-left">
+            <label for="updateDepartment" class="text-left form-label">
                 <h5>Dipartimento</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="updateDepartment" name="department" value="${professor["department"]}" required />
+            <input type="text" id="updateDepartment" name="department" value="${professor["department"]}" class="form-control rounded-pill" required />
         </li>
         <li>
-            <label for="updateSeat" class="text-left">
+            <label for="updateSeat" class="text-left form-label">
                 <h5>Sede</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="updateSeat" name="seat" value="${professor["campus"]}" required />
+            <input type="text" id="updateSeat" name="seat" value="${professor["campus"]}" class="form-control rounded-pill" required />
         </li>
         <li>
-            <label for="updateInfoReception" class="text-left">
+            <label for="updateInfoReception" class="text-left form-label">
                 <h5>Info ricevimento</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="updateInfoReception" name="infoReception" value="${professor["infoReception"]}" required />
+            <input type="text" id="updateInfoReception" name="infoReception" value="${professor["infoReception"]}" class="form-control rounded-pill" required />
         </li>
         <div class="d-flex">
             <li class="mt-3 me-2">
-                <input type="checkbox" id="updateRemoveProfilePicture" name="removeProfilePicture" />
+                <input type="checkbox" id="updateRemoveProfilePicture" name="removeProfilePicture" class="form-check-input" />
             </li>
             <li>
-                <label for="updateRemoveProfilePicture">Rimuovi immagine profilo</label>
+                <label for="updateRemoveProfilePicture" class="form-check-label">Rimuovi immagine profilo</label>
             </li>
-        </div>        
-        <li>
-            <button type="submit" class="btn btn-deepskyblue mt-3" name="action" value="${ADMIN_MODIFY_ACCOUNT}">Modifica account</button>
-        </li>
-        <li>
-            <button type="submit" class="btn btn-danger mt-3" name="action" value="${ADMIN_DELETE_ACCOUNT}">Elimina account</button>
-        </li>`;
+        </div>
+        <div class="d-flex justify-content-end">
+            <li>
+                <button type="submit" class="btn btn-deepskyblue mt-3 me-2" name="action" value="${ADMIN_MODIFY_ACCOUNT}">Modifica account</button>
+            </li>
+            <li>
+                <button type="submit" class="btn btn-danger mt-3" name="action" value="${ADMIN_DELETE_ACCOUNT}">Elimina account</button>
+            </li>
+        </div>`;
     return content;
 }
 
 function generateUpdateAdminForm(admin) {
     let content = `<li>
-            <label for="updateName" class="text-left">
+            <label for="updateName" class="text-left form-label">
                 <h5>Nome</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="updateName" name="name" value="${admin["name"]}" required />
+            <input type="text" id="updateName" name="name" value="${admin["name"]}" class="form-control rounded-pill" required />
         </li>
         <li>
-            <label for="updateSurname" class="text-left">
+            <label for="updateSurname" class="text-left form-label">
                 <h5>Cognome</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="updateSurname" name="surname" value="${admin["surname"]}" required />
+            <input type="text" id="updateSurname" name="surname" value="${admin["surname"]}" class="form-control rounded-pill" required />
         </li>
-        <li>
-            <button type="submit" class="btn btn-deepskyblue mt-3" name="action" value="${ADMIN_MODIFY_ACCOUNT}">Modifica account</button>
-        </li>
-        <li>
-            <button type="submit" class="btn btn-danger mt-3" name="action" value="${ADMIN_DELETE_ACCOUNT}">Elimina account</button>
-        </li>`;
+        <div class="d-flex justify-content-end">
+            <li>
+                <button type="submit" class="btn btn-deepskyblue mt-3 me-2" name="action" value="${ADMIN_MODIFY_ACCOUNT}">Modifica account</button>
+            </li>
+            <li>
+                <button type="submit" class="btn btn-danger mt-3 me-5" name="action" value="${ADMIN_DELETE_ACCOUNT}">Elimina account</button>
+            </li>
+        </div>`;
     return content;
 }
 

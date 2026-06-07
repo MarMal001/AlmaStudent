@@ -3,21 +3,21 @@ const ADMIN_DELETE_DEGREE = 8;
 
 function generateUpdateDegreesForm(degree) {
     let content = `<li>
-            <label for="updateName" class="text-left">
+            <label for="updateName" class="text-left form-label">
                 <h5>Nome</h5>
             </label>
         </li>
         <li>
-            <input type="text" id="updateName" name="name" value="${degree["name"]}" required />
+            <input type="text" id="updateName" name="name" value="${degree["name"]}" class="form-control rounded-pill" required />
         </li>
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
-                <label for="updateYears" class="text-left">
+                <label for="updateYears" class="text-left form-label">
                     <h5>Anni</h5>
                 </label>
             </li>
             <li class="mt-2">
-                <select name="years" id="updateYears" class="form-select mt-2 ms-2" required>`;
+                <select name="years" id="updateYears" class="form-select rounded-pill mt-2 ms-2" required>`;
     for (let i = 1; i <= 6; i++) {
         content += `<option value="${i}" ${degree["nYears"] == i ? "selected" : ""}>${i}</option>`;
     }
@@ -26,12 +26,12 @@ function generateUpdateDegreesForm(degree) {
         </div>
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
-                <label for="updateDepartment" class="text-left">
+                <label for="updateDepartment" class="text-left form-label">
                     <h5>Dipartimento</h5>
                 </label>
             </li>
             <li class="mt-2">
-                <select name="department" id="updateDepartment" class="form-select mt-2 ms-2" required>
+                <select name="department" id="updateDepartment" class="form-select rounded-pill mt-2 ms-2" required>
                     <option value="DISI" ${degree["department"] == "DISI" ? "selected" : ""}>DISI</option>
                     <option value="DEI" ${degree["department"] == "DEI" ? "selected" : ""}>DEI</option>
                     <option value="DIMEC" ${degree["department"] == "DIMEC" ? "selected" : ""}>DIMEC</option>
@@ -40,24 +40,24 @@ function generateUpdateDegreesForm(degree) {
         </div>
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
-                <label for="updateBranch" class="text-left">
+                <label for="updateBranch" class="text-left form-label">
                     <h5>Sede</h5>
                 </label>
             </li>
             <li class="mt-2">
-                <select name="branch" id="updateBranch" class="form-select mt-2 ms-2" required>
+                <select name="branch" id="updateBranch" class="form-select rounded-pill mt-2 ms-2" required>
                     <option value="Bologna" ${degree["campus"] == "Bologna" ? "selected" : ""}>Bologna</option>
                     <option value="Cesena" ${degree["campus"] == "Cesena" ? "selected" : ""}>Cesena</option>
                     <option value="Forli" ${degree["campus"] == "Forli" ? "selected" : ""}>Forli</option>
                 </select>
             </li>
         </div>
-        <div class="d-flex">
+        <div class="d-flex justify-content-end">
             <li>
                 <button type="submit" class="btn btn-deepskyblue mt-3 me-2" name="action" value="${ADMIN_MODIFY_DEGREE}">Modifica</button>
             </li>
             <li>
-                <button type="submit" class="btn btn-danger mt-3" name="action" value="${ADMIN_DELETE_DEGREE}">Elimina</button>
+                <button type="submit" class="btn btn-danger mt-3 me-5" name="action" value="${ADMIN_DELETE_DEGREE}">Elimina</button>
             </li>
         </div>
         <input type="hidden" name="degreeCode" value="${degree["code"]} />`;
