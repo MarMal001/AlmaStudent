@@ -1,5 +1,5 @@
 <div class="row mx-0">
-    <main class="col-12 col-lg-6 mx-0 py-2 px-4 w-md-100">
+    <main class="col-12 col-lg-7 mx-0 py-2 px-4 w-md-100">
         <?php
             if (isAdmin()) {
                 include("contents/home_admin.php");
@@ -9,12 +9,12 @@
                 header("location: login.php");
             }
         ?>
-    </main><aside class="col-0 col-lg-6 w-md-100 px-0 mx-0 d-flex flex-column flex-lg-row justify-content-start justify-content-lg-end">
+    </main><aside class="col-0 col-lg-5 w-md-100 px-0 mx-0 d-flex flex-column flex-lg-row justify-content-start justify-content-lg-end">
         <div class="me-auto me-lg-0">
             <i class="fa-solid fa-angle-up" onclick=toggleStatistics()></i>
             <i class="fa-solid fa-angle-left" onclick=toggleStatistics()></i>
         </div>
-        <div class="px-4 py-3">
+        <div class="px-5 py-5">
             <h3>Le statistiche</h3>
             <div class="d-flex flex-wrap gap-3">
                 <?php if (!isAdmin()): ?>
@@ -127,7 +127,7 @@
                     </div>
                 <?php endif; ?>
             </div>
-            <h3>Il calendario</h3>
+            <h3 class="mt-3">Il calendario</h3>
             <div class="card" id="calendar-container">
                 <div class="bg-deepskyblue text-white text-center py-3 rounded-top" id="calendar-header">
                     <div class="d-flex inline-flex justify-content-center align-items-center" id="calendar-navigation">

@@ -1,5 +1,5 @@
 <main>
-    <section class="container-fluid w-auto m-2 p-0 my-4">
+    <section class="container-fluid w-auto mx-2 mt-5 p-0 mb-4">
         <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-75 mx-auto">
             <div class="d-flex justify-content-between align-items-center fw-bold p-3" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
                 <h4 class="m-0 p-2">Aggiungi corso</h4>
