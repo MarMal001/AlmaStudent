@@ -6,7 +6,7 @@
     <section>
         <h3>
             <?php foreach($professors as $professor): ?>
-                <a href="professor.php?professor=<?php echo idWithoutDomain($professor["professor"]); ?>" class="text-primary"><?php echo $professor["name"] . " " . $professor["surname"]; ?></a>
+                <a href="professor.php?professor=<?php echo idWithoutDomain($professor["professor"]); ?>" class="link-deepskyblue"><?php echo $professor["name"] . " " . $professor["surname"]; ?></a>
             <?php endforeach; ?>
         </h3>
         <?php $gRatings = $dbh->getGeneralRatingsByCourse($courseId)[0]; ?>
@@ -72,7 +72,7 @@
         <div class="card mb-3" style="height: clamp(200px, 60vh, 300px);">
             <div class="card-body overflow-auto bg-light <?php echo $style; ?>">
                 <?php if ($noReviews): ?>
-                    <h4 class="text-center">Non è presente ancora nessuna recensione</h4>
+                    <h4 class="text-center text-secondary">Non è presente ancora nessuna recensione</h4>
                 <?php endif; ?>
                 <?php foreach ($reviews as $review): ?>
                     <?php 
