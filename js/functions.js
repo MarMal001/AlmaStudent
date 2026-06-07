@@ -30,7 +30,7 @@ function getMeanRating(ratingArray) {
 
 function subscriptionButton(courseCode, isSubscribed, page) {
     if (isSubscribed){
-        return `<a href='subscription.php?action=remove&course=${courseCode}&page=${page}' class='btn btn-white border-primary ms-1 mt-2'>Discriviti</a>`;
+        return `<a href='subscription.php?action=remove&course=${courseCode}&page=${page}' class='btn btn-secondary-subtle ms-1 mt-2'>Discriviti</a>`;
     } else {
         return `<a href='subscription.php?action=add&course=${courseCode}&page=${page}' class='btn btn-deepskyblue ms-1 mt-2'>Iscriviti</a>`;
     }
@@ -54,6 +54,17 @@ function parseCourseYear(year) {
 }
 
 function toggleStatistics() {
-    const style = document.querySelector("#statistics").style;
-    style["display"] = style["display"] == "block" ? "none" : "block";
+    const style = document.querySelector("aside > div:nth-child(2)").style;
+    style["display"] = style["display"] != "none" ? "none" : "block";
+}
+
+function parseDate(date) {
+    const months = [
+        "Gennaio", "Febbrario", "Marzo", "Aprile", "Maggio", "Giugno",
+        "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"
+    ];
+    const day = Number(date.split("-")[2]);
+    const month = months[date.split("-")[1] - 1];
+    const year = date.split("-")[0];
+    return day + " " + month + " " + year;
 }

@@ -58,10 +58,6 @@ main form label, main form input[type=submit] {
     margin-top: 16px;
 }
 
-main form input[type=text], main form input[type=password], main form input[type=email] {
-    width: 80%;
-}
-
 aside > div:first-child > i:nth-child(2) {
     display: none;
 }
@@ -106,7 +102,7 @@ aside h1 {
     aside > div:first-child > i:nth-child(2) {
         display: inline-block;
     }
-    
+
     nav li:last-child {
         display: none;
     }
@@ -114,8 +110,6 @@ aside h1 {
     table {
         max-width: 90% ;
     }
-
-
 }
 
 aside > div:first-child > i, aside > div {
@@ -212,6 +206,10 @@ button.dropdown-toggle::after {
 
 /* TODO Passare queste tre media query in un altro foglio di stile apposito per quella pagina */
 @media (min-width: 992px) {
+    .w-lg-55 {
+        width: 55% !important;
+    }
+
     .w-lg-50 {
         width: 50% !important;
     }
@@ -219,17 +217,12 @@ button.dropdown-toggle::after {
     .w-lg-25 {
         width: 25% !important;
     }
-}
 
-@media (min-width: 992px) {
-    .w-lg-55 {
-        width: 55% !important;
-    }
-    
     .w-lg-60 {
         width: 60% !important;
     }
 }
+
 
 @media (min-width: 768px) {
     .rounded-md-start {
@@ -250,11 +243,28 @@ button.dropdown-toggle::after {
 
 .btn-deepskyblue {
     color: white !important;
+}
+
+.btn-secondary-subtle {
+    color: #1455B4 !important;
+    background-color: white !important;
+    border-color: #1455B4 !important;
+}
+
+.btn-deepskyblue, .btn-secondary-subtle, .btn-darkred {
     border-radius: 15px !important;
 }
 
-.bg-darkred {
+.bg-darkred, .btn-darkred {
     background-color: #B21212 !important;
+}
+
+.btn-darkred {
+    color: white !important;
+}
+
+.btn-darkred:hover {
+    background-color: red !important;
 }
 
 thead tr:first-child th {
@@ -269,7 +279,7 @@ thead tr:nth-child(2) th {
     border-color: #E2E3E5;
 }
 
-tbody tr:nth-child(even) {
+tbody tr:nth-child(even) td, tbody tr:nth-child(even) th, .btn-secondary-subtle:hover {
     background-color: #f2f2f2 !important; 
 }
 

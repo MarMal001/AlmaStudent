@@ -37,9 +37,7 @@
 	</div>
 
 	<div class="d-flex justify-content-end">
-
-
-		<button class="btn btn-secondary mb-5" data-bs-toggle="modal" data-bs-target="#annulModal">
+		<button class="btn btn-secondary-subtle mb-5" data-bs-toggle="modal" data-bs-target="#annulModal">
 			Ignora segnalazione
 		</button>
 
@@ -56,15 +54,15 @@
 					</div>
 
 					<div class="modal-footer">
-						<button class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-						<a class="btn btn-danger" href="handle_reports.php?type=annul&id=<?php echo $id; ?>">Conferma</a>
+						<button class="btn btn-secondary-subtle" data-bs-dismiss="modal">Annulla</button>
+						<a class="btn btn-deepskyblue" href="handle_reports.php?type=annul&id=<?php echo $id; ?>">Conferma</a>
 					</div>
 
 				</div>
 			</div>
 		</div>
 		
-		<button class="btn btn-danger mb-5 ms-2 " data-bs-toggle="modal" data-bs-target="#confirmModal">
+		<button class="btn btn-darkred mb-5 ms-2 " data-bs-toggle="modal" data-bs-target="#confirmModal">
 		Elimina
 		</button>
 
@@ -81,8 +79,8 @@
 					</div>
 
 					<div class="modal-footer">
-						<button class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-						<a class="btn btn-danger" href="handle_reports.php?type=remove&id=<?php echo $id; ?>&student=<?php echo $infoReview["student"]; ?>">Conferma</a>
+						<button class="btn btn-secondary-subtle" data-bs-dismiss="modal">Annulla</button>
+						<a class="btn btn-deepskyblue" href="handle_reports.php?type=remove&id=<?php echo $id; ?>&student=<?php echo $infoReview["student"]; ?>">Conferma</a>
 					</div>
 
 				</div>

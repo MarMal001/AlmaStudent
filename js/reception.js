@@ -60,7 +60,7 @@ function generateReceptionTable(date, user, professor, reservations, isStudent, 
     if (toDayDate != date) {
         content += `<i class="fa-solid fa-angle-left" style="color: white;" onClick='getPreviousDay("${date}")'></i>`;
     }
-    content += `<div id="date" class="mb-1 mx-2">${date}</div><i class="fa-solid fa-angle-right" style="color: white;" onClick='getNextDay("${date}")'></i></div></th>
+    content += `<div id="date" class="mb-1 mx-2">${parseDate(date)}</div><i class="fa-solid fa-angle-right" style="color: white;" onClick='getNextDay("${date}")'></i></div></th>
     </tr>`;
     content += `<tr class="fs-6">
     <th id="time" scope="col">Ore</th>
@@ -75,10 +75,11 @@ function generateReceptionTable(date, user, professor, reservations, isStudent, 
         let timeRange = reservation["timeRange"];
         content += `<tr>
             <th id="${timeRange.replaceAll(" ", "")}" scope="row" headers="time" class="text-center">${timeRange}</th>
-            <td class="d-flex inline-flex" id="type_${timeRange.replaceAll(" ", "")}" headers="type ${timeRange.replaceAll(" ", "")}">Modalità ${reservation["studentCode"] == user ? ("scelta: " + reservation["reservedMode"].toLowerCase()) : (" disponibili: " + reservation["mode"].toLowerCase())}`;
+            <td id="type_${timeRange.replaceAll(" ", "")}" headers="type ${timeRange.replaceAll(" ", "")}">
+                <div class="d-flex inline-flex">Modalità ${reservation["studentCode"] == user ? ("scelta: " + reservation["reservedMode"].toLowerCase()) : (" disponibili: " + reservation["mode"].toLowerCase())}`;
         if (isStudent) {
             if (reservation["studentCode"] == user) {
-                content += `<a href="reserve.php?type=unreserve&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-white text-primary border-primary ms-2">Cancella ricevimento</a>`;
+                content += `<a href="reserve.php?type=unreserve&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-secondary-subtle ms-2">Cancella ricevimento</a>`;
             } else {
                 const isButtonBlocked = reservation["studentCode"] != null || !canStudentReserve ? "disabled" : "";
                 const buttonPresence = `<a href="reserve.php?type=reserve&mode=Presenza&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-deepskyblue ${isButtonBlocked} ms-2" ${isButtonBlocked}>Prenota ricevimento in presenza</a>`;
@@ -98,9 +99,10 @@ function generateReceptionTable(date, user, professor, reservations, isStudent, 
                 }
             }
         }
-        content += `</td>`;
+        content += `</div>
+            </td>`;
         if (user == professor) {
-            content += `<td id="reservation_${timeRange}" headers="reservations ${timeRange}">`;
+            content += `<td id="reservation_${timeRange.replaceAll(" ", "")}" headers="reservations ${timeRange.replaceAll(" ", "")}">`;
                 if (reservation["name"] != null) {
                     content += `<div>Prenotato con studente: ${reservation["name"]} ${reservation["surname"]}</div>
                     <div>Modalità: ${reservation["reservedMode"].toLowerCase()}</div>`;

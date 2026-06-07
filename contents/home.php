@@ -1,6 +1,5 @@
 <div class="row mx-0">
     <main class="col-12 col-lg-6 mx-0 py-2 px-4 w-md-100">
-        <?php showMessage(); ?>
         <?php
             if (isAdmin()) {
                 include("contents/home_admin.php");
@@ -15,8 +14,8 @@
             <i class="fa-solid fa-angle-up" onclick=toggleStatistics()></i>
             <i class="fa-solid fa-angle-left" onclick=toggleStatistics()></i>
         </div>
-        <div class="px-4 py-3" style="display: block" id="statistics">   
-        <h3>Le statistiche</h3>
+        <div class="px-4 py-3">
+            <h3>Le statistiche</h3>
             <div class="d-flex flex-wrap gap-3">
                 <?php if (!isAdmin()): ?>
                     <div class="card text-center my-3">
@@ -26,7 +25,6 @@
                         <h2 class="fw-bolder text-black px-5 py-2"><?php echo count(isStudent() ? $dbh->getStudentCourses($user) : $dbh->getCoursesByProfessor($user)); ?></h2>
                     </div>
                     <div class="card text-center my-3">
-                    
                         <div class="card-body bg-deepskyblue text-white rounded-top">
                             <h5 class="card-title">Ricevimenti</h6>
                             <h5 class="card-title">prenotati</h6>

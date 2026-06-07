@@ -69,6 +69,7 @@
     ?>
     <?php if(isset($templateParams["toast"])): ?>
         <script src="<?php echo $templateParams["toast"]; ?>"></script>
+        <?php showMessage(); ?>
     <?php endif; ?>
 </body>
 </html>

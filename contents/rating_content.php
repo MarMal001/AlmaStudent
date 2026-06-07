@@ -1,11 +1,8 @@
-<form action="create_rating_course.php" method="POST" enctype="multipart/form-data">
+<form action="create_rating_course.php" method="POST" enctype="multipart/form-data" class="w-75 mx-auto">
     <ul>
-        <li><label class="text-secondary small mt-5 mb-2 mx-5">I campi con * sono da riempire obbligatoriamente</label></li>
-    <div class="card mt-0 mb-3 mx-5">
-        <div class="card-header bg-primary-subtle text-darkbluenavy fw-bold">
-            Recensisci: <?php echo $GLOBALS["dbh"]->getCourseInfo($templateParams["course"])[0]["name"]; ?>
-        </div>
-        <div class="card-body bg-primary-subtle">
+        <li><div class="text-secondary small mt-5 ms-1 mb-2">I campi con * sono da riempire obbligatoriamente</div></li>
+        <div class="container-fluid w-auto p-3 mb-4 mt-0 bg-primary-subtle border border-secondary-subtle rounded">
+            <li class="mb-4 fw-bold text-darkbluenavy"><h4>Recensisci: <?php echo $GLOBALS["dbh"]->getCourseInfo($templateParams["course"])[0]["name"]; ?></h4></li>
             <li>
                 <label for="lectures" class="mb-2">Quanto sono risultate interessanti e comprensibili le lezioni frequentate? *</label>
             </li>
@@ -57,12 +54,10 @@
             <li>
                 <textarea id="review" name="review" class="form-control mt-2" maxlength="1000"></textarea>
             </li>
-                     
         </div>
-    </div>
-    <li class="d-flex justify-content-end">
-        <input type="submit" value="Passa alla recensione docenti" class="btn btn-deepskyblue me-5 mb-5" />
-    </li>
+        <li class="d-flex justify-content-end">
+            <input type="submit" value="Passa alla recensione docenti" class="btn btn-deepskyblue mb-5" />
+        </li>
     </ul>
     <input type="hidden" id="course" name="course" value="<?php echo $templateParams["course"]; ?>">
 </form>
