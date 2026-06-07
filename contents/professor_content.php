@@ -113,7 +113,7 @@
             <div class="card mb-3 mt-4">
                 <div class="card-body overflow-auto bg-light-subtle <?php echo $style; ?>">
                     <?php if ($noReviews): ?>
-                        <h4 class="text-center">Non è presente ancora nessuna recensione</h4>
+                        <h4 class="text-center text-secondary">Non è presente ancora nessuna recensione</h4>
                     <?php endif; ?>
                     <?php foreach ($reviews as $review): ?>
                         <?php 
