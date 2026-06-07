@@ -200,6 +200,11 @@ button.dropdown-toggle::after {
   display: none !important;
 }
 
+.w-80 {
+    width: 80% !important;
+}
+
+/* TODO Passare queste tre media query in un altro foglio di stile apposito per quella pagina */
 @media (min-width: 992px) {
     .w-lg-55 {
         width: 55% !important;
@@ -212,12 +217,24 @@ button.dropdown-toggle::after {
     .w-lg-25 {
         width: 25% !important;
     }
+
+    .w-lg-60 {
+        width: 60% !important;
+    }
 }
+
 
 @media (min-width: 768px) {
     .rounded-md-start {
         border-radius: 0px !important;
     }
+}
+
+@media only screen and (min-width: 600px) {
+    .w-sm-75 {
+        width: 75% !important;
+    }
+
 }
 
 .bg-deepskyblue, .btn-deepskyblue {

@@ -107,7 +107,7 @@
             $place = "end";
             $bg = "bg-primary-subtle";
         }
-        echo '<div class="float-' . $place . ' '  . $bg . ' rounded-5 mb-4 p-3 w-75 w-lg-55">';
+        echo '<div class="float-' . $place . ' '  . $bg . ' rounded-5 mb-4 p-3 w-80 w-lg-60">';
         echo '<div class="d-flex justify-content-between align-items-center">';
         echo '<div class="d-md-inline-flex align-items-md-center p-1 mt-2 ms-2">';
         $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];
@@ -154,7 +154,7 @@
             $bg = "bg-primary-subtle";
             $border = "";
         }
-        echo '<div class="float-' . $place . ' '  . $bg . ' rounded-5 mb-4 p-3 w-75 w-lg-55">';
+        echo '<div class="float-' . $place . ' '  . $bg . ' rounded-5 mb-4 p-3 w-80 w-lg-60">';
         echo '<div class="d-flex justify-content-between align-items-center">';
         echo '<div class="d-md-inline-flex align-items-md-center p-1 mt-2 ms-2">';
         $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];

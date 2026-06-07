@@ -1,4 +1,4 @@
-<main>
+<main class="p-5">
     <?php $courseId = $templateParams["course"]; ?>
     <?php $courseInfo = $dbh->getCourseInfo($courseId)[0]; ?>  
     <?php $professors = $dbh->getProfessorsByCourse($courseId); ?>
@@ -70,7 +70,7 @@
         ?>
 
         <div class="card mb-3" style="height: clamp(200px, 60vh, 300px);">
-            <div class="card-body overflow-auto bg-light <?php echo $style; ?>">
+            <div class="card-body overflow-auto bg-light-subtle <?php echo $style; ?>">
                 <?php if ($noReviews): ?>
                     <h4 class="text-center text-secondary">Non è presente ancora nessuna recensione</h4>
                 <?php endif; ?>
