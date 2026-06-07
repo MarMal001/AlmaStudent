@@ -7,7 +7,7 @@
                 <i class="fa-solid fa-angle-down me-1 mt-1" style="color: rgb(30, 48, 80);"></i>
             </div>
             <form action="handle_reception.php" method="POST" enctype="multipart/form-data" id="c1" class="collapse p-3 w-100 show">
-                <ul>
+                <ul class="mb-0">
                     <li>
                         <label for="addReceptionDate" class="form-label">Data</label>
                     </li>
@@ -113,7 +113,7 @@
                 <i class="fa-solid fa-angle-down me-1 mt-1" style="color: rgb(30, 48, 80);"></i>
             </div>
             <form action="handle_reception.php" method="POST" enctype="multipart/form-data" id="c2" class="collapse p-3 w-100">
-                <ul>
+                <ul class="mb-0">
                     <li>
                         <label for="updateReceptionDate">Data</label>
                     </li>

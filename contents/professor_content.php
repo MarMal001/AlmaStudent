@@ -53,11 +53,11 @@
         <?php $courses = $dbh->getCoursesByProfessor($professorId); ?>
         <?php foreach($courses as $course): ?>
         <div class="container-fluid w-auto w-lg-55 m-2 ms-3 p-0">
-            <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100">
-                <div class="d-flex justify-content-between align-items-center text-darkbluenavy fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
-                    <div class="d-md-inline-flex align-items-md-center p-0">
-                        <p class="m-0 p-2 text-start"><?php echo $course["name"]; ?></p>
-                        <div>
+            <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100 p-0">
+                <div class="d-flex justify-content-between align-items-center text-darkbluenavy fw-bold py-4 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
+                    <div class="d-md-inline-flex align-items-md-center ps-2">
+                        <p class="m-0 p-0 text-start"><?php echo $course["name"]; ?></p>
+                        <div class="ms-md-2">
                             <?php $gRatings = $dbh->getGeneralRatingsByCourse($course["code"])[0]; ?>
                             <?php $ratings = [$gRatings["ratingL"], $gRatings["ratingM"], $gRatings["ratingE"], $gRatings["ratingD"]]; ?>
                             <?php createStars(getMeanRating($ratings), "#154388"); ?>
