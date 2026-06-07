@@ -56,7 +56,7 @@
             </li>
         </div>
         <li class="d-flex justify-content-end">
-            <input type="submit" value="Passa alla recensione docenti" class="btn btn-deepskyblue me-5 mb-5" />
+            <input type="submit" value="Passa alla recensione docenti" class="btn btn-deepskyblue mb-5" />
         </li>
     </ul>
     <input type="hidden" id="course" name="course" value="<?php echo $templateParams["course"]; ?>">

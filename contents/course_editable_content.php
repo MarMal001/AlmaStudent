@@ -20,9 +20,9 @@
             <li>
                 <input type="text" id="material" name="material" class="form-control rounded-pill" value="<?php echo $course['material']; ?>" />
             </li>
-            <div class="d-flex justify-content-end me-5 mt-4">
+            <div class="d-flex justify-content-end mt-4">
                 <li>
-                    <button class="btn btn-white border-primary me-1" type="reset">Annulla</button>
+                    <button class="btn btn-secondary-subtle me-1" type="reset">Annulla</button>
                 </li>
                 <li>
                     <button class="btn btn-deepskyblue" name="action" type="submit">Salva</button>

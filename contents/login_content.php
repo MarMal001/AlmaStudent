@@ -21,7 +21,7 @@
                     <input type="password" id="password" name="password" class="form-control rounded-pill w-100" required />
                 </li>
                 <li>
-                    <input type="submit" class="btn btn-outline-primary bg-white text-primary" value="Accedi" />
+                    <input type="submit" class="btn btn-secondary-subtle" value="Accedi" />
                 </li>
                 <li>
                     <a href="create_account.php" class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Non hai un account?</a>

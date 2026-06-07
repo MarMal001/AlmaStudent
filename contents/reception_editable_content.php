@@ -96,7 +96,7 @@
                     </div>
                     <div class="d-flex justify-content-end mt-4">
                         <li>
-                            <button class="btn btn-white border-primary me-1" type="reset">Annulla</button>
+                            <button class="btn btn-secondary-subtle me-1" type="reset">Annulla</button>
                         </li>
                         <li>
                             <button class="btn btn-deepskyblue ms-1" name="action" value="<?php echo RECEPTION_ACTION_ADD; ?>" type="submit">Aggiungi</button>
@@ -202,10 +202,10 @@
                     </div>
                     <div class="d-flex justify-content-end mt-4">
                         <li>
-                            <button class="btn btn-white border-primary me-1" type="reset">Annulla</button>
+                            <button class="btn btn-secondary-subtle me-1" type="reset">Annulla</button>
                         </li>
                         <li>
-                            <button class="btn btn-white border-primary mx-1" name="action" value="<?php echo RECEPTION_ACTION_DELETE; ?>" type="submit">Elimina</button>
+                            <button class="btn btn-secondary-subtle mx-1" name="action" value="<?php echo RECEPTION_ACTION_DELETE; ?>" type="submit">Elimina</button>
                         </li>
                         <li>
                             <button class="btn btn-deepskyblue ms-1" name="action" value="<?php echo RECEPTION_ACTION_MODIFY; ?>" type="submit">Salva</button>

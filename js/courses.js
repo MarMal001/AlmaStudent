@@ -219,7 +219,7 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
                 <button type="submit" class="btn btn-deepskyblue mt-3 me-2" name="action" value="${ADMIN_MODIFY_COURSE}">Modifica corso</button>
             </li>
             <li>
-                <button type="submit" class="btn btn-danger mt-3 me-5" name="action" value="${ADMIN_DELETE_COURSE}">Elimina corso</button>
+                <button type="submit" class="btn btn-darkred mt-3" name="action" value="${ADMIN_DELETE_COURSE}">Elimina corso</button>
             </li>
         </div>`;
     return content;

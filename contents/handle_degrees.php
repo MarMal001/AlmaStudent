@@ -73,7 +73,7 @@
                     </li>
                     <li>
                         <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-deepskyblue mt-3 me-5" name="action" value="<?php echo ADMIN_ADD_DEGREE; ?>">Crea</button>
+                            <button type="submit" class="btn btn-deepskyblue mt-3" name="action" value="<?php echo ADMIN_ADD_DEGREE; ?>">Crea</button>
                         </div>
                     </li>
                 </ul>

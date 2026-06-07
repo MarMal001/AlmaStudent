@@ -57,7 +57,7 @@ function generateUpdateDegreesForm(degree) {
                 <button type="submit" class="btn btn-deepskyblue mt-3 me-2" name="action" value="${ADMIN_MODIFY_DEGREE}">Modifica</button>
             </li>
             <li>
-                <button type="submit" class="btn btn-danger mt-3 me-5" name="action" value="${ADMIN_DELETE_DEGREE}">Elimina</button>
+                <button type="submit" class="btn btn-darkred mt-3" name="action" value="${ADMIN_DELETE_DEGREE}">Elimina</button>
             </li>
         </div>
         <input type="hidden" name="degreeCode" value="${degree["code"]} />`;

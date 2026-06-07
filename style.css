@@ -231,11 +231,28 @@ button.dropdown-toggle::after {
 
 .btn-deepskyblue {
     color: white !important;
+}
+
+.btn-secondary-subtle {
+    color: #1455B4 !important;
+    background-color: white !important;
+    border-color: #1455B4 !important;
+}
+
+.btn-deepskyblue, .btn-secondary-subtle, .btn-darkred {
     border-radius: 15px !important;
 }
 
-.bg-darkred {
+.bg-darkred, .btn-darkred {
     background-color: #B21212 !important;
+}
+
+.btn-darkred {
+    color: white !important;
+}
+
+.btn-darkred:hover {
+    background-color: red !important;
 }
 
 thead tr:first-child th {
@@ -250,7 +267,7 @@ thead tr:nth-child(2) th {
     border-color: #E2E3E5;
 }
 
-tbody tr:nth-child(even) {
+tbody tr:nth-child(even) td, tbody tr:nth-child(even) th, .btn-secondary-subtle:hover {
     background-color: #f2f2f2 !important; 
 }
 
