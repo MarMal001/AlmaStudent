@@ -1,4 +1,4 @@
-<section class="ms-4 mt-4">
+<section class="mx-5 mt-5">
     <?php $userData = $dbh->getPersonInfo($user)[0]; ?>
     <h1 class="fw-bold">Ciao <?php echo $userData["name"]; ?>!</h1>
     <div>Gestisci facilmente e velocemente i tuoi corsi.</div>
@@ -14,7 +14,7 @@
         </div>
     <?php endif; ?> 
 </section>
-<section class="ms-4">
+<section class="mx-5 mt-4">
     <h2 class="fw-bold">I tuoi corsi</h2>
     <?php
         if (isStudent()) {
@@ -80,7 +80,7 @@
         <div class="m-2 p-0"><?php echo isStudent() ? "Non sei iscritto a nessun corso" : "Non hai nessun corso assegnato"; ?></div>
     <?php endif; ?>
 </section>
-<section class="ms-4">
+<section class="mx-5 mt-4">
     <h2 class="fw-bold">I tuoi ricevimenti</h2>
     <ul>
         <?php foreach($reservations as $reservation): ?>

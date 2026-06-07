@@ -18,7 +18,7 @@
                 <label for="material" class="form-label">Materiale</label>
             </li>
             <li>
-                <input type="text" id="material" name="material" class="form-control rounded-pill" value="<?php echo $course['material']; ?>" />
+                <textarea type="text" id="material" name="material" class="form-control" value="<?php echo $course['material']; ?>" maxlength="1000"></textarea>
             </li>
             <div class="d-flex justify-content-end mt-4">
                 <li>

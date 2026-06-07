@@ -1,4 +1,4 @@
-<section class="ms-5 mt-5 mb-3">
+<section class="mx-5 mt-5 mb-3">
     <?php $userData = $dbh->getPersonInfo($user)[0]; ?>
     <h1 class="fw-bold">Ciao <?php echo $userData["name"]; ?>!</h1>
     <div>Gestisci le segnalazioni, i corsi e i professori dell'ateneo.</div>
@@ -9,7 +9,7 @@
     <a href="admin_modify.php?type=handleAccount&accountType=DOCENTE" class="btn btn-deepskyblue m-1 p-3">Gestisci account docenti</a>
     <a href="admin_modify.php?type=handleAccount&accountType=ADMIN" class="btn btn-deepskyblue m-1 p-3">Gestisci account admin</a>
 </section>
-<section class="fw-bold mb-5 ms-5 mt-4">
+<section class="fw-bold mb-5 mx-5 mt-4">
     <h2>Segnalazioni da risolvere</h2>
     <?php $reportedReviewsProf = $dbh->getReportedReviewsOfProfessors(); ?>
     <?php $reportedReviewsCourses = $dbh->getReportedReviewsOfCourses(); ?>
