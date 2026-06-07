@@ -45,7 +45,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                    <button class="btn btn-secondary-subtle" data-bs-dismiss="modal">Annulla</button>
                     <a class="btn btn-deepskyblue" href="logout.php">Conferma</a>
                 </div>
 

@@ -204,6 +204,14 @@ button.dropdown-toggle::after {
     width: 80% !important;
 }
 
+.w-90 {
+    width: 90% !important;
+}
+
+.w-lg-75, .w-lg-55, .w-lg-50, .w-lg-25, .w-lg-60, .w-lg-75, .w-sm-75 {
+    width: 100% !important;
+}
+
 /* TODO Passare queste tre media query in un altro foglio di stile apposito per quella pagina */
 @media (min-width: 992px) {
     .w-lg-55 {
@@ -221,6 +229,10 @@ button.dropdown-toggle::after {
     .w-lg-60 {
         width: 60% !important;
     }
+
+    .w-lg-75 {
+        width: 75% !important;
+    }
 }
 
 
@@ -228,13 +240,16 @@ button.dropdown-toggle::after {
     .rounded-md-start {
         border-radius: 0px !important;
     }
+    
+    .ms-md-2 {
+        margin-left: 2%;
+    }
 }
 
 @media only screen and (min-width: 600px) {
     .w-sm-75 {
         width: 75% !important;
     }
-
 }
 
 .bg-deepskyblue, .btn-deepskyblue {
