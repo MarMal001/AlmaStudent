@@ -30,13 +30,6 @@ create table Cambio_docente (
 	 Codice_Corso varchar(5) not null,
      constraint ID_Cambio_docente_ID primary key (Anno, Docente, Codice_Corso));
 
-create table CHAT (
-     Codice int not null auto_increment,
-     Studente varchar(100) not null,
-     Docente varchar(100) not null,
-     constraint SID_CHAT_ID unique (Studente, Docente),
-     constraint ID_CHAT_ID primary key (Codice));
-
 create table CORSO (
      Codice varchar(5) not null ,
      Nome varchar(100) not null,
@@ -69,14 +62,6 @@ create table MATERIALE (
      Studente varchar(100) not null,
      Codice_Corso varchar(5) not null,
      constraint ID_MATERIALE_ID primary key (Percorso));
-
-create table MESSAGGIO_CHAT (
-     Codice int not null,
-     Codice_Chat int not null,
-     Mittente varchar(100) not null,
-     Testo varchar(500) not null,
-     Allegato varchar(1),
-     constraint ID_MESSAGGIO_CHAT_ID primary key (Codice_Chat, Codice));
 
 create table PERSONA (
      Utente varchar(100) not null,
@@ -172,17 +157,12 @@ insert into PERSONA values
     # PROFESSORI
 	("eleonora.cinti5@unibo.it", "matematica!", "Eleonora", "Cinti", "DOCENTE"),
 	("luciano.margara@unibo.it", "#massaggiInchiaroAmante", "Luciano", "Margara", "DOCENTE"),
-	("a.melis@unibo.it", "ciao1234", "Andrea", "Melis", "DOCENTE"),
 	("davide.maltoni@unibo.it", "vivalAI!", "Davide", "Maltoni", "DOCENTE"),
-	("matteo.ferrara@unibo.it", "sonotriste", "Matteo", "Ferrara", "DOCENTE"),
 	("vittorio.ghini@unibo.it", "madonnadiPompei!", "Vittorio", "Ghini", "DOCENTE"),
 	("stefano.ferretti@unibo.it", "soloCodice@", "Stefano", "Ferretti", "DOCENTE"),
-	("luigi.guiducci3@unibo.it", "testacoil@", "Luigi", "Guiducci", "DOCENTE"),
+    ("mirko.viroli@unibo.it", "ciao", "Mirko", "Viroli", "DOCENTE"),
 	("damiana.lazzaro@unibo.it", "vivalAI@", "Damiana", "Lazzaro", "DOCENTE"),
-	("l.pellegrini@unibo.it", "vivalAI@", "Lorenzo", "Pellegrini", "DOCENTE"),
 	("franco.callegati@unibo.it", "mercredÃ¬5#", "Franco", "Callegati", "DOCENTE"),
-	("andrea.piroddi@unibo.it", "gns3!", "Andrea", "Piroddi", "DOCENTE"),
-	("a.ricci@unibo.it", "iot!", "Alessandro", "Ricci", "DOCENTE"),
     #STUDENTI
 	("carla.anselmi3@studio.unibo.it", "PolloAlladivola8@", "Carla", "Anselmi", "STUDENTE"),
 	("alessandro.giacomini2@studio.unibo.it", "FrierenBestWaifu4ever!", "Alessandro", "Giacomini", "STUDENTE");
@@ -196,18 +176,12 @@ insert into ADMIN values
 insert into DOCENTE values
 	("eleonora.cinti5@unibo.it", "", "", "", "default.png"),
 	("luciano.margara@unibo.it", "", "", "", "default.png"),
-	("a.melis@unibo.it", "", "", "", "default.png"),
 	("davide.maltoni@unibo.it", "", "", "", "default.png"),
-	("matteo.ferrara@unibo.it", "", "", "", "default.png"),
-	("vittorio.ghini@unibo.it", "Dipartimento di Informatica - Scienza e Ingegneria. Settore scientifico disciplinare: INFO-01/A Informatica 
-    ", "Cesena", "Il ricevimento può essere effettuato in modalità online, mediate una call con l'applicativo Teams. E' comunque possibile effettuare il ricevimento in presenza, presso la sede del Campus di Cesena, via dell'Università 50, stanza 4022b.", "vic25.png"),
+	("vittorio.ghini@unibo.it", "Dipartimento di Informatica - Scienza e Ingegneria. Settore scientifico disciplinare: INFO-01/A Informatica", "Cesena", "Il ricevimento può essere effettuato in modalità online, mediate una call con l'applicativo Teams. E' comunque possibile effettuare il ricevimento in presenza, presso la sede del Campus di Cesena, via dell'Università 50, stanza 4022b.", "vic25.png"),
 	("stefano.ferretti@unibo.it", "", "", "", "default.png"),
-	("luigi.guiducci3@unibo.it", "", "", "", "default.png"),
+	("mirko.viroli@unibo.it", "Dipartimento di Informatica - Scienza e Ingegneria. Settore scientifico disciplinare: IINF-05/A Sistemi di elaborazione delle informazioni", "Cesena", "Il docente riceverà nel suo studio il lunedì e martedì dalle 12 alle 13. E' utile se possibile ricevere una mail per anticipare l'argomento dell'incontro.", "default.png"),
 	("damiana.lazzaro@unibo.it", "", "", "", "default.png"),
-	("l.pellegrini@unibo.it", "", "", "", "default.png"),
-	("franco.callegati@unibo.it", "", "", "", "default.png"),
-	("andrea.piroddi@unibo.it", "", "", "", "default.png"),
-	("a.ricci@unibo.it", "", "", "", "default.png");
+	("franco.callegati@unibo.it", "", "", "", "default.png");
 
 ### STUDENTE ###
 insert into STUDENTE values
@@ -218,24 +192,22 @@ insert into STUDENTE values
 insert into FACOLTA values
 	("6673", "Ingegneria e scienze informatiche", "DISI", 3, "Cesena"),
 	("6670", "Ingegneria elettronica", "DEI", 3, "Cesena"),
-    ("6733", "Medicina e chirurgia", "DIMEC", 6, "Bologna"),
     ("6668", "Ingegneria informatica", "DISI", 3, "Bologna");
 
 ### CORSO ###
 insert into CORSO values
 	# PRIMO ANNO
-	("00013", "Analisi matematica", 1, 1, 6673, "", "Lorem", ""),
+	("00013", "Analisi matematica", 1, 1, 6673, "", "", ""),
 	("11929", "Algoritmi e strutture dati", 1, 2, 6673, "", "", ""),
 	("69731", "Architetture degli elaboratori", 1, 2, 6673, "", "", ""),
     # SECONDO ANNO
 	("08574", "Sistemi Operativi", 2, 1, 6673, "", "", ""),
-	("00405", "Fisica", 2, 2, 6673, "", "", ""),
+	("70219", "Programmazione ad oggetti", 2, 1, 6673, "", "", ""),
 	("B2561", "Metodi numerici per l'intelligenza artificiale", 2, 2, 6673, "", "", ""),
 	("70226", "Programmazione di reti", 2, 2, 6673, "", "", ""),
     # TERZO ANNO
 	("70218", "Reti di telecomunicazione", 3, 1, 6673, "", "", ""),
 	("70090", "Computer graphics", 3, 1, 6673, "", "", ""),
-	("77780", "Sistemi embedded e internet-of-things", 3, 1, 6673, "", "", ""),
 	("14015", "Crittografia", 3, 2, 6673, "", "", ""),
 	("96642", "Virtualizzazione e Integrazione di Sistemi", 3, 2, 6673, "", "", "");
 
@@ -243,20 +215,14 @@ insert into CORSO values
 insert into Tenere values
 	("eleonora.cinti5@unibo.it", "00013"),
 	("luciano.margara@unibo.it", "11929"),
-	("a.melis@unibo.it", "11929"),
 	("davide.maltoni@unibo.it", "69731"),
-	("matteo.ferrara@unibo.it", "69731"),
 	("vittorio.ghini@unibo.it", "08574"),
 	("stefano.ferretti@unibo.it", "08574"),
-    ("luigi.guiducci3@unibo.it", "00405"),
+    ("mirko.viroli@unibo.it", "70219"),
     ("damiana.lazzaro@unibo.it", "B2561"),
-    ("l.pellegrini@unibo.it", "B2561"),
 	("franco.callegati@unibo.it", "70226"),
-	("andrea.piroddi@unibo.it", "70226"),
 	("franco.callegati@unibo.it", "70218"),
-	("andrea.piroddi@unibo.it", "70218"),
     ("damiana.lazzaro@unibo.it", "70090"),
-    ("a.ricci@unibo.it", "77780"),
     ("luciano.margara@unibo.it", "14015"),
 	("vittorio.ghini@unibo.it", "96642");
 
@@ -307,20 +273,6 @@ insert into STUDENTE_IN_CORSO values
 --     ("14015", "2026", 4.3, 5.0, 4.2, 2.7),
 --     ("96642", "2026", 5.0, 5.0, 5.0, 5.0);
 
-### MESSAGGIO_CHAT ###
-insert into MESSAGGIO_CHAT values
-	(1, 1, "carla.anselmi3@studio.unibo.it", "Buongiorno prof.", null),
-	(2, 1, "vittorio.ghini@unibo.it", "Buongiorno.", null),
-	(3, 1, "carla.anselmi3@studio.unibo.it", "Come va?", null),
-	(1, 2, "vittorio.ghini@unibo.it", "Buongiorno.", null),
-	(2, 3, "alessandro.giacomini2@studio.unibo.it", "Buongiorno.", null);
-
-### CHAT ###
-insert into CHAT values
-	(null, "carla.anselmi3@studio.unibo.it", "vittorio.ghini@unibo.it"),
-	(null, "alessandro.giacomini2@studio.unibo.it", "vittorio.ghini@unibo.it"),
-	(null, "alessandro.giacomini2@studio.unibo.it", "franco.callegati@unibo.it");
-
 ### RICEVIMENTO ###
 insert into RICEVIMENTO values
 	("vittorio.ghini@unibo.it", "2026-06-12", "9:00:00", "9:15:00", "Online e in presenza"),
@@ -357,15 +309,7 @@ alter table Cambio_docente add constraint FKCam_DOC_FK
 alter table Cambio_docente add constraint FKCam_RAT_FK
 	foreign key (Codice_Corso, Anno)
     references RATING_GENERALE (Codice_Corso, Anno);
-
-alter table CHAT add constraint FKUtilizzo
-     foreign key (Studente)
-     references STUDENTE (Utente);
-
-alter table CHAT add constraint FKPartecipazione_FK
-     foreign key (Docente)
-     references DOCENTE (Utente);
-
+--
 -- Not implemented
 -- alter table CORSO add constraint ID_CORSO_CHK
 --     check(exists(select * from Tenere
@@ -387,10 +331,6 @@ alter table DOCENTE add constraint FKPER_DOC_FK
 alter table MATERIALE add constraint FKCaricamento_FK
      foreign key (Studente, Codice_Corso)
      references STUDENTE_IN_CORSO (Utente, Codice_Corso);
-
-alter table MESSAGGIO_CHAT add constraint FKComprensione_FK
-     foreign key (Codice_Chat)
-     references CHAT (Codice);
 
 alter table Prenotazione add constraint FKPre_STU_FK
      foreign key (Studente)
@@ -476,15 +416,6 @@ create unique index ID_Cambio_docente_IND
 create index FKCam_DOC_IND
      on Cambio_docente (Docente);
 
-create unique index SID_CHAT_IND
-     on CHAT (Studente, Docente);
-
-create unique index ID_CHAT_IND
-     on CHAT (Codice);
-
-create index FKPartecipazione_IND
-     on CHAT (Docente);
-
 create unique index ID_CORSO_IND
      on CORSO (Codice);
 
@@ -502,12 +433,6 @@ create unique index ID_MATERIALE_IND
 
 create index FKCaricamento_IND
      on MATERIALE (Studente, Codice_Corso);
-
-create unique index ID_MESSAGGIO_CHAT_IND
-     on MESSAGGIO_CHAT (Codice_Chat, Codice);
-
-create index FKComprensione_IND
-     on MESSAGGIO_CHAT (Codice_Chat);
 
 create unique index ID_PERSONA_IND
      on PERSONA (Utente);
