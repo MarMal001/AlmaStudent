@@ -11,11 +11,11 @@
                 <h4 class="m-0 p-2">Crea corso di laurea</h4>
                 <i class="fa-solid fa-angle-down me-1 mt-1" style="color: rgb(30, 48, 80);"></i>
             </div>
-            <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c1" class="collapse p-3 w-100 show">
+            <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c1" class="collapse px-3 pb-3 w-100 show">
                 <ul class="mb-0">
                     <li>
                         <label for="addName" class="text-left form-label">
-                            <h5>Nome</h5>
+                            Nome
                         </label>
                     </li>
                     <li>
@@ -24,7 +24,7 @@
                     <div class="d-flex align-content-stretch">
                         <li class="mt-2">
                             <label for="addYears" class="text-left form-label">
-                                <h5>Anni</h5>
+                                Anni
                             </label>
                         </li>
                         <li class="mt-2">
@@ -38,7 +38,7 @@
                     <div class="d-flex align-content-stretch">
                         <li class="mt-2">
                             <label for="addDepartment" class="text-left form-label">
-                                <h5>Dipartimento</h5>
+                                Dipartimento
                             </label>
                         </li>
                         <li class="mt-2">
@@ -52,7 +52,7 @@
                     <div class="d-flex align-content-stretch">
                         <li class="mt-2">
                             <label for="addBranch" class="text-left form-label">
-                                <h5>Sede</h5>
+                                Sede
                             </label>
                         </li>
                         <li class="mt-2">
@@ -65,7 +65,7 @@
                     </div>
                     <li>
                         <label for="addCode" class="text-left form-label">
-                            <h5>Codice corso</h5>
+                            Codice corso
                         </label>
                     </li>
                     <li>
@@ -86,15 +86,15 @@
                 <h4 class="m-0 p-2">Modifica corso di laurea</h4>
                 <i class="fa-solid fa-angle-down me-1 mt-1" style="color: rgb(30, 48, 80);"></i>
             </div>
-            <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c2" class="collapse p-3 w-100">
+            <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c2" class="collapse px-3 pb-3 w-100">
                 <ul class="mb-0">
                     <li>
                         <label for="degreeCode" class="form-label">
-                            <h5>Seleziona corso di laurea</h5>
+                            Seleziona corso di laurea
                         </label>
                     </li>
                     <li>
-                        <select name="code" id="degreeCode" onchange="getUpdateDegreesForm()" class="form-select rounded-pill w-25" required>
+                        <select name="code" id="degreeCode" onchange="getUpdateDegreesForm()" class="form-select rounded-pill w-lg-50" required>
                             <option value="" disabled selected hidden>-- Seleziona --</option>
                             <?php foreach ($templateParams["degrees"] as $degree): ?>
                                 <option value="<?php echo $degree["code"]; ?>"><?php echo $degree["code"] . " - " . $degree["name"] . " - " . $degree["campus"]; ?></option>

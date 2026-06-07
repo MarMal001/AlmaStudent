@@ -72,7 +72,7 @@
         <div class="card mb-3" style="height: clamp(200px, 60vh, 300px);">
             <div class="card-body overflow-auto bg-light-subtle <?php echo $style; ?>">
                 <?php if ($noReviews): ?>
-                    <h4 class="text-center text-secondary">Non è presente ancora nessuna recensione</h4>
+                    <h5 class="text-center text-secondary fw-normal">Non è presente ancora nessuna recensione</h5>
                 <?php endif; ?>
                 <?php foreach ($reviews as $review): ?>
                     <?php 

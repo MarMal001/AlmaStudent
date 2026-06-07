@@ -4,7 +4,7 @@ const ADMIN_DELETE_ACCOUNT = 7;
 function generateUpdateProfessorForm(professor, photo) {
     let content = `<li>
             <label for="updateName" class="text-left form-label">
-                <h5>Nome</h5>
+                Nome
             </label>
         </li>
         <li>
@@ -12,7 +12,7 @@ function generateUpdateProfessorForm(professor, photo) {
         </li>
         <li>
             <label for="updateSurname" class="text-left form-label">
-                <h5>Cognome</h5>
+                Cognome
             </label>
         </li>
         <li>
@@ -20,7 +20,7 @@ function generateUpdateProfessorForm(professor, photo) {
         </li>
         <li>
             <label for="updateDepartment" class="text-left form-label">
-                <h5>Dipartimento</h5>
+                Dipartimento
             </label>
         </li>
         <li>
@@ -28,7 +28,7 @@ function generateUpdateProfessorForm(professor, photo) {
         </li>
         <li>
             <label for="updateSeat" class="text-left form-label">
-                <h5>Sede</h5>
+                Sede
             </label>
         </li>
         <li>
@@ -36,11 +36,11 @@ function generateUpdateProfessorForm(professor, photo) {
         </li>
         <li>
             <label for="updateInfoReception" class="text-left form-label">
-                <h5>Info ricevimento</h5>
+                Info ricevimento
             </label>
         </li>
         <li>
-            <input type="text" id="updateInfoReception" name="infoReception" value="${professor["infoReception"]}" class="form-control rounded-pill" required />
+            <textarea type="text" id="infoReception" name="infoReception" class="form-control" maxlength="500">${professor["infoReception"]}</textarea>
         </li>
         <li class="w-25">
             <img src="${photo}" alt="" class="img-fluid object-fit-fill rounded mt-3" /> 
@@ -67,7 +67,7 @@ function generateUpdateProfessorForm(professor, photo) {
 function generateUpdateAdminForm(admin) {
     let content = `<li>
             <label for="updateName" class="text-left form-label">
-                <h5>Nome</h5>
+                Nome
             </label>
         </li>
         <li>
@@ -75,7 +75,7 @@ function generateUpdateAdminForm(admin) {
         </li>
         <li>
             <label for="updateSurname" class="text-left form-label">
-                <h5>Cognome</h5>
+                Cognome
             </label>
         </li>
         <li>

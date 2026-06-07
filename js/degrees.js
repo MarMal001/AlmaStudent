@@ -4,7 +4,7 @@ const ADMIN_DELETE_DEGREE = 8;
 function generateUpdateDegreesForm(degree) {
     let content = `<li>
             <label for="updateName" class="text-left form-label">
-                <h5>Nome</h5>
+                Nome
             </label>
         </li>
         <li>
@@ -13,7 +13,7 @@ function generateUpdateDegreesForm(degree) {
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
                 <label for="updateYears" class="text-left form-label">
-                    <h5>Anni</h5>
+                    Anni
                 </label>
             </li>
             <li class="mt-2">
@@ -27,7 +27,7 @@ function generateUpdateDegreesForm(degree) {
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
                 <label for="updateDepartment" class="text-left form-label">
-                    <h5>Dipartimento</h5>
+                    Dipartimento
                 </label>
             </li>
             <li class="mt-2">
@@ -41,7 +41,7 @@ function generateUpdateDegreesForm(degree) {
         <div class="d-flex align-content-stretch">
             <li class="mt-2">
                 <label for="updateBranch" class="text-left form-label">
-                    <h5>Sede</h5>
+                    Sede
                 </label>
             </li>
             <li class="mt-2">
