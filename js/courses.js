@@ -47,22 +47,22 @@ function generateAddCourse(degreeYears) {
 function generateCourses(courses, degreeYears, isStudent) {
     let content = "";
     for (let year = 1; year <= degreeYears; year++) {
-        content += `<h3>${parseCourseYear(year)} anno</h3>`;
+        content += `<p class="fs-3">${parseCourseYear(year)} anno</p>`;
         for (const course of courses[year]) {
             content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
                 <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-lg-75 p-0">
-                    <div class="d-flex justify-content-between align-items-center text-darkbluenavy fw-bold py-4 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
-                        <div class="d-md-inline-flex align-items-md-center ps-2">
-                            <p class="m-0 p-0 text-start">${course["name"]}</p>
-                            <div class="ms-md-2">
+                    <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
+                        <span class="d-md-inline-flex align-items-md-center ps-2">
+                            ${course["name"]}
+                            <span class="ms-md-2">
                                 ${createStars(getMeanRating([course["ratingL"], course["ratingM"], course["ratingE"], course["ratingD"]]), "#154388")}
-                            </div>`
+                            </span>`
             if (isStudent && course["isSubscribed"]) {
                 content += `<i class="fa-solid fa-check mx-2 mt-2" style="color: rgb(30, 48, 80);"></i>`
             }
-            content += `</div>
+            content += `</span>
                         <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
-                    </div>
+                    </button>
                     <div id="${course["code"]}" class="collapse p-3 w-100">
                         <ul class="d-flex flex-column align-items-start mb-0">`
             for (const professor of course["professors"]) {
@@ -89,18 +89,18 @@ function generateAllCourses(courses, isStudent) {
     for (const course of courses) {
         content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
             <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-lg-75 p-0">
-                <div class="d-flex justify-content-between align-items-center text-darkbluenavy fw-bold py-4 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
-                    <div class="d-md-inline-flex align-items-md-center ps-2">
-                        <p class="m-0 p-0 text-start">${course["code"]} ${course["name"]}: ${course["degreeName"]} - ${course["campus"]}</p>
-                        <div class="ms-md-2">
+                <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
+                    <span class="d-md-inline-flex align-items-md-center ps-2">
+                        ${course["code"]} ${course["name"]}: ${course["degreeName"]} - ${course["campus"]}
+                        <span class="ms-md-2">
                             ${createStars(getMeanRating([course["ratingL"], course["ratingM"], course["ratingE"], course["ratingD"]]), "#154388")}
-                        </div>`;
+                        </span>`;
         if (isStudent && course["isSubscribed"]) {
             content += `<i class="fa-solid fa-check mx-2 mt-2" style="color: rgb(30, 48, 80);"></i>`
         }
-        content += `</div>
+        content += `</span>
                     <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
-                </div>
+                </button>
                 <div id="${course["code"]}" class="collapse p-3 w-100">
                     <ul class="d-flex flex-column align-items-start">`;
         for (const professor of course["professors"]) {
