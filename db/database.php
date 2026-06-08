@@ -507,7 +507,7 @@ class DatabaseHelper{
     private function createProfessor($username, $department, $seat, $infoReception) {
         $stmt = $this->db->prepare(
             'INSERT INTO DOCENTE values
-            (?, ?, ?, ?, "default.png")'
+            (?, ?, ?, ?, "default.jpg")'
         );
         $stmt->bind_param("ssss", $username, $department, $seat, $infoReception);
         return $stmt->execute();

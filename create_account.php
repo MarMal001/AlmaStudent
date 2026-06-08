@@ -7,12 +7,13 @@ if (isUserLoggedIn()) {
 }
 
 if (isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["name"]) && isset($_POST["surname"])) {
-    $loginResult = $dbh->createAccount($_POST["username"], $_POST["password"], $_POST["name"], $_POST["surname"], "STUDENTE");
-    if ($loginResult) {
+    $result = $dbh->createAccount($_POST["username"], $_POST["password"], $_POST["name"], $_POST["surname"], "STUDENTE");
+    if ($result) {
         header("location: login.php");
     } else {
-        $templateParams["toast"] = "js/toast.js";
         $_SESSION["message"] = "L'account con questo username esiste già";
+        $_SESSION["messageType"] = "danger";
+        $templateParams["alert"] = "js/alert.js";
     }
 }
 

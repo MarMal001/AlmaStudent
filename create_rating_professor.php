@@ -8,5 +8,7 @@ foreach ($dbh->getProfessorsByCourse($_POST["course"]) as $professor) {
         $dbh->createReview($code, $_POST["review" . $professorId]);
     }
     $dbh->updateGeneralCourseRatingProfAvailability($_POST["course"]);
-    header("location: rating_professor.php?course=" . $_POST["course"]);
+    $_SESSION["message"] = "Recensione avvenuta con successo";
+    $_SESSION["messageType"] = "success";
+    header("location: index.php");
 }

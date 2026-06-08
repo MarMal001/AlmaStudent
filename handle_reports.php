@@ -13,8 +13,13 @@ if ($_GET["type"] == "remove") {
 }
 if ($state) {
     $message = "Operazione avvenuta correttamente";
+    $messageType = "success";
 } else {
     $message = "Non è stato possibile svolgere l'operazione";
+    $messageType = "danger";
 }
 
-header("location: index.php?message=$message");
+$_SESSION["message"] = $message;
+$_SESSION["messageType"] = $messageType;
+
+header("location: index.php");

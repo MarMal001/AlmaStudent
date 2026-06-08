@@ -7,9 +7,10 @@
     <input type="hidden" id="url" value=<?php echo $page;?> />
     <input type="hidden" id="type" value="professor" />
     <?php $professor = $dbh->getPersonInfo($professorId)[0]; ?>
+    <div class="mb-3"><?php showMessage(); ?></div>
     <h1><?php echo $professor["name"] . " " . $professor["surname"]; ?></h1>
     <section class="m-2 mb-4">
-        <div class="d-flex align-items-start align-items-center">
+        <div class="d-flex align-items-start">
             <h6 class="m-0 me-2">Rating degli studenti:</h6>
             <?php $ratings = $dbh->getProfessorRatings($professorId)[0]; ?>
             <div data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="
@@ -30,9 +31,8 @@
             </div>
         </div>
         <?php $profInfo = $dbh->getProfessorInfo($professorId)[0]; ?>
-        <div class="card mt-2 mb-3 bg-deepskyblue border-0 text-white" style="max-width: 600px;">
+        <div class="card mt-2 mb-3 bg-deepskyblue border-0 text-white">
         <div class="row g-0">
-                
             <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
                 <img src="<?php echo UPLOAD_DIR.'/professor/'.$profInfo["photo"]; ?>" class="img-fluid rounded-start object-fit-fill" alt="">
             </div>
@@ -87,10 +87,8 @@
                 </div>
             </div>
         </div> 
-        <?php endforeach; ?>   
-
+        <?php endforeach; ?>
     </section>
-
     <article class="mt-4">
         <h2>Ricevimento</h2>
         <p class="mt-3 pt-0"><?php echo $profInfo["infoReception"]; ?></p>
@@ -98,9 +96,11 @@
             <table class="table table-bordered" id="receptionTable">
             </table>
         </div>
-        <?php if ($user == $professorId): ?>
-            <a href="reception_editable.php" class="btn btn-deepskyblue">Modifica Disponibilità</a>
-        <?php endif; ?>
+        <div class="d-flex justify-content-end me-5 pe-4">
+            <?php if ($user == $professorId): ?>
+                <a href="reception_editable.php" class="btn btn-deepskyblue">Modifica Disponibilità</a>
+            <?php endif; ?>
+        </div>
     </article>
     <section class="mt-4">
         <h2>Opinioni degli studenti</h2>
@@ -120,7 +120,7 @@
             if ($reviews == NULL) {
                 $style = "d-flex justify-content-center align-items-center";
                 $noReviews = true;
-            } 
+            }
         ?>
         
             <div class="card mb-3 mt-3 mx-3">
@@ -130,6 +130,6 @@
                     <?php endif; ?>
                 </div>
             </div>
-        
+        </div>
     </section>
 </main>

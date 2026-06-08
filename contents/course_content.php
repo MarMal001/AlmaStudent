@@ -8,6 +8,7 @@
     <input type="hidden" id="type" value="course" />
     <?php $courseInfo = $dbh->getCourseInfo($courseId)[0]; ?>  
     <?php $professors = $dbh->getProfessorsByCourse($courseId); ?>
+    <div class="mb-3"><?php showMessage(); ?></div>
     <h1><?php echo $courseInfo["name"]; ?></h1>
     <section>
         <h3>
@@ -47,7 +48,7 @@
             ?>
             <?php 
             if (isProfessor() && isDesignatedProfessor($user, $courseId)): ?>
-                <a href="course_editable.php?course=<?php echo $courseId; ?>" class="btn btn-deepskyblue me-1">Modifica</a>
+                <a href="course_editable.php?course=<?php echo $courseId; ?>" class="btn btn-deepskyblue me-1 mt-2">Modifica</a>
             <?php endif; ?>
         </div>
     </section>
@@ -84,7 +85,7 @@
             } 
         ?>
 
-        <div class="card mb-3 mt-3 mx-3" style="height: clamp(200px, 60vh, 300px);">
+        <div class="card mb-3 mt-3 mx-3">
             <div class="card-body overflow-auto bg-light-subtle <?php echo $style; ?>" id="courseReviews">
                 <?php if ($noReviews): ?>
                     <h5 class="text-center text-secondary fw-normal">Non è presente ancora nessuna recensione</h5>

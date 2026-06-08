@@ -1,6 +1,7 @@
 <section class="mx-5 mt-5 mb-3">
     <?php $userData = $dbh->getPersonInfo($user)[0]; ?>
-    <h1 class="fw-bold">Ciao <?php echo $userData["name"]; ?>!</h1>
+    <?php showMessage(); ?>
+    <h1 class="fw-bold mt-3">Ciao <?php echo $userData["name"]; ?>!</h1>
     <div>Gestisci le segnalazioni, i corsi e i professori dell'ateneo.</div>
 </section>
 <section class="d-flex flex-column flex-lg-row align-items-start mx-5">

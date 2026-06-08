@@ -12,8 +12,9 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         registerLoggedUser($loginResult[0]);
         header("location: index.php");
     } else {
-        $templateParams["toast"] = "js/toast.js";
         $_SESSION["message"] = "Username o password sbagliati";
+        $_SESSION["messageType"] = "danger";
+        $templateParams["alert"] = "js/alert.js";
     }
 }
 

@@ -32,7 +32,6 @@ async function getReceptionTable() {
     } catch (error) {
         console.log(error.message);
     }
-
 }
 
 function getPreviousDay(currDay) {
@@ -64,7 +63,10 @@ function generateReceptionTable(date, user, professor, reservations, isStudent, 
     </tr>`;
     content += `<tr class="fs-6">
     <th id="time" scope="col">Ore</th>
-    <th id="type" scope="col">Disponibilità</th>`;    
+    <th id="type" scope="col">Disponibilità</th>`;
+    if (reservations.filter(e => e["date"] == date).length > 0) {
+        content += `<th id="reserveButtons" scope="col"></th>`;
+    }
     if (user == professor) {
         content += `<th id="reservations" scope="col">Prenotazioni</th>`;
     }
@@ -76,19 +78,21 @@ function generateReceptionTable(date, user, professor, reservations, isStudent, 
         content += `<tr>
             <th id="${timeRange.replaceAll(" ", "")}" scope="row" headers="time" class="text-center">${timeRange}</th>
             <td id="type_${timeRange.replaceAll(" ", "")}" headers="type ${timeRange.replaceAll(" ", "")}">
-                <div class="d-flex inline-flex">Modalità ${reservation["studentCode"] == user ? ("scelta: " + reservation["reservedMode"].toLowerCase()) : (" disponibili: " + reservation["mode"].toLowerCase())}`;
+                <div class="d-flex inline-flex">Modalità ${reservation["studentCode"] == user ? ("scelta: " + reservation["reservedMode"].toLowerCase()) : (" disponibili: " + reservation["mode"].toLowerCase())}
+            </td>
+            <td id="buttons_${timeRange.replaceAll(" ", "")}" headers="reserveButtons ${timeRange.replaceAll(" ", "")}">`;
         if (isStudent) {
             if (reservation["studentCode"] == user) {
-                content += `<a href="reserve.php?type=unreserve&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-secondary-subtle ms-2">Cancella ricevimento</a>`;
+                content += `<a href="reserve.php?type=unreserve&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-secondary-subtle ms-2 mx-2">Cancella ricevimento</a>`;
             } else {
                 const isButtonBlocked = reservation["studentCode"] != null || !canStudentReserve ? "disabled" : "";
-                const buttonPresence = `<a href="reserve.php?type=reserve&mode=Presenza&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-deepskyblue ${isButtonBlocked} ms-2" ${isButtonBlocked}>Prenota ricevimento in presenza</a>`;
-                const buttonOnline = `<a href="reserve.php?type=reserve&mode=Online&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-deepskyblue ms-2 ${isButtonBlocked}" ${isButtonBlocked}>Prenota ricevimento online</a>`;
+                const buttonPresence = `<a href="reserve.php?type=reserve&mode=Presenza&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-deepskyblue ${isButtonBlocked} mx-2 my-1" ${isButtonBlocked}>Prenota ricevimento in presenza</a>`;
+                const buttonOnline = `<a href="reserve.php?type=reserve&mode=Online&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-deepskyblue ms-2 ${isButtonBlocked} mx-2 my-1" ${isButtonBlocked}>Prenota ricevimento online</a>`;
                 let tooltipStart = "";
                 let tooltipEnd = "";
                 if (isButtonBlocked) {
                     const text = !canStudentReserve ? "Hai raggiunto il numero massimo di slot prenotabili per il giorno" : "Slot prenotato da un altro studente";
-                    tooltipStart = `<div data-bs-toggle="tooltip" title="${text}">`;
+                    tooltipStart = `<div class="d-inline-flex m-0" data-bs-toggle="tooltip" title="${text}">`;
                     tooltipEnd = "</div>";
                 }
                 if (reservation["mode"].toLowerCase().includes("online")) {
@@ -116,9 +120,12 @@ function generateReceptionTable(date, user, professor, reservations, isStudent, 
     if(reservations.filter(e => e["date"] == date).length == 0) {
         content += `<td id="noTime" headers="time" class="text-center">Non sono presenti ricevimenti in questa data</td>
         <td id="noAvailability" headers="type" class="text-center">Nessuna</td>`;
+        if (user == professor) {
+            content += '<td id="noReservations" headers="reservations" class="text-center">Nessuna</td>';
+        }
     }
     content += `</tbody>`;
-        
+
     return content;
 }
 

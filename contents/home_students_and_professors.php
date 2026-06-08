@@ -1,6 +1,7 @@
 <section class="mx-5 mt-5">
     <?php $userData = $dbh->getPersonInfo($user)[0]; ?>
-    <h1 class="fw-bold">Ciao <?php echo $userData["name"]; ?>!</h1>
+    <?php showMessage(); ?>
+    <h1 class="fw-bold mt-3">Ciao <?php echo $userData["name"]; ?>!</h1>
     <div>Gestisci facilmente e velocemente i tuoi corsi.</div>
     <?php if (isStudent() && $dbh->isStudentBanned($user)): ?>
         <div class="card text-center my-3">
@@ -74,7 +75,7 @@
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
     <?php endforeach; ?>
     <?php if (count($courses) == 0): ?>
         <div class="m-2 p-0"><?php echo isStudent() ? "Non sei iscritto a nessun corso" : "Non hai nessun corso assegnato"; ?></div>
@@ -90,7 +91,9 @@
             <?php endif; ?>
         <?php endforeach; ?>
     </ul>
-    <?php if (count($reservations) == 0): ?>
-        <div class="m-2 p-0"><?php echo isStudent() ? "Non hai prenotato nessun ricevimento" : "Non hai ricevimenti prenotati"; ?></div>
+    <?php if (isStudent() && count($reservations) == 0): ?>
+        <div class="m-2 p-0"><?php echo "Non hai prenotato nessun ricevimento"; ?></div>
+    <?php elseif (isProfessor() && count($dbh->getReservedReservationsOfProfessor($user)) == 0): ?>
+        <div class="m-2 p-0"><?php echo "Non hai ricevimenti prenotati"; ?></div>
     <?php endif; ?>
 </section>

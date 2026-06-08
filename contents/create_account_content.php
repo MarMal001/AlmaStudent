@@ -3,7 +3,10 @@
     <div class="col-xl-3 col-5 bg-deepskyblue text-center text-white rounded-4 d-flex justify-content-center">
         <form action="create_account.php" method="post" class="pt-5">
             <h2 class="text-white">Crea un account</h2>
-            <ul>
+            <ul> 
+                <li class="mt-2 mb-0 p-0">
+                    <?php showMessage(); ?>
+                </li>
                 <li>
                     <label for="name" class="text-left form-label">
                         <h5>Nome</h5>
@@ -39,7 +42,7 @@
                 <li>
                     <input type="submit" class="btn btn-secondary-subtle" value="Crea account" />
                 </li>
-                <li>
+                <li class="mt-3">
                     <a href="login.php" class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Hai già un account?</a>
                 </li>
             </ul>

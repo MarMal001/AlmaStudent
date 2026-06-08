@@ -3,7 +3,7 @@
     <section class="container-fluid w-auto m-2 p-0 my-4">
         <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-75 mx-auto">
             <div class="d-flex justify-content-between align-items-center fw-bold p-3">
-                <p class="m-0 p-2">Modifica account <?php echo strtolower($_GET["accountType"]); ?></p>
+                <h4 class="m-0 p-2">Modifica account <?php echo strtolower($_GET["accountType"]); ?></h4>
             </div>
             <form action="handle_update_profile_professor.php" method="POST" enctype="multipart/form-data" class="w-100">
                 <ul class="mb-0">
