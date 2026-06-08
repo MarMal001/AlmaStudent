@@ -3,7 +3,7 @@ require_once "init.php";
 
 $templateParams["title"] = "Course";
 $templateParams["content"] = "course_content.php";
-$templateParams["style"] = ["style.css"];
+$templateParams["style"] = ["style.css", "course.css"];
 $templateParams["js"] = array("js/tooltip.js", "js/reviews.js");
 
 if (isset($_GET["course"]) && $dbh->courseExists($_GET["course"])) {

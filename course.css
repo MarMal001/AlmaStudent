@@ -10,6 +10,6 @@
     }
 }
 
-section:last-of-type > div {
-    height: 250px;
+section:last-of-type > div:nth-of-type(2) {
+    height: 250px !important;
 }

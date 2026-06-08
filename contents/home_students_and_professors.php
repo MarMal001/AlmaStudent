@@ -2,7 +2,7 @@
     <?php $userData = $dbh->getPersonInfo($user)[0]; ?>
     <?php showMessage(); ?>
     <h1 class="fw-bold mt-3">Ciao <?php echo $userData["name"]; ?>!</h1>
-    <div>Gestisci facilmente e velocemente i tuoi corsi.</div>
+    <p class="pb-0">Gestisci facilmente e velocemente i tuoi corsi.</p>
     <?php if (isStudent() && $dbh->isStudentBanned($user)): ?>
         <div class="card text-center my-3">
             <div class="card-body bg-darkred text-white rounded p-4">
@@ -16,7 +16,7 @@
     <?php endif; ?> 
 </div>
 <section class="mx-5 mt-4">
-    <h2 class="fw-bold">I tuoi corsi</h2>
+    <h2 class="fw-bold mb-3">I tuoi corsi</h2>
     <?php
         if (isStudent()) {
             $courses = $dbh->getStudentCourses($user);
@@ -82,7 +82,7 @@
     <?php endif; ?>
 </section>
 <section class="mx-5 mt-4 mb-5">
-    <h2 class="fw-bold">I tuoi ricevimenti</h2>
+    <h2 class="fw-bold mb-3">I tuoi ricevimenti</h2>
     <ul>
         <?php foreach($reservations as $reservation): ?>
             <?php if ($reservation["name"] != NULL): ?>

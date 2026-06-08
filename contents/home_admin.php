@@ -2,7 +2,7 @@
     <?php $userData = $dbh->getPersonInfo($user)[0]; ?>
     <?php showMessage(); ?>
     <h1 class="fw-bold mt-3">Ciao <?php echo $userData["name"]; ?>!</h1>
-    <div>Gestisci le segnalazioni, i corsi e i professori dell'ateneo.</div>
+    <p class="pb-0">Gestisci le segnalazioni, i corsi e i professori dell'ateneo.</p>
 </div>
 <div class="d-flex flex-column flex-lg-row align-items-start mx-5">
     <a href="admin_modify.php?type=handleDegrees" class="btn btn-deepskyblue m-1 p-3">Gestisci le facoltà</a>
