@@ -127,7 +127,7 @@
                     </div>
                 <?php endif; ?>
             </div>
-            <h3 class="mt-4">Il calendario</h3>
+            <h3 class="mt-4 mb-3">Il calendario</h3>
             <div class="card" id="calendar-container">
                 <div class="bg-deepskyblue text-white text-center py-3 rounded-top" id="calendar-header">
                     <div class="d-flex inline-flex justify-content-center align-items-center" id="calendar-navigation">

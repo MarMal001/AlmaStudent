@@ -2,7 +2,7 @@
     <?php $userData = $dbh->getPersonInfo($user)[0]; ?>
     <?php showMessage(); ?>
     <h1 class="fw-bold mt-3">Ciao <?php echo $userData["name"]; ?>!</h1>
-    <p>Gestisci facilmente e velocemente i tuoi corsi.</p>
+    <p class="pb-0">Gestisci facilmente e velocemente i tuoi corsi.</p>
     <?php if (isStudent() && $dbh->isStudentBanned($user)): ?>
         <div class="card text-center my-3">
             <div class="card-body bg-darkred text-white rounded p-4">
