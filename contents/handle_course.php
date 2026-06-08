@@ -6,7 +6,7 @@
                 <i class="fa-solid fa-angle-down me-1 mt-1" style="color: rgb(30, 48, 80);"></i>
             </button>
             <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c1" class="collapse px-3 pb-3 w-100 show">
-                <ul class="mb-0 pb-0">
+                <ul class="mb-0 py-0">
                     <li>
                         <label for="addDegreeCode" class="form-label">
                             Corso di laurea
@@ -32,7 +32,7 @@
                 <i class="fa-solid fa-angle-down me-1 mt-1" style="color: rgb(30, 48, 80);"></i>
             </button>
             <form action="handle_admin.php" method="POST" enctype="multipart/form-data" id="c2" class="collapse px-3 pb-3 w-100">
-                <ul class="mb-0">
+                <ul class="mb-0 pt-0">
                     <li>
                         <label for="updateDegreeCode" class="form-label">
                             Corso di laurea

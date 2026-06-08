@@ -122,7 +122,7 @@ function generateAllCourses(courses, isStudent) {
 }
 
 function generateUpdateCoursesDropdown(degrees, degreeCode, courses, degreeYears) {
-    let content = `<ul class="my-0 pb-0">
+let content = `<ul class="mb-0 py-0">
             <li>
                 <label for="updateDegreeCode" class="form-label">
                     Corso di laurea
