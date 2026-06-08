@@ -51,7 +51,7 @@ function generateCourses(courses, degreeYears, isStudent) {
         for (const course of courses[year]) {
             content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
                 <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-lg-75 p-0">
-                    <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
+                    <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between text-darkbluenavy align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
                         <span class="d-md-inline-flex align-items-md-center ps-2">
                             ${course["name"]}
                             <span class="ms-md-2">
@@ -89,7 +89,7 @@ function generateAllCourses(courses, isStudent) {
     for (const course of courses) {
         content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
             <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-lg-75 p-0">
-                <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
+                <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between text-darkbluenavy align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
                     <span class="d-md-inline-flex align-items-md-center ps-2">
                         ${course["code"]} ${course["name"]}: ${course["degreeName"]} - ${course["campus"]}
                         <span class="ms-md-2">

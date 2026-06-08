@@ -31,17 +31,17 @@
     <?php foreach($courses as $course): ?>
         <div class="container-fluid w-auto m-2 p-0">
             <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100 p-0">
-                <div class="d-flex justify-content-between align-items-center text-darkbluenavy fw-bold py-4 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
-                    <div class="d-md-inline-flex align-items-md-center ps-2">
-                        <p class="m-0 p-0 text-start"><?php echo $course["name"]; ?></p>
-                        <div class="ms-md-2">
+                <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between text-darkbluenavy align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
+                    <span class="d-md-inline-flex align-items-md-center ps-2">
+                        <?php echo $course["name"]; ?>
+                        <span class="ms-md-2">
                             <?php $gRatings = $dbh->getGeneralRatingsByCourse($course["code"])[0]; ?>
                             <?php $ratings = [$gRatings["ratingL"], $gRatings["ratingM"], $gRatings["ratingE"], $gRatings["ratingD"]]; ?>
                             <?php createStars(getMeanRating($ratings), "#154388"); ?>
-                        </div>
-                    </div>
+                        </span>
+                    </span>
                     <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
-                </div>
+                </button>
                 <div id="<?php echo $course["code"]; ?>" class="collapse p-3 w-100">
                     <?php $professors = $dbh->getProfessorsByCourse($course["code"]); ?>
                         <ul class="d-flex flex-column align-items-start">

@@ -1,7 +1,7 @@
 <main>
     <div class="container-fluid w-auto mx-2 mt-5 p-0 mb-4">
         <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-75 mx-auto">
-            <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#c1">
+            <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between text-darkbluenavy align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#c1">
                 Aggiungi corso
                 <i class="fa-solid fa-angle-down me-1 mt-1" style="color: rgb(30, 48, 80);"></i>
             </button>
