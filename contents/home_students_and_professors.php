@@ -1,4 +1,4 @@
-<section class="mx-5 mt-5">
+<div class="mx-5 mt-5">
     <?php $userData = $dbh->getPersonInfo($user)[0]; ?>
     <?php showMessage(); ?>
     <h1 class="fw-bold mt-3">Ciao <?php echo $userData["name"]; ?>!</h1>
@@ -14,7 +14,7 @@
             </div>
         </div>
     <?php endif; ?> 
-</section>
+</div>
 <section class="mx-5 mt-4">
     <h2 class="fw-bold">I tuoi corsi</h2>
     <?php

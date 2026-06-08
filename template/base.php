@@ -25,17 +25,15 @@
         </a>
         <?php if (isUserLoggedIn()): ?>
             <nav class="mt-5 me-0">
-                <ul>
-                    <div>
-                        <li><i class="fa-solid fa-bars py-3"></i></li>
-                    </div>
-                    <div class="bg-deepskyblue">
+                <div>
+                    <i class="fa-solid fa-bars py-3"></i>
+                    <ul class="bg-deepskyblue">
                         <li><a href="index.php">Home</a></li>
                         <li><a href="professors.php">Docenti</a></li>
                         <li><a href="courses.php">Corsi</a></li>
                         <li><a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff;"></i></a></li>
-                    </div>
-                </ul>
+                    </ul>
+                </div>
             </nav>
         <?php endif; ?>
     </header>
@@ -44,7 +42,7 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h5 class="modal-title">Sei sicuro?</h5>
+                    <p class="modal-title fs-5">Sei sicuro?</p>
                 </div>
 
                 <div class="modal-body">

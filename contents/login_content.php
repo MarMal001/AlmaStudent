@@ -9,7 +9,7 @@
                 </li>
                 <li>
                     <label for="username" class="text-left form-label">
-                        <h5>Username</h5>
+                        Username
                     </label>
                 </li>
                 <li>
@@ -17,7 +17,7 @@
                 </li>
                 <li>
                     <label for="password" class="text-left form-label">
-                        <h5>Password</h5>
+                        Password
                     </label>
                 </li>
                 <li>

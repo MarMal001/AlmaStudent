@@ -82,24 +82,26 @@ aside h1 {
     color: black !important;
 }
 
-nav ul {
+nav div {
     position: relative;
-    min-width: 100px;
 }
 
-nav ul div:first-child {
+nav div > i {
     cursor: pointer;
     font-size: 20px;
 }
 
-nav ul div:last-child {
+nav div ul {
     display: none;
     position: absolute;
-    min-width: 100px;
     box-shadow: 8px 16px 16px 0px rgba(0,0,0,0.2);
 }
 
-nav ul:hover div:last-child {
+nav div ul li, nav div > i {
+    min-width: 100px;
+}
+
+nav div:hover ul {
     display: block;
 }
 
@@ -127,11 +129,11 @@ nav ul:hover div:last-child {
         display: inline-block;
     }
 
-    nav ul div:first-child {
+    nav div > i:first-child {
         display: none;
     }
 
-    nav ul div:last-child, nav ul:hover div:last-child {
+    nav div ul, nav div:hover ul {
         display: flex;
         position: relative;
         box-shadow: none;
@@ -216,7 +218,7 @@ form > ul > li > a {
     text-decoration: underline;
 }
 
-nav ul li:hover, .btn-deepskyblue:hover {
+nav ul li:hover, nav div > i:hover, .btn-deepskyblue:hover {
     background-color: #1a65d5 !important;
 }
 
