@@ -87,9 +87,6 @@
 
         <div class="card mb-3 mt-3 mx-3">
             <div class="card-body overflow-auto bg-light-subtle <?php echo $style; ?>" id="courseReviews">
-                <?php if ($noReviews): ?>
-                    <h5 class="text-center text-secondary fw-normal">Non è presente ancora nessuna recensione</h5>
-                <?php endif; ?>
             </div>
         </div>
         <?php if (isStudent()): ?>
