@@ -236,16 +236,20 @@ button.dropdown-toggle::after {
   display: none !important;
 }
 
+.w-lg-75, .w-lg-55, .w-lg-50, .w-lg-25, .w-lg-60, .w-lg-75, .w-sm-75 {
+    width: 100% !important;
+}
+
+.w-35 {
+    width: 35% !important;
+}
+
 .w-80 {
     width: 80% !important;
 }
 
 .w-90 {
     width: 90% !important;
-}
-
-.w-lg-75, .w-lg-55, .w-lg-50, .w-lg-25, .w-lg-60, .w-lg-75, .w-sm-75 {
-    width: 100% !important;
 }
 
 /* TODO Passare queste tre media query in un altro foglio di stile apposito per quella pagina */
@@ -260,6 +264,10 @@ button.dropdown-toggle::after {
 
     .w-lg-25 {
         width: 25% !important;
+    }
+
+    .w-lg-15 {
+        width: 15% !important;
     }
 
     .w-lg-60 {

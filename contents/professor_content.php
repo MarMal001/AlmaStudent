@@ -1,6 +1,11 @@
 <main class="p-5"> 
-    <?php $professorId = $templateParams["professor"]; ?>
+    <?php 
+        $professorId = $templateParams["professor"]; 
+        $page = explode("/", $_SERVER['REQUEST_URI'])[2];
+    ?>
     <input type="hidden" id="professor" value=<?php echo $professorId;?> />
+    <input type="hidden" id="url" value=<?php echo $page;?> />
+    <input type="hidden" id="type" value="professor" />
     <?php $professor = $dbh->getPersonInfo($professorId)[0]; ?>
     <div class="mb-3"><?php showMessage(); ?></div>
     <h1><?php echo $professor["name"] . " " . $professor["surname"]; ?></h1>
@@ -49,7 +54,7 @@
 
     </section>
     <section>
-        <h2 class="mb-4">Corsi</h2>
+        <h2 class="mb-3 mt-4">Corsi</h2>
         <?php $courses = $dbh->getCoursesByProfessor($professorId); ?>
         <?php foreach($courses as $course): ?>
         <div class="container-fluid w-auto w-lg-55 m-2 ms-3 p-0">
@@ -86,7 +91,7 @@
     </section>
     <article class="mt-4">
         <h2>Ricevimento</h2>
-        <p><?php echo $profInfo["infoReception"]; ?></p>
+        <p class="mt-3 pt-0"><?php echo $profInfo["infoReception"]; ?></p>
         <div class="d-flex justify-content-center">
             <table class="table table-bordered" id="receptionTable">
             </table>
@@ -97,8 +102,18 @@
             <?php endif; ?>
         </div>
     </article>
-    <section class="mt-3">
+    <section class="mt-4">
         <h2>Opinioni degli studenti</h2>
+        <div class="d-inline-flex ms-3 mt-2">
+            <label for="reviewsNumber" class="mt-2">Visualizza: </label>
+            <select name="reviewsNumber" id="reviewsNumber" class="rounded-pill form-select ms-2" onChange="getSelectedProfessorReviewsForm()">
+                <option value="" selected>Tutte</option>
+                <option value="5">ultime 5</option>
+                <option value="10">ultime 10</option>
+                <option value="50">ultime 50</option>
+            </select>
+        </div>
+
         <?php $reviews = $dbh->getReviewsByProfessor($professorId); 
             $noReviews = false;
             $style = "";
@@ -107,17 +122,13 @@
                 $noReviews = true;
             }
         ?>
-        <div class="card mb-3 mt-4">
-            <div class="card-body overflow-auto bg-light-subtle <?php echo $style; ?>">
-                <?php if ($noReviews): ?>
-                    <h5 class="text-center text-secondary fw-normal">Non è presente ancora nessuna recensione</h5>
-                <?php endif; ?>
-                <?php foreach ($reviews as $review): ?>
-                    <?php
-                        $page = explode("/", $_SERVER['REQUEST_URI']);
-                        generateProfessorReview($page[2], $review["id"], $review["student"], $review["date"], $review["text"], $review["reported"], $professorId, $review["course"]);
-                    ?>
-                <?php endforeach; ?>
+        
+            <div class="card mb-3 mt-3 mx-3">
+                <div class="card-body overflow-auto bg-light-subtle <?php echo $style; ?>" id="profReviews">
+                    <?php if ($noReviews): ?>
+                        <h5 class="text-center text-secondary fw-normal">Non è presente ancora nessuna recensione</h5>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </section>
