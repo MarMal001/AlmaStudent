@@ -10,7 +10,7 @@
     }
 }
 
-section:last-of-type > div {
+section:last-of-type > div:last-child {
     height: 250px;
 }
 
