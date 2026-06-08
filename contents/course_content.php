@@ -1,5 +1,11 @@
 <main class="p-5">
-    <?php $courseId = $templateParams["course"]; ?>
+    <?php 
+        $courseId = $templateParams["course"]; 
+        $page = explode("/", $_SERVER['REQUEST_URI'])[2];    
+    ?>
+    <input type="hidden" id="course" value=<?php echo $courseId;?> />
+    <input type="hidden" id="url" value=<?php echo $page;?> />
+    <input type="hidden" id="type" value="course" />
     <?php $courseInfo = $dbh->getCourseInfo($courseId)[0]; ?>  
     <?php $professors = $dbh->getProfessorsByCourse($courseId); ?>
     <h1><?php echo $courseInfo["name"]; ?></h1>
@@ -34,7 +40,7 @@
                 <?php createStars(getMeanRating($ratings), "#154388"); ?>
             </div>
         </div>
-        <div class="mb-3">
+        <div class="mb-4">
             <?php
                 if (isStudent())
                     subscriptionButton($user, $courseId);
@@ -45,20 +51,29 @@
             <?php endif; ?>
         </div>
     </section>
-    <article>
+    <article class="mb-4">
         <h2>Descrizione</h2>
-        <p>
+        <p class="mt-3 pt-0">
             <?php echo $courseInfo["description"]; ?>
         </p>
     </article>
-    <article>
+    <article class="mb-4">
         <h2>Materiale</h2>
-        <p>
+        <p class="mt-3 pt-0">
             <?php echo $courseInfo["material"]; ?>
         </p>
     </article>
     <section>
         <h2>Opinioni degli studenti</h2>
+        <div class="d-inline-flex ms-3 mt-2">
+            <label for="reviewsNumber" class="mt-2">Visualizza: </label>
+            <select name="reviewsNumber" id="reviewsNumber" class="rounded-pill form-select ms-2" onChange="getSelectedCourseReviewsForm()">
+                <option value="" selected>Tutte</option>
+                <option value="5">ultime 5</option>
+                <option value="10">ultime 10</option>
+                <option value="50">ultime 50</option>
+            </select>
+        </div>
 
         <?php $reviews = $dbh->getReviewsByCourse($courseId);
             $noReviews = false;
@@ -69,25 +84,20 @@
             } 
         ?>
 
-        <div class="card mb-3" style="height: clamp(200px, 60vh, 300px);">
-            <div class="card-body overflow-auto bg-light-subtle <?php echo $style; ?>">
+        <div class="card mb-3 mt-3 mx-3" style="height: clamp(200px, 60vh, 300px);">
+            <div class="card-body overflow-auto bg-light-subtle <?php echo $style; ?>" id="courseReviews">
                 <?php if ($noReviews): ?>
                     <h5 class="text-center text-secondary fw-normal">Non è presente ancora nessuna recensione</h5>
                 <?php endif; ?>
-                <?php foreach ($reviews as $review): ?>
-                    <?php 
-                        $page = explode("/", $_SERVER['REQUEST_URI']);
-                        generateCourseReview($page[2], $review["id"], $review["student"], $review["date"], $review["text"], $review["reported"], $courseId); ?>
-                <?php endforeach; ?>
             </div>
         </div>
         <?php if (isStudent()): ?>
             <div class="d-flex justify-content-end mb-5 me-2">
-                <?php if (!$dbh->canRateCourse($user, $courseId)[0]["existence"] || $dbh->courseIsAlreadyRated($user, $courseId) || $dbh->isStudentBanned($user)): ?>
-                    <div data-bs-toggle="tooltip" data-bs-placement="left" title="Non hai ancora sostenuto con esito positivo l'esame o hai già recensito o sei stato bloccato">
+                <?php if ($dbh->canRateCourse($user, $courseId)[0]["existence"] && !$dbh->courseIsAlreadyRated($user, $courseId) && $dbh->isStudentBanned($user)): ?>
+                    <div data-bs-toggle="tooltip" data-bs-placement="left" title="Sei stato bloccato">
                         <a class="btn btn-deepskyblue disabled" href="rating.php?course=<?php echo $courseId; ?>">Recensisci</a>
                     </div>
-                <?php else: ?>
+                <?php elseif ($dbh->canRateCourse($user, $courseId)[0]["existence"] && !$dbh->courseIsAlreadyRated($user, $courseId)): ?>
                     <a class="btn btn-deepskyblue" href="rating.php?course=<?php echo $courseId; ?>">Recensisci</a>
                 <?php endif; ?>    
             </div>
