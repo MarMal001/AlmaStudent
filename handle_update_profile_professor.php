@@ -9,7 +9,7 @@ if (!isProfessor()) {
 
 if (isset($_POST["department"]) && isset($_POST["seat"]) && isset($_POST["infoReception"])) {
     if (isset($_FILES["profilePicture"]) && $_FILES["profilePicture"]["name"] != "") {
-        $profilePicture = idWithoutDomain($user) . ".png";
+        $profilePicture = idWithoutDomain($user) . ".jpg";
         $f = fopen(UPLOAD_DIR . "/professor/" . $profilePicture, "wb");
         fwrite($f, file_get_contents($_FILES["profilePicture"]["tmp_name"]));
     } else {
