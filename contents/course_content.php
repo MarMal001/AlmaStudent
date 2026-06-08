@@ -70,7 +70,7 @@
             } 
         ?>
 
-        <div class="card mb-3" style="height: clamp(200px, 60vh, 300px);">
+        <div class="card mb-3">
             <div class="card-body overflow-auto bg-light-subtle <?php echo $style; ?>">
                 <?php if ($noReviews): ?>
                     <h5 class="text-center text-secondary fw-normal">Non è presente ancora nessuna recensione</h5>

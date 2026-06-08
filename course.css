@@ -13,7 +13,3 @@
 section:last-child > div {
     height: 250px;
 }
-
-section:first-of-type > div:nth-child(2) {
-    max-width: 600px !important;
-}

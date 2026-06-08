@@ -96,7 +96,7 @@ nav ul div:last-child {
     display: none;
     position: absolute;
     min-width: 100px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 8px 16px 16px 0px rgba(0,0,0,0.2);
 }
 
 nav ul:hover div:last-child {
