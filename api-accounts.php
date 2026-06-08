@@ -9,10 +9,12 @@ if (isset($_POST["code"]) && isset($_POST["type"])) {
     } else if ($_POST["type"] == "admin") {
         $data["admin"] = $dbh->getPersonInfo($code)[0];
     } else {
-        $data["mesasge"] = "Tipologia di account invalida";
+        $data["message"] = "Tipologia di account invalida";
+        $data["messageType"] = "warning";
     }
 } else {
     $data["message"] = "Professore non trovato";
+    $data["messageType"] = "danger";
 }
 
 header("Content-Type: application/json");

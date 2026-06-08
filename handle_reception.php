@@ -30,6 +30,7 @@ if (isset($_POST["receptionDate"]) && isset($_POST["startTimeHour"]) && isset($_
             break;
         default:
             $GLOBALS["message"] = "Azione sconosciuta: " . $_POST["action"];
+            $GLOBALS["messageType"] = "warning";
             break;
         }
     }
@@ -38,36 +39,45 @@ if (isset($_POST["receptionDate"]) && isset($_POST["startTimeHour"]) && isset($_
 function addReception($startTimeSlot, $endTimeSlot) {
     if (isset($_POST["mode"])) {
         if ($GLOBALS["dbh"]->addAvailabilityOfProfessor($_SESSION["username"], $_POST["receptionDate"], $startTimeSlot, $endTimeSlot, $_POST["mode"])) {
-            $GLOBALS["message"] = "Aggiunto con successo";
+            $GLOBALS["message"] = "Aggiunta disponibilità con successo";
+            $GLOBALS["messageType"] = "success";
         } else {
-            $GLOBALS["message"] = "Non è stato possibile aggiungere";
+            $GLOBALS["message"] = "Non è stato possibile aggiungere la disponibilità";
+            $GLOBALS["messageType"] = "danger";
         }
     } else {
-        $GLOBALS["message"] = "Non è stato possibile aggiungere";
+        $GLOBALS["message"] = "Parametri mancanti";
+        $GLOBALS["messageType"] = "warning";
     }
 }
 
 function modifyReception($startTimeSlot) {
     if (isset($_POST["mode"])) {
         if ($GLOBALS["dbh"]->updateAvailabilityOfProfessor($_SESSION["username"], $_POST["receptionDate"], $startTimeSlot, $_POST["mode"])) {
-            $GLOBALS["message"] = "Modificato con successo";
+            $GLOBALS["message"] = "Modificata disponibilità con successo";
+            $GLOBALS["messageType"] = "success";
         } else {
-            $GLOBALS["message"] = "Non è stato possibile modificare";
+            $GLOBALS["message"] = "Non è stato possibile modificare la disponibilità";
+            $GLOBALS["messageType"] = "danger";
         }
     } else {
-        $GLOBALS["message"] = "Non è stato possibile modificare";
+        $GLOBALS["message"] = "Parametri mancanti";
+        $GLOBALS["messageType"] = "warning";
     }
 }
 
 function deleteReception($startTimeSlot) {
     if ($GLOBALS["dbh"]->removeAvailabilityOfProfessor($_SESSION["username"], $_POST["receptionDate"], $startTimeSlot, $_POST["mode"])) {
-        $GLOBALS["message"] = "Rimosso con successo";
+        $GLOBALS["message"] = "Rimossa disponibilità con successo";
+        $GLOBALS["messageType"] = "success";
     } else {
-        $GLOBALS["message"] = "Non è stato possibile rimuovere";
+        $GLOBALS["message"] = "Non è stato possibile rimuovere la disponibilità";
+        $GLOBALS["messageType"] = "danger";
     }
 }
 
 $_SESSION["message"] = $GLOBALS["message"];
+$_SESSION["messageType"] = $GLOBALS["messageType"];
 
 header("location: reception_editable.php");
 

@@ -2,6 +2,7 @@
     <?php $courseId = $templateParams["course"]; ?>
     <?php $courseInfo = $dbh->getCourseInfo($courseId)[0]; ?>  
     <?php $professors = $dbh->getProfessorsByCourse($courseId); ?>
+    <div class="mb-3"><?php showMessage(); ?></div>
     <h1><?php echo $courseInfo["name"]; ?></h1>
     <section>
         <h3>
@@ -41,7 +42,7 @@
             ?>
             <?php 
             if (isProfessor() && isDesignatedProfessor($user, $courseId)): ?>
-                <a href="course_editable.php?course=<?php echo $courseId; ?>" class="btn btn-deepskyblue me-1">Modifica</a>
+                <a href="course_editable.php?course=<?php echo $courseId; ?>" class="btn btn-deepskyblue me-1 mt-2">Modifica</a>
             <?php endif; ?>
         </div>
     </section>

@@ -1,230 +1,227 @@
 <?php 
-    
-    require_once "init.php";
 
-    function parseCourseYear(int $year) {
-        switch ($year) {
-            case 1: return "Primo";
-            case 2: return "Secondo";
-            case 3: return "Terzo";
-            case 4: return "Quarto";
-            case 5: return "Quinto";
-            case 6: return "Sesto";
-            default: return "Invalid";
+require_once "init.php";
+
+function parseCourseYear(int $year) {
+    switch ($year) {
+        case 1: return "Primo";
+        case 2: return "Secondo";
+        case 3: return "Terzo";
+        case 4: return "Quarto";
+        case 5: return "Quinto";
+        case 6: return "Sesto";
+        default: return "Invalid";
+    }
+}
+
+function createStars($rating, $color) {
+    $nColored = floor($rating);
+    $nWhite = 5 - $nColored;
+
+    for ($i = 0; $i < $nColored; $i++) {
+        echo "<i class='fa-solid fa-star' style='color:" . $color . ";'></i>";
+    }; 
+
+    if ($rating - $nColored != 0) {
+        echo "<i class='fa-solid fa-star-half-stroke' style='color:" . $color . ";'></i>";
+        $nWhite--;
+    };
+
+    for ($i = 0; $i < $nWhite; $i++) {
+        echo "<i class='fa-regular fa-star' style='color: " . $color . ";'></i>";
+    };
+}
+
+function getMeanRating($ratingArray) {
+    $sum = 0;
+    $mean = 0;
+    foreach ($ratingArray as $rating) {
+        if ($rating != NULL) {
+            $sum += $rating;    
         }
-    }
+    };
 
-    //TO DO finction that creates stars given ratings
-    function createStars($rating, $color) {
-        $nColored = floor($rating);
-        $nWhite = 5 - $nColored;
-        
-        for ($i = 0; $i < $nColored; $i++) {
-            echo "<i class='fa-solid fa-star' style='color:" . $color . ";'></i>";
-        }; 
+    $mean = $sum / count($ratingArray);
+    return $mean;
+}
 
-        if ($rating - $nColored != 0) {
-            echo "<i class='fa-solid fa-star-half-stroke' style='color:" . $color . ";'></i>";
-            $nWhite--;
-        };
-
-        for ($i = 0; $i < $nWhite; $i++) {
-            echo "<i class='fa-regular fa-star' style='color: " . $color . ";'></i>";
-        };
-        
-    }
-
-    function getMeanRating($ratingArray) {
-        $sum = 0;
-        $mean = 0;
-        foreach ($ratingArray as $rating) {
-            if ($rating != NULL) {
-                $sum += $rating;    
-            }
-        };
-
-        $mean = $sum / count($ratingArray);
-        return $mean;
-    }
-
-    function subscriptionButton($student, $courseCode, $professor = NULL) {
-        $subscribed = $GLOBALS["dbh"]->checkIfSubscribedToACourse($student, $courseCode);
-        $page = explode ("/", $_SERVER['SCRIPT_NAME'])[2];
-        if ($page == "professor.php") {
-            $professor = explode ("@", $professor)[0];
-            if ($subscribed){
-                echo "<a href='subscription.php?action=remove&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-secondary-subtle ms-1 mt-2'>Discriviti</a>";
-            } else {
-                echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-deepskyblue ms-1 mt-2'>Iscriviti</a>";
-            }
+function subscriptionButton($student, $courseCode, $professor = NULL) {
+    $subscribed = $GLOBALS["dbh"]->checkIfSubscribedToACourse($student, $courseCode);
+    $page = explode ("/", $_SERVER['SCRIPT_NAME'])[2];
+    if ($page == "professor.php") {
+        $professor = explode ("@", $professor)[0];
+        if ($subscribed){
+            echo "<a href='subscription.php?action=remove&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-secondary-subtle ms-1 mt-2'>Discriviti</a>";
         } else {
-            if ($subscribed){
-                echo "<a href='subscription.php?action=remove&course=" . $courseCode . "&page=" . $page ."' class='btn btn-secondary-subtle ms-1 mt-2'>Discriviti</a>";
-            } else {
-                echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page ."' class='btn btn-deepskyblue ms-1 mt-2'>Iscriviti</a>";
-            }
+            echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-deepskyblue ms-1 mt-2'>Iscriviti</a>";
         }
-        
-    }
-
-    function isUserLoggedIn() {
-        return !empty($_SESSION["username"]);
-    }
-
-    function registerLoggedUser($user) {
-        $_SESSION["username"] = $user["username"];
-        $_SESSION["name"] = $user["name"];
-        $_SESSION["role"] = $user["role"];
-    }
-    
-    function isStudent() {
-        return $GLOBALS["role"] == "STUDENTE";
-    }
-
-    function isProfessor() {
-        return $GLOBALS["role"] == "DOCENTE";
-    }
-
-    function isAdmin() {
-        return $GLOBALS["role"] == "ADMIN";
-    }
-
-    function idWithoutDomain($id) {
-        $idElements = explode("@", $id);
-        return $idElements[0];
-    }
-
-    function isUserReview($id) {
-        return $id == $_SESSION["username"];
-    }
-
-    function generateCourseReview($url, $id, $studentId, $date, $text, $reported, $course) {
-        $place = "start";
-        $color = "#154388";
-        $bg = "bg-body-secondary";
-        $ratings = $GLOBALS["dbh"]->getCourseRatingbyStudent($course, $studentId)[0];
-        if (isUserReview($studentId)) {
-            $place = "end";
-            $bg = "bg-primary-subtle";
-        }
-        echo '<div class="float-' . $place . ' '  . $bg . ' rounded-5 mb-4 p-3 w-80 w-lg-60">';
-        echo '<div class="d-flex justify-content-between align-items-center">';
-        echo '<div class="d-md-inline-flex align-items-md-center p-1 mt-2 ms-2">';
-        $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];
-        echo'<h5 class="fw-bold me-2 mt-1">' . $student["name"] . ' ' . $student["surname"] . " " . date("d/m/Y", strtotime($date)) . '</h5>';
-        createStars(getMeanRating($ratings), $color);
-        echo '</div>';
-        if ($reported) {
-            echo '<i class="fa-solid fa-flag me-3" style="color: rgb(213, 0, 0);" ></i>';
+    } else {
+        if ($subscribed){
+            echo "<a href='subscription.php?action=remove&course=" . $courseCode . "&page=" . $page ."' class='btn btn-secondary-subtle ms-1 mt-2'>Discriviti</a>";
         } else {
-            echo '<button class="btn" data-bs-toggle="modal" data-bs-target="#flagModal" ><i class="fa-regular fa-flag" style="color: ' . $color . ';"></i></button>
-            <div class="modal fade" id="flagModal" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
+            echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page ."' class='btn btn-deepskyblue ms-1 mt-2'>Iscriviti</a>";
+        }
+    }
+}
 
-                    <div class="modal-header">
-                        <h5 class="modal-title">Sei sicuro?</h5>
-                    </div>
+function isUserLoggedIn() {
+    return !empty($_SESSION["username"]);
+}
 
-                    <div class="modal-body">
-                        Confermando si segnalerà la recensione
-                    </div>
+function registerLoggedUser($user) {
+    $_SESSION["username"] = $user["username"];
+    $_SESSION["name"] = $user["name"];
+    $_SESSION["role"] = $user["role"];
+}
 
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary-subtle" data-bs-dismiss="modal">Annulla</button>
-                        <a class="btn btn-darkred" href="handle_reports.php?type=add&page=' . $url . '&id=' . $id . '"; ?>Conferma</a>
-                    </div>
+function isStudent() {
+    return $GLOBALS["role"] == "STUDENTE";
+}
 
-                    </div>
+function isProfessor() {
+    return $GLOBALS["role"] == "DOCENTE";
+}
+
+function isAdmin() {
+    return $GLOBALS["role"] == "ADMIN";
+}
+
+function idWithoutDomain($id) {
+    $idElements = explode("@", $id);
+    return $idElements[0];
+}
+
+function isUserReview($id) {
+    return $id == $_SESSION["username"];
+}
+
+function generateCourseReview($url, $id, $studentId, $date, $text, $reported, $course) {
+    $place = "start";
+    $color = "#154388";
+    $bg = "bg-body-secondary";
+    $ratings = $GLOBALS["dbh"]->getCourseRatingbyStudent($course, $studentId)[0];
+    if (isUserReview($studentId)) {
+        $place = "end";
+        $bg = "bg-primary-subtle";
+    }
+    echo '<div class="float-' . $place . ' '  . $bg . ' rounded-5 mb-4 p-3 w-80 w-lg-60">';
+    echo '<div class="d-flex justify-content-between align-items-center">';
+    echo '<div class="d-md-inline-flex align-items-md-center p-1 mt-2 ms-2">';
+    $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];
+    echo'<h5 class="fw-bold me-2 mt-1">' . $student["name"] . ' ' . $student["surname"] . " " . date("d/m/Y", strtotime($date)) . '</h5>';
+    createStars(getMeanRating($ratings), $color);
+    echo '</div>';
+    if ($reported) {
+        echo '<i class="fa-solid fa-flag me-3" style="color: rgb(213, 0, 0);" ></i>';
+    } else {
+        echo '<button class="btn" data-bs-toggle="modal" data-bs-target="#flagModal" ><i class="fa-regular fa-flag" style="color: ' . $color . ';"></i></button>
+        <div class="modal fade" id="flagModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Sei sicuro?</h5>
                 </div>
-                </div>';
-        }
-        echo '</div>';
-        echo '<p class="ms-2 me-4 fs-5">' . htmlspecialchars($text) . '</p>';
-        echo '</div>';
-    }
 
-    function generateProfessorReview($url, $id, $studentId, $date, $text, $reported, $professor, $course) {
-        $place = "start";
-        $bg = "bg-body-secondary";
-        $color = "#154388";
-        $ratings = $GLOBALS["dbh"]->getProfessorRatingbyStudent($professor, $studentId)[0];
-        if (isUserReview($studentId)) {
-            $place = "end";
-            $bg = "bg-primary-subtle";
-            $border = "";
-        }
-        echo '<div class="float-' . $place . ' '  . $bg . ' rounded-5 mb-4 p-3 w-80 w-lg-60">';
-        echo '<div class="d-flex justify-content-between align-items-center">';
-        echo '<div class="d-md-inline-flex align-items-md-center p-1 mt-2 ms-2">';
-        $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];
-        echo'<h5 class="fw-bold me-2 mt-1">' . $student["name"] . ' ' . $student["surname"] . " " . date("d/m/Y", strtotime($date)) . '</h5>';
-        createStars(getMeanRating($ratings), $color);
-        echo '</div>';
-        if ($reported) {
-            echo '<i class="fa-solid fa-flag me-3" style="color: rgb(213, 0, 0);" ></i>';
-        } else {
-            echo '<button class="btn" data-bs-toggle="modal" data-bs-target="#flagModal" ><i class="fa-regular fa-flag" style="color: rgb(30, 48, 80);"></i></button>
-            <div class="modal fade" id="flagModal" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5 class="modal-title">Sei sicuro?</h5>
-                    </div>
-
-                    <div class="modal-body">
-                        Confermando si segnalerà la recensione
-                    </div>
-
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary-subtle" data-bs-dismiss="modal">Annulla</button>
-                        <a class="btn btn-darkred" href="handle_reports.php?type=add&page=' . $url . '&id=' . $id . '"; ?>Conferma</a>
-                    </div>
-
-                    </div>
+                <div class="modal-body">
+                    Confermando si segnalerà la recensione
                 </div>
-                </div>';
-        }
-        echo '</div>';
-        $courseName = $GLOBALS["dbh"]->getCourseInfo($course)[0]["name"];
-        echo '<h6 class="fw-bold ms-3 mt-2">' . $courseName . '</h6>';
-        echo '<p class="ms-2 me-4 fs-5">' . htmlspecialchars($text) . '</p>';
-        echo '</div>';
-    }
-    
-    function isDesignatedProfessor($professorId, $course) {
-        $validProfessor = false;
-        foreach ($GLOBALS["dbh"]->getProfessorsByCourse($course) as $professor) {
-            $validProfessor |= in_array($professorId, $professor);
-        }
-        return $validProfessor;
-    }
 
-    function isProfessorReview($type) {
-        return $type == "professor";
-    }
+                <div class="modal-footer">
+                    <button class="btn btn-secondary-subtle" data-bs-dismiss="modal">Annulla</button>
+                    <a class="btn btn-darkred" href="handle_reports.php?type=add&page=' . $url . '&id=' . $id . '"; ?>Conferma</a>
+                </div>
 
-    function reportTypeExists($type) {
-        return $type == "professor" || $type == "course";
-    }
-
-    function showMessage() {
-        if (isset($_SESSION["message"])):
-            ?><div class="toast-container position-fixed top-0 end-0 p-3">
-                <div class="toast align-items-center text-bg-primary border-0" role="alert">
-                    <div class="d-flex">
-                    <div class="toast-body">
-                        <?php 
-                            echo $_SESSION["message"];
-                            unset($_SESSION["message"]);
-                        ?>
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-                    </div>
                 </div>
             </div>
-        <?php endif;
+            </div>';
     }
+    echo '</div>';
+    echo '<p class="ms-2 me-4 fs-5">' . htmlspecialchars($text) . '</p>';
+    echo '</div>';
+}
+
+function generateProfessorReview($url, $id, $studentId, $date, $text, $reported, $professor, $course) {
+    $place = "start";
+    $bg = "bg-body-secondary";
+    $color = "#154388";
+    $ratings = $GLOBALS["dbh"]->getProfessorRatingbyStudent($professor, $studentId)[0];
+    if (isUserReview($studentId)) {
+        $place = "end";
+        $bg = "bg-primary-subtle";
+        $border = "";
+    }
+    echo '<div class="float-' . $place . ' '  . $bg . ' rounded-5 mb-4 p-3 w-80 w-lg-60">';
+    echo '<div class="d-flex justify-content-between align-items-center">';
+    echo '<div class="d-md-inline-flex align-items-md-center p-1 mt-2 ms-2">';
+    $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];
+    echo'<h5 class="fw-bold me-2 mt-1">' . $student["name"] . ' ' . $student["surname"] . " " . date("d/m/Y", strtotime($date)) . '</h5>';
+    createStars(getMeanRating($ratings), $color);
+    echo '</div>';
+    if ($reported) {
+        echo '<i class="fa-solid fa-flag me-3" style="color: rgb(213, 0, 0);" ></i>';
+    } else {
+        echo '<button class="btn" data-bs-toggle="modal" data-bs-target="#flagModal" ><i class="fa-regular fa-flag" style="color: rgb(30, 48, 80);"></i></button>
+        <div class="modal fade" id="flagModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Sei sicuro?</h5>
+                </div>
+
+                <div class="modal-body">
+                    Confermando si segnalerà la recensione
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-secondary-subtle" data-bs-dismiss="modal">Annulla</button>
+                    <a class="btn btn-darkred" href="handle_reports.php?type=add&page=' . $url . '&id=' . $id . '"; ?>Conferma</a>
+                </div>
+
+                </div>
+            </div>
+            </div>';
+    }
+    echo '</div>';
+    $courseName = $GLOBALS["dbh"]->getCourseInfo($course)[0]["name"];
+    echo '<h6 class="fw-bold ms-3 mt-2">' . $courseName . '</h6>';
+    echo '<p class="ms-2 me-4 fs-5">' . htmlspecialchars($text) . '</p>';
+    echo '</div>';
+}
+
+function isDesignatedProfessor($professorId, $course) {
+    $validProfessor = false;
+    foreach ($GLOBALS["dbh"]->getProfessorsByCourse($course) as $professor) {
+        $validProfessor |= in_array($professorId, $professor);
+    }
+    return $validProfessor;
+}
+
+function isProfessorReview($type) {
+    return $type == "professor";
+}
+
+function reportTypeExists($type) {
+    return $type == "professor" || $type == "course";
+}
+
+function showMessage() {
+    if (isset($_SESSION["message"]) && isset($_SESSION["messageType"])): ?>
+        <div class="alert alert-<?php echo $_SESSION["messageType"] ?> alert-dismissible fade show mb-0" role="alert">
+            <?php if ($_SESSION["messageType"] == "success"): ?>
+                <i class="fa-solid fa-circle-check"></i>
+            <?php elseif ($_SESSION["messageType"] == "warning" || $_SESSION["messageType"] == "danger"): ?>
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            <?php endif; ?>
+            <?php
+                echo $_SESSION["message"];
+                unset($_SESSION["message"]);
+                unset($_SESSION["messageType"]);
+            ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif;
+}
 
 ?>

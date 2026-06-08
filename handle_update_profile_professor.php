@@ -19,13 +19,17 @@ if (isset($_POST["department"]) && isset($_POST["seat"]) && isset($_POST["infoRe
     $professorInfo = $dbh->getProfessorInfo($user)[0];
     if ($dbh->updateAccount($user, $professorInfo["name"], $professorInfo["surname"], "DOCENTE", $_POST["department"], $_POST["seat"], $_POST["infoReception"], $profilePicture)) {
         $message = "Descrizione modificata con successo";
+        $messageType = "success";
     } else {
         $message = "Non è stato possibile modificare la descrizione";
+        $messageType = "danger";
     }
 } else {
     $message = "Parametri mancanti";
+    $messageType = "warning";
 }
 
 $_SESSION["message"] = $message;
+$_SESSION["messageType"] = $messageType;
 
 header("location: professor.php?professor=" . idWithoutDomain($user));

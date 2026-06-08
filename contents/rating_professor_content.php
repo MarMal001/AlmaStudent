@@ -13,56 +13,56 @@
                             <label for="lectures" class="mb-2">Quanto è risultato disponibile il docente durante il corso? *</label>
                         </li>
                         <li>
-                            <label for="ratingD<?php echo $professor["professor"]; ?>" class="ms-4">1</label>
-                            <input type="radio" id="1star" name="ratingD<?php echo $professor["professor"]; ?>" value="1" class="me-2" required>
-                            <label for="ratingD<?php echo $professor["professor"]; ?>">2</label>
-                            <input type="radio" id="2star" name="ratingD<?php echo $professor["professor"]; ?>" value="2" class="me-2">
-                            <label for="ratingD<?php echo $professor["professor"]; ?>">3</label>
-                            <input type="radio" id="3star" name="ratingD<?php echo $professor["professor"]; ?>" value="3" class="me-2">
-                            <label for="ratingD<?php echo $professor["professor"]; ?>">4</label>
-                            <input type="radio" id="4star" name="ratingD<?php echo $professor["professor"]; ?>" value="4" class="me-2">
-                            <label for="ratingD<?php echo $professor["professor"]; ?>">5</label>
-                            <input type="radio" id="5star" name="ratingD<?php echo $professor["professor"]; ?>" value="5">
+                            <label for="1starD<?php echo $professor["professor"]; ?>" class="ms-4">1</label>
+                            <input type="radio" id="1starD<?php echo $professor["professor"]; ?>" name="ratingD<?php echo $professor["professor"]; ?>" value="1" class="form-check-input me-2" required>
+                            <label for="2starD<?php echo $professor["professor"]; ?>">2</label>
+                            <input type="radio" id="2starD<?php echo $professor["professor"]; ?>" name="ratingD<?php echo $professor["professor"]; ?>" value="2" class="form-check-input me-2">
+                            <label for="3starD<?php echo $professor["professor"]; ?>">3</label>
+                            <input type="radio" id="3starD<?php echo $professor["professor"]; ?>" name="ratingD<?php echo $professor["professor"]; ?>" value="3" class="form-check-input me-2">
+                            <label for="4starD<?php echo $professor["professor"]; ?>">4</label>
+                            <input type="radio" id="4starD<?php echo $professor["professor"]; ?>" name="ratingD<?php echo $professor["professor"]; ?>" value="4" class="form-check-input me-2">
+                            <label for="5starD<?php echo $professor["professor"]; ?>">5</label>
+                            <input type="radio" id="5starD<?php echo $professor["professor"]; ?>" name="ratingD<?php echo $professor["professor"]; ?>" value="5" class="form-check-input me-2">
                         </li>
                         <li>
                             <label for="material" class="mt-4 mb-2">Quanto sono comprensibili le lezioni tenute dal docente? *</label>
                         </li>
                         <li>
-                            <label for="ratingC<?php echo $professor["professor"]; ?>" class="ms-4">1</label>
-                            <input type="radio" id="1star" name="ratingC<?php echo $professor["professor"]; ?>" value="1" class="me-2" required>
-                            <label for="ratingC<?php echo $professor["professor"]; ?>">2</label>
-                            <input type="radio" id="2star" name="ratingC<?php echo $professor["professor"]; ?>" value="2" class="me-2">
-                            <label for="ratingC<?php echo $professor["professor"]; ?>">3</label>
-                            <input type="radio" id="3star" name="ratingC<?php echo $professor["professor"]; ?>" value="3" class="me-2">
-                        <label for="ratingC<?php echo $professor["professor"]; ?>">4</label>
-                        <input type="radio" id="4star" name="ratingC<?php echo $professor["professor"]; ?>" value="4" class="me-2">
-                        <label for="ratingC<?php echo $professor["professor"]; ?>">5</label>
-                        <input type="radio" id="5star" name="ratingC<?php echo $professor["professor"]; ?>" value="5">
-                    </li>
-                    <li>
-                        <label class="mt-4 mb-2">Il docente suscita interesse nei confronti della materia? *</label>
-                    </li>
-                    <li>
-                        <label for="ratingI<?php echo $professor["professor"]; ?>" class="ms-4">1</label>
-                        <input type="radio" id="1star" name="ratingI<?php echo $professor["professor"]; ?>" value="1" class="me-2" required>
-                        <label for="ratingI<?php echo $professor["professor"]; ?>">2</label>
-                        <input type="radio" id="2star" name="ratingI<?php echo $professor["professor"]; ?>" value="2" class="me-2">
-                        <label for="ratingI<?php echo $professor["professor"]; ?>">3</label>
-                        <input type="radio" id="3star" name="ratingI<?php echo $professor["professor"]; ?>" value="3" class="me-2">
-                        <label for="ratingI<?php echo $professor["professor"]; ?>">4</label>
-                        <input type="radio" id="4star" name="ratingI<?php echo $professor["professor"]; ?>" value="4" class="me-2">
-                        <label for="ratingI<?php echo $professor["professor"]; ?>">5</label>
-                        <input type="radio" id="5star" name="ratingI<?php echo $professor["professor"]; ?>" value="5">
-                    </li>
-                    <li>
-                        <label for="review<?php echo $professor["professor"]; ?>" class="mt-4 mb-2">Se desideri poi lasciare qui sotto una recensione scritta della tua esperienza con questo docente:</label>
-                    </li>
-                    <li>
-                        <textarea id="review<?php echo $professor["professor"]; ?>" name="review<?php echo $professor["professor"]; ?>" class="form-control mt-2" maxlength="1000"></textarea>
-                            </li>
-                        </div>
+                            <label for="1starC<?php echo $professor["professor"]; ?>" class="ms-4">1</label>
+                            <input type="radio" id="1starC<?php echo $professor["professor"]; ?>" name="ratingC<?php echo $professor["professor"]; ?>" value="1" class="form-check-input me-2" required>
+                            <label for="2starC<?php echo $professor["professor"]; ?>">2</label>
+                            <input type="radio" id="2starC<?php echo $professor["professor"]; ?>" name="ratingC<?php echo $professor["professor"]; ?>" value="2" class="form-check-input me-2">
+                            <label for="3starC<?php echo $professor["professor"]; ?>">3</label>
+                            <input type="radio" id="3starC<?php echo $professor["professor"]; ?>" name="ratingC<?php echo $professor["professor"]; ?>" value="3" class="form-check-input me-2">
+                            <label for="4starC<?php echo $professor["professor"]; ?>">4</label>
+                            <input type="radio" id="4starC<?php echo $professor["professor"]; ?>" name="ratingC<?php echo $professor["professor"]; ?>" value="4" class="form-check-input me-2">
+                            <label for="5starC<?php echo $professor["professor"]; ?>">5</label>
+                            <input type="radio" id="5starC<?php echo $professor["professor"]; ?>" name="ratingC<?php echo $professor["professor"]; ?>" value="5" class="form-check-input me-2">
+                        </li>
+                        <li>
+                            <label class="mt-4 mb-2">Il docente suscita interesse nei confronti della materia? *</label>
+                        </li>
+                        <li>
+                            <label for="1starI<?php echo $professor["professor"]; ?>" class="ms-4">1</label>
+                            <input type="radio" id="1starI<?php echo $professor["professor"]; ?>" name="ratingI<?php echo $professor["professor"]; ?>" value="1" class="form-check-input me-2" required>
+                            <label for="2starI<?php echo $professor["professor"]; ?>">2</label>
+                            <input type="radio" id="2starI<?php echo $professor["professor"]; ?>" name="ratingI<?php echo $professor["professor"]; ?>" value="2" class="form-check-input me-2">
+                            <label for="3starI<?php echo $professor["professor"]; ?>">3</label>
+                            <input type="radio" id="3starI<?php echo $professor["professor"]; ?>" name="ratingI<?php echo $professor["professor"]; ?>" value="3" class="form-check-input me-2">
+                            <label for="4starI<?php echo $professor["professor"]; ?>">4</label>
+                            <input type="radio" id="4starI<?php echo $professor["professor"]; ?>" name="ratingI<?php echo $professor["professor"]; ?>" value="4" class="form-check-input me-2">
+                            <label for="5starI<?php echo $professor["professor"]; ?>">5</label>
+                            <input type="radio" id="5starI<?php echo $professor["professor"]; ?>" name="ratingI<?php echo $professor["professor"]; ?>" value="5" class="form-check-input me-2">
+                        </li>
+                        <li>
+                            <label for="review<?php echo $professor["professor"]; ?>" class="mt-4 mb-2">Se desideri poi lasciare qui sotto una recensione scritta della tua esperienza con questo docente:</label>
+                        </li>
+                        <li>
+                            <textarea id="review<?php echo $professor["professor"]; ?>" name="review<?php echo $professor["professor"]; ?>" class="form-control mt-2" maxlength="1000"></textarea>
+                        </li>
                     </div>
                 </div>
+            </div>
         <?php endforeach; ?>
         <li class="d-flex justify-content-end">
             <input type="submit" value="Invia" class="btn btn-deepskyblue mb-5" />

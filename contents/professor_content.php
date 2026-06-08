@@ -2,6 +2,7 @@
     <?php $professorId = $templateParams["professor"]; ?>
     <input type="hidden" id="professor" value=<?php echo $professorId;?> />
     <?php $professor = $dbh->getPersonInfo($professorId)[0]; ?>
+    <div class="mb-3"><?php showMessage(); ?></div>
     <h1><?php echo $professor["name"] . " " . $professor["surname"]; ?></h1>
     <section class="m-2 mb-4">
         <div class="d-flex align-items-start align-items-center">
@@ -27,7 +28,6 @@
         <?php $profInfo = $dbh->getProfessorInfo($professorId)[0]; ?>
         <div class="card mt-2 mb-3 bg-deepskyblue border-0 text-white" style="max-width: 600px;">
         <div class="row g-0">
-                
             <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
                 <img src="<?php echo UPLOAD_DIR.'/professor/'.$profInfo["photo"]; ?>" class="img-fluid rounded-start object-fit-fill" alt="">
             </div>
@@ -82,10 +82,8 @@
                 </div>
             </div>
         </div> 
-        <?php endforeach; ?>   
-
+        <?php endforeach; ?>
     </section>
-
     <article class="mt-4">
         <h2>Ricevimento</h2>
         <p><?php echo $profInfo["infoReception"]; ?></p>
@@ -93,34 +91,34 @@
             <table class="table table-bordered" id="receptionTable">
             </table>
         </div>
-        <?php if ($user == $professorId): ?>
-            <a href="reception_editable.php" class="btn btn-deepskyblue">Modifica Disponibilità</a>
-        <?php endif; ?>
+        <div class="d-flex justify-content-end me-5 pe-4">
+            <?php if ($user == $professorId): ?>
+                <a href="reception_editable.php" class="btn btn-deepskyblue">Modifica Disponibilità</a>
+            <?php endif; ?>
+        </div>
     </article>
     <section class="mt-3">
         <h2>Opinioni degli studenti</h2>
-
         <?php $reviews = $dbh->getReviewsByProfessor($professorId); 
             $noReviews = false;
             $style = "";
             if ($reviews == NULL) {
                 $style = "d-flex justify-content-center align-items-center";
                 $noReviews = true;
-            } 
+            }
         ?>
-        
-            <div class="card mb-3 mt-4">
-                <div class="card-body overflow-auto bg-light-subtle <?php echo $style; ?>">
-                    <?php if ($noReviews): ?>
-                        <h5 class="text-center text-secondary fw-normal">Non è presente ancora nessuna recensione</h5>
-                    <?php endif; ?>
-                    <?php foreach ($reviews as $review): ?>
-                        <?php 
-                            $page = explode("/", $_SERVER['REQUEST_URI']);
-                            generateProfessorReview($page[2], $review["id"], $review["student"], $review["date"], $review["text"], $review["reported"], $professorId, $review["course"]); ?>
-                    <?php endforeach; ?>
-                </div>
+        <div class="card mb-3 mt-4">
+            <div class="card-body overflow-auto bg-light-subtle <?php echo $style; ?>">
+                <?php if ($noReviews): ?>
+                    <h5 class="text-center text-secondary fw-normal">Non è presente ancora nessuna recensione</h5>
+                <?php endif; ?>
+                <?php foreach ($reviews as $review): ?>
+                    <?php
+                        $page = explode("/", $_SERVER['REQUEST_URI']);
+                        generateProfessorReview($page[2], $review["id"], $review["student"], $review["date"], $review["text"], $review["reported"], $professorId, $review["course"]);
+                    ?>
+                <?php endforeach; ?>
             </div>
-        
+        </div>
     </section>
 </main>

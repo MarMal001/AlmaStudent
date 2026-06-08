@@ -3,6 +3,7 @@ require_once "init.php";
 
 if (!isset($_POST["degreeCode"])) {
     $data["message"] = "Corso di laurea invalido";
+    $data["messageType"] = "warning";
     header("Content-Type: application/json");
     echo json_encode($data);
     exit();

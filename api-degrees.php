@@ -3,6 +3,7 @@ require_once "init.php";
 
 if (!isset($_POST["degreeCode"]) || !isset($_POST["type"])) {
     $data["message"] = "Corso di laurea invalido";
+    $data["messageType"] = "warning";
     header("Content-Type: application/json");
     echo json_encode($data);
     exit();
@@ -48,6 +49,7 @@ if ($_POST["type"] == "courses") {
     $data["degree"] = $dbh->getDegreeByCode($_POST["degreeCode"]);
 } else {
     $data["message"] = "Tipo non riconosciuto";
+    $data["messageType"] = "warning";
 }
 
 header("Content-Type: application/json");

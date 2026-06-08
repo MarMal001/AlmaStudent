@@ -4,6 +4,9 @@
         <form action="login.php" method="post" class="pt-5">
             <h2 class="text-white">Accedi al tuo account</h2>
             <ul>
+                <li class="mt-2 mb-0 p-0">
+                    <?php showMessage(); ?>
+                </li>
                 <li>
                     <label for="username" class="text-left form-label">
                         <h5>Username</h5>
@@ -23,7 +26,7 @@
                 <li>
                     <input type="submit" class="btn btn-secondary-subtle" value="Accedi" />
                 </li>
-                <li>
+                <li class="mt-3">
                     <a href="create_account.php" class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Non hai un account?</a>
                 </li>
             </ul>

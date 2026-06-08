@@ -1,9 +1,10 @@
-<main>
-    <section class="container-fluid w-auto m-2 p-0 my-4">
+<main class="mt-5">
+    <div class="w-75 mb-3 mx-auto"><?php showMessage(); ?></div>
+    <section class="container-fluid w-auto m-2 p-0 mb-4">
         <h2 class="w-75 mx-auto mb-3">Gestisci disponibilità</h2>
         <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-75 mx-auto">
             <div class="d-flex justify-content-between align-items-center fw-bold p-3" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
-                <p class="m-0 p-2 text-darkbluenavy">Aggiungi disponibilità</p>
+                <h4 class="m-0 p-2 text-darkbluenavy">Aggiungi disponibilità</h4>
                 <i class="fa-solid fa-angle-down me-1 mt-1" style="color: rgb(30, 48, 80);"></i>
             </div>
             <form action="handle_reception.php" method="POST" enctype="multipart/form-data" id="c1" class="collapse p-3 w-100 show">
@@ -106,10 +107,10 @@
             </form>
         </div>
     </section>
-    <section class="container-fluid w-auto m-2 p-0 my-4">
+    <section class="container-fluid w-auto m-2 p-0 mt-4 mb-5">
         <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-75 mx-auto">
             <div class="d-flex justify-content-between align-items-center fw-bold p-3" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
-                <p class="m-0 p-2 text-darkbluenavy">Modifica disponibilità</p>
+                <h4 class="m-0 p-2 text-darkbluenavy">Modifica disponibilità</h4>
                 <i class="fa-solid fa-angle-down me-1 mt-1" style="color: rgb(30, 48, 80);"></i>
             </div>
             <form action="handle_reception.php" method="POST" enctype="multipart/form-data" id="c2" class="collapse p-3 w-100">
@@ -215,7 +216,7 @@
             </form>
         </div>
     </section>
-    <section>
+    <section class="mb-5">
         <h2 class="w-75 mx-auto mb-3">Visualizza disponibilità</h2>
         <table class="table table-bordered w-75 mx-auto" id="receptionTable"></table>
     </section>

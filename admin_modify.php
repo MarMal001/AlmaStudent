@@ -25,9 +25,5 @@ if ($_GET["type"] == "handleAccount" && isset($_GET["accountType"]) && ($_GET["a
 
 $templateParams["style"] = ["style.css"];
 
-if (isset($_GET["message"])) {
-    $templateParams["message"] = $_GET["message"];
-}
-
 require "template/base.php";
 ?>

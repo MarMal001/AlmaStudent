@@ -31,12 +31,8 @@ if (!is_dir(UPLOAD_DIR)) {
     chmod(UPLOAD_DIR, 0777);
 }
 
-if (isset($_GET["message"])) {
-    $_SESSION["message"] = $_GET["message"];
-}
-
-if (isset($_SESSION["message"])) {
-    $templateParams["toast"] = "js/toast.js";
+if (isset($_SESSION["message"]) && isset($_SESSION["messageType"])) {
+    $templateParams["alert"] = "js/alert.js";
 }
 
 if (isUserLoggedIn()) {

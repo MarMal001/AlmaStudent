@@ -19,7 +19,7 @@
 </head>
 <body>
     <header class="container-fluid d-flex justify-content-between pt-4  mb-0 px-0 bg-deepskyblue text-white text-center">
-        <a href="index.php" class="d-inline-flex mb-3 ms-5">
+        <a href="index.php" class="d-inline-flex align-items-center mb-3 ms-5">
             <img src="images/logo.png" class="img-fluid" alt="">
             <h1 class="mt-3">AlmaStudent</h1>
         </a>
@@ -70,9 +70,8 @@
         endforeach;
     endif;
     ?>
-    <?php if(isset($templateParams["toast"])): ?>
-        <script src="<?php echo $templateParams["toast"]; ?>"></script>
-        <?php showMessage(); ?>
+    <?php if(isset($templateParams["alert"])): ?>
+        <script src="<?php echo $templateParams["alert"]; ?>"></script>
     <?php endif; ?>
 </body>
 </html>
