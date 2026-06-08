@@ -18,21 +18,25 @@
     <title><?php echo $templateParams["title"]; ?></title>
 </head>
 <body>
-    <header class="container-fluid d-flex justify-content-between pt-4  mb-0 px-0 bg-deepskyblue text-white text-center">
+    <header class="container-fluid d-flex justify-content-between pt-4 mb-0 px-0 bg-deepskyblue text-white text-center">
         <a href="index.php" class="d-inline-flex align-items-center mb-3 ms-5">
-            <img src="images/logo.png" class="img-fluid" alt="">
+            <img src="images/logo.png" class="img-fluid object-fit-cover" alt="">
             <h1 class="mt-3">AlmaStudent</h1>
         </a>
         <?php if (isUserLoggedIn()): ?>
-        <nav class="mt-5 me-0">
-            <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="professors.php">Docenti</a></li>
-                <li><a href="courses.php">Corsi</a></li>
-                <li><a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff;"></i></a></li>
-                <li><i class="fa-solid fa-bars"></i></li>
-            </ul>
-        </nav>
+            <nav class="mt-5 me-0">
+                <ul>
+                    <div>
+                        <li><i class="fa-solid fa-bars py-3"></i></li>
+                    </div>
+                    <div class="bg-deepskyblue">
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="professors.php">Docenti</a></li>
+                        <li><a href="courses.php">Corsi</a></li>
+                        <li><a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="fa-solid fa-arrow-right-from-bracket" style="color: #ffffff;"></i></a></li>
+                    </div>
+                </ul>
+            </nav>
         <?php endif; ?>
     </header>
     <div class="modal fade" id="logoutModal" tabindex="-1">
