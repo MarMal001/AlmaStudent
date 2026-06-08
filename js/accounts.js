@@ -24,7 +24,7 @@ function generateUpdateProfessorForm(professor, photo) {
             </label>
         </li>
         <li>
-            <input type="text" id="updateDepartment" name="department" value="${professor["department"]}" class="form-control rounded-pill" required />
+            <input type="text" id="updateDepartment" name="department" value='${professor["department"]}' class="form-control rounded-pill" required />
         </li>
         <li>
             <label for="updateSeat" class="text-left form-label">
@@ -40,27 +40,19 @@ function generateUpdateProfessorForm(professor, photo) {
             </label>
         </li>
         <li>
-            <textarea type="text" id="infoReception" name="infoReception" class="form-control" maxlength="500">${professor["infoReception"]}</textarea>
+            <textarea id="updateInfoReception" name="infoReception" class="form-control" maxlength="500">${professor["infoReception"]}</textarea>
         </li>
         <li class="w-25">
             <img src="${photo}" alt="" class="img-fluid object-fit-fill rounded mt-3" /> 
         </li>
-        <div class="d-flex">
-            <li class="mt-3 me-2">
-                <input type="checkbox" id="updateRemoveProfilePicture" name="removeProfilePicture" class="form-check-input" />
-            </li>
-            <li>
-                <label for="updateRemoveProfilePicture" class="form-check-label">Rimuovi immagine profilo</label>
-            </li>
-        </div>
-        <div class="d-flex justify-content-end">
-            <li>
-                <button type="submit" class="btn btn-deepskyblue mt-3 me-2" name="action" value="${ADMIN_MODIFY_ACCOUNT}">Modifica account</button>
-            </li>
-            <li>
-                <button type="submit" class="btn btn-darkred mt-3" name="action" value="${ADMIN_DELETE_ACCOUNT}">Elimina account</button>
-            </li>
-        </div>`;
+        <li class="d-flex">
+            <input type="checkbox" id="updateRemoveProfilePicture" name="removeProfilePicture" class="form-check-input mt-3 me-2" />
+            <label for="updateRemoveProfilePicture" class="form-check-label mt-2">Rimuovi immagine profilo</label>
+        </li>
+        <li class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-deepskyblue mt-3 me-2" name="action" value="${ADMIN_MODIFY_ACCOUNT}">Modifica account</button>
+            <button type="submit" class="btn btn-darkred mt-3" name="action" value="${ADMIN_DELETE_ACCOUNT}">Elimina account</button>
+        </li>`;
     return content;
 }
 
@@ -81,14 +73,10 @@ function generateUpdateAdminForm(admin) {
         <li>
             <input type="text" id="updateSurname" name="surname" value="${admin["surname"]}" class="form-control rounded-pill" required />
         </li>
-        <div class="d-flex justify-content-end">
-            <li>
-                <button type="submit" class="btn btn-deepskyblue mt-3 me-2" name="action" value="${ADMIN_MODIFY_ACCOUNT}">Modifica account</button>
-            </li>
-            <li>
-                <button type="submit" class="btn btn-darkred mt-3" name="action" value="${ADMIN_DELETE_ACCOUNT}">Elimina account</button>
-            </li>
-        </div>`;
+        <li class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-deepskyblue mt-3 me-2" name="action" value="${ADMIN_MODIFY_ACCOUNT}">Modifica account</button>
+            <button type="submit" class="btn btn-darkred mt-3" name="action" value="${ADMIN_DELETE_ACCOUNT}">Elimina account</button>
+        </li>`;
     return content;
 }
 
