@@ -11,6 +11,7 @@ if (!isset($_POST["degreeCode"]) || !isset($_POST["type"])) {
 
 $degreeCode = $_POST["degreeCode"];
 if ($_POST["type"] == "courses") {
+    $data["degrees"] = $dbh->getDegrees();
     $data["isStudent"] = isStudent();
     $data["user"] = $user;
     if ($degreeCode == "") {

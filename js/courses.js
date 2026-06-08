@@ -11,31 +11,25 @@ function generateAddCourse(degreeYears) {
         <li>
             <input type="text" id="addName" name="name" class="form-control rounded-pill" required />
         </li>
-        <div class="d-flex align-content-stretch">
-            <li class="mt-2">
-                <label for="addYear" class="text-left form-label">
-                    Anno
-                </label>
-            </li>
-            <li class="mt-2" id="degreeYears">
-                <select name="year" id="addYear" class="form-select rounded-pill mt-2 ms-2 me-3" required>`;
-                    for (year = 1; year <= degreeYears; year++) {
-                        content += `<option value="${year}">${year}</option>`;
-                    }
+        <li class="mt-2 d-flex">
+            <label for="addYear" class="text-left form-label">
+                Anno
+            </label>
+            <select name="year" id="addYear" class="form-select rounded-pill mt-2 ms-2 me-3 w-lg-25" required>
+                <option value="" disabled selected hidden>-- Seleziona --</option>`;
+    for (year = 1; year <= degreeYears; year++) {
+        content += `<option value="${year}">${year}</option>`;
+    }
     content += `</select>
-            </li>
-            <li class="mt-2 ms-4">
-                <label for="addSemester" class="text-left form-label">
-                    Semestre
-                </label>
-            </li>
-            <li class="mt-2">
-                <select name="semester" id="addSemester" class="form-select rounded-pill mt-2 ms-2" required>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                </select>
-            </li> 
-        </div>
+            <label for="addSemester" class="text-left form-label">
+                Semestre
+            </label>
+            <select name="semester" id="addSemester" class="form-select rounded-pill mt-2 ms-2 w-lg-25" required>
+                <option value="" disabled selected hidden>-- Seleziona --</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select>
+        </li> 
         <li>
             <label for="addCode" class="text-left form-label">
                 Codice corso
@@ -44,10 +38,8 @@ function generateAddCourse(degreeYears) {
         <li>
             <input type="text" id="addCode" name="code" class="form-control rounded-pill" required />
         </li>
-        <li>
-            <div class="d-flex justify-content-end">
-                <button type="submit" class="btn btn-deepskyblue mt-3" name="action" value="${ADMIN_ADD_COURSE}">Crea corso</button>
-            </div>
+        <li class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-deepskyblue mt-3" name="action" value="${ADMIN_ADD_COURSE}">Crea corso</button>
         </li>`;
     return content;
 }
@@ -72,7 +64,7 @@ function generateCourses(courses, degreeYears, isStudent) {
                         <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
                     </div>
                     <div id="${course["code"]}" class="collapse p-3 w-100">
-                        <ul class="d-flex flex-column align-items-start">`
+                        <ul class="d-flex flex-column align-items-start mb-0">`
             for (const professor of course["professors"]) {
                 content += `<li><a href="professor.php?professor=${idWithoutDomain(professor["professor"])}" class="link-deepskyblue">${professor["name"]} ${professor["surname"]}</a></li>`;
             }
@@ -129,23 +121,39 @@ function generateAllCourses(courses, isStudent) {
     return content;
 }
 
-function generateUpdateCoursesDropdown(courses, degreeYears) {
-    let content = `<li>
-            <label for="updateCourseCode" class="form-label">
-                Corso
-            </label>
-        </li>
-        <li>
-            <select name="code" id="updateCourseCode" onchange="getUpdateCoursesForm()" class="form-select rounded-pill w-lg-25" required>
-                <option value="" disabled selected hidden>-- Seleziona --</option>`;
+function generateUpdateCoursesDropdown(degrees, degreeCode, courses, degreeYears) {
+    let content = `<ul class="my-0 pb-0">
+            <li>
+                <label for="updateDegreeCode" class="form-label">
+                    Corso di laurea
+                </label>
+            </li>
+            <li>
+                <select name="degree" id="updateDegreeCode" onchange="getUpdateCoursesDropdown()" class="form-select rounded-pill w-lg-50">`;
+    for (const degree of degrees) {
+        content += `<option value="${degree["code"]}" ${degreeCode == degree["code"] ? "selected" : ""}>${degree["code"]} - ${degree["name"]} - ${degree["campus"]}</option>`;
+    }
+    content += `</select>
+            </li>
+        </ul>
+        <ul class="my-0 py-0">
+            <li>
+                <label for="updateCourseCode" class="form-label">
+                    Corso
+                </label>
+            </li>
+            <li>
+                <select name="code" id="updateCourseCode" onchange="getUpdateCoursesForm()" class="form-select rounded-pill w-lg-25" required>
+                    <option value="" disabled selected hidden>-- Seleziona --</option>`;
     for (let year = 1; year <= degreeYears; year++) {
         for (const course of courses[year]) {
             content += `<option value="${course["code"]}">${course["code"]} - ${course["name"]}</option>`;
         }
     }
     content += `</select>
-        </li>
-        <div id="updateCoursesForm"></div>`;
+            </li>
+        </ul>
+        <ul class="mb-0 pt-0" id="updateCoursesForm"></ul>`;
     return content;
 }
 
@@ -158,70 +166,52 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
         <li>
             <input type="text" id="updateName" name="name" value="${course["name"]}" class="form-control rounded-pill" required />
         </li>
-        <div class="d-flex align-content-stretch">
-            <li class="mt-2">
-                <label for="updateYear" class="text-left form-label">
-                    Anno
-                </label>
-            </li>
-            <li class="mt-2">
-                <select name="year" id="updateYear" class="form-select rounded-pill mt-2 ms-2 me-3" required>`;
+        <li class="mt-2 d-flex">
+            <label for="updateYear" class="text-left form-label">
+                Anno
+            </label>
+            <select name="year" id="updateYear" class="form-select rounded-pill mt-2 ms-2 me-3 w-lg-25">`;
     for (let year = 1; year <= degreeYears; year++) {
         content += `<option value="${year}" ${course["year"] == year ? "selected" : ""}>${year}</option>`;
     }
     content += `</select>
-            </li>
-            <li class="mt-2 ms-4">
-                <label for="updateSemester" class="text-left form-label">
-                    Semestre
-                </label>
-            </li>
-            <li class="mt-2">
-                <select name="semester" id="updateSemester" class="form-select rounded-pill mt-2 ms-2" required>
-                    <option value="1" ${course["semester"] == "1" ? "selected" : ""}>1</option>
-                    <option value="2" ${course["semester"] == "2" ? "selected" : ""}>2</option>
-                </select>
-            </li> 
-        </div>
-        <div>
-            <li>
-                <label for="addProfessor" class="form-label">
-                    Aggiungi docente al corso
-                </label>
-            </li>
-            <li>
-                <select name="addProfessor" id="addProfessor" class="form-select rounded-pill w-lg-25">
-                    <option value="" selected>Nessuno</option>`;
-        const professorsToAdd = professors.filter(e => !course["professors"].find(t => t["professor"] == e["professor"]));
-        for (const professor of professorsToAdd) {
-            content += `<option value="${professor["professor"]}">${professor["name"]} ${professor["surname"]}</option>`;
-        }
-        content += `</select>
-            </li>
-        </div>
-        <div>
-            <li>
-                <label for="removeProfessor" class="form-label">
-                    Rimuovi docente dal corso
-                </label>
-            </li>
-            <li>
-                <select name="removeProfessor" id="removeProfessor" class="form-select rounded-pill w-lg-25">
-                    <option value="" selected>Nessuno</option>`;
-        for (const professor of course["professors"]) {
-            content += `<option value="${professor["professor"]}">${professor["name"]} ${professor["surname"]}</option>`;
-        }
-        content += `</select>
-            </li>
-        </div>
-        <div class="d-flex justify-content-end">
-            <li>
-                <button type="submit" class="btn btn-deepskyblue mt-3 me-2" name="action" value="${ADMIN_MODIFY_COURSE}">Modifica corso</button>
-            </li>
-            <li>
-                <button type="submit" class="btn btn-darkred mt-3" name="action" value="${ADMIN_DELETE_COURSE}">Elimina corso</button>
-            </li>
-        </div>`;
+            <label for="updateSemester" class="text-left form-label">
+                Semestre
+            </label>
+            <select name="semester" id="updateSemester" class="form-select rounded-pill mt-2 ms-2 w-lg-25">
+                <option value="1" ${course["semester"] == "1" ? "selected" : ""}>1</option>
+                <option value="2" ${course["semester"] == "2" ? "selected" : ""}>2</option>
+            </select>
+        </li>
+        <li>
+            <label for="addProfessor" class="form-label d-flex">
+                Aggiungi docente al corso
+            </label>
+            <select name="addProfessor" id="addProfessor" class="form-select rounded-pill w-lg-25">
+                <option value="" selected>Nessuno</option>`;
+    const professorsToAdd = professors.filter(e => !course["professors"].find(t => t["professor"] == e["professor"]));
+    for (const professor of professorsToAdd) {
+        content += `<option value="${professor["professor"]}">${professor["name"]} ${professor["surname"]}</option>`;
+    }
+    content += `</select>
+        </li>
+        <li>
+            <label for="removeProfessor" class="form-label">
+                Rimuovi docente dal corso
+            </label>
+        </li>
+        <li>
+            <select name="removeProfessor" id="removeProfessor" class="form-select rounded-pill w-lg-25">
+                <option value="" selected>Nessuno</option>`;
+    for (const professor of course["professors"]) {
+        content += `<option value="${professor["professor"]}">${professor["name"]} ${professor["surname"]}</option>`;
+    }
+    content += `</select>
+        </li>
+        <li class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-deepskyblue mt-3 me-2" name="action" value="${ADMIN_MODIFY_COURSE}">Modifica corso</button>
+            <button type="submit" class="btn btn-darkred mt-3" name="action" value="${ADMIN_DELETE_COURSE}">Elimina corso</button>
+        </li>`;
     return content;
 }
 
@@ -293,8 +283,8 @@ async function getUpdateCoursesDropdown() {
         }
         const json = await response.json();
         console.log(json);
-        const section = document.querySelector("#coursesDropdown");
-        section.innerHTML = generateUpdateCoursesDropdown(json["courses"], json["degreeYears"]);
+        const section = document.querySelector("#c2");
+        section.innerHTML = generateUpdateCoursesDropdown(json["degrees"], degreeCode, json["courses"], json["degreeYears"]);
     } catch (error) {
         console.log(error.message);
     }
