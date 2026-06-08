@@ -59,7 +59,7 @@ function generateReviews(reviews, user, type, page) {
     if (reviews.length == 0) {
         content += `<p class="text-center text-secondary fw-normal fs-5">Non è presente ancora nessuna recensione</p>`;
     } else {
-        for (review of reviews) {
+        for (const review of reviews) {
             let place = "start";
             let bg = "bg-body-secondary";
             if (user == review["student"]) {
@@ -100,7 +100,7 @@ function generateReviews(reviews, user, type, page) {
             }
             content += `</div>`;
             if (type == "professor") {
-                content += `<h6 class="fw-bold ms-3 mt-2">${review["courseName"]}</h6>`;
+                content += `<p class="fw-bold fs-6 ms-3 mt-2">${review["courseName"]}</h6>`;
             }
             content += `<p class="ms-2 me-4 fs-5">${review["text"]}</p>
                 </div>`;

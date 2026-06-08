@@ -53,7 +53,7 @@ function getNextDay(currDay) {
 function generateReceptionTable(date, user, professor, reservations, isStudent, canStudentReserve) {
     let content = `<thead class="table-deepskyblue text-center">
         <tr>
-            <th id="day" scope="colgroup" colspan="3" class="fs-5"><div class="d-flex inline-flex justify-content-center align-items-center">`;
+            <th id="day" scope="colgroup" colspan="${isStudent && reservations.filter(e => e["date"] == date).length > 0 || user == professor ? "3" : "2"}" class="fs-5"><div class="d-flex inline-flex justify-content-center align-items-center">`;
     const dateObj = new Date();
     const toDayDate = dateObj.toISOString().split("T")[0];
     if (toDayDate != date) {
@@ -86,8 +86,8 @@ function generateReceptionTable(date, user, professor, reservations, isStudent, 
                 content += `<a href="reserve.php?type=unreserve&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-secondary-subtle ms-2 mx-2">Cancella ricevimento</a>`;
             } else {
                 const isButtonBlocked = reservation["studentCode"] != null || !canStudentReserve ? "disabled" : "";
-                const buttonPresence = `<a href="reserve.php?type=reserve&mode=Presenza&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-deepskyblue ${isButtonBlocked} mx-2 my-1" ${isButtonBlocked}>Prenota ricevimento in presenza</a>`;
-                const buttonOnline = `<a href="reserve.php?type=reserve&mode=Online&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-deepskyblue ms-2 ${isButtonBlocked} mx-2 my-1" ${isButtonBlocked}>Prenota ricevimento online</a>`;
+                const buttonPresence = `<a href="reserve.php?type=reserve&mode=Presenza&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-deepskyblue ${isButtonBlocked} mx-2 my-1">Prenota ricevimento in presenza</a>`;
+                const buttonOnline = `<a href="reserve.php?type=reserve&mode=Online&date=${reservation["date"]}&start=${reservation["startTime"]}&professor=${idWithoutDomain(professor)}" class="btn btn-deepskyblue ms-2 ${isButtonBlocked} mx-2 my-1">Prenota ricevimento online</a>`;
                 let tooltipStart = "";
                 let tooltipEnd = "";
                 if (isButtonBlocked) {
