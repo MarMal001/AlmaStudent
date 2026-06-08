@@ -554,7 +554,7 @@ class DatabaseHelper{
             WHERE r.Codice = rd.Codice
             AND rd.Corso = ?
             AND rv.Codice_Rating = r.Codice
-            ORDER BY r.Data
+            ORDER BY r.Data DESC
             "
         );
         $stmt->bind_param("s", $course);
@@ -571,7 +571,7 @@ class DatabaseHelper{
             WHERE r.Codice = rd.Codice
             AND rv.Codice_Rating = r.Codice
             AND rd.Docente = ?
-            ORDER BY r.Data
+            ORDER BY r.Data DESC
             "
         );
         $stmt->bind_param("s", $professor);
@@ -1468,6 +1468,41 @@ class DatabaseHelper{
         $stmt->bind_param("ss", $course, $year);
         $stmt->execute();
         $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getLimitedNumberCourseReviews($course, $limit) {
+        $stmt = $this->db->prepare(
+            "SELECT r.Codice AS id, r.Data AS date, rd.Studente AS student, rv.Testo AS text, rv.Segnalazione AS reported
+            FROM RATING AS r, RATING_CORSO AS rd, REVIEW AS rv
+            WHERE r.Codice = rd.Codice
+            AND rd.Corso = ?
+            AND rv.Codice_Rating = r.Codice
+            ORDER BY r.Data DESC
+            LIMIT ?
+            "
+        );
+        $stmt->bind_param("si", $course, $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+    public function getLimitedNumberProfessorReviews($professor, $limit) {
+        $stmt = $this->db->prepare(
+            "SELECT r.Codice AS id, r.Data AS date, rd.Studente AS student, rd.Corso AS course, rv.Testo AS text, rv.Segnalazione AS reported
+            FROM RATING AS r, RATING_DOCENTE AS rd, REVIEW AS rv
+            WHERE r.Codice = rd.Codice
+            AND rv.Codice_Rating = r.Codice
+            AND rd.Docente = ?
+            ORDER BY r.Data DESC
+            LIMIT ?
+            "
+        );
+        $stmt->bind_param("si", $professor, $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
