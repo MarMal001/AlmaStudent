@@ -39,7 +39,7 @@
 
                 <div class="col-md-8">
                     <div class="p-2">
-                        <p class="m-3 me-4 d-flex justify-content-start">
+                        <p class="m-3 me-4 d-sm-flex justify-content-start">
                             <?php echo $profInfo["department"]; ?>
                         </p>
                     </div>
