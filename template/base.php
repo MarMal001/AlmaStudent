@@ -25,7 +25,7 @@
         </a>
         <?php if (isUserLoggedIn()): ?>
             <nav class="mt-5 me-0">
-                <div>
+                <div onclick="mobileNavbarOnclick()">
                     <i class="fa-solid fa-bars py-3"></i>
                     <ul class="bg-deepskyblue">
                         <li><a href="index.php">Home</a></li>

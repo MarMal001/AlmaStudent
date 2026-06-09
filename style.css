@@ -101,10 +101,6 @@ nav div ul li, nav div > i {
     min-width: 100px;
 }
 
-nav div:hover ul {
-    display: block;
-}
-
 @media only screen and (min-width: 992px) {
     aside > div:first-child > i:nth-child(1) {
         display: none;
@@ -133,7 +129,7 @@ nav div:hover ul {
         display: none;
     }
 
-    nav div ul, nav div:hover ul {
+    nav div ul {
         display: flex;
         position: relative;
         box-shadow: none;
