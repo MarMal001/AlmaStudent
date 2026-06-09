@@ -142,6 +142,16 @@ nav div:hover ul {
     table {
         max-width: 90% ;
     }
+
+    p {
+        text-align: justify;
+        padding: 1%;
+    }
+}
+
+span {
+    text-align: start;
+    display: inline-block;
 }
 
 aside > div:first-child > i, aside > div {
@@ -180,7 +190,7 @@ aside div > ul:nth-child(2) li {
 }
 
 @media screen and (max-width: 420px) {
-    aside div > ul:nth-child(1) li, aside div > ul:nth-child(2) li {width: 12.5%;}
+    aside div > ul:nth-child(1) li, aside div > ul:nth-child(2) li {width: 12.8%;}
     aside div > ul:nth-child(2) li .active {padding: 2px;}
 }
 
@@ -225,11 +235,6 @@ nav ul li:hover, nav div > i:hover, .btn-deepskyblue:hover {
 nav {
     padding: 0;
     margin: 0;
-}
-
-p {
-    text-align: justify;
-    padding: 1%;
 }
 
 form ul li > img {
