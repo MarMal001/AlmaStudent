@@ -68,3 +68,8 @@ function parseDate(date) {
     const year = date.split("-")[0];
     return day + " " + month + " " + year;
 }
+
+function mobileNavbarOnclick() {
+    const style = document.querySelector("nav div > ul").style;
+    style["display"] = style["display"] != "block" ? "block" : "none";
+}

@@ -3,7 +3,7 @@
 require_once "init.php";
 
 if (!isAdmin() || !isset($_POST["action"])) {
-    header("location: /");
+    header("location: index.php");
     exit();
 }
 
