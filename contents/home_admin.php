@@ -16,10 +16,10 @@
     <?php $reportedReviewsCourses = $dbh->getReportedReviewsOfCourses(); ?>
     <ul>
         <?php foreach ($reportedReviewsProf as $reportedReviewProf): ?>
-        <li><a class="text-start link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="report_handling.php?id=<?php echo $reportedReviewProf["id"]; ?>&type=professor"><?php echo $reportedReviewProf["student"] . " segnalazione per la recensione di " . $reportedReviewProf["profName"] . " " . $reportedReviewProf["profSurname"] . " - " . date("d/m/Y", strtotime($reportedReviewProf["date"])) ?></a></li>
+        <li><a class="text-start link-deepskyblue link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="report_handling.php?id=<?php echo $reportedReviewProf["id"]; ?>&type=professor"><?php echo $reportedReviewProf["student"] . " segnalazione per la recensione di " . $reportedReviewProf["profName"] . " " . $reportedReviewProf["profSurname"] . " - " . date("d/m/Y", strtotime($reportedReviewProf["date"])) ?></a></li>
     <?php endforeach; ?>
     <?php foreach ($reportedReviewsCourses as $reportedReviewCourse): ?>
-       <li><a class="text-start link-dark link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="report_handling.php?id=<?php echo $reportedReviewCourse["id"]; ?>&type=course"><?php echo $reportedReviewCourse["student"] . " segnalazione per la recensione di " . $reportedReviewCourse["courseName"] . " " .$reportedReviewCourse["courseId"] . " - " . date("d/m/Y", strtotime($reportedReviewCourse["date"])) ?></a></li>
+       <li><a class="text-start link-deepskyblue link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="report_handling.php?id=<?php echo $reportedReviewCourse["id"]; ?>&type=course"><?php echo $reportedReviewCourse["student"] . " segnalazione per la recensione di " . $reportedReviewCourse["courseName"] . " " .$reportedReviewCourse["courseId"] . " - " . date("d/m/Y", strtotime($reportedReviewCourse["date"])) ?></a></li>
     <?php endforeach; ?>
     </ul>
     <?php if($reportedReviewsCourses == NULL && $reportedReviewsProf == NULL): ?>

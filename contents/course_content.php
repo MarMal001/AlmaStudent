@@ -1,4 +1,4 @@
-<main class="p-5">
+<main class="px-sm-5 py-5 px-3">
     <?php 
         $courseId = $templateParams["course"]; 
         $page = explode("/", $_SERVER['REQUEST_URI'])[2];    
@@ -17,23 +17,23 @@
             <?php endforeach; ?>
         </div>
         <?php $gRatings = $dbh->getGeneralRatingsByCourse($courseId)[0]; ?>
-        <div class="d-flex align-items-start align-items-center">
+        <div class="d-flex align-items-center">
             <p class="fs-6 m-0 me-2">Rating degli studenti:</h6>
             <div role="button" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="
                 <div class='d-flex inline-flex align-items-center'>
-                    <p class='mb-0 me-2'>Lezioni:</p>
+                    <p class='mb-0 me-2 p-0'>Lezioni:</p>
                     <?php createStars($gRatings["ratingL"], "#ffff"); ?>
                 </div>
                 <div class='d-flex inline-flex align-items-center'>
-                    <p class='mb-0 me-2'>Materiale:</p>
+                    <p class='mb-0 me-2 p-0'>Materiale:</p>
                     <?php createStars($gRatings["ratingM"], "#ffff"); ?>
                 </div>
                 <div class='d-flex inline-flex align-items-center'>
-                    <p class='mb-0 me-2'>Esame:</p>
+                    <p class='mb-0 me-2 p-0'>Esame:</p>
                     <?php createStars($gRatings["ratingE"], "#ffff"); ?>
                 </div>
                 <div class='d-flex inline-flex align-items-center'>
-                    <p class='mb-0 me-2'>Disponibilità:</p>
+                    <p class='mb-0 me-2 p-0'>Disponibilità:</p>
                     <?php createStars($dbh->getProfessorsDisponibilityOfCourse($courseId), "#ffff"); ?>
                 </div>
             ">

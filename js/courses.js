@@ -50,7 +50,7 @@ function generateCourses(courses, degreeYears, isStudent) {
         content += `<p class="fs-3 p-0">${parseCourseYear(year)} anno</p>`;
         for (const course of courses[year]) {
             content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
-                <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-lg-75 p-0">
+                <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-lg-75 p-0">
                     <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between text-darkbluenavy align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
                         <span class="d-lg-inline-flex align-items-lg-center ps-2">
                             ${course["name"]}
@@ -63,15 +63,15 @@ function generateCourses(courses, degreeYears, isStudent) {
             content += `</span>
                         <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
                     </button>
-                    <div id="${course["code"]}" class="collapse p-3 w-100">
+                    <div id="${course["code"]}" class="collapse p-4 w-100">
                         <ul class="d-flex flex-column align-items-start mb-0">`
             for (const professor of course["professors"]) {
                 content += `<li><a href="professor.php?professor=${idWithoutDomain(professor["professor"])}" class="link-deepskyblue">${professor["name"]} ${professor["surname"]}</a></li>`;
             }
             content += `</ul>
                     <p>${course["shortDescription"]}</p>
-                    <div class="d-flex justify-content-end">
-                        <a href="course.php?course=${course["code"]}" class="btn btn-deepskyblue me-1 mt-2">Apri corso</a>`;
+                    <div class="d-flex flex-column flex-sm-row justify-content-end">
+                        <a href="course.php?course=${course["code"]}" class="btn btn-deepskyblue me-sm-1 mt-2">Apri corso</a>`;
             if (isStudent) {
                 content += subscriptionButton(course["code"], course["isSubscribed"], "courses.php");
             }
@@ -88,7 +88,7 @@ function generateAllCourses(courses, isStudent) {
     let content = "";
     for (const course of courses) {
         content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
-            <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-lg-75 p-0">
+            <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-lg-75 p-0">
                 <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between text-darkbluenavy align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
                     <span class="d-lg-flex align-items-lg-center ps-2">
                         ${course["code"]} ${course["name"]}: ${course["degreeName"]} - ${course["campus"]}
@@ -101,15 +101,15 @@ function generateAllCourses(courses, isStudent) {
         content += `</span>
                     <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
                 </button>
-                <div id="${course["code"]}" class="collapse p-3 w-100">
+                <div id="${course["code"]}" class="collapse p-4 w-100">
                     <ul class="d-flex flex-column align-items-start">`;
         for (const professor of course["professors"]) {
             content += `<li><a href="professor.php?professor=${idWithoutDomain(professor["professor"])}" class="link-deepskyblue">${professor["name"]} ${professor["surname"]}</a></li>`;
         }
         content += `</ul>
                 <p>${course["shortDescription"]}</p>
-                <div class="d-flex justify-content-end">
-                    <a href="course.php?course=${course["code"]}" class="btn btn-deepskyblue me-1 mt-2">Apri corso</a>`;
+                <div class="d-flex flex-column flex-sm-row justify-content-end">
+                    <a href="course.php?course=${course["code"]}" class="btn btn-deepskyblue me-sm-1 mt-2">Apri corso</a>`;
         if (isStudent) {
             content += subscriptionButton(course["code"], course["isSubscribed"], "courses.php");
         }

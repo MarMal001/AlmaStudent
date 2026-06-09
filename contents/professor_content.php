@@ -1,4 +1,4 @@
-<main class="p-5">
+<main class="px-sm-5 py-5 px-3">
     <?php 
         $professorId = $templateParams["professor"]; 
         $page = explode("/", $_SERVER['REQUEST_URI'])[2];
@@ -10,20 +10,20 @@
     <div class="mb-3"><?php showMessage(); ?></div>
     <h1><?php echo $professor["name"] . " " . $professor["surname"]; ?></h1>
     <div class="m-2 mb-4">
-        <div class="d-flex align-items-start">
-            <p class="m-0 me-2 fs-6">Rating degli studenti:</p>
+        <div class="d-flex align-items-center">
+            <div class="m-0 me-2 fs-6">Rating degli studenti:</div>
             <?php $ratings = $dbh->getProfessorRatings($professorId)[0]; ?>
             <div role="button" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="
-                <div class='d-flex inline-flex align-items-center'>
-                    <p class='mb-0 me-2'>Disponibilità:</p>
+                <div class='d-flex align-items-center justify-content-start'>
+                    <p class='mb-0 me-2 p-0'>Disponibilità:</p>
                     <?php createStars($ratings["ratingD"], "#ffff"); ?>
                 </div>
-                <div class='d-flex inline-flex align-items-center'>
-                    <p class='mb-0 me-2'>Comprensibilità:</p>
+                <div class='d-flex align-items-center justify-content-start'>
+                    <p class='mb-0 me-2 p-0'>Comprensibilità:</p>
                     <?php createStars($ratings["ratingC"], "#ffff"); ?>
                 </div>
-                <div class='d-flex inline-flex align-items-center'>
-                    <p class='mb-0 me-2'>Interesse:</p>
+                <div class='d-flex align-items-center justify-content-start'>
+                    <p class='mb-0 me-2 p-0'>Interesse:</p>
                     <?php createStars($ratings["ratingI"], "#ffff"); ?>
                 </div>
             ">
@@ -58,7 +58,7 @@
         <?php $courses = $dbh->getCoursesByProfessor($professorId); ?>
         <?php foreach($courses as $course): ?>
         <div class="container-fluid w-auto w-lg-55 m-2 ms-3 p-0">
-            <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100 p-0">
+            <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-100 p-0">
                 <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between text-darkbluenavy align-items-center fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
                     <span class="d-md-inline-flex align-items-md-center ps-2">
                         <?php echo $course["name"]; ?>
@@ -73,12 +73,12 @@
                     </span>
                     <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
                 </button>
-                <div id="<?php echo $course["code"]; ?>" class="collapse p-3">
+                <div id="<?php echo $course["code"]; ?>" class="collapse p-4">
                     <p>
                     <?php echo $course["shortDescription"]; ?>
                     </p>
-                    <div class="d-flex justify-content-end">
-                        <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-1 mt-2">Apri corso</a>
+                    <div class="d-flex flex-column flex-sm-row justify-content-end">
+                        <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-sm-1 mt-2">Apri corso</a>
                         <?php
                             if (isStudent())
                                 subscriptionButton($user, $course["code"], $professorId);
@@ -96,7 +96,7 @@
             <table class="table table-bordered" id="receptionTable">
             </table>
         </div>
-        <div class="d-flex justify-content-end me-5 pe-4">
+        <div class="d-flex justify-content-end me-sm-5 pe-sm-4">
             <?php if ($user == $professorId): ?>
                 <a href="reception_editable.php" class="btn btn-deepskyblue">Modifica Disponibilità</a>
             <?php endif; ?>

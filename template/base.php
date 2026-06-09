@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +42,7 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <p class="modal-title fs-5">Sei sicuro?</p>
+                    <p class="modal-title fs-5 p-0">Sei sicuro?</p>
                 </div>
 
                 <div class="modal-body">

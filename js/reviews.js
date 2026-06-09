@@ -68,10 +68,10 @@ function generateReviews(reviews, user, type, page) {
             }
             content += `<div class="float-${place} ${bg} rounded-5 mb-4 p-3 w-80 w-lg-60">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-md-inline-flex align-items-md-center p-1 mt-2 ms-2">
+                    <div class="d-md-inline-flex align-items-md-center mt-2 ms-2">
 
-                        <p class="fw-bold fs-5 me-2 mt-1">${review["studentInfo"]["name"]} ${review["studentInfo"]["surname"]} ${review["date"]}</p>
-                        ${createStars(getMeanRating(review["ratings"]), "#154388")}
+                        <div class="fw-bold fs-5 me-2 mt-1">${review["studentInfo"]["name"]} ${review["studentInfo"]["surname"]} ${review["date"]}</div>
+                        <div class="mt-1">${createStars(getMeanRating(review["ratings"]), "#154388")}</div>
                     </div>`;
             if (review["reported"]) {
                 content += `<i class="fa-solid fa-flag me-3" style="color: rgb(213, 0, 0);" ></i>`;
@@ -82,7 +82,7 @@ function generateReviews(reviews, user, type, page) {
                         <div class="modal-content">
 
                         <div class="modal-header">
-                            <p class="modal-title fs-5">Sei sicuro?</p>
+                            <p class="modal-title fs-5 p-0">Sei sicuro?</p>
                         </div>
 
                         <div class="modal-body">
@@ -100,7 +100,7 @@ function generateReviews(reviews, user, type, page) {
             }
             content += `</div>`;
             if (type == "professor") {
-                content += `<p class="fw-bold fs-6 ms-3 mt-2">${review["courseName"]}</h6>`;
+                content += `<p class="fw-bold fs-6 ms-2 mt-2">${review["courseName"]}</h6>`;
             }
             content += `<p class="ms-2 me-4 fs-5">${review["text"]}</p>
                 </div>`;

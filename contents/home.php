@@ -1,5 +1,5 @@
 <div class="row mx-0">
-    <main class="col-12 col-lg-7 mx-0 py-2 px-4 w-md-100">
+    <main class="col-12 col-lg-7 mx-0 py-2 px-0 px-sm-4 w-md-100">
         <?php
             if (isAdmin()) {
                 include("contents/home_admin.php");

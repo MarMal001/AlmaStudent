@@ -1,6 +1,6 @@
 <main class="row align-items-center text-white text-center">
     <div class="col-xl col"></div>
-    <div class="col-xl-3 col-5 bg-deepskyblue text-center text-white rounded-4 d-flex justify-content-center">
+    <div class="col-xl-3 col-8 bg-deepskyblue text-center text-white rounded-4 d-flex justify-content-center">
         <form action="create_account.php" method="post" class="pt-5">
             <h2 class="text-white">Crea un account</h2>
             <ul> 

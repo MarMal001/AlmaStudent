@@ -51,15 +51,15 @@ function subscriptionButton($student, $courseCode, $professor = NULL) {
     if ($page == "professor.php") {
         $professor = explode ("@", $professor)[0];
         if ($subscribed){
-            echo "<a href='subscription.php?action=remove&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-secondary-subtle ms-1 mt-2'>Discriviti</a>";
+            echo "<a href='subscription.php?action=remove&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-secondary-subtle ms-sm-1 mt-2'>Discriviti</a>";
         } else {
-            echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-deepskyblue ms-1 mt-2'>Iscriviti</a>";
+            echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-deepskyblue ms-sm-1 mt-2'>Iscriviti</a>";
         }
     } else {
         if ($subscribed){
-            echo "<a href='subscription.php?action=remove&course=" . $courseCode . "&page=" . $page ."' class='btn btn-secondary-subtle ms-1 mt-2'>Discriviti</a>";
+            echo "<a href='subscription.php?action=remove&course=" . $courseCode . "&page=" . $page ."' class='btn btn-secondary-subtle ms-sm-1 mt-2'>Discriviti</a>";
         } else {
-            echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page ."' class='btn btn-deepskyblue ms-1 mt-2'>Iscriviti</a>";
+            echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page ."' class='btn btn-deepskyblue ms-sm-1 mt-2'>Iscriviti</a>";
         }
     }
 }
@@ -108,7 +108,7 @@ function generateCourseReview($url, $id, $studentId, $date, $text, $reported, $c
     echo '<div class="d-flex justify-content-between align-items-center">';
     echo '<div class="d-md-inline-flex align-items-md-center p-1 mt-2 ms-2">';
     $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];
-    echo'<h5 class="fw-bold me-2 mt-1">' . $student["name"] . ' ' . $student["surname"] . " " . date("d/m/Y", strtotime($date)) . '</h5>';
+    echo'<p class="fw-bold me-2 mt-1 fs-5 p-0">' . $student["name"] . ' ' . $student["surname"] . " " . date("d/m/Y", strtotime($date)) . '</p>';
     createStars(getMeanRating($ratings), $color);
     echo '</div>';
     if ($reported) {
@@ -120,7 +120,7 @@ function generateCourseReview($url, $id, $studentId, $date, $text, $reported, $c
                 <div class="modal-content">
 
                 <div class="modal-header">
-                    <h5 class="modal-title">Sei sicuro?</h5>
+                    <p class="modal-title fs-5 p-0">Sei sicuro?</p>
                 </div>
 
                 <div class="modal-body">
@@ -155,7 +155,7 @@ function generateProfessorReview($url, $id, $studentId, $date, $text, $reported,
     echo '<div class="d-flex justify-content-between align-items-center">';
     echo '<div class="d-md-inline-flex align-items-md-center p-1 mt-2 ms-2">';
     $student = $GLOBALS["dbh"]->getPersonInfo($studentId)[0];
-    echo'<h5 class="fw-bold me-2 mt-1">' . $student["name"] . ' ' . $student["surname"] . " " . date("d/m/Y", strtotime($date)) . '</h5>';
+    echo'<p class="fw-bold fs-5 p-0 me-2 mt-1">' . $student["name"] . ' ' . $student["surname"] . " " . date("d/m/Y", strtotime($date)) . '</p>';
     createStars(getMeanRating($ratings), $color);
     echo '</div>';
     if ($reported) {
@@ -167,7 +167,7 @@ function generateProfessorReview($url, $id, $studentId, $date, $text, $reported,
                 <div class="modal-content">
 
                 <div class="modal-header">
-                    <h5 class="modal-title">Sei sicuro?</h5>
+                    <p class="modal-title fs-5 p-0">Sei sicuro?</p>
                 </div>
 
                 <div class="modal-body">
@@ -185,7 +185,7 @@ function generateProfessorReview($url, $id, $studentId, $date, $text, $reported,
     }
     echo '</div>';
     $courseName = $GLOBALS["dbh"]->getCourseInfo($course)[0]["name"];
-    echo '<h6 class="fw-bold ms-3 mt-2">' . $courseName . '</h6>';
+    echo '<p class="fw-bold fs-6 p-0 ms-3 mt-2">' . $courseName . '</p>';
     echo '<p class="ms-2 me-4 fs-5">' . htmlspecialchars($text) . '</p>';
     echo '</div>';
 }
