@@ -47,7 +47,7 @@ function generateAddCourse(degreeYears) {
 function generateCourses(courses, degreeYears, isStudent) {
     let content = "";
     for (let year = 1; year <= degreeYears; year++) {
-        content += `<p class="fs-3">${parseCourseYear(year)} anno</p>`;
+        content += `<p class="fs-3 p-0">${parseCourseYear(year)} anno</p>`;
         for (const course of courses[year]) {
             content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
                 <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-lg-75 p-0">
