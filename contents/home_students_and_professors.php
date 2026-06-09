@@ -42,7 +42,7 @@
                     </span>
                     <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
                 </button>
-                <div id="<?php echo $course["code"]; ?>" class="collapse p-3 w-100">
+                <div id="<?php echo $course["code"]; ?>" class="collapse p-4 w-100">
                     <?php $professors = $dbh->getProfessorsByCourse($course["code"]); ?>
                         <ul class="d-flex flex-column align-items-start">
                         <?php foreach($professors as $professor): ?>

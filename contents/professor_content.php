@@ -73,7 +73,7 @@
                     </span>
                     <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
                 </button>
-                <div id="<?php echo $course["code"]; ?>" class="collapse p-3">
+                <div id="<?php echo $course["code"]; ?>" class="collapse p-4">
                     <p>
                     <?php echo $course["shortDescription"]; ?>
                     </p>

@@ -63,7 +63,7 @@ function generateCourses(courses, degreeYears, isStudent) {
             content += `</span>
                         <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
                     </button>
-                    <div id="${course["code"]}" class="collapse p-3 w-100">
+                    <div id="${course["code"]}" class="collapse p-4 w-100">
                         <ul class="d-flex flex-column align-items-start mb-0">`
             for (const professor of course["professors"]) {
                 content += `<li><a href="professor.php?professor=${idWithoutDomain(professor["professor"])}" class="link-deepskyblue">${professor["name"]} ${professor["surname"]}</a></li>`;
@@ -101,7 +101,7 @@ function generateAllCourses(courses, isStudent) {
         content += `</span>
                     <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
                 </button>
-                <div id="${course["code"]}" class="collapse p-3 w-100">
+                <div id="${course["code"]}" class="collapse p-4 w-100">
                     <ul class="d-flex flex-column align-items-start">`;
         for (const professor of course["professors"]) {
             content += `<li><a href="professor.php?professor=${idWithoutDomain(professor["professor"])}" class="link-deepskyblue">${professor["name"]} ${professor["surname"]}</a></li>`;
