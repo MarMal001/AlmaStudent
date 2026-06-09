@@ -439,7 +439,7 @@ insert into Tenere values
     # Ingegneria elettronica
 	("massimo.cicognani@unibo.it", "15300"),
 	("paolo.bonifazi3@unibo.it", "16726"),
-	("f.bellini@unibo.it", "19704"),
+	("giulio.torsi@unibo.it", "19704"),
 	("giovannieugenio.comi@unibo.it", "16314"),
 	("claudio.fiegna@unibo.it", "00269"),
 	("arturo.popoli@unibo.it", "B5603"),
