@@ -13,7 +13,7 @@
                         </label>
                     </li>
                     <li>
-                        <input type="text" id="department" name="department" class="form-control rounded-pill" value="<?php echo $professorInfo["department"]; ?>" />
+                        <input type="text" id="department" name="department" class="form-control rounded-pill" maxlength="300" value="<?php echo $professorInfo["department"]; ?>" />
                     </li>
                     <li>
                         <label for="seat" class="text-left form-label">
@@ -21,7 +21,7 @@
                         </label>
                     </li>
                     <li>
-                        <input type="text" id="seat" name="seat" class="form-control rounded-pill" value="<?php echo $professorInfo["campus"]; ?>" />
+                        <input type="text" id="seat" name="seat" class="form-control rounded-pill" maxlength="100" value="<?php echo $professorInfo["campus"]; ?>" />
                     </li>
                     <li>
                         <label for="infoReception" class="text-left">

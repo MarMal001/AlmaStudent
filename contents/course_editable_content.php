@@ -11,19 +11,19 @@
                         <label for="description" class="form-label">Descrizione</label>
                     </li>
                     <li>
-                        <input type="text" id="description" name="description" class="form-control rounded-pill" value="<?php echo $course['description']; ?>" />
+                        <textarea id="description" name="description" class="form-control" maxlength="5000"><?php echo $course['description']; ?></textarea>
                     </li>
                     <li>
                         <label for="shortDescription" class="form-label">Descrizione breve</label>
                     </li>
                     <li>
-                        <input type="text" id="shortDescription" name="shortDescription" class="form-control rounded-pill" value="<?php echo $course['shortDescription']; ?>" />
+                        <textarea id="shortDescription" name="shortDescription" class="form-control" maxlength="2000"><?php echo $course['shortDescription']; ?></textarea>
                     </li>
                     <li>
                         <label for="material" class="form-label">Materiale</label>
                     </li>
                     <li>
-                    <textarea id="material" name="material" class="form-control" maxlength="1000"><?php echo $course['material']; ?></textarea>
+                        <textarea id="material" name="material" class="form-control" maxlength="1000"><?php echo $course['material']; ?></textarea>
                     </li>
                     <li class="d-flex justify-content-end mt-4">
                         <button class="btn btn-secondary-subtle me-1" type="reset">Annulla</button>

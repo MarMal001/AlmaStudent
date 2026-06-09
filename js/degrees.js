@@ -8,7 +8,7 @@ function generateUpdateDegreesForm(degree) {
             </label>
         </li>
         <li>
-            <input type="text" id="updateName" name="name" value="${degree["name"]}" class="form-control rounded-pill" required />
+            <input type="text" id="updateName" name="name" value="${degree["name"]}" class="form-control rounded-pill" maxlength="100" required />
         </li>
         <li class="mt-2 d-flex">
             <label for="updateYears" class="text-left form-label">

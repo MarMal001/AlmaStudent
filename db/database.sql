@@ -37,7 +37,7 @@ create table CORSO (
      Semestre int not null,
      Codice_Facolta varchar(10) not null,
      Descrizione varchar(5000) not null,
-     Descrizione_Breve varchar(1000) not null,
+     Descrizione_Breve varchar(2000) not null,
      Materiale varchar(1000) not null,
      constraint ID_CORSO_ID primary key (Codice));
 
