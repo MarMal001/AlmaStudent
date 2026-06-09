@@ -24,13 +24,13 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-md-inline-flex align-items-md-center p-1 mt-2 ms-2">
                     <?php $student = $GLOBALS["dbh"]->getPersonInfo($infoReview["student"])[0]; ?>
-                    <h5 class="fw-bold me-2 mt-2"><?php echo $student["name"] . ' ' . $student["surname"] . " " . $infoReview["date"]; ?></h5>
-                    <?php $ratings = $dbh->getRatingsFromId($id)[0];
-                        createStars(getMeanRating($ratings), "#154388"); ?>
+                    <div class="fw-bold me-2 mt-1 fs-5"><?php echo $student["name"] . ' ' . $student["surname"] . " " . date("d/m/Y", strtotime($infoReview["date"])); ?></div>
+                    <div class="mt-1"><?php $ratings = $dbh->getRatingsFromId($id)[0];
+                        createStars(getMeanRating($ratings), "#154388"); ?></div>
                 </div>
             </div>
             <?php if ($infoReview["type"] == "DOCENTE"): ?>
-                <h6 class="fw-bold ms-3 mt-2"><?php echo $course["name"]; ?></h6>
+                <p class="fw-bold fs-6 p-0 ms-3 mt-2"><?php echo $course["name"]; ?></p>
             <?php endif; ?>
             <p class="ms-2 me-4 fs-5"><?php echo $infoReview["text"]; ?></p>
         </div>
@@ -46,7 +46,7 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title">Sei sicuro?</h5>
+                        <p class="modal-title fs-5 p-0">Sei sicuro?</p>
                     </div>
 
                     <div class="modal-body">
@@ -71,7 +71,7 @@
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title">Sei sicuro?</h5>
+                        <p class="modal-title fs-5 p-0">Sei sicuro?</p>
                     </div>
 
                     <div class="modal-body">
