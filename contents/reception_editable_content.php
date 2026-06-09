@@ -1,7 +1,7 @@
 <main class="mt-5">
     <div class="w-lg-75 mb-3 mx-auto"><?php showMessage(); ?></div>
     <div class="container-fluid w-auto m-3 p-0 mb-4">
-        <div class="w-lg-75 fs-2 fw-bold mx-auto mb-3">Gestisci disponibilità</div>
+        <h2 class="w-lg-75 mx-auto mb-3">Gestisci disponibilità</h2>
         <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-lg-75 mx-auto">
             <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#c1">
                 <span class="m-0 p-2 fs-4 text-darkbluenavy">Aggiungi disponibilità</span>
