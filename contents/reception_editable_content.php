@@ -1,8 +1,8 @@
 <main class="mt-5">
-    <div class="w-75 mb-3 mx-auto"><?php showMessage(); ?></div>
-    <div class="container-fluid w-auto m-2 p-0 mb-4">
-        <h2 class="w-75 mx-auto mb-3">Gestisci disponibilità</h2>
-        <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-75 mx-auto">
+    <div class="w-lg-75 mb-3 mx-auto"><?php showMessage(); ?></div>
+    <div class="container-fluid w-auto m-3 p-0 mb-4">
+        <div class="w-lg-75 fs-2 fw-bold mx-auto mb-3">Gestisci disponibilità</div>
+        <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-lg-75 mx-auto">
             <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#c1">
                 <span class="m-0 p-2 fs-4 text-darkbluenavy">Aggiungi disponibilità</span>
                 <i class="fa-solid fa-angle-down me-1 mt-1" style="color: rgb(30, 48, 80);"></i>
@@ -83,8 +83,8 @@
             </form>
         </div>
     </div>
-    <div class="container-fluid w-auto m-2 p-0 mt-4 mb-5">
-        <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-75 mx-auto">
+    <div class="container-fluid w-auto m-3 p-0 mt-4 mb-5">
+        <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-lg-75 mx-auto">
             <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#c2">
                 <span class="m-0 p-2 fs-4 text-darkbluenavy">Modifica disponibilità</span>
                 <i class="fa-solid fa-angle-down me-1 mt-1" style="color: rgb(30, 48, 80);"></i>

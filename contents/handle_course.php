@@ -1,6 +1,6 @@
 <main>
-    <div class="container-fluid w-auto mx-2 mt-5 p-0 mb-4">
-        <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-75 mx-auto">
+    <div class="container-fluid w-auto mx-3 mt-5 p-0 mb-4">
+        <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-lg-75 mx-auto">
             <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between text-darkbluenavy align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#c1">
                 Aggiungi corso
                 <i class="fa-solid fa-angle-down me-1 mt-1" style="color: rgb(30, 48, 80);"></i>
@@ -25,8 +25,8 @@
             </form>
         </div>
     </div>
-    <div class="container-fluid w-auto m-2 p-0 my-4">
-        <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-75 mx-auto">
+    <div class="container-fluid w-auto m-3 p-0 my-4">
+        <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-lg-75 mx-auto">
             <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between align-items-center fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
                 Modifica corso
                 <i class="fa-solid fa-angle-down me-1 mt-1" style="color: rgb(30, 48, 80);"></i>
