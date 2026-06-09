@@ -96,7 +96,7 @@
             <table class="table table-bordered" id="receptionTable">
             </table>
         </div>
-        <div class="d-flex justify-content-end me-5 pe-4">
+        <div class="d-flex justify-content-end me-sm-5 pe-sm-4">
             <?php if ($user == $professorId): ?>
                 <a href="reception_editable.php" class="btn btn-deepskyblue">Modifica Disponibilità</a>
             <?php endif; ?>
