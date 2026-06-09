@@ -57,9 +57,9 @@ function generateReviews(reviews, user, type, page) {
     let content = ``;
     console.log(reviews);
     if (reviews.length == 0) {
-        content += `<h5 class="text-center text-secondary fw-normal">Non è presente ancora nessuna recensione</h5>`;
+        content += `<p class="text-center text-secondary fw-normal fs-5">Non è presente ancora nessuna recensione</p>`;
     } else {
-        for (review of reviews) {
+        for (const review of reviews) {
             let place = "start";
             let bg = "bg-body-secondary";
             if (user == review["student"]) {
@@ -70,7 +70,7 @@ function generateReviews(reviews, user, type, page) {
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-md-inline-flex align-items-md-center p-1 mt-2 ms-2">
 
-                        <h5 class="fw-bold me-2 mt-1">${review["studentInfo"]["name"]} ${review["studentInfo"]["surname"]} ${review["date"]}</h5>
+                        <p class="fw-bold fs-5 me-2 mt-1">${review["studentInfo"]["name"]} ${review["studentInfo"]["surname"]} ${review["date"]}</p>
                         ${createStars(getMeanRating(review["ratings"]), "#154388")}
                     </div>`;
             if (review["reported"]) {
@@ -82,7 +82,7 @@ function generateReviews(reviews, user, type, page) {
                         <div class="modal-content">
 
                         <div class="modal-header">
-                            <h5 class="modal-title">Sei sicuro?</h5>
+                            <p class="modal-title fs-5">Sei sicuro?</p>
                         </div>
 
                         <div class="modal-body">
@@ -100,7 +100,7 @@ function generateReviews(reviews, user, type, page) {
             }
             content += `</div>`;
             if (type == "professor") {
-                content += `<h6 class="fw-bold ms-3 mt-2">${review["courseName"]}</h6>`;
+                content += `<p class="fw-bold fs-6 ms-3 mt-2">${review["courseName"]}</h6>`;
             }
             content += `<p class="ms-2 me-4 fs-5">${review["text"]}</p>
                 </div>`;

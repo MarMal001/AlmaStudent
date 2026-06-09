@@ -10,16 +10,16 @@
     <?php $professors = $dbh->getProfessorsByCourse($courseId); ?>
     <div class="mb-3"><?php showMessage(); ?></div>
     <h1><?php echo $courseInfo["name"]; ?></h1>
-    <section>
-        <h3>
+    <div>
+        <div class="fs-3 fw-bold">
             <?php foreach($professors as $professor): ?>
                 <a href="professor.php?professor=<?php echo idWithoutDomain($professor["professor"]); ?>" class="link-deepskyblue"><?php echo $professor["name"] . " " . $professor["surname"]; ?></a>
             <?php endforeach; ?>
-        </h3>
+        </div>
         <?php $gRatings = $dbh->getGeneralRatingsByCourse($courseId)[0]; ?>
         <div class="d-flex align-items-start align-items-center">
-            <h6 class="m-0 me-2">Rating degli studenti:</h6>
-            <div data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="
+            <p class="fs-6 m-0 me-2">Rating degli studenti:</h6>
+            <div role="button" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="
                 <div class='d-flex inline-flex align-items-center'>
                     <p class='mb-0 me-2'>Lezioni:</p>
                     <?php createStars($gRatings["ratingL"], "#ffff"); ?>
@@ -51,7 +51,7 @@
                 <a href="course_editable.php?course=<?php echo $courseId; ?>" class="btn btn-deepskyblue me-1 mt-2">Modifica</a>
             <?php endif; ?>
         </div>
-    </section>
+    </div>
     <article class="mb-4">
         <h2>Descrizione</h2>
         <p class="mt-3 pt-0">

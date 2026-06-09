@@ -1,4 +1,4 @@
-<main class="p-5"> 
+<main class="p-5">
     <?php 
         $professorId = $templateParams["professor"]; 
         $page = explode("/", $_SERVER['REQUEST_URI'])[2];
@@ -9,11 +9,11 @@
     <?php $professor = $dbh->getPersonInfo($professorId)[0]; ?>
     <div class="mb-3"><?php showMessage(); ?></div>
     <h1><?php echo $professor["name"] . " " . $professor["surname"]; ?></h1>
-    <section class="m-2 mb-4">
+    <div class="m-2 mb-4">
         <div class="d-flex align-items-start">
-            <h6 class="m-0 me-2">Rating degli studenti:</h6>
+            <p class="m-0 me-2 fs-6">Rating degli studenti:</p>
             <?php $ratings = $dbh->getProfessorRatings($professorId)[0]; ?>
-            <div data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="
+            <div role="button" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="
                 <div class='d-flex inline-flex align-items-center'>
                     <p class='mb-0 me-2'>Disponibilità:</p>
                     <?php createStars($ratings["ratingD"], "#ffff"); ?>
@@ -32,47 +32,47 @@
         </div>
         <?php $profInfo = $dbh->getProfessorInfo($professorId)[0]; ?>
         <div class="card mt-2 mb-3 bg-deepskyblue border-0 text-white">
-        <div class="row g-0">
-            <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
-                <img src="<?php echo UPLOAD_DIR.'/professor/'.$profInfo["photo"]; ?>" class="img-fluid rounded-start object-fit-fill" alt="">
-            </div>
+            <div class="row g-0">
+                <div class="col-md-4 d-flex justify-content-center justify-content-md-start">
+                    <img src="<?php echo UPLOAD_DIR.'/professor/'.$profInfo["photo"]; ?>" class="img-fluid rounded-start object-fit-fill" alt="">
+                </div>
 
-            <div class="col-md-8">
-            <div class="p-2">
-                <p class="m-3 me-4">
-                <?php echo $profInfo["department"]; ?>
-                </p>
-                <p></p>
+                <div class="col-md-8">
+                        <div class="p-2">
+                            <p class="m-3 me-4">
+                            <?php echo $profInfo["department"]; ?>
+                        </p>
+                        <p></p>
+                    </div>
+                </div>
             </div>
-            </div>
-        </div>
         </div>
 
         <?php if ($user == $professorId): ?>
             <a href="update_profile_professor.php?professor=<?php echo idWithoutDomain($professorId); ?>" class="btn btn-deepskyblue">Modifica informazioni profilo</a>
         <?php endif; ?>
 
-    </section>
+    </div>
     <section>
         <h2 class="mb-3 mt-4">Corsi</h2>
         <?php $courses = $dbh->getCoursesByProfessor($professorId); ?>
         <?php foreach($courses as $course): ?>
         <div class="container-fluid w-auto w-lg-55 m-2 ms-3 p-0">
             <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100 p-0">
-                <div class="d-flex justify-content-between align-items-center text-darkbluenavy fw-bold py-4 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
-                    <div class="d-md-inline-flex align-items-md-center ps-2">
-                        <p class="m-0 p-0 text-start"><?php echo $course["name"]; ?></p>
-                        <div class="ms-md-2">
+                <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between text-darkbluenavy align-items-center fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
+                    <span class="d-md-inline-flex align-items-md-center ps-2">
+                        <?php echo $course["name"]; ?>
+                        <span class="ms-md-2">
                             <?php $gRatings = $dbh->getGeneralRatingsByCourse($course["code"])[0]; ?>
                             <?php $ratings = [$gRatings["ratingL"], $gRatings["ratingM"], $gRatings["ratingE"], $gRatings["ratingD"]]; ?>
                             <?php createStars(getMeanRating($ratings), "#154388"); ?>
-                        </div>
+                        </span>
                         <?php if ($dbh->checkIfSubscribedToACourse($user, $course["code"])): ?>
                             <i class="fa-solid fa-check mx-2 mt-2" style="color: rgb(30, 48, 80);"></i>
                         <?php endif; ?>
-                    </div>
+                    </span>
                     <i class="fa-solid fa-angle-down" style="color: rgb(30, 48, 80);"></i>
-                </div>
+                </button>
                 <div id="<?php echo $course["code"]; ?>" class="collapse p-3">
                     <p>
                     <?php echo $course["shortDescription"]; ?>
