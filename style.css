@@ -316,6 +316,9 @@ button.dropdown-toggle::after {
 
 .btn-deepskyblue, .btn-secondary-subtle, .btn-darkred {
     border-radius: 15px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .bg-darkred, .btn-darkred {
