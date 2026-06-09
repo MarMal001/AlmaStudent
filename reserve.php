@@ -2,7 +2,7 @@
 
 require_once "init.php";
 
-if (!isStudent() || $dbh->isStudentBanned($user) || !isset($_GET["type"])) {
+if (!isStudent()) {
     header("location: index.php");
     exit();
 }
