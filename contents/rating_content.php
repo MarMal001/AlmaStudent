@@ -1,6 +1,6 @@
 <form action="create_rating_course.php" method="POST" enctype="multipart/form-data" class="w-75 mx-auto">
     <div class="text-secondary small mt-5 ms-1 mb-2">I campi con * sono da riempire obbligatoriamente</div>
-    <ul class="container-fluid w-auto p-4 mt-0 bg-primary-subtle border border-secondary-subtle rounded">
+    <ul class="container-fluid w-auto p-4 mt-0 mb-4 bg-primary-subtle border border-secondary-subtle rounded">
         <li class="mb-4 fw-bold text-darkbluenavy"><div class="fs-4">Recensisci: <?php echo $GLOBALS["dbh"]->getCourseInfo($templateParams["course"])[0]["name"]; ?></div></li>
         <li>
             <label class="mb-2">Quanto sono risultate interessanti e comprensibili le lezioni frequentate? *</label>

@@ -9,7 +9,7 @@ function generateAddCourse(degreeYears) {
             </label>
         </li>
         <li>
-            <input type="text" id="addName" name="name" class="form-control rounded-pill" required />
+            <input type="text" id="addName" name="name" class="form-control rounded-pill" maxlength="100" required />
         </li>
         <li class="mt-2 d-flex">
             <label for="addYear" class="text-left form-label">
@@ -36,7 +36,7 @@ function generateAddCourse(degreeYears) {
             </label>
         </li>
         <li>
-            <input type="text" id="addCode" name="code" class="form-control rounded-pill" required />
+            <input type="text" id="addCode" name="code" class="form-control rounded-pill" maxlength="5" required />
         </li>
         <li class="d-flex justify-content-end">
             <button type="submit" class="btn btn-deepskyblue mt-3" name="action" value="${ADMIN_ADD_COURSE}">Crea corso</button>
@@ -52,9 +52,9 @@ function generateCourses(courses, degreeYears, isStudent) {
             content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
                 <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-lg-75 p-0">
                     <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between text-darkbluenavy align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
-                        <span class="d-md-inline-flex align-items-md-center ps-2">
+                        <span class="d-lg-inline-flex align-items-lg-center ps-2">
                             ${course["name"]}
-                            <span class="ms-md-2">
+                            <span class="ms-lg-2">
                                 ${createStars(getMeanRating([course["ratingL"], course["ratingM"], course["ratingE"], course["ratingD"]]), "#154388")}
                             </span>`
             if (isStudent && course["isSubscribed"]) {
@@ -90,9 +90,9 @@ function generateAllCourses(courses, isStudent) {
         content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
             <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-lg-75 p-0">
                 <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between text-darkbluenavy align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
-                    <span class="d-md-inline-flex align-items-md-center ps-2">
+                    <span class="d-lg-flex align-items-lg-center ps-2">
                         ${course["code"]} ${course["name"]}: ${course["degreeName"]} - ${course["campus"]}
-                        <span class="ms-md-2">
+                        <span class="ms-lg-2">
                             ${createStars(getMeanRating([course["ratingL"], course["ratingM"], course["ratingE"], course["ratingD"]]), "#154388")}
                         </span>`;
         if (isStudent && course["isSubscribed"]) {
@@ -164,7 +164,7 @@ function generateUpdateCoursesForm(course, degreeYears, professors) {
             </label>
         </li>
         <li>
-            <input type="text" id="updateName" name="name" value="${course["name"]}" class="form-control rounded-pill" required />
+            <input type="text" id="updateName" name="name" value="${course["name"]}" class="form-control rounded-pill" maxlength="100" required />
         </li>
         <li class="mt-2 d-flex">
             <label for="updateYear" class="text-left form-label">

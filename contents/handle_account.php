@@ -16,7 +16,7 @@
                         </label>
                     </li>
                     <li>
-                        <input type="text" id="name" name="name" class="form-control rounded-pill" required />
+                        <input type="text" id="name" name="name" class="form-control rounded-pill" maxlength="100" required />
                     </li>
                     <li>
                         <label for="surname" class="text-left form-label">
@@ -24,7 +24,7 @@
                         </label>
                     </li>
                     <li>
-                        <input type="text" id="surname" name="surname" class="form-control rounded-pill" required />
+                        <input type="text" id="surname" name="surname" class="form-control rounded-pill" maxlength="100" required />
                     </li>
                     <li>
                         <label for="username" class="text-left form-label">
@@ -32,7 +32,7 @@
                         </label>
                     </li>
                     <li>
-                        <input type="email" id="username" name="username" class="form-control rounded-pill" required />
+                        <input type="email" id="username" name="username" class="form-control rounded-pill" maxlength="100" required />
                     </li>
                     <li>
                         <label for="password" class="text-left form-label">
@@ -49,7 +49,7 @@
                             </label>
                         </li>
                         <li>
-                            <input type="text" id="department" name="department" class="form-control rounded-pill" />
+                            <input type="text" id="department" name="department" class="form-control rounded-pill" maxlength="300" />
                         </li>
                         <li>
                             <label for="seat" class="text-left form-label">
@@ -57,7 +57,7 @@
                             </label>
                         </li>
                         <li>
-                            <input type="text" id="seat" name="seat" class="form-control rounded-pill" />
+                            <input type="text" id="seat" name="seat" class="form-control rounded-pill" maxlength="100" />
                         </li>
                         <li>
                             <label for="infoReception" class="text-left form-label">
@@ -65,7 +65,7 @@
                             </label>
                         </li>
                         <li>
-                            <input type="text" id="infoReception" name="infoReception" class="form-control rounded-pill" />
+                            <textarea id="infoReception" name="infoReception" class="form-control" maxlength="500"></textarea>
                         </li>
                     <?php endif; ?>
                     <li>

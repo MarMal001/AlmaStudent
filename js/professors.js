@@ -4,9 +4,9 @@ function generateProfessors(professors) {
         content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
             <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-lg-75 p-0">
                 <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between text-darkbluenavy align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#${professor["professor"]}">
-                    <span class="d-md-inline-flex align-items-md-center ps-2">
+                    <span class="d-lg-inline-flex align-items-lg-center ps-2">
                         ${professor["name"]} ${professor["surname"]}
-                        <span class="ms-md-2">
+                        <span class="ms-lg-2">
                             ${createStars(getMeanRating([professor["ratingD"], professor["ratingC"], professor["ratingD"]]), "#154388")}
                         </span>
                     </span>

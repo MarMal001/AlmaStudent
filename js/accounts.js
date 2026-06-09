@@ -8,7 +8,7 @@ function generateUpdateProfessorForm(professor, photo) {
             </label>
         </li>
         <li>
-            <input type="text" id="updateName" name="name" value="${professor["name"]}" class="form-control rounded-pill" required />
+            <input type="text" id="updateName" name="name" value="${professor["name"]}" class="form-control rounded-pill" maxlength="100" required />
         </li>
         <li>
             <label for="updateSurname" class="text-left form-label">
@@ -16,7 +16,7 @@ function generateUpdateProfessorForm(professor, photo) {
             </label>
         </li>
         <li>
-            <input type="text" id="updateSurname" name="surname" value="${professor["surname"]}" class="form-control rounded-pill" required />
+            <input type="text" id="updateSurname" name="surname" value="${professor["surname"]}" class="form-control rounded-pill" maxlength="100" required />
         </li>
         <li>
             <label for="updateDepartment" class="text-left form-label">
@@ -24,7 +24,7 @@ function generateUpdateProfessorForm(professor, photo) {
             </label>
         </li>
         <li>
-            <input type="text" id="updateDepartment" name="department" value='${professor["department"]}' class="form-control rounded-pill" required />
+            <input type="text" id="updateDepartment" name="department" value='${professor["department"]}' class="form-control rounded-pill" maxlength="300" required />
         </li>
         <li>
             <label for="updateSeat" class="text-left form-label">
@@ -32,7 +32,7 @@ function generateUpdateProfessorForm(professor, photo) {
             </label>
         </li>
         <li>
-            <input type="text" id="updateSeat" name="seat" value="${professor["campus"]}" class="form-control rounded-pill" required />
+            <input type="text" id="updateSeat" name="seat" value="${professor["campus"]}" class="form-control rounded-pill" maxlength="100" required />
         </li>
         <li>
             <label for="updateInfoReception" class="text-left form-label">
@@ -43,7 +43,7 @@ function generateUpdateProfessorForm(professor, photo) {
             <textarea id="updateInfoReception" name="infoReception" class="form-control" maxlength="500">${professor["infoReception"]}</textarea>
         </li>
         <li class="w-25">
-            <img src="${photo}" alt="" class="img-fluid object-fit-fill rounded mt-3" /> 
+            <img src="${photo}" alt="" class="rounded mt-3" /> 
         </li>
         <li class="d-flex">
             <input type="checkbox" id="updateRemoveProfilePicture" name="removeProfilePicture" class="form-check-input mt-3 me-2" />
@@ -63,7 +63,7 @@ function generateUpdateAdminForm(admin) {
             </label>
         </li>
         <li>
-            <input type="text" id="updateName" name="name" value="${admin["name"]}" class="form-control rounded-pill" required />
+            <input type="text" id="updateName" name="name" value="${admin["name"]}" class="form-control rounded-pill" maxlength="100" required />
         </li>
         <li>
             <label for="updateSurname" class="text-left form-label">
@@ -71,7 +71,7 @@ function generateUpdateAdminForm(admin) {
             </label>
         </li>
         <li>
-            <input type="text" id="updateSurname" name="surname" value="${admin["surname"]}" class="form-control rounded-pill" required />
+            <input type="text" id="updateSurname" name="surname" value="${admin["surname"]}" class="form-control rounded-pill" maxlength="100" required />
         </li>
         <li class="d-flex justify-content-end">
             <button type="submit" class="btn btn-deepskyblue mt-3 me-2" name="action" value="${ADMIN_MODIFY_ACCOUNT}">Modifica account</button>

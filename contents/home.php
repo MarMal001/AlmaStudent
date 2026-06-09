@@ -136,15 +136,15 @@
                         <i id="calendar-next" class="fa-solid fa-angle-right"></i>
                     </div>
                 </div>
-                <div class="card-body" id="calendar-body">
+                <div class="card-body ms-3" id="calendar-body">
                     <ul class="text-deepskyblue fw-bold text-center" id="calendar-weekdays">
-                        <li>Lun</li>
-                        <li>Mar</li>
-                        <li>Mer</li>
-                        <li>Gio</li>
-                        <li>Ven</li>
-                        <li>Sab</li>
-                        <li>Dom</li>
+                        <li>L</li>
+                        <li>M</li>
+                        <li>M</li>
+                        <li>G</li>
+                        <li>V</li>
+                        <li>S</li>
+                        <li>D</li>
                     </ul>
                     <ul class="text-center" id="calendar-dates"></ul>
                 </div>

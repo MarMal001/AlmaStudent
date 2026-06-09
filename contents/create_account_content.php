@@ -13,7 +13,7 @@
                     </label>
                 </li>
                 <li>
-                    <input type="text" id="name" name="name" class="form-control rounded-pill w-100" required />
+                    <input type="text" id="name" name="name" class="form-control rounded-pill w-100" maxlength="100" required />
                 </li>
                 <li>
                     <label for="surname" class="text-left form-label">
@@ -21,7 +21,7 @@
                     </label>
                 </li>
                 <li>
-                    <input type="text" id="surname" name="surname" class="form-control rounded-pill w-100" required />
+                    <input type="text" id="surname" name="surname" class="form-control rounded-pill w-100" maxlength="100" required />
                 </li>
                 <li>
                     <label for="username" class="text-left form-label">
@@ -29,7 +29,7 @@
                     </label>
                 </li>
                 <li>
-                    <input type="email" id="username" name="username" class="form-control rounded-pill w-100" required />
+                    <input type="email" id="username" name="username" class="form-control rounded-pill w-100" maxlength="100" required />
                 </li>
                 <li>
                     <label for="password" class="text-left form-label">
