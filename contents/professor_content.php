@@ -11,7 +11,7 @@
     <h1><?php echo $professor["name"] . " " . $professor["surname"]; ?></h1>
     <div class="m-2 mb-4">
         <div class="d-flex align-items-center">
-            <p class="m-0 me-2 fs-6">Rating degli studenti:</p>
+            <div class="m-0 me-2 fs-6">Rating degli studenti:</div>
             <?php $ratings = $dbh->getProfessorRatings($professorId)[0]; ?>
             <div role="button" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="
                 <div class='d-flex align-items-center justify-content-start'>
@@ -77,8 +77,8 @@
                     <p>
                     <?php echo $course["shortDescription"]; ?>
                     </p>
-                    <div class="d-flex justify-content-end">
-                        <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-1 mt-2">Apri corso</a>
+                    <div class="d-flex flex-column flex-sm-row justify-content-end">
+                        <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-sm-1 mt-2">Apri corso</a>
                         <?php
                             if (isStudent())
                                 subscriptionButton($user, $course["code"], $professorId);

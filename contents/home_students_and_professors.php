@@ -50,25 +50,25 @@
                         <?php endforeach; ?>
                         </ul>
                     <p><?php echo $course["shortDescription"]; ?></p>
-                    <div class="d-flex justify-content-end">
+                    <div class="d-flex flex-column flex-sm-row justify-content-end">
                         <?php if (isStudent() && $dbh->canRateCourse($user, $course["code"])[0]["existence"] && !$dbh->courseIsAlreadyRated($user, $course["code"])): ?>
                             <?php if ($dbh->isStudentBanned($user)): ?>
-                                <div data-bs-toggle="tooltip" data-bs-placement="left" title="Sei stato bloccato">
-                                    <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-2 mt-2 disabled">Recensisci</a>
+                                <div class="me-sm-2 mt-2" data-bs-toggle="tooltip" data-bs-placement="left" title="Sei stato bloccato">
+                                    <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue w-100 disabled">Recensisci</a>
                                 </div>
                             <?php else: ?>
-                                <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-2 mt-2">Recensisci</a>
+                                <a href="rating.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-sm-2 mt-2">Recensisci</a>
                             <?php endif; ?>
                         <?php elseif (isStudent() && $dbh->canRateCourse($user, $course["code"])[0]["existence"] && $dbh->courseIsAlreadyRated($user, $course["code"]) && !$dbh->professorsOfCourseAlreadyRated($user, $course["code"])): ?>
                             <?php if ($dbh->isStudentBanned($user)): ?>
-                                <div data-bs-toggle="tooltip" data-bs-placement="left" title="Sei stato bloccato">
-                                    <a href="rating_professor.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-2 mt-2 disabled">Recensisci docenti</a>
+                                <div class="me-sm-2 mt-2" data-bs-toggle="tooltip" data-bs-placement="left" title="Sei stato bloccato">
+                                    <a href="rating_professor.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue w-100 disabled">Recensisci docenti</a>
                                 </div>
                             <?php else: ?>
-                                <a href="rating_professor.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-2 mt-2">Recensisci docenti</a>
+                                <a href="rating_professor.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-sm-2 mt-2">Recensisci docenti</a>
                             <?php endif; ?>
                         <?php endif; ?>
-                        <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-1 mt-2">Apri corso</a>
+                        <a href="course.php?course=<?php echo $course["code"]; ?>" class="btn btn-deepskyblue me-sm-1 mt-2">Apri corso</a>
                         <?php if(isStudent()) {
                             subscriptionButton($user, $course["code"]);
                         } ?>

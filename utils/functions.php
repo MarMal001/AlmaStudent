@@ -51,15 +51,15 @@ function subscriptionButton($student, $courseCode, $professor = NULL) {
     if ($page == "professor.php") {
         $professor = explode ("@", $professor)[0];
         if ($subscribed){
-            echo "<a href='subscription.php?action=remove&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-secondary-subtle ms-1 mt-2'>Discriviti</a>";
+            echo "<a href='subscription.php?action=remove&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-secondary-subtle ms-sm-1 mt-2'>Discriviti</a>";
         } else {
-            echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-deepskyblue ms-1 mt-2'>Iscriviti</a>";
+            echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page . "&professor=" . $professor . "' class='btn btn-deepskyblue ms-sm-1 mt-2'>Iscriviti</a>";
         }
     } else {
         if ($subscribed){
-            echo "<a href='subscription.php?action=remove&course=" . $courseCode . "&page=" . $page ."' class='btn btn-secondary-subtle ms-1 mt-2'>Discriviti</a>";
+            echo "<a href='subscription.php?action=remove&course=" . $courseCode . "&page=" . $page ."' class='btn btn-secondary-subtle ms-sm-1 mt-2'>Discriviti</a>";
         } else {
-            echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page ."' class='btn btn-deepskyblue ms-1 mt-2'>Iscriviti</a>";
+            echo "<a href='subscription.php?action=add&course=" . $courseCode . "&page=" . $page ."' class='btn btn-deepskyblue ms-sm-1 mt-2'>Iscriviti</a>";
         }
     }
 }

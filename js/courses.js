@@ -70,8 +70,8 @@ function generateCourses(courses, degreeYears, isStudent) {
             }
             content += `</ul>
                     <p>${course["shortDescription"]}</p>
-                    <div class="d-flex justify-content-end">
-                        <a href="course.php?course=${course["code"]}" class="btn btn-deepskyblue me-1 mt-2">Apri corso</a>`;
+                    <div class="d-flex flex-column flex-sm-row justify-content-end">
+                        <a href="course.php?course=${course["code"]}" class="btn btn-deepskyblue me-sm-1 mt-2">Apri corso</a>`;
             if (isStudent) {
                 content += subscriptionButton(course["code"], course["isSubscribed"], "courses.php");
             }
@@ -108,8 +108,8 @@ function generateAllCourses(courses, isStudent) {
         }
         content += `</ul>
                 <p>${course["shortDescription"]}</p>
-                <div class="d-flex justify-content-end">
-                    <a href="course.php?course=${course["code"]}" class="btn btn-deepskyblue me-1 mt-2">Apri corso</a>`;
+                <div class="d-flex flex-column flex-sm-row justify-content-end">
+                    <a href="course.php?course=${course["code"]}" class="btn btn-deepskyblue me-sm-1 mt-2">Apri corso</a>`;
         if (isStudent) {
             content += subscriptionButton(course["code"], course["isSubscribed"], "courses.php");
         }
