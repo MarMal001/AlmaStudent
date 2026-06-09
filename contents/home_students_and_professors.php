@@ -30,7 +30,7 @@
     ?>
     <?php foreach($courses as $course): ?>
         <div class="container-fluid w-auto m-2 p-0">
-            <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100 p-0">
+            <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-100 p-0">
                 <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between text-darkbluenavy align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
                     <span class="d-md-inline-flex align-items-md-center ps-2">
                         <?php echo $course["name"]; ?>

@@ -10,20 +10,20 @@
     <div class="mb-3"><?php showMessage(); ?></div>
     <h1><?php echo $professor["name"] . " " . $professor["surname"]; ?></h1>
     <div class="m-2 mb-4">
-        <div class="d-flex align-items-start">
+        <div class="d-flex align-items-center">
             <p class="m-0 me-2 fs-6">Rating degli studenti:</p>
             <?php $ratings = $dbh->getProfessorRatings($professorId)[0]; ?>
             <div role="button" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-html="true" title="
-                <div class='d-flex inline-flex align-items-center'>
-                    <p class='mb-0 me-2'>Disponibilità:</p>
+                <div class='d-flex align-items-center justify-content-start'>
+                    <p class='mb-0 me-2 p-0'>Disponibilità:</p>
                     <?php createStars($ratings["ratingD"], "#ffff"); ?>
                 </div>
-                <div class='d-flex inline-flex align-items-center'>
-                    <p class='mb-0 me-2'>Comprensibilità:</p>
+                <div class='d-flex align-items-center justify-content-start'>
+                    <p class='mb-0 me-2 p-0'>Comprensibilità:</p>
                     <?php createStars($ratings["ratingC"], "#ffff"); ?>
                 </div>
-                <div class='d-flex inline-flex align-items-center'>
-                    <p class='mb-0 me-2'>Interesse:</p>
+                <div class='d-flex align-items-center justify-content-start'>
+                    <p class='mb-0 me-2 p-0'>Interesse:</p>
                     <?php createStars($ratings["ratingI"], "#ffff"); ?>
                 </div>
             ">
@@ -58,7 +58,7 @@
         <?php $courses = $dbh->getCoursesByProfessor($professorId); ?>
         <?php foreach($courses as $course): ?>
         <div class="container-fluid w-auto w-lg-55 m-2 ms-3 p-0">
-            <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-100 p-0">
+            <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-100 p-0">
                 <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between text-darkbluenavy align-items-center fw-bold p-4" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo $course["code"]; ?>">
                     <span class="d-md-inline-flex align-items-md-center ps-2">
                         <?php echo $course["name"]; ?>

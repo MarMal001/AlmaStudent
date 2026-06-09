@@ -50,7 +50,7 @@ function generateCourses(courses, degreeYears, isStudent) {
         content += `<p class="fs-3 p-0">${parseCourseYear(year)} anno</p>`;
         for (const course of courses[year]) {
             content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
-                <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-lg-75 p-0">
+                <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-lg-75 p-0">
                     <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between text-darkbluenavy align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
                         <span class="d-lg-inline-flex align-items-lg-center ps-2">
                             ${course["name"]}
@@ -88,7 +88,7 @@ function generateAllCourses(courses, isStudent) {
     let content = "";
     for (const course of courses) {
         content += `<div class="container-fluid w-auto w-lg-55 m-2 p-0">
-            <div class="btn bg-primary-subtle border border-secondary-subtle text-black text-start w-lg-75 p-0">
+            <div class="bg-primary-subtle border border-secondary-subtle rounded text-black text-start w-lg-75 p-0">
                 <button class="bg-primary-subtle w-100 border-0 d-flex justify-content-between text-darkbluenavy align-items-center fw-bold p-4" data-bs-toggle="collapse" data-bs-target="#${course["code"]}">
                     <span class="d-lg-flex align-items-lg-center ps-2">
                         ${course["code"]} ${course["name"]}: ${course["degreeName"]} - ${course["campus"]}

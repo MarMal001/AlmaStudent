@@ -145,8 +145,11 @@ nav div:hover ul {
 
     p {
         text-align: justify;
-        padding: 1%;
     }
+}
+
+p {
+    padding: 10px;
 }
 
 span {
