@@ -232,6 +232,10 @@ p {
     padding: 1%;
 }
 
+form ul li > img {
+    max-width: 200px;
+}
+
 button.dropdown-toggle::after {
   display: none !important;
 }
