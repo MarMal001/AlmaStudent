@@ -554,7 +554,7 @@ class DatabaseHelper{
             WHERE r.Codice = rd.Codice
             AND rd.Corso = ?
             AND rv.Codice_Rating = r.Codice
-            ORDER BY r.Data DESC
+            ORDER BY r.Data, r.Ora DESC
             "
         );
         $stmt->bind_param("s", $course);
@@ -571,7 +571,7 @@ class DatabaseHelper{
             WHERE r.Codice = rd.Codice
             AND rv.Codice_Rating = r.Codice
             AND rd.Docente = ?
-            ORDER BY r.Data DESC
+            ORDER BY r.Data, r.Ora DESC
             "
         );
         $stmt->bind_param("s", $professor);
@@ -1165,7 +1165,7 @@ class DatabaseHelper{
 
     public function createCourseRating($student, $course, $ratingL, $ratingM, $ratingE) {
         $stmt = $this->db->prepare(
-            'INSERT INTO RATING VALUES (null, "CORSO", CURDATE())'
+            'INSERT INTO RATING VALUES (null, "CORSO", CURDATE(), CURTIME())'
         );
         $stmt->execute();
         $stmt = $this->db->prepare(
@@ -1200,7 +1200,7 @@ class DatabaseHelper{
 
     public function createProfessorRating($professor, $student, $course, $ratingD, $ratingC, $ratingI) {
         $stmt = $this->db->prepare(
-            'INSERT INTO RATING VALUES (null, "DOCENTE", CURDATE())'
+            'INSERT INTO RATING VALUES (null, "DOCENTE", CURDATE(), CURTIME())'
         );
         $stmt->execute();
         $stmt = $this->db->prepare(
@@ -1478,7 +1478,7 @@ class DatabaseHelper{
             WHERE r.Codice = rd.Codice
             AND rd.Corso = ?
             AND rv.Codice_Rating = r.Codice
-            ORDER BY r.Data DESC
+            ORDER BY r.Data, r.Ora DESC
             LIMIT ?
             "
         );
@@ -1495,7 +1495,7 @@ class DatabaseHelper{
             WHERE r.Codice = rd.Codice
             AND rv.Codice_Rating = r.Codice
             AND rd.Docente = ?
-            ORDER BY r.Data DESC
+            ORDER BY r.Data, r.Ora DESC
             LIMIT ?
             "
         );
