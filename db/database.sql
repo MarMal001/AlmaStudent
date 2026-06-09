@@ -83,6 +83,7 @@ create table RATING (
      Codice int not null auto_increment,
      Tipo varchar(10) not null,
      Data date not null,
+     Ora time not null,
      constraint ID_RATING_ID primary key (Codice));
 
 create table RATING_CORSO (
