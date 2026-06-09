@@ -1,4 +1,4 @@
-<main class="m-5">
+<main class="px-sm-5 py-5 px-3">
     <?php
     $id = $templateParams["id"];
     $infoReview = $dbh->getReviewInfo($id)[0]; 

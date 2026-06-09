@@ -1,4 +1,4 @@
-<main class="p-5">
+<main class="px-sm-5 py-5 px-3">
     <?php 
         $courseId = $templateParams["course"]; 
         $page = explode("/", $_SERVER['REQUEST_URI'])[2];    
