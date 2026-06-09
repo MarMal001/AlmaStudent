@@ -76,8 +76,8 @@ function generateReviews(reviews, user, type, page) {
             if (review["reported"]) {
                 content += `<i class="fa-solid fa-flag me-3" style="color: rgb(213, 0, 0);" ></i>`;
             } else {
-                content += `<button class="btn" data-bs-toggle="modal" data-bs-target="#flagModal" ><i class="fa-regular fa-flag" style="color: #154388;"></i></button>
-                <div class="modal fade" id="flagModal" tabindex="-1">
+                content += `<button class="btn" data-bs-toggle="modal" data-bs-target="#flagModal${review["student"]}${review["course"]}" ><i class="fa-regular fa-flag" style="color: #154388;"></i></button>
+                <div class="modal fade" id="flagModal${review["student"]}${review["course"]}" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
 
