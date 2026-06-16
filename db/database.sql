@@ -180,8 +180,8 @@ insert into PERSONA values
 	("marco.tartagni@unibo.it", "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2", "Marco", "Tartagni", "DOCENTE"), #PASSWORD: #ciao
 
     #STUDENTI
-	("carla.anselmi3@studio.unibo.it", "ada6b0cd6eb25185b58c096aec96f6e70fc7fc4e25be9558f8b2ad091077aed3", "Carla", "Anselmi", "STUDENTE"), #PASSWORD: PolloAlladivola8@
-	("alessandro.giacomini2@studio.unibo.it", "942953f8a9ea3d36966569fc81871530a96e9fe3de49740a67b8ac2f0a3d1bd5", "Alessandro", "Giacomini", "STUDENTE"); #PASSWORD: FrierenBestWaifu4ever!
+	("carla.anselmi3@studio.unibo.it", "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5", "Carla", "Anselmi", "STUDENTE"), #PASSWORD: 12345
+	("alessandro.giacomini2@studio.unibo.it", "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5", "Alessandro", "Giacomini", "STUDENTE"); #PASSWORD: 12345
 
 ### ADMIN ###
 insert into ADMIN values
